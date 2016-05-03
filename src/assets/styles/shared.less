@@ -1,0 +1,44 @@
+@import "_mixins";
+@import "_colorDefinitions";
+
+.resetCss();
+
+html {
+    background: @background;
+    color: @color;
+}
+
+header {
+    background: @header_background;
+    color: @background;
+    padding: 0.5em;
+    
+    p {
+        font-size: 0.8em;
+        .fontLight();
+        color: darken(@background, 20%);
+    }
+}
+
+nav {
+    padding: .5em;
+    background: @focus_color;
+    color: lighten(saturate(@focus_color, 30%), 30%);
+     
+    li {
+        display: inline-block;
+        
+        .active {
+            .fontBold();
+            color: @background;
+        }
+    }
+}
+
+.content {
+    .fontLight();
+    
+    background: @content_background;
+    padding: 0.5em;
+    border-top: 1px solid @focus_color;
+}

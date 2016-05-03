@@ -1,0 +1,37 @@
+module.exports = {
+	clean: {
+		ts: ["src/app/**/*.js", "!src/app/**/*.spec.js", "src/app/**/*.js.map", "!src/app/**/*.spec.js.map", "dist/app/**/*.js" ],
+		styles: ["src/assets/styles/**/*.css", "dist/assets/**/*.css"],
+		html: ["dist/**/*.html", "index.html"],
+		images: ["dist/assets/images/"],
+		fonts: ["dist/assets/styles/fonts"],
+		tests: ["src/app/**/*.spec.js", "src/app/**/*.spec.js.map"],
+		locales: ["dist/assets/locales/"],
+		all: [
+			"src/app/**/*.js",
+			"src/app/**/*.map",
+			"src/assets/styles/**/*.css",
+			"dist", 
+			"index.html",
+			"coverage"
+		]
+	},
+	coverage: {
+		report: 'coverage/report.json',
+		base: 'coverage/'
+	},
+	compile: {
+		styles: {
+			srcBase: 'src/assets/styles/',
+			destBase: 'dist/assets/styles/'
+		},
+		scripts: {
+			srcBase: 'src/app/',
+		}
+	},
+	dist: {
+		dev: ['./jspm_packages/system.js', './config.js', './system.init.js'],
+		prod: ['dist/app/*.js'],
+		styles: ['dist/assets/styles/**/*.css']
+	}
+};
