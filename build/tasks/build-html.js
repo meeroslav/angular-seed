@@ -27,7 +27,7 @@ function injectTask(source, destination, newFileName) {
 }
 gulp.task('inject:partials', function(){
 	return merge(
-		injectTask(['src/**/*.html', '!src/**/_*.html'], 'dist'),
+		injectTask(['src/*/**/*.html', '!src/*/**/_*.html'], 'dist'),
 		injectTask('src/index.html', '.')
 	);
 });
@@ -37,7 +37,7 @@ gulp.task('inject:assets', function(){
 	var cssSources = path.dist.styles;
 	var sources = gulp.src(jsSources.concat(cssSources), { read: false });
 	
-	return gulp.src('/index.html')
+	return gulp.src('index.html')
 		.pipe(inject(sources, {
 			relative: true,
 			removeTags: argv.prod,

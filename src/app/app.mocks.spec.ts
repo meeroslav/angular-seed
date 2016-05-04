@@ -1,19 +1,22 @@
-import {
-	expect, it, iit, xit,
-	describe, ddescribe, xdescribe,
-	beforeEach, afterEach,
-	inject
-} from '@angular/core/testing';
-import TestComponentBuilder from '@angular/compiler/testing';
+/// <reference path="../../typings/browser.d.ts" />
 
-export {
-	expect, it, iit, xit,
-	describe, ddescribe, xdescribe,
-	beforeEach, afterEach,
-	inject
-	, Mocks, TestComponentBuilder 
-}
+// import {
+// 	expect, it, iit, xit,
+// 	describe, ddescribe, xdescribe,
+// 	beforeEach, afterEach,
+// 	inject
+// } from '@angular/core/testing';
+// import TestComponentBuilder from '@angular/compiler/testing';
+// import 'reflect-metadata';
 
-class Mocks {
+// export {
+// 	expect, it, iit, xit,
+// 	describe, ddescribe, xdescribe,
+// 	beforeEach, afterEach,
+// 	inject
+// 	, Mocks, TestComponentBuilder 
+// }
+
+export default class Mocks {
 	// some mocks in the future
 }

@@ -35,7 +35,6 @@
 		"no-eval": true,
 		"no-string-literal": false,
 		"no-switch-case-fall-through": true,
-		"no-trailing-comma": true,
 		"no-trailing-whitespace": true,
 		"no-unused-expression": true,
 		"no-unused-variable": true,
@@ -56,9 +55,9 @@
 			"call-signature",
 			// "parameter", //checks type specifier of function parameters for non-arrow functions. 
 			"arrow-parameter", //checks type specifier of function parameters for arrow functions.
-			"property-declaration", // checks return types of interface properties.
+			"property-declaration" // checks return types of interface properties.
 			//"variable-declaration", // checks variable declarations.
-			"member-variable-declaration" // checks member variable declarations.
+			//"member-variable-declaration", // checks member variable declarations.
 		],
 		"typedef-whitespace": [true,
 			{

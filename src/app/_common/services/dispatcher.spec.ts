@@ -1,4 +1,5 @@
-import '../../app.mocks.spec';
+import 'reflect-metadata';
+import {inject} from '@angular/core/testing';
 import {IDispatcher} from './dispatcher';
 
 describe('Test: ', () => {
@@ -9,11 +10,9 @@ describe('Test: ', () => {
 		fakeMethod2: () => { },
 	};
 	
-	beforeEach(inject(
-		(Dispatcher: IDispatcher) => {
-			service = Dispatcher;
-		}
-	));
+	beforeEach(inject(['Dispatcher'], (Dispatcher: IDispatcher) => {
+		service = Dispatcher;
+	}) as DoneFn);
 	
 	it('should trigger subscribed listener', () => {
 		fakeElement.fakeMethod = () => { };

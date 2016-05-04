@@ -11,9 +11,10 @@ module.exports = {
 			"src/app/**/*.js",
 			"src/app/**/*.map",
 			"src/assets/styles/**/*.css",
-			"dist", 
+			"dist",
 			"index.html",
-			"coverage"
+			"coverage",
+			"temp"
 		]
 	},
 	coverage: {
@@ -30,8 +31,18 @@ module.exports = {
 		}
 	},
 	dist: {
-		dev: ['./jspm_packages/system.js', './config.js', './system.init.js'],
-		prod: ['dist/app/*.js'],
+		dependencies: [
+			'./node_modules/es6-shim/es6-shim.min.js',
+			'./node_modules/zone.js/dist/zone.js',
+			'./node_modules/reflect-metadata/Reflect.js',
+		],
+		dev: [
+			'./dist/app/dependencies*.js',
+			'./jspm_packages/system.js',
+			'./config.js', 
+			'./system.init.js'
+		],
+		prod: ['./dist/app/dependencies*.js', 'dist/app/bundle*.js'],
 		styles: ['dist/assets/styles/**/*.css']
 	}
 };

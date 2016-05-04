@@ -1,16 +1,17 @@
+import 'reflect-metadata';
 import {Injectable} from '@angular/core';
 
 export {Dispatcher, IDispatcher}
 
 interface IDispatcher {
-	dispatch(eventName: string, ...args: any[]) : void;
-	subscribe(eventName: string, func: Function) : void;
-	unsubscribe(eventName: string, func?: Function) : void;
+	dispatch(eventName: string, ...args: any[]): void;
+	subscribe(eventName: string, func: Function): void;
+	unsubscribe(eventName: string, func?: Function): void;
 }
 
 @Injectable()
 class Dispatcher {
-	private subscriptions: { [eventName: string] : Function[] };
+	private subscriptions: { [eventName: string]: Function[] };
 
 	constructor() {
 		this.subscriptions = {};

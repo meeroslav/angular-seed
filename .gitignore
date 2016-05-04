@@ -11,6 +11,7 @@ coverage/
 # all generated
 /index.html
 dist/
+temp/
 src/app/**/*.js
 src/app/**/*.js.map
 src/assets/styles/**/*.css

@@ -3,14 +3,14 @@ var gulp = require('gulp');
 var path = require('../paths');
 var runSequence = require('run-sequence');
 // for compile
-var less = require('gulp-less');                // less -> css
-var filter = require('gulp-filter');			// filter files
+var less = require('gulp-less');
+var filter = require('gulp-filter');
 // for bundle
-var argv = require('yargs').argv;               // read passed arguments
-var gulpif = require('gulp-if');                // differ gulp flow
-var cleanCSS = require('gulp-clean-css');       // minify css
-var rev = require('gulp-rev');                  // add hashbang/revision to file name 
-var concat = require('gulp-concat');            // concatenate multiple files
+var argv = require('yargs').argv;
+var gulpif = require('gulp-if');
+var cleanCSS = require('gulp-clean-css');
+var rev = require('gulp-rev');
+var concat = require('gulp-concat');
 
 // entry task
 gulp.task('build:styles', function(done){
