@@ -1,25 +1,24 @@
 import 'reflect-metadata';
-import {inject} from '@angular/core/testing';
-import {IDispatcher} from './dispatcher';
+import {inject, beforeEachProviders} from '@angular/core/testing';
+import Dispatcher from './dispatcher';
 
 describe('Test: ', () => {
-	var service: IDispatcher;
 	var fakeElement = {
 		fakeMethod: () => { },
 		fakeMethod1: () => { },
 		fakeMethod2: () => { },
 	};
 	
-	beforeEach(inject(['Dispatcher'], (Dispatcher: IDispatcher) => {
-		service = Dispatcher;
-	}) as DoneFn);
+	beforeEachProviders(() => [
+		Dispatcher
+	]);
 	
 	it('should trigger subscribed listener', () => {
 		fakeElement.fakeMethod = () => { };
 		spyOn(fakeElement, 'fakeMethod').and.callThrough();
 
-		service.subscribe('someEvent', fakeElement.fakeMethod);
-		service.dispatch('someEvent', 3, 4);
+		Dispatcher.subscribe('someEvent', fakeElement.fakeMethod);
+		Dispatcher.dispatch('someEvent', 3, 4);
 
 		expect(fakeElement.fakeMethod).toHaveBeenCalledWith(3, 4);
 	});
@@ -30,9 +29,9 @@ describe('Test: ', () => {
 		spyOn(fakeElement, 'fakeMethod1').and.callThrough();
 		spyOn(fakeElement, 'fakeMethod2').and.callThrough();
 
-		service.subscribe('someEvent', fakeElement.fakeMethod1);
-		service.subscribe('someEvent', fakeElement.fakeMethod2);
-		service.dispatch('someEvent', 'ABC');
+		Dispatcher.subscribe('someEvent', fakeElement.fakeMethod1);
+		Dispatcher.subscribe('someEvent', fakeElement.fakeMethod2);
+		Dispatcher.dispatch('someEvent', 'ABC');
 
 		expect(fakeElement.fakeMethod1).toHaveBeenCalledWith('ABC');
 		expect(fakeElement.fakeMethod2).toHaveBeenCalledWith('ABC');
@@ -42,8 +41,8 @@ describe('Test: ', () => {
 		fakeElement.fakeMethod = () => { };
 		spyOn(fakeElement, 'fakeMethod').and.callThrough();
 
-		service.subscribe('someEvent', fakeElement.fakeMethod);
-		service.dispatch('', 3, 4);
+		Dispatcher.subscribe('someEvent', fakeElement.fakeMethod);
+		Dispatcher.dispatch('', 3, 4);
 
 		expect(fakeElement.fakeMethod).not.toHaveBeenCalled();
 	});
@@ -52,9 +51,9 @@ describe('Test: ', () => {
 		fakeElement.fakeMethod = () => { };
 		spyOn(fakeElement, 'fakeMethod').and.callThrough();
 
-		service.subscribe('someEvent', fakeElement.fakeMethod);
-		service.unsubscribe('someEvent', fakeElement.fakeMethod);
-		service.dispatch('someEvent', 'ABC');
+		Dispatcher.subscribe('someEvent', fakeElement.fakeMethod);
+		Dispatcher.unsubscribe('someEvent', fakeElement.fakeMethod);
+		Dispatcher.dispatch('someEvent', 'ABC');
 
 		expect(fakeElement.fakeMethod).not.toHaveBeenCalled();
 	});
@@ -63,9 +62,9 @@ describe('Test: ', () => {
 		fakeElement.fakeMethod = () => { };
 		spyOn(fakeElement, 'fakeMethod').and.callThrough();
 
-		service.subscribe('someEvent', fakeElement.fakeMethod);
-		service.unsubscribe('someEvent');
-		service.dispatch('someEvent', 'ABC');
+		Dispatcher.subscribe('someEvent', fakeElement.fakeMethod);
+		Dispatcher.unsubscribe('someEvent');
+		Dispatcher.dispatch('someEvent', 'ABC');
 
 		expect(fakeElement.fakeMethod).not.toHaveBeenCalled();
 	});
@@ -76,9 +75,9 @@ describe('Test: ', () => {
 		spyOn(fakeElement, 'fakeMethod1').and.callThrough();
 		spyOn(fakeElement, 'fakeMethod2').and.callThrough();
 
-		service.subscribe('someEvent', fakeElement.fakeMethod1);
-		service.unsubscribe('someEvent', fakeElement.fakeMethod2);
-		service.dispatch('someEvent', 'ABC');
+		Dispatcher.subscribe('someEvent', fakeElement.fakeMethod1);
+		Dispatcher.unsubscribe('someEvent', fakeElement.fakeMethod2);
+		Dispatcher.dispatch('someEvent', 'ABC');
 
 		expect(fakeElement.fakeMethod1).toHaveBeenCalledWith('ABC');
 		expect(fakeElement.fakeMethod2).not.toHaveBeenCalledWith('ABC');
@@ -90,10 +89,10 @@ describe('Test: ', () => {
 		spyOn(fakeElement, 'fakeMethod1').and.callThrough();
 		spyOn(fakeElement, 'fakeMethod2').and.callThrough();
 
-		service.subscribe('someEvent', fakeElement.fakeMethod1);
-		service.subscribe('someEvent', fakeElement.fakeMethod2);
-		service.unsubscribe('someEvent', fakeElement.fakeMethod2);
-		service.dispatch('someEvent', 'ABC');
+		Dispatcher.subscribe('someEvent', fakeElement.fakeMethod1);
+		Dispatcher.subscribe('someEvent', fakeElement.fakeMethod2);
+		Dispatcher.unsubscribe('someEvent', fakeElement.fakeMethod2);
+		Dispatcher.dispatch('someEvent', 'ABC');
 
 		expect(fakeElement.fakeMethod1).toHaveBeenCalledWith('ABC');
 		expect(fakeElement.fakeMethod2).not.toHaveBeenCalledWith('ABC');

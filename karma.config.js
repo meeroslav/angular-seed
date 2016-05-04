@@ -5,9 +5,6 @@ module.exports = function(config) {
 		reporters: ['progress', 'coverage', 'threshold'],
 		
 		files: [
-			// 'node_modules/es6-shim/es6-shim.min.js',
-			// 'node_modules/zone.js/dist/zone.js',
-			// 'node_modules/reflect-metadata/Reflect.js',
 			'src/app/**/*.js'
 		],
 		preprocessors: {
@@ -16,19 +13,21 @@ module.exports = function(config) {
 		
 		systemjs: {
 			configFile: 'config.js',
+			includeFiles: [
+				'node_modules/es6-shim/es6-shim.min.js',
+				// 'node_modules/zone.js/dist/zone.js',
+				'node_modules/reflect-metadata/Reflect.js'
+			],
 			config: {
 				transpiler: false,
 				paths: {
 					'es6-module-loader': 'node_modules/es6-module-loader/dist/es6-module-loader.js',
 					'systemjs': 'node_modules/systemjs/dist/system.src.js',
 					'system-polyfills': 'node_modules/systemjs/dist/system-polyfills.src.js',
-					// 'es6-shim': 'node_modules/es6-shim/es6-shim.min.js',
-					// 'zone.js': 'node_modules/zone.js/dist/zone.js',
-					// 'reflect-metadata': 'node_modules/reflect-metadata/Reflect.js',
 					'phantomjs-polyfill': 'node_modules/phantomjs-polyfill/bind-polyfill.js',
 					'fs':  'jspm_packages/github/jspm/nodelibs-fs@0.1.2',
 					"github:*": "jspm_packages/github/*",
-					"npm:*": "jspm_packages/npm/*",
+					"npm:*": "jspm_packages/npm/*"
 				},
 		 		testFileSuffix: '.spec.js'
 			}
