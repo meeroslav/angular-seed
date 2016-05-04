@@ -1,5 +1,4 @@
-import 'reflect-metadata';
-import {inject, beforeEachProviders} from '@angular/core/testing';
+import {beforeEachProviders} from '@angular/core/testing';
 import Dispatcher from './dispatcher';
 
 describe('Test: ', () => {
