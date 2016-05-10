@@ -5,7 +5,7 @@ var runSequence = require('run-sequence');
 // for tslint
 var tslint = require("gulp-tslint");
 // for compile
-var ts = require('gulp-typescript'); 
+var ts = require('gulp-typescript');
 var tsProject = ts.createProject('./tsconfig.json');
 var sourcemaps = require("gulp-sourcemaps");
 // for bundle deps
@@ -18,6 +18,15 @@ var rev = require('gulp-rev');
 var Builder = require('systemjs-builder');
 
 gulp.task('build:scripts', function(done){
+	if (argv.notest) {
+		return runSequence(
+			'tslint',
+			'compile:ts',
+			'bundle:script:deps',
+			'bundle:scripts',
+			done
+		);
+	}
 	return runSequence(
 		'tslint',
 		'compile:ts',
@@ -39,9 +48,9 @@ gulp.task('compile:ts', function(){
 	return gulp.src([path.compile.scripts.srcBase + '**/*.ts'])
 		.pipe(sourcemaps.init())
 		.pipe(ts(tsProject))
-		.pipe(sourcemaps.write('.', { 
+		.pipe(sourcemaps.write('.', {
 			includeContent: true,
-			sourceRoot: "app/" 
+			sourceRoot: "app/"
 		}))
 		.pipe(gulp.dest(path.compile.scripts.srcBase));
 });
@@ -59,7 +68,7 @@ gulp.task('bundle:scripts', function(cb){
 	if (!argv.prod) {
 		return cb();
 	}
-	
+
 	// build static bundle
 	var builder = new Builder();
 	builder.loadConfig('config.js').then(function(){
