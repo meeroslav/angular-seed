@@ -52,8 +52,8 @@
 		"semicolon": [true, "always"],
 		"triple-equals": [true, "allow-null-check"],
 		"typedef": [true,
-			"call-signature",
-			// "parameter", //checks type specifier of function parameters for non-arrow functions. 
+			// "call-signature",
+			// "parameter", //checks type specifier of function parameters for non-arrow functions.
 			"arrow-parameter", //checks type specifier of function parameters for arrow functions.
 			"property-declaration" // checks return types of interface properties.
 			//"variable-declaration", // checks variable declarations.
