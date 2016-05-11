@@ -2,22 +2,17 @@ import { Component, provide } from '@angular/core';
 import { Http } from '@angular/http';
 import { Routes, ROUTER_DIRECTIVES } from '@angular/router';
 import { TranslatePipe, TranslateService, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
-
+// import components
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { GamesComponent } from './games/games.component';
+// declare moduleName
+declare var __moduleName: string;
 
 @Component({
 	selector: 'app',
-	templateUrl: 'dist/app/app.html',
-	// template: `
-	// header stuff goes here {{'APP_NAME' | translate }}
-	// <nav>
-	// 	<a [routerLink]="['/']">Home</a> |
-	// 	<a [routerLink]="['/login']">Login</a> |
-	// 	<a [routerLink]="['/games']">Games</a>
-	// </nav>
-	// <router-outlet></router-outlet>`,
+	moduleId: __moduleName,
+	templateUrl: './app.html',
 	directives: [ ROUTER_DIRECTIVES ],
 	pipes: [ TranslatePipe ],
 	providers: [
