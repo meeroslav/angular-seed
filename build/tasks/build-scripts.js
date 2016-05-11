@@ -49,8 +49,7 @@ gulp.task('compile:ts', function(){
 		.pipe(sourcemaps.init())
 		.pipe(ts(tsProject))
 		.pipe(sourcemaps.write('.', {
-			includeContent: true,
-			sourceRoot: "app/"
+			includeContent: true
 		}))
 		.pipe(gulp.dest(path.compile.scripts.srcBase));
 });

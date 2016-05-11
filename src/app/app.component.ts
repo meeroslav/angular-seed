@@ -6,13 +6,10 @@ import { TranslatePipe, TranslateService, TranslateLoader, TranslateStaticLoader
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { GamesComponent } from './games/games.component';
-// declare moduleName
-declare var __moduleName: string;
 
 @Component({
 	selector: 'app',
-	moduleId: __moduleName,
-	templateUrl: './app.html',
+	templateUrl: 'dist/app/app.html',
 	directives: [ ROUTER_DIRECTIVES ],
 	pipes: [ TranslatePipe ],
 	providers: [
