@@ -41,6 +41,10 @@ export class AppComponent {
 		this.initializeTranslateServiceConfig();
 	}
 
+	public changeLanguage = (lang: string) => {
+		this.translate.use(lang);
+	}
+
 	private initializeTranslateServiceConfig = () => {
 		var userLang = navigator.language.split('-')[0];
 		userLang = /(rs|en)/gi.test(userLang) ? userLang : 'en';

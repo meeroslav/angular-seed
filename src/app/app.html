@@ -1,8 +1,12 @@
 	<!-- partial:_shared/partials/_header.html -->
 	<!-- partial -->
 	<nav>
-		<a [routerLink]="['/']">Home</a> |
-		<a [routerLink]="['/login']">Login</a> |
-		<a [routerLink]="['/games']">Games</a>
+		<button (click)="changeLanguage('en')">{{ 'LANGUAGES.EN' | translate }}</button>
+		<button (click)="changeLanguage('rs')">{{ 'LANGUAGES.RS' | translate }}</button>
+	</nav>
+	<nav>
+		<a [routerLink]="['/']">{{ 'HOME' | translate }}</a> |
+		<a [routerLink]="['/login']">{{ 'LOGIN' | translate }}</a> |
+		<a [routerLink]="['/games']">{{ 'GAMES' | translate }}</a>
 	</nav>
 	<router-outlet></router-outlet>

@@ -1,6 +1,10 @@
 {
 	"APP_NAME": ":: nimdA :: Angular 1.x šablon",
 	"APP_SUBTITLE": "Neki proizvoljni tekst",
+	"HOME": "Početna",
+	"LOGIN": "Prijava",
+	"GAMES": "Igre",
+	"PLAYER": "Igrač",
 	"LANGUAGES": {
 		"EN": "Engleski",
 		"RS": "Srpski"
