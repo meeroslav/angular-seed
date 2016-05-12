@@ -4,8 +4,7 @@ System.config({
   transpiler: false,
   paths: {
     "github:*": "jspm_packages/github/*",
-    "npm:*": "jspm_packages/npm/*",
-    "app/*": "src/app/*"
+    "npm:*": "jspm_packages/npm/*"
   },
   bundles: {
     "lib/bootstrap.bundle.js": [
