@@ -2,15 +2,14 @@ var gulp = require('gulp');
 var runSequence = require('run-sequence');
 
 gulp.task('build', function(done){
-console.log(' _____  ___    __    ___      ___   ________        __        ');
-console.log('|\\"   \\|"  \\  |" \\  |"  \\    /"  |  \\"     "\\      /""\\       ');
-console.log('|.\\\\   \\    | ||  |  \\   \\  //   |   \\ ___  :|    /    \\      ');
-console.log('|: \\.   \\\\  | |:  |  /\\\\  \\/.    | |: |   \\ ||   /` /\\  \\     ');
-console.log('|.  \\    \\. | |.  | |: \\.        | || |___/ ||  //  __`  \\    ');
-console.log('|    \\    \\ |  \\  | |.  \\    /:  | |:       :| /   /  \\  \\\\   ');
-console.log(' \\___|\\____/    \\_| |___|\\__/|___| |________/ |___/    \\___|  ');
-console.log('                                                              ');
-	
+console.log('              ______                       __ ');
+console.log('.-----.-----.|__    |.-----.-----.-----.--|  |');
+console.log('|     |  _  ||    __||__ --|  -__|  -__|  _  |');
+console.log('|__|__|___  ||______||_____|_____|_____|_____|');
+console.log('      |_____|                                 ');
+console.log('                                   ........   ');
+
+
 	return runSequence(
 		'clean',
 		['copy', 'build:styles', 'build:scripts'],

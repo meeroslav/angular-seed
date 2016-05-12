@@ -1,6 +1,6 @@
 module.exports = {
 	clean: {
-		ts: ["src/app/**/*.js", "!src/app/**/*.spec.js", "src/app/**/*.js.map", "!src/app/**/*.spec.js.map", "dist/app/**/*.js" ],
+		ts: ["src/app/**/*.js", "!src/app/**/*.spec.js", "src/app/**/*.js.map", "!src/app/**/*.spec.js.map", "dist/app/**/*.js", "dist/app/**/*.js.map" ],
 		styles: ["src/assets/styles/**/*.css", "dist/assets/**/*.css"],
 		html: ["dist/**/*.html", "index.html"],
 		images: ["dist/assets/images/"],
@@ -39,7 +39,7 @@ module.exports = {
 		dev: [
 			'./dist/app/dependencies*.js',
 			'./jspm_packages/system.js',
-			'./config.js', 
+			'./config.js',
 			'./system.init.js'
 		],
 		prod: ['./dist/app/dependencies*.js', 'dist/app/bundle*.js'],
