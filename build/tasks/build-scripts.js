@@ -65,8 +65,7 @@ gulp.task('bundle:script:deps', function(cb){
 gulp.task('bundle:scripts', function(cb){
 	// if dev just copy all files to dist
 	if (!argv.prod) {
-		return gulp.src(["src/app/**/*.js", "src/app/**/*.map", "src/app/**/*.ts"])
-			.pipe(gulp.dest('dist/app'));
+		return cb();
 	}
 
 	// build static bundle
@@ -92,7 +91,11 @@ gulp.task('bundle:scripts', function(cb){
 });
 
 gulp.task('copy:ts', function(){
-	return gulp.src('temp/bundle.js')
+	var filePaths = argv.prod ?
+		'temp/bundle.js' :
+		['temp/bundle.js', "src/app/**/*.js", "src/app/**/*.map", "src/app/**/*.ts" ];
+
+	return gulp.src(filePaths)
 		.pipe(rev())
 		.pipe(gulp.dest('dist/app'));
 });
