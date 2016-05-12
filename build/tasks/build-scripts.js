@@ -76,7 +76,7 @@ gulp.task('bundle:script:deps', function(cb){
 					arithmetic: '- [src/app/**/*]'
 				}))
 				.pipe(gulp.dest('dist/lib')),
-			gulp.src(['./jspm_packages/system.src.js', './config.js', './system.init.js'])
+			gulp.src(['./jspm_packages/system.src.js', './config.js', './src/system.init.js'])
 				.pipe(gulp.dest('dist/lib'))
 		);
 	}
