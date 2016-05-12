@@ -3,16 +3,16 @@ module.exports = function(config) {
 		basePath: '.',
 		frameworks: ['systemjs', 'jspm', 'jasmine'],
 		reporters: ['progress', 'coverage', 'threshold'],
-		
+
 		files: [
 			'src/app/**/*.js'
 		],
 		preprocessors: {
 			'src/app/**/!(*.spec).js': ['coverage']
 		},
-		
+
 		systemjs: {
-			configFile: 'config.js',
+			configFile: 'config.prod.js',
 			includeFiles: [
 				'node_modules/es6-shim/es6-shim.min.js',
 				// 'node_modules/zone.js/dist/zone.js',
@@ -29,7 +29,7 @@ module.exports = function(config) {
 					"github:*": "jspm_packages/github/*",
 					"npm:*": "jspm_packages/npm/*"
 				},
-		 		testFileSuffix: '.spec.js'
+				testFileSuffix: '.spec.js'
 			}
 		},
 
@@ -49,19 +49,19 @@ module.exports = function(config) {
 			branches: 50,
 			functions: 50,
 			lines: 50
-		},		
+		},
 
 		browsers: ['PhantomJS'],
 		//browsers: ['Chrome'],
 		phantomjsLauncher: {
-			// Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom) 
+			// Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom)
 			exitOnResourceError: true
-		},		
+		},
 
 		port: 9876,
 		runnerPort: 9100,
 		captureTimeout: 10000,
-		
+
 		autoWatch: false,
 		singleRun: true
 	})

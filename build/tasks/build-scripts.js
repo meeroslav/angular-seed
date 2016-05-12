@@ -12,6 +12,8 @@ var sourcemaps = require("gulp-sourcemaps");
 var concat = require('gulp-concat');
 var gulpif = require('gulp-if');
 var uglify = require('gulp-uglify');
+var jspm = require('gulp-jspm');
+var merge = require('merge2');
 // for bundle
 var argv = require('yargs').argv;
 var rev = require('gulp-rev');
@@ -24,15 +26,17 @@ gulp.task('build:scripts', function(done){
 			'compile:ts',
 			'bundle:script:deps',
 			'bundle:scripts',
+			'copy:scripts',
 			done
 		);
 	}
 	return runSequence(
 		'tslint',
 		'compile:ts',
-		'test',
 		'bundle:script:deps',
+		'test',
 		'bundle:scripts',
+		'copy:scripts',
 		done
 	);
 });
@@ -55,14 +59,23 @@ gulp.task('compile:ts', function(){
 });
 
 gulp.task('bundle:script:deps', function(cb){
-	return gulp.src(path.dist.dependencies)
-		.pipe(gulpif(argv.prod, uglify()))
-		.pipe(concat('dependencies.js'))
-		.pipe(gulpif(argv.prod, rev()))
-		.pipe(gulp.dest('dist/app'));
+	return merge(
+		gulp.src(path.dist.dependencies)
+			.pipe(gulpif(argv.prod, uglify()))
+			.pipe(concat('dependencies.js'))
+			.pipe(gulpif(argv.prod, rev()))
+			.pipe(gulp.dest('dist/app')),
+		gulp.src('src/app/bootstrap.js')
+			.pipe(jspm({
+				arithmetic: '- [src/app/**/*]'
+			}))
+			// .pipe(gulpif(argv.prod, uglify()))
+			// .pipe(gulpif(argv.prod, rev()))
+			.pipe(gulp.dest('dist/app'))
+	);
 });
 
-gulp.task('bundle:scripts', function(cb){
+gulp.task('bundle:scripts', function(cb) {
 	// if dev just copy all files to dist
 	if (!argv.prod) {
 		return cb();
@@ -70,18 +83,13 @@ gulp.task('bundle:scripts', function(cb){
 
 	// build static bundle
 	var builder = new Builder();
-	builder.loadConfig('config.js').then(function(){
+	builder.loadConfig('config.prod.js').then(function(){
 		var bundled = builder.buildStatic('src/app/bootstrap', 'temp/bundle.js', {
-			// minify: true,
-			// sourceMaps: false
-			minify: false,
-			sourceMaps: true
+			minify: true,
+			sourceMaps: false
 		});
 		bundled.then(function(){
-			return runSequence(
-				'copy:ts',
-				cb
-			);
+			return cb();
 		}).catch(function(ex){
 			cb(new Error(ex));
 		});
@@ -90,12 +98,12 @@ gulp.task('bundle:scripts', function(cb){
 	});
 });
 
-gulp.task('copy:ts', function(){
+gulp.task('copy:scripts', function(){
 	var filePaths = argv.prod ?
 		'temp/bundle.js' :
-		['temp/bundle.js', "src/app/**/*.js", "src/app/**/*.map", "src/app/**/*.ts" ];
+		['temp/bundle.js', 'src/app/**/*.js', 'src/app/**/*.map', 'src/app/**/*.ts' ];
 
 	return gulp.src(filePaths)
-		.pipe(rev())
+		.pipe(gulpif(argv.prod, rev()))
 		.pipe(gulp.dest('dist/app'));
 });
