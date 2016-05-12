@@ -8,7 +8,7 @@ System.config({
     "app/*": "src/app/*"
   },
   bundles: {
-    "dist/app/bootstrap.bundle.js": [
+    "lib/bootstrap.bundle.js": [
       "npm:zone.js@0.6.12.js",
       "npm:zone.js@0.6.12/dist/zone.js",
       "github:jspm/nodelibs-process@0.1.2.js",

@@ -58,21 +58,28 @@ gulp.task('compile:ts', function(){
 		.pipe(gulp.dest(path.compile.scripts.srcBase));
 });
 
+function buildDependencies(destFolder){
+	return gulp.src(path.dist.dependencies)
+		.pipe(uglify())
+		.pipe(concat('dependencies.js'))
+		.pipe(gulpif(argv.prod, rev()))
+		.pipe(gulp.dest(destFolder));
+}
 gulp.task('bundle:script:deps', function(cb){
-	return merge(
-		gulp.src(path.dist.dependencies)
-			.pipe(gulpif(argv.prod, uglify()))
-			.pipe(concat('dependencies.js'))
-			.pipe(gulpif(argv.prod, rev()))
-			.pipe(gulp.dest('dist/app')),
-		gulp.src('src/app/bootstrap.js')
-			.pipe(jspm({
-				arithmetic: '- [src/app/**/*]'
-			}))
-			// .pipe(gulpif(argv.prod, uglify()))
-			// .pipe(gulpif(argv.prod, rev()))
-			.pipe(gulp.dest('dist/app'))
-	);
+	if (argv.prod) {
+		return buildDependencies('dist/app');
+	} else {
+		return merge(
+			buildDependencies('dist/lib'),
+			gulp.src('src/app/bootstrap.js')
+				.pipe(jspm({
+					arithmetic: '- [src/app/**/*]'
+				}))
+				.pipe(gulp.dest('dist/lib')),
+			gulp.src(['./jspm_packages/system.src.js', './config.js', './system.init.js'])
+				.pipe(gulp.dest('dist/lib'))
+		);
+	}
 });
 
 gulp.task('bundle:scripts', function(cb) {

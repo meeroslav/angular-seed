@@ -9,12 +9,12 @@ import { GamesComponent } from './games/games.component';
 
 @Component({
 	selector: 'app',
-	templateUrl: 'dist/app/app.html',
+	templateUrl: 'app/app.html',
 	directives: [ ROUTER_DIRECTIVES ],
 	pipes: [ TranslatePipe ],
 	providers: [
 		provide(TranslateLoader, {
-			useFactory: (http: Http) => new TranslateStaticLoader(http, 'dist/assets/locales', '.json'),
+			useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/locales', '.json'),
 			deps: [Http]
 		}),
 		TranslateService

@@ -18,4 +18,9 @@ gulp.task('copy:locales', function(){
 		.pipe(gulp.dest("dist/assets/locales/"));
 });
 
-gulp.task('copy', ['copy:images', 'copy:fonts', 'copy:locales']);
+gulp.task('copy:webconfig', function(){
+	return gulp.src('src/web.config')
+		.pipe(gulp.dest("dist/"));
+});
+
+gulp.task('copy', ['copy:images', 'copy:fonts', 'copy:locales', 'copy:webconfig']);

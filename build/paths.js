@@ -2,7 +2,7 @@ module.exports = {
 	clean: {
 		ts: ["src/app/**/*.js", "!src/app/**/*.spec.js", "src/app/**/*.js.map", "!src/app/**/*.spec.js.map", "dist/app/**/*.js", "dist/app/**/*.js.map" ],
 		styles: ["src/assets/styles/**/*.css", "dist/assets/**/*.css"],
-		html: ["dist/**/*.html", "index.html"],
+		html: ["dist/**/*.html"],
 		images: ["dist/assets/images/"],
 		fonts: ["dist/assets/styles/fonts"],
 		tests: ["src/app/**/*.spec.js", "src/app/**/*.spec.js.map"],
@@ -37,12 +37,12 @@ module.exports = {
 			'./node_modules/reflect-metadata/Reflect.js',
 		],
 		dev: [
-			'./dist/app/dependencies*.js',
-			'./jspm_packages/system.js',
-			'./config.js',
-			'./system.init.js'
+			'./dist/lib/dependencies.js',
+			'./dist/lib/system.src.js',
+			'./dist/lib/config.js',
+			'./dist/lib/system.init.js'
 		],
-		prod: ['./dist/app/dependencies*.js', 'dist/app/bundle*.js'],
-		styles: ['dist/assets/styles/**/*.css']
+		prod: ['./dist/app/dependencies*.js', './dist/app/bundle*.js'],
+		styles: ['./dist/assets/styles/**/*.css']
 	}
 };
