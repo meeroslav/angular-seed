@@ -43,6 +43,7 @@
     "gulp-uglify": "^1.5.3",
     "jasmine-core": "^2.4.1",
     "jspm": "^0.16.34",
+    "gulp-jspm": "^0.5.10",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^1.0.1",
     "karma-coverage": "^0.5.5",
