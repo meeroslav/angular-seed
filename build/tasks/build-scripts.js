@@ -65,7 +65,8 @@ gulp.task('bundle:script:deps', function(cb){
 gulp.task('bundle:scripts', function(cb){
 	// if dev just copy all files to dist
 	if (!argv.prod) {
-		return cb();
+		return gulp.src(["src/app/**/*.js", "src/app/**/*.map", "src/app/**/*.ts"])
+			.pipe(gulp.dest('dist/app'));
 	}
 
 	// build static bundle
