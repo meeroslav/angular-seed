@@ -17,14 +17,6 @@ System.config({
         "es6-shim",
         "rxjs"
       ]
-    },
-    "@angular/*": {
-      "deps": [
-        "reflect-metadata",
-        "zone.js",
-        "es6-shim",
-        "rxjs"
-      ]
     }
   },
 
