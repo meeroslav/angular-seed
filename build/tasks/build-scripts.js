@@ -108,7 +108,7 @@ gulp.task('bundle:scripts', function(cb) {
 gulp.task('copy:scripts', function(){
 	var filePaths = argv.prod ?
 		'temp/bundle.js' :
-		['temp/bundle.js', 'src/app/**/*.js', 'src/app/**/*.map', 'src/app/**/*.ts' ];
+		['temp/bundle.js', 'src/app/**/*.js', 'src/app/**/*.map' ];
 
 	return gulp.src(filePaths)
 		.pipe(gulpif(argv.prod, rev()))

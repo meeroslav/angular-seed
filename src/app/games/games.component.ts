@@ -7,6 +7,7 @@ import { GameListComponent } from './game-list.component';
 import { GameDetailComponent } from './game-detail.component';
 
 @Component({
+	selector: 'game-component',
 	template: `
 	<h1>
 		<a [routerLink]="['/games']">{{ 'GAMES' | translate }}</a>

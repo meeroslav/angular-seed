@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { OnActivate, Router, RouteSegment, RouteTree } from '@angular/router';
 
 @Component({
+	selector: 'game-list-component',
 	template: `
 	<ul>
 		<li *ngFor="let player of [1,2,3,4,5]">
