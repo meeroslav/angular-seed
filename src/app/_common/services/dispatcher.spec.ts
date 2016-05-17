@@ -7,11 +7,11 @@ describe('Test: ', () => {
 		fakeMethod1: () => { },
 		fakeMethod2: () => { },
 	};
-	
+
 	beforeEachProviders(() => [
 		Dispatcher
 	]);
-	
+
 	it('should trigger subscribed listener', () => {
 		fakeElement.fakeMethod = () => { };
 		spyOn(fakeElement, 'fakeMethod').and.callThrough();
@@ -21,7 +21,7 @@ describe('Test: ', () => {
 
 		expect(fakeElement.fakeMethod).toHaveBeenCalledWith(3, 4);
 	});
-	
+
 	it('should trigger multiple listeners', () => {
 		fakeElement.fakeMethod1 = () => { };
 		fakeElement.fakeMethod2 = () => { };
