@@ -1,5 +1,5 @@
 {
-  "name": "angular2-shell",
+  "name": "angular2-seed",
   "version": "0.0.1",
   "description": "Angular 2 seed",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/meeroslav/angular2-shell.git"
+    "url": "git+https://github.com/meeroslav/angular2-seed.git"
   },
   "keywords": [
     "Angular2",
@@ -22,9 +22,9 @@
   "author": "Miroslav Jonas",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/meeroslav/angular2-shell/issues"
+    "url": "https://github.com/meeroslav/angular2-seed/issues"
   },
-  "homepage": "https://github.com/meeroslav/angular2-shell#readme",
+  "homepage": "https://github.com/meeroslav/angular2-seed#readme",
   "devDependencies": {
     "del": "^2.2.0",
     "es6-module-loader": "^0.17.11",
