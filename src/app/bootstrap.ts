@@ -1,6 +1,7 @@
 /// <reference path="../../typings/browser.d.ts" />
 import 'reflect-metadata';
-import 'rxjs/Rx';
+// import 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
