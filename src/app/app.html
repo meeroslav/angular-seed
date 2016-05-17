@@ -1,12 +1,26 @@
 	<!-- partial:_shared/partials/_header.html -->
 	<!-- partial -->
-	<nav>
-		<button (click)="changeLanguage('en')">{{ 'LANGUAGES.EN' | translate }}</button>
-		<button (click)="changeLanguage('rs')">{{ 'LANGUAGES.RS' | translate }}</button>
-	</nav>
-	<nav>
-		<a [routerLink]="['/']">{{ 'HOME' | translate }}</a> |
-		<a [routerLink]="['/login']">{{ 'LOGIN' | translate }}</a> |
-		<a [routerLink]="['/games']">{{ 'GAMES' | translate }}</a>
-	</nav>
-	<router-outlet></router-outlet>
+	<div class="content">
+		<nav>
+			<ul>
+				<li><a [routerLink]="['/']">{{ 'HOME' | translate }}</a></li>
+				<li><a [routerLink]="['/login']">{{ 'LOGIN' | translate }}</a></li>
+				<li><a [routerLink]="['/games']">{{ 'GAMES' | translate }}</a></li>
+			</ul>
+		</nav>
+		<main>
+			<router-outlet></router-outlet>
+		</main>
+		<aside>
+			<ul>
+				<li>
+					<button (click)="changeLanguage('en')">{{ 'LANGUAGES.EN' | translate }}</button>
+				</li>
+				<li>
+					<button (click)="changeLanguage('rs')">{{ 'LANGUAGES.RS' | translate }}</button>
+				</li>
+			</ul>
+		</aside>
+	</div>
+	<!-- partial:_shared/partials/_footer.html -->
+	<!-- partial -->

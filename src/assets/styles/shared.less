@@ -8,26 +8,55 @@ html {
     color: @color;
 }
 
+app {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+
+    .fontLight();
+}
+
 header {
-    background: @header_background;
-    color: @background;
-    padding: 0.5em;
-    
     p {
         font-size: 0.8em;
         .fontLight();
-        color: darken(@background, 20%);
+        color: darken(@header_color, 20%);
+    }
+}
+
+header, footer {
+    background: @header_background;
+    color: @header_color;
+    padding: 0.5em;
+}
+
+nav, aside {
+    background: @nav_background;
+    color: lighten(saturate(@focus_color, 30%), 30%);
+    padding: .5em;
+
+    button {
+        background: lighten(saturate(@focus_color, 30%), 30%);
+        color: @nav_background;
+        border: none;
+        width: 100%;
+        margin-bottom: 0.5em;
+
+        &:hover {
+            background: saturate(@focus_color, 30%);
+        }
     }
 }
 
 nav {
-    padding: .5em;
-    background: @focus_color;
-    color: lighten(saturate(@focus_color, 30%), 30%);
-     
+    flex: 0 0 10em;
+
     li {
-        display: inline-block;
-        
         .active {
             .fontBold();
             color: @background;
@@ -35,10 +64,11 @@ nav {
     }
 }
 
-.content {
-    .fontLight();
-    
-    background: @content_background;
+aside {
+    flex: 0 0 4em;
+}
+
+main {
+    flex: 1;
     padding: 0.5em;
-    border-top: 1px solid @focus_color;
 }
