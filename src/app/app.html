@@ -1,26 +1,17 @@
-	<!-- partial:_shared/partials/_header.html -->
+<header>
+	<h1>{{'APP_NAME' | translate }}</h1>
+	<p>
+		{{'APP_SUBTITLE' | translate }}
+	</p>
+</header>
+<div class="content">
+	<!-- partial:_shared/partials/_mainNav.html -->
 	<!-- partial -->
-	<div class="content">
-		<nav>
-			<ul>
-				<li><a [routerLink]="['/']">{{ 'HOME' | translate }}</a></li>
-				<li><a [routerLink]="['/login']">{{ 'LOGIN' | translate }}</a></li>
-				<li><a [routerLink]="['/games']">{{ 'GAMES' | translate }}</a></li>
-			</ul>
-		</nav>
-		<main>
-			<router-outlet></router-outlet>
-		</main>
-		<aside>
-			<ul>
-				<li>
-					<button (click)="changeLanguage('en')">{{ 'LANGUAGES.EN' | translate }}</button>
-				</li>
-				<li>
-					<button (click)="changeLanguage('rs')">{{ 'LANGUAGES.RS' | translate }}</button>
-				</li>
-			</ul>
-		</aside>
-	</div>
-	<!-- partial:_shared/partials/_footer.html -->
+	<main>
+		<router-outlet></router-outlet>
+	</main>
+</div>
+<footer>
+	<!-- partial:_shared/partials/_languageSwitcher.html -->
 	<!-- partial -->
+</footer>

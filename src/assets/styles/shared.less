@@ -35,17 +35,21 @@ header, footer {
     padding: 0.5em;
 }
 
-nav, aside {
+nav {
     background: @nav_background;
     color: lighten(saturate(@focus_color, 30%), 30%);
     padding: .5em;
+}
+
+footer ul {
+    li {
+        display: inline;
+    }
 
     button {
         background: lighten(saturate(@focus_color, 30%), 30%);
         color: @nav_background;
         border: none;
-        width: 100%;
-        margin-bottom: 0.5em;
 
         &:hover {
             background: saturate(@focus_color, 30%);
@@ -62,10 +66,6 @@ nav {
             color: @background;
         }
     }
-}
-
-aside {
-    flex: 0 0 4em;
 }
 
 main {
