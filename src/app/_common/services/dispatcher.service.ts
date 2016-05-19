@@ -5,9 +5,13 @@ import {Injectable} from '@angular/core';
 export default class Dispatcher {
 	private static subscriptions: { [eventName: string]: Function[] } = {};
 
-	// dispatch event to listeners
-	// definition has to be function to allow variable number of arguments
-	public static dispatch = function(eventName: string, ...args: any[]): void {
+	/**
+	 * Dispatch event to all listeners
+	 * @param  {string} eventName
+	 * @param  {any[]} ...args
+	 * @returns void
+	 */
+	public static dispatch(eventName: string, ...args: any[]): void {
 		if (!eventName || !Dispatcher.subscriptions[eventName] || !Dispatcher.subscriptions[eventName].length) {
 			return;
 		}
@@ -17,16 +21,26 @@ export default class Dispatcher {
 		}
 	};
 
-	// subscribe callback to eventName
-	public static subscribe = (eventName: string, func: Function): void => {
+	/**
+	 * Subscribe callback function to event
+	 * @param  {string} eventName
+	 * @param  {Function} func
+	 * @returns void
+	 */
+	public static subscribe(eventName: string, func: Function): void {
 		if (!Dispatcher.subscriptions[eventName]) {
 			Dispatcher.subscriptions[eventName] = [];
 		}
 		Dispatcher.subscriptions[eventName].push(func);
 	};
 
-	// unsubscribe
-	public static unsubscribe = (eventName: string, func?: Function): void => {
+	/**
+	 * Unsubscribe callback function or remove entire eventName if callback not provided
+	 * @param  {string} eventName
+	 * @param  {Function} func?
+	 * @returns void
+	 */
+	public static unsubscribe(eventName: string, func?: Function): void {
 		if (!func) {
 			Dispatcher.subscriptions[eventName] = null;
 			return;

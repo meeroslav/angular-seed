@@ -4,11 +4,12 @@ import 'reflect-metadata';
 import 'rxjs/add/operator/map';
 
 import { bootstrap } from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core';
+import { provide, enableProdMode, ExceptionHandler } from '@angular/core';
 import { ROUTER_PROVIDERS } from '@angular/router';
 import { HTTP_PROVIDERS } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import ExceptionLogger from './_common/services/exception-logger.service';
 
 // set ng app in prod mode
 if (!window['development_mode']) {
@@ -18,5 +19,6 @@ if (!window['development_mode']) {
 // bootstrap
 bootstrap(AppComponent, [
 	ROUTER_PROVIDERS,
-	HTTP_PROVIDERS
+	HTTP_PROVIDERS,
+	provide(ExceptionHandler, { useClass: ExceptionLogger })
 ]);
