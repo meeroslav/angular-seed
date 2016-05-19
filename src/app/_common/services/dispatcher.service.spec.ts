@@ -1,5 +1,5 @@
 import {beforeEachProviders} from '@angular/core/testing';
-import Dispatcher from './dispatcher';
+import Dispatcher from './dispatcher.service';
 
 describe('Test: ', () => {
 	var fakeElement = {
