@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/meeroslav/angular2-seed#readme",
   "devDependencies": {
+    "typings": "^0.8.1",
     "del": "^2.2.0",
     "es6-module-loader": "^0.17.11",
     "gulp": "^3.9.1",
