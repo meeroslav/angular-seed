@@ -22,6 +22,8 @@ app {
 }
 
 header {
+    padding: 0.5em;
+
     p {
         font-size: 0.8em;
         .fontLight();
@@ -32,33 +34,34 @@ header {
 header, footer {
     background: @header_background;
     color: @header_color;
-    padding: 0.5em;
 }
 
 nav {
     background: @nav_background;
     color: lighten(saturate(@focus_color, 30%), 30%);
-    padding: .5em;
 
     li a {
+        padding: .5em;
         display: block
     }
 
     li a.router-link-active {
-        color: @nav_background;
-        background: lighten(saturate(@focus_color, 30%), 30%);
+        color: darken(@nav_background, 30%);
+        background: saturate(@focus_color, 20%);
     }
 }
 
 footer ul {
     li {
-        display: inline;
+        display: inline-block;
     }
 
     button {
-        background: lighten(saturate(@focus_color, 30%), 30%);
+        background: transparent;
         color: @nav_background;
         border: none;
+        width: 5em;
+        padding: 0.5em;
 
         &:hover {
             background: saturate(@focus_color, 30%);
