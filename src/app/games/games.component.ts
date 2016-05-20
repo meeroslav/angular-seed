@@ -7,19 +7,19 @@ import { GameListComponent } from './game-list.component';
 import { GameDetailComponent } from './game-detail.component';
 
 @Component({
-	selector: 'game-component',
-	template: `
-	<h1>
-		<a [routerLink]="['/games']">{{ 'GAMES' | translate }}</a>
-	</h1>
-	<router-outlet></router-outlet>
-	`,
-	pipes: [ TranslatePipe ],
-	directives: [ ROUTER_DIRECTIVES ]
+    selector: 'game-component',
+    template: `
+    <h1>
+        <a [routerLink]="['/games']">{{ 'GAMES' | translate }}</a>
+    </h1>
+    <router-outlet></router-outlet>
+    `,
+    pipes: [ TranslatePipe ],
+    directives: [ ROUTER_DIRECTIVES ]
 })
 @Routes([
-	{path: '', component: GameListComponent}, // , useAsDefault: true},
-	{path: '/:id', component: GameDetailComponent}
+    {path: '', component: GameListComponent}, // , useAsDefault: true},
+    {path: '/:id', component: GameDetailComponent}
 ])
 export class GamesComponent {
 }

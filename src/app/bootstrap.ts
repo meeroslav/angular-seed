@@ -13,12 +13,12 @@ import ExceptionLogger from './_common/services/exception-logger.service';
 
 // set ng app in prod mode
 if (!window['development_mode']) {
-	enableProdMode();
+    enableProdMode();
 }
 
 // bootstrap
 bootstrap(AppComponent, [
-	ROUTER_PROVIDERS,
-	HTTP_PROVIDERS,
-	provide(ExceptionHandler, { useClass: ExceptionLogger })
+    ROUTER_PROVIDERS,
+    HTTP_PROVIDERS,
+    provide(ExceptionHandler, { useClass: ExceptionLogger })
 ]);

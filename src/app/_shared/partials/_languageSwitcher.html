@@ -1,8 +1,7 @@
-	<ul>
-		<li>
-			<button (click)="changeLanguage('en')">{{ 'LANGUAGES.EN' | translate }}</button>
-		</li>
-		<li>
-			<button (click)="changeLanguage('rs')">{{ 'LANGUAGES.RS' | translate }}</button>
-		</li>
-	</ul>
+    <ul>
+        <li *ngFor="let language of languages">
+            <button (click)="changeLanguage(language)" [class.selected]="selectedLanguage === language">
+                {{ 'LANGUAGES.' + language | translate }}
+            </button>
+        </li>
+    </ul>

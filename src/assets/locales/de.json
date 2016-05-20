@@ -1,0 +1,12 @@
+{
+    "APP_NAME": "Angular 2 Samen",
+    "APP_SUBTITLE": "Einige zufällige Text",
+    "HOME": "Hauptseite",
+    "LOGIN": "Anmeldung",
+    "GAMES": "Spiele",
+    "PLAYER": "Spieler",
+    "LANGUAGES": {
+        "en": "Englisch",
+        "de": "Deutsch"
+    }
+}

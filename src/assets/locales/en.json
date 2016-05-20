@@ -1,12 +1,12 @@
 {
-	"APP_NAME": "Angular 2 seed",
-	"APP_SUBTITLE": "Some random text",
-	"HOME": "Home",
-	"LOGIN": "Login",
-	"GAMES": "Games",
-	"PLAYER": "Player",
-	"LANGUAGES": {
-		"EN": "English",
-		"RS": "Serbian"
-	}
+    "APP_NAME": "Angular 2 seed",
+    "APP_SUBTITLE": "Some random text",
+    "HOME": "Home",
+    "LOGIN": "Login",
+    "GAMES": "Games",
+    "PLAYER": "Player",
+    "LANGUAGES": {
+        "en": "English",
+        "de": "German"
+    }
 }

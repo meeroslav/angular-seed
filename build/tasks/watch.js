@@ -29,6 +29,12 @@ gulp.task('watch', function (done) {
   gulp.watch(['src/assets/locales/**/*.*'], function(event){
     copyAndClean(event, 'locales');
   });
+  gulp.watch(['src/web.config'], function(event){
+    copyAndClean(event, 'webconfig');
+  });
+  gulp.watch(['src/app/**/*.json'], function(event){
+    copyAndClean(event, 'configs');
+  });
 
   // process styles
   gulp.watch(['src/assets/styles/**/*.less'], function(event){

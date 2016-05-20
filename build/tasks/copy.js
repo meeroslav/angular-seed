@@ -23,4 +23,9 @@ gulp.task('copy:webconfig', function(){
 		.pipe(gulp.dest("dist/"));
 });
 
-gulp.task('copy', ['copy:images', 'copy:fonts', 'copy:locales', 'copy:webconfig']);
+gulp.task('copy:configs', function(){
+	return gulp.src('src/app/**/*.json')
+		.pipe(gulp.dest("dist/app/"));
+});
+
+gulp.task('copy', ['copy:images', 'copy:fonts', 'copy:locales', 'copy:webconfig', 'copy:configs']);

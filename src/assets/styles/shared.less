@@ -39,6 +39,15 @@ nav {
     background: @nav_background;
     color: lighten(saturate(@focus_color, 30%), 30%);
     padding: .5em;
+
+    li a {
+        display: block
+    }
+
+    li a.router-link-active {
+        color: @nav_background;
+        background: lighten(saturate(@focus_color, 30%), 30%);
+    }
 }
 
 footer ul {
@@ -53,6 +62,11 @@ footer ul {
 
         &:hover {
             background: saturate(@focus_color, 30%);
+        }
+
+        &.selected {
+            background: saturate(@focus_color, 20%);
+            color: darken(@nav_background, 30%);
         }
     }
 }
