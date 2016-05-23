@@ -35,3 +35,6 @@ gulp.task("clean:fonts", function () {
 gulp.task("clean:locales", function () {
 	return del.sync(path.clean.locales);
 });
+gulp.task("clean:internalAssets", function(){
+	return del.sync(path.clean.internalAssets);
+});

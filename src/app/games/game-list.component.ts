@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { Component } from '@angular/core';
 import { OnActivate, Router, RouteSegment, RouteTree } from '@angular/router';
 

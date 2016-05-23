@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';

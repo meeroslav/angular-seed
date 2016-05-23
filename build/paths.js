@@ -7,6 +7,7 @@ module.exports = {
 		fonts: ["dist/assets/styles/fonts"],
 		tests: ["src/app/**/*.spec.js", "src/app/**/*.spec.js.map"],
 		locales: ["dist/assets/locales/"],
+		internalAssets: ['dist/app/**/*', '!dist/app/**/*.js', '!dist/app/**/*.map', '!dist/app/**/*.ts', '!dist/app/**/*.html'],
 		all: [
 			"src/app/**/*.js",
 			"src/app/**/*.map",
@@ -44,5 +45,9 @@ module.exports = {
 		],
 		prod: ['./dist/app/dependencies*.js', './dist/app/bundle*.js'],
 		styles: ['./dist/assets/styles/**/*.css']
+	},
+	// helper method
+	mapInternalAssets: function(asset) {
+		return asset.replace('dist/', 'src/');
 	}
 };

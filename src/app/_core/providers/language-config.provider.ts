@@ -5,7 +5,7 @@ import { Observable }       from 'rxjs/Observable';
 @Injectable()
 export default class LanguageConfig {
     public data: Observable<any>;
-    private configUrl = 'app/_common/configs/languages.json';
+    private configUrl = 'app/_core/configs/languages.json';
 
     constructor(private http: Http) {
         this.data = this.http.get(this.configUrl)

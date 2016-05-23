@@ -1,4 +1,5 @@
 var gulp = require('gulp');                     // main gulp
+var path = require('../paths');
 
 // copy images
 gulp.task('copy:images', function(){
@@ -23,9 +24,9 @@ gulp.task('copy:webconfig', function(){
 		.pipe(gulp.dest("dist/"));
 });
 
-gulp.task('copy:configs', function(){
-	return gulp.src('src/app/**/*.json')
+gulp.task('copy:internalAssets', function(){
+	return gulp.src(path.clean.internalAssets.map(path.mapInternalAssets))
 		.pipe(gulp.dest("dist/app/"));
 });
 
-gulp.task('copy', ['copy:images', 'copy:fonts', 'copy:locales', 'copy:webconfig', 'copy:configs']);
+gulp.task('copy', ['copy:images', 'copy:fonts', 'copy:locales', 'copy:webconfig', 'copy:internalAssets']);

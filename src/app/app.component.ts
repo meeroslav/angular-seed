@@ -7,7 +7,7 @@ import { TranslatePipe, TranslateService, TranslateLoader, TranslateStaticLoader
 import { HomeComponent } from './home/home.component';
 import { GamesComponent } from './games/games.component';
 // import providers
-import LanguageConfig from './_common/providers/language-config.provider';
+import LanguageConfig from './_core/providers/language-config.provider';
 
 @Component( {
     selector: 'app',

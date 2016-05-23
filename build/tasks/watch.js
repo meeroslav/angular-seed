@@ -32,8 +32,8 @@ gulp.task('watch', function (done) {
   gulp.watch(['src/web.config'], function(event){
     copyAndClean(event, 'webconfig');
   });
-  gulp.watch(['src/app/**/*.json'], function(event){
-    copyAndClean(event, 'configs');
+  gulp.watch(path.clean.internalAssets.map(path.mapInternalAssets), function(event){
+    copyAndClean(event, 'internalAssets');
   });
 
   // process styles
