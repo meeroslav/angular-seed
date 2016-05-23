@@ -1,85 +1,93 @@
 {
-	"rules": {
-		"class-name": true,
-		"comment-format": [true,
-			"check-space",
-			"check-lowercase"
-		],
-		"curly": true,
-		"eofline": true,
-		"forin": true,
-		"indent": [true, "spaces"],
-		"interface-name": [true, "always-prefix"],
-		"label-position": true,
-		"label-undefined": true,
-		"member-ordering": [true,
-			"public-before-private",
-			"static-before-instance",
-			"variables-before-functions"
-		],
-		"no-arg": false,
-		"no-bitwise": false,
-		"no-console": [true,
-			"debug",
-			"info",
-			"time",
-			"timeEnd",
-			"trace"
-		],
-		"no-construct": true,
-		"no-constructor-vars": false,
-		"no-debugger": true,
-		"no-duplicate-key": true,
-		"no-duplicate-variable": true,
-		"no-empty": true,
-		"no-eval": true,
-		"no-string-literal": false,
-		"no-switch-case-fall-through": true,
-		"no-trailing-whitespace": true,
-		"no-unused-expression": true,
-		"no-unused-variable": true,
-		"no-unreachable": true,
-		"no-use-before-declare": true,
-		"no-var-requires": true,
-		"one-line": [true,
-			"check-open-brace",
-			"check-catch",
-			"check-else",
-			"check-whitespace"
-		],
-		"quotemark": [true, "single"],
-		"radix": false,
-		"semicolon": [true, "always"],
-		"triple-equals": [true, "allow-null-check"],
-		"typedef": [true,
-			// "call-signature",
-			// "parameter", //checks type specifier of function parameters for non-arrow functions.
-			"arrow-parameter", //checks type specifier of function parameters for arrow functions.
-			"property-declaration" // checks return types of interface properties.
-			//"variable-declaration", // checks variable declarations.
-			//"member-variable-declaration", // checks member variable declarations.
-		],
-		"typedef-whitespace": [true,
-			{
-				"call-signature": "nospace", //checks return type of functions
-				"index-signature": "nospace", //checks index type specifier of indexers
-				"parameter": "nospace", // checks function parameters
-				"property-declaration": "nospace", // checks object property declarations.
-				"variable-declaration": "nospace" // checks variable declaration
-			}
-		],
-		"use-strict": [true,
-			"check-module",
-			"check-function"
-		],
-		"variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
-		"whitespace": [true,
-			"check-branch",
-			"check-decl",
-			"check-operator",
-			"check-separator",
-			"check-type",
-			"check-typecast"
-		]
-	}
+    "rules": {
+        "class-name": true,
+        "comment-format": [
+            true,
+            "check-space",
+            "check-lowercase"
+        ],
+        "curly": true,
+        "eofline": true,
+        "forin": true,
+        "indent": [ true, "spaces" ],
+        "interface-name": [ true, "always-prefix" ],
+        "label-position": true,
+        "label-undefined": true,
+        "member-ordering": [
+            true,
+            "public-before-private",
+            "static-before-instance",
+            "variables-before-functions"
+        ],
+        "no-arg": false,
+        "no-bitwise": false,
+        "no-console": [
+            true,
+            "debug",
+            "info",
+            "time",
+            "timeEnd",
+            "trace"
+        ],
+        "no-construct": true,
+        "no-constructor-vars": false,
+        "no-debugger": true,
+        "no-duplicate-key": true,
+        "no-duplicate-variable": true,
+        "no-empty": true,
+        "no-eval": true,
+        "no-string-literal": false,
+        "no-switch-case-fall-through": true,
+        "no-trailing-whitespace": true,
+        "no-unused-expression": true,
+        "no-unused-variable": true,
+        "no-unreachable": true,
+        "no-use-before-declare": true,
+        "no-var-requires": true,
+        "one-line": [
+            true,
+            "check-open-brace",
+            "check-catch",
+            "check-else",
+            "check-whitespace"
+        ],
+        "quotemark": [ true, "single" ],
+        "radix": false,
+        "semicolon": [ true, "always" ],
+        "triple-equals": [ true, "allow-null-check" ],
+        "typedef": [
+            true,
+            // "call-signature",
+            // "parameter", //checks type specifier of function parameters for non-arrow functions.
+            "arrow-parameter", //checks type specifier of function parameters for arrow functions.
+            "property-declaration" // checks return types of interface properties.
+            //"variable-declaration", // checks variable declarations.
+            //"member-variable-declaration", // checks member variable declarations.
+        ],
+        "typedef-whitespace": [
+            true,
+            {
+                "call-signature": "nospace", //checks return type of functions
+                "index-signature": "nospace", //checks index type specifier of indexers
+                "parameter": "nospace", // checks function parameters
+                "property-declaration": "nospace", // checks object property declarations.
+                "variable-declaration": "nospace" // checks variable declaration
+            }
+        ],
+        "use-strict": [
+            true,
+            "check-module",
+            "check-function"
+        ],
+        "variable-name": [ true, "ban-keywords", "check-format", "allow-leading-underscore" ],
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type",
+            "check-typecast"
+        ]
+    }
 }
