@@ -1,38 +1,34 @@
 import { Component, provide } from '@angular/core';
 import { Http } from '@angular/http';
-import { Routes, ROUTER_DIRECTIVES } from '@angular/router';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TranslatePipe, TranslateService, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
-// import components
-import { HomeComponent } from './home/home.component';
-import { GamesComponent } from './games/games.component';
+import { NgClass } from '@angular/common';
 // import providers
-import LanguageConfig from './_core/providers/language-config.provider';
+import { AppConfig } from './_core/providers/app-config.provider';
+import { LoadingIndicatorService } from './_core/providers/loading-indicator.service';
+// import components
+import { LoadingIndicatorComponent } from './_core/components/loading-indicator.component';
 
 @Component( {
     selector: 'app',
     templateUrl: 'app/app.html',
-    directives: [ ROUTER_DIRECTIVES ],
+    directives: [ROUTER_DIRECTIVES, NgClass, LoadingIndicatorComponent],
     pipes: [ TranslatePipe ],
     providers: [
-        LanguageConfig,
         provide( TranslateLoader, {
             useFactory: ( http: Http ) => new TranslateStaticLoader( http, 'assets/locales', '.json' ),
             deps: [ Http ]
         }),
         TranslateService,
+        LoadingIndicatorService,
         Title
     ]
 })
-@Routes( [
-    { path: '/home', component: HomeComponent },
-    { path: '/games', component: GamesComponent },
-    // default view
-    { path: '*', component: HomeComponent }
-] )
 export class AppComponent {
-    public selectedLanguage: string;
-    public languages: Array<string> = [];
+    selectedLanguage: string;
+    languages: Array<string> = [];
+    isMenuCollapsed = false;
 
     /**
      * @param  {TranslateService} privatetranslate
@@ -40,7 +36,7 @@ export class AppComponent {
      */
     constructor(
         private translate: TranslateService,
-        private languageConfig: LanguageConfig,
+        private appConfig: AppConfig,
         private title: Title,
         private http: Http
     ) {
@@ -50,7 +46,7 @@ export class AppComponent {
     /**
      * @param  {string} userLang
      */
-    public changeLanguage( userLang: string ) {
+    changeLanguage( userLang: string ) {
         this.translate.use( userLang );
         this.selectedLanguage = userLang;
         this.translateApplicationShell();
@@ -60,8 +56,12 @@ export class AppComponent {
      * @param  {string} url
      * @returns boolean
      */
-    public getLinkStyle(url: string): boolean {
+    getLinkStyle(url: string): boolean {
         return true;
+    }
+
+    toggleMainMenu() {
+        this.isMenuCollapsed = !this.isMenuCollapsed;
     }
 
     //////////////////////////////////////////////////////
@@ -69,11 +69,9 @@ export class AppComponent {
     /////////////////////////////////////////////////////
 
     private initializeLanguages() {
-        this.languageConfig.data.subscribe((res: any) => {
-            this.languages = res.languages;
-            this.initializeTranslateService(res.default || res.languages[0]);
-            this.translateApplicationShell();
-        });
+        this.languages = this.appConfig.data.languages.languages;
+        this.initializeTranslateService(this.appConfig.data.languages.default);
+        this.translateApplicationShell();
     }
 
     private initializeTranslateService(defaultLanguage: string) {

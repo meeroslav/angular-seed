@@ -47,14 +47,20 @@
         text-decoration: none;
         color: inherit;
     }
-    a:visited, a:active, a:hover {
-        color: inherit;
-    }
     button:focus {
         outline: 0;
     }
+    button {
+        background: none;
+        color: inherit;
+        border: none;
+        font-size: inherit;
+    }
     app {
         display: block;
+    }
+    button, a {
+        cursor: pointer;
     }
 }
 
@@ -66,4 +72,53 @@
 }
 .fontLight() {
 	font-family: 'Roboto-Light', sans-serif;
+}
+
+@card-radius: 0.25em;
+
+@z-top: 10;
+
+.liteShadow(@shadow: Red) {
+    box-shadow: 0 1px 3px 1px @shadow;
+}
+
+.vertical_gradient(@start-color: Red, @start-percent: 0, @end-color: Lime, @end-percent: 100%) {
+	background-color: @end-color;
+	background-image: -webkit-gradient(linear, left @start-percent, left @end-percent, from(@start-color), to(@end-color)); // Safari 4+, Chrome 2+
+	background-image: -webkit-linear-gradient(top, @start-color, @start-percent, @end-color, @end-percent); // Safari 5.1+, Chrome 10+
+	background-image:  -moz-linear-gradient(top, @start-color @start-percent, @end-color @end-percent); // FF 3.6+
+	background-image: linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent); // Standard, IE10
+	background-repeat: repeat-x;
+}
+
+.boxSizing(@value: border-box) {
+    -moz-box-sizing: @value;
+    -webkit-box-sizing: @value;
+    box-sizing: @value;
+}
+
+// custom max width media mixin
+.max-width(@width, @content) {
+    @media screen and (max-width: @width) {
+        @content();
+    }
+}
+// custom min width media mixin
+.min-width(@width, @content) {
+    @media screen and (min-width: @width) {
+        @content();
+    }
+}
+
+// mobile (small) view
+.mobile-view(@content) {
+    @media screen and (max-width: 768px) {
+        @content();
+    }
+}
+// wide screen view
+.widescreen-view(@content) {
+    @media screen and (min-width: 960px) {
+        @content();
+    }
 }

@@ -1,0 +1,4 @@
+{
+    "404_ERROR_MESSAGE": "Ein Teufels Monster aus dem Weltall aß die Seite, die Sie suchen.",
+    "GO_TO_PAGE": "Gehen Sie nach <a [routerLink]=\"['']\">Hause</a>, wenn Sie leben wollen."
+}

@@ -4,8 +4,52 @@
 // general page palette
 @background: @color_7;
 @color: @color_2;
-@header_background: @color_2;
-@header_color: @color_7;
-@focus_color: @color_12;
+@overlay: mix(@color_transparent, @color_0, 60%);
+@shadow: mix(@color_transparent, @color_0, 80%);
+@glow: mix(@color_transparent, @color_7, 30%);
+@glow-light: mix(@color_transparent, @color_7, 70%);
+
+// page blocks
+@wrapper_background: @color_2;
+@wrapper_lower_background: @color_3;
+@wrapper_color: @color_7;
 @content_background: @color_7;
-@nav_background: @color_5;
+@nav_background: @color_3;
+@nav_color: @color_5;
+@nav_border: mix(@nav_background, @nav_color, 90%);
+@nav_border_top: mix(@nav_background, @color_1, 80%);
+@nav_selected_color: @color_6;
+@nav_lighter_background: lighten(@nav_background, 10%);
+
+// forms
+@input_border: @color_4;
+
+// buttons
+@button-background: @color_16;
+@button-disabled-background: mix(@color_5, @color_16);
+@button-secondary-background: @color_4;
+@button-disabled-secondary-background: @color_6;
+@button-color: @color_7;
+@button-disabled-color: @color_5;
+
+// splash
+@splash-background: @color_0;
+@splash-background-gradient: @color_1;
+
+// notifications
+@info: @color_10;
+@error: @color_11;
+@success: @color_12;
+
+// content
+@card_wrapper_background: @color_6;
+@card_header: @color_6;
+@card_background: @color_7;
+@card_border: @color_5;
+@card_wrapper_border: @color_5;
+@card_inverted_border: @card_background;
+@card_inverted_color: @card_background;
+@card_color: @color_2;
+
+// temporary
+@focus_color: @color_16;

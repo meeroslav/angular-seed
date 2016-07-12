@@ -3,8 +3,7 @@
         "class-name": true,
         "comment-format": [
             true,
-            "check-space",
-            "check-lowercase"
+            "check-space"
         ],
         "curly": true,
         "eofline": true,
@@ -39,7 +38,7 @@
         "no-string-literal": false,
         "no-switch-case-fall-through": true,
         "no-trailing-whitespace": true,
-        "no-unused-expression": true,
+        "no-unused-expression": false,
         "no-unused-variable": true,
         "no-unreachable": true,
         "no-use-before-declare": true,

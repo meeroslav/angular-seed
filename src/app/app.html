@@ -1,17 +1,14 @@
-<header>
-    <h1>{{'APP_NAME' | translate }}</h1>
-    <p>
-        {{'APP_SUBTITLE' | translate }}
-    </p>
-</header>
+<!-- partial:_core/partials/_header.html -->
+<!-- partial -->
 <div class="content">
     <!-- partial:_core/partials/_mainNav.html -->
     <!-- partial -->
     <main>
-        <router-outlet></router-outlet>
+        <breadcrumb></breadcrumb>
+        <div class="inner-content">
+            <router-outlet></router-outlet>
+        </div>
+        <feedback></feedback>
     </main>
 </div>
-<footer>
-    <!-- partial:_core/partials/_languageSwitcher.html -->
-    <!-- partial -->
-</footer>
+<loading-indicator></loading-indicator>

@@ -21,9 +21,8 @@ gulp.task('coverage', function(){
 		.pipe(remapIstanbul({
 			basePath: '.',
 			reports: {
-				'lcov': path.coverage.base + 'report-lcov',
 				'teamcity': path.coverage.base + 'report.txt',
 				'html': path.coverage.base + 'html-report'
 			}
-	}));	
+	    }));
 });

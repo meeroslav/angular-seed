@@ -1,5 +1,4 @@
 node_modules/
-jspm_packages/
 .vscode/
 typings/
 coverage/
@@ -9,7 +8,6 @@ coverage/
 .LSOverride
 
 # all generated
-/index.html
 dist/
 temp/
 src/app/**/*.js

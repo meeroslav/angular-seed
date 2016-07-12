@@ -31,7 +31,7 @@ gulp.task('compile:styles', function(){
 });
 
 gulp.task('bundle:styles', function(){
-	return gulp.src(path.compile.styles.srcBase + '**/*.css')
+    return gulp.src(path.compile.styles.styleOrder)
 		.pipe(gulpif(argv.prod, cleanCSS()))
 		.pipe(gulpif(argv.prod, concat('bundle.css')))
 		.pipe(gulpif(argv.prod, rev()))

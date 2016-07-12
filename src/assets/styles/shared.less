@@ -1,5 +1,6 @@
 @import "_mixins";
 @import "_colorDefinitions";
+@import "_animations.less";
 
 .resetCss();
 
@@ -8,84 +9,61 @@ html {
     color: @color;
 }
 
+html, body, app {
+    height: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+
+    &:visited, &:active, &:hover {
+        color: inherit;
+    }
+}
+
 app {
     display: flex;
-    min-height: 100vh;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
     flex-direction: column;
 }
 
 .content {
     display: flex;
+    -ms-flex: 1;
+    -webkit-flex: 1;
     flex: 1;
-
     .fontLight();
 }
 
-header {
-    padding: 0.5em;
-
-    p {
-        font-size: 0.8em;
-        .fontLight();
-        color: darken(@header_color, 20%);
-    }
-}
-
-header, footer {
-    background: @header_background;
-    color: @header_color;
-}
-
-nav {
-    background: @nav_background;
-    color: lighten(saturate(@focus_color, 30%), 30%);
-
-    li a {
-        padding: .5em;
-        display: block
-    }
-
-    li a.router-link-active {
-        color: darken(@nav_background, 30%);
-        background: saturate(@focus_color, 20%);
-    }
-}
-
-footer ul {
-    li {
-        display: inline-block;
-    }
-
-    button {
-        background: transparent;
-        color: @nav_background;
-        border: none;
-        width: 5em;
-        padding: 0.5em;
-
-        &:hover {
-            background: saturate(@focus_color, 30%);
-        }
-
-        &.selected {
-            background: saturate(@focus_color, 20%);
-            color: darken(@nav_background, 30%);
-        }
-    }
-}
-
-nav {
-    flex: 0 0 10em;
-
-    li {
-        .active {
-            .fontBold();
-            color: @background;
-        }
-    }
-}
-
 main {
+    -ms-flex: 1;
+    -webkit-flex: 1;
     flex: 1;
-    padding: 0.5em;
+    background: @card_wrapper_background;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    display: flex;
+    position: relative;
 }
+
+.inner-content {
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.info {
+    color: @info;
+}
+.success {
+    color: @success;
+}
+.error {
+    color: @error;
+}
+

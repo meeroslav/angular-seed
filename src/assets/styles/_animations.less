@@ -1,0 +1,116 @@
+@animation-duration: 350ms;
+
+.animation(@params,@mode) {
+  -webkit-animation:    @params;
+     -moz-animation:    @params;
+       -o-animation:    @params;
+          animation:    @params;
+          .animationfill(@mode);
+}
+
+.animationfill(@params) {
+    -webkit-animation-fill-mode: @params;
+       -moz-animation-fill-mode: @params;
+         -o-animation-fill-mode: @params;
+            animation-fill-mode: @params;
+}
+
+.animateProperty(@property: all, @animation: ease-in-out) {
+    -webkit-transition: @property @animation @animation-duration;
+       -moz-transition: @property @animation @animation-duration;
+         -o-transition: @property @animation @animation-duration;
+            transition: @property @animation @animation-duration;
+}
+
+/* SPINNING ANIMATION */
+.rotateTransform(@deg) {
+    -webkit-transform: rotate(@deg);
+    -moz-transform: rotate(@deg);
+    -ms-transform: rotate(@deg);
+    -o-transform: rotate(@deg);
+    transform: rotate(@deg);
+}
+
+@-moz-keyframes spin {
+  0% {
+    .rotateTransform(0);
+  }
+  100% {
+    .rotateTransform(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    .rotateTransform(0);
+  }
+  100% {
+    .rotateTransform(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    .rotateTransform(0);
+  }
+  100% {
+    .rotateTransform(360deg);
+  }
+}
+
+@spinning-animation: spin 1s infinite ease-in-out;
+
+/* ZOOMING ANIMATION */
+.scaleTransform(@amount) {
+    -webkit-transform: scale(@amount, @amount);
+    -moz-transform: scale(@amount, @amount);
+    -ms-transform: scale(@amount, @amount);
+    -o-transform: scale(@amount, @amount);
+    transform: scale(@amount, @amount);
+}
+
+@-moz-keyframes scalezoom {
+  0% {
+    .scaleTransform(1);
+  }
+  50% {
+    .scaleTransform(1.5);
+  }
+  80% {
+    .rotateTransform(0.5);
+  }
+  100% {
+    .rotateTransform(1);
+  }
+}
+
+@-webkit-keyframes scalezoom {
+  0% {
+    .scaleTransform(1);
+  }
+  50% {
+    .scaleTransform(1.5);
+  }
+  80% {
+    .rotateTransform(0.5);
+  }
+  100% {
+    .rotateTransform(1);
+  }
+}
+
+@keyframes scalezoom {
+  0% {
+    .scaleTransform(1);
+  }
+  50% {
+    .scaleTransform(1.5);
+  }
+  80% {
+    .rotateTransform(0.5);
+  }
+  100% {
+    .rotateTransform(1);
+  }
+}
+@zooming-animation: scalezoom 1s ease-in-out;

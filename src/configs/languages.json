@@ -1,0 +1,6 @@
+{
+    "prod": { 
+        "languages": [ "en", "de" ],
+        "default": "en"
+    }
+}

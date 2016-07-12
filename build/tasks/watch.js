@@ -1,5 +1,6 @@
 var gulp = require( 'gulp' );
-var runSequence = require( 'run-sequence' );
+var runSequence = require('run-sequence');
+var path = require('../paths');
 
 // add - file was added to watch or created
 // change - file was changed
@@ -17,11 +18,7 @@ gulp.task( 'watch:start', function () {
 });
 
 gulp.task( 'watch', function ( done ) {
-    // make sure it's in dev mode
-    runSequence( 'build' );
-
     // now set watchers
-
     gulp.watch( [ 'coverage/report.json' ], [ 'coverage' ] ); // guess coverage will never be unlinked, only added and updated
 
     // process static assets
@@ -37,8 +34,10 @@ gulp.task( 'watch', function ( done ) {
     gulp.watch( [ 'src/web.config' ], function ( event ) {
         copyAndClean( event, 'webconfig' );
     });
-    gulp.watch( path.clean.internalAssets.map( path.mapInternalAssets ), function ( event ) {
-        copyAndClean( event, 'internalAssets' );
+
+    // process configs
+    gulp.watch(path.clean.configs.map(path.mapDistToSrc).concat(['src/health/*.html']), function () {
+        runSequence('watch:start', 'build:configs', 'build:healthPage');
     });
 
     // process styles
@@ -69,7 +68,7 @@ gulp.task( 'watch', function ( done ) {
     });
 
     // process html
-    gulp.watch( [ 'src/app/**/*.html', 'src/index.html' ], function ( event ) {
+    gulp.watch( [ 'src/app/**/*.html', 'src/app/**/*.svg', 'src/index.html' ], function ( event ) {
         if ( event.type === 'unlink' ) {
             runSequence( 'watch:start', 'clean:html', 'build:html' );
         } else {

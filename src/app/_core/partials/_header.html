@@ -1,0 +1,19 @@
+<header>
+    <div>
+        <h1>
+            <a [routerLink]="['/home']">
+                {{'APP_NAME' | translate }}
+            </a>
+        </h1>
+        <p>{{'APP_SUBTITLE' | translate }}</p>
+    </div>
+    <div id="header-controls">
+        <ul id="language-switcher">
+            <li *ngFor="let language of languages">
+                <button (click)="changeLanguage(language)" [class.selected]="selectedLanguage === language">
+                    {{ 'LANGUAGES.' + language | translate }}
+                </button>
+            </li>
+        </ul>
+    </div>
+</header>
