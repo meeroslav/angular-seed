@@ -2,6 +2,8 @@
 
 > Angular 2 rc4 seed for future applications
 
+![](src/assets/images/logo.svg)
+
 ## Included
 - Angular 2 RC4
 - Typescript
