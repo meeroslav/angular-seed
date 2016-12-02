@@ -2,6 +2,8 @@
 
 > Angular 2 rc4 seed for future applications
 
+BROKEN DUE TO UPDATE
+
 ![](src/assets/images/logo.svg)
 
 ## Included
@@ -17,7 +19,7 @@
 - Minification
 - Bundling
 
-![](tools/omg.gif)
+![](.github/omg.gif)
 
 ## Installation
 

@@ -1,16 +1,22 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
-import { TranslatePipe } from 'ng2-translate/ng2-translate';
 
 @Component({
-    selector: 'home-component',
-    template: `
-    <h1>
-        I am home component
-    </h1>
-    `,
-    pipes: [ TranslatePipe ],
-    directives: [ ROUTER_DIRECTIVES ]
+    // The selector is what angular internally uses
+    // for `document.querySelectorAll(selector)` in our index.html
+    // where, in this case, selector is the string 'home'
+    selector: 'home',  // <home></home>
+
+    // Our list of styles in our component. We may add more to compose many styles together
+    styleUrls: [ './home.component.less' ],
+    // Every Angular template is first compiled by the browser before Angular runs it's compiler
+    templateUrl: './home.component.html'
 })
 export class HomeComponent {
+    // TypeScript public modifiers
+    constructor() {}
+
+    ngOnInit() {
+        console.log('hello `Home` component');
+        // this.title.getData().subscribe(data => this.data = data);
+    }
 }

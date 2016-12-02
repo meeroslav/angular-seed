@@ -1,69 +1,13 @@
 @import "_mixins";
-@import "_colorDefinitions";
-@import "_animations.less";
+@import "_typography";
 
 .resetCss();
 
 html {
-    background: @background;
-    color: @color;
-}
+  background-color: aliceblue;
+  color: darkslateblue;
 
-html, body, app {
-    height: 100%;
+  font-family: 'Roboto-Regular', sans-serif;
+  line-height: 1.231;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
-a {
-    color: inherit;
-    text-decoration: none;
-
-    &:visited, &:active, &:hover {
-        color: inherit;
-    }
-}
-
-app {
-    display: flex;
-    -ms-flex-direction: column;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-}
-
-.content {
-    display: flex;
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;
-    .fontLight();
-}
-
-main {
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;
-    background: @card_wrapper_background;
-    -ms-flex-direction: column;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    display: flex;
-    position: relative;
-}
-
-.inner-content {
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-}
-
-.info {
-    color: @info;
-}
-.success {
-    color: @success;
-}
-.error {
-    color: @error;
-}
-

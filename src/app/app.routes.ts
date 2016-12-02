@@ -1,17 +1,10 @@
-﻿import { provideRouter, RouterConfig } from '@angular/router';
-import { Error404Component } from './error/404.component';
+﻿import { ModuleWithProviders  } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 
-export const routes: RouterConfig = [
-    // default view
-    { path: '', redirectTo: 'home', terminal: true },
-    { path: 'home', component: HomeComponent },
-    { path: 'dashboard', component: DashboardComponent },
-    { path: '**', component: Error404Component }
+export const appRoutes: Routes = [
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'home', loadChildren: 'app/home/home.module#HomeModule' },
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-    provideRouter(routes)
-];
+export const appRouting: ModuleWithProviders = RouterModule.forRoot(appRoutes);

@@ -1,5 +1,6 @@
 node_modules/
 .vscode/
+.idea/
 typings/
 coverage/
 
@@ -14,3 +15,4 @@ src/app/**/*.js
 src/app/**/*.js.map
 src/assets/styles/**/*.css
 src/assets/styles/**/*.map
+build/configs/
