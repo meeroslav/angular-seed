@@ -4,7 +4,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 
 @Component( {
     selector: 'app',
-    templateUrl: 'app/app.component.html'
+    templateUrl: './app.component.html'
 })
 export class AppComponent {
     selectedLanguage: string;

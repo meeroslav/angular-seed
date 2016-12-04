@@ -56,21 +56,17 @@
         "triple-equals": [ true, "allow-null-check" ],
         "typedef": [
             true,
-            // "call-signature",
-            // "parameter", //checks type specifier of function parameters for non-arrow functions.
-            "arrow-parameter", //checks type specifier of function parameters for arrow functions.
-            "property-declaration" // checks return types of interface properties.
-            //"variable-declaration", // checks variable declarations.
-            //"member-variable-declaration", // checks member variable declarations.
+            "arrow-parameter",
+            "property-declaration"
         ],
         "typedef-whitespace": [
             true,
             {
-                "call-signature": "nospace", //checks return type of functions
-                "index-signature": "nospace", //checks index type specifier of indexers
-                "parameter": "nospace", // checks function parameters
-                "property-declaration": "nospace", // checks object property declarations.
-                "variable-declaration": "nospace" // checks variable declaration
+                "call-signature": "nospace",
+                "index-signature": "nospace",
+                "parameter": "nospace",
+                "property-declaration": "nospace",
+                "variable-declaration": "nospace"
             }
         ],
         "use-strict": [

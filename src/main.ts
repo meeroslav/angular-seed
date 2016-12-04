@@ -1,5 +1,4 @@
 import { enableProdMode } from '@angular/core';
-import './assets/'
 
 // set ng app in prod mode
 if (process.env.isProduction) {
