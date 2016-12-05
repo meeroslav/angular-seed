@@ -17,7 +17,7 @@ module.exports = merge({
     module: {
       loaders: [
         { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'], exclude: [/\.(spec|e2e)\.ts$/] },
-        { test: /\.json/, loader: 'json-loader' },
+        { test: /\.json$/, loader: 'json-loader' },
         { test: /\.html$/, loader: 'raw-loader' },
         { test: /\.(png(.*?)|woff(.*?)|woff2(.*?)|eot(.*?)|ttf(.*?)|svg(.*?))$/, loader: 'url-loader?limit=10000&name=assets/styles/[name]_[hash].[ext]' }
       ]
@@ -28,7 +28,7 @@ module.exports = merge({
       main: ['./src/main.ts']
     },
     output: {
-      path: path.join(__dirname, 'dist', ''),
+      path: path.join(path.resolve(__dirname, '..'), 'dist', ''),
       filename: '[name].js',
       publicPath: '/'
     },
