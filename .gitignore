@@ -16,3 +16,4 @@ src/app/**/*.js.map
 src/assets/styles/**/*.css
 src/assets/styles/**/*.map
 build/configs/
+npm-debug.log
