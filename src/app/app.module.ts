@@ -5,8 +5,6 @@ import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-tra
 import { appRouting } from './app.routes';
 import { NgModule } from '@angular/core';
 
-import '../assets/styles/shared.less';
-
 @NgModule({
     imports: [
         BrowserModule,

@@ -4,6 +4,7 @@ var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var merge = require('extendify')({ isDeep: true, arrays: 'concat' });
 var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var devConfig = require('./webpack.config.dev');
 var stagingConfig = require('./webpack.config.staging');
@@ -12,15 +13,7 @@ var prodConfig = require('./webpack.config.prod');
 // empty array lines are needed for extendify to work
 module.exports = merge({
     resolve: {
-      extensions: ['.ts', '.js', '.json']
-    },
-    module: {
-      loaders: [
-        { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'], exclude: [/\.(spec|e2e)\.ts$/] },
-        { test: /\.json$/, loader: 'json-loader' },
-        { test: /\.html$/, loader: 'raw-loader' },
-        { test: /\.(png(.*?)|woff(.*?)|woff2(.*?)|eot(.*?)|ttf(.*?)|svg(.*?))$/, loader: 'url-loader?limit=10000&name=assets/styles/[name]_[hash].[ext]' }
-      ]
+      extensions: ['.ts', '.js', '.json', '.html', '.css', '.less']
     },
     entry: {
       polyfills: ['./src/polyfills.ts'],
@@ -28,9 +21,21 @@ module.exports = merge({
       main: ['./src/main.ts']
     },
     output: {
-      path: path.join(path.resolve(__dirname, '..'), 'dist', ''),
-      filename: '[name].js',
-      publicPath: '/'
+      path: root('dist'),
+      filename: environment.isDevelopment ? '[name].js' : '[name].[hash].js',
+      chunkFilename: environment.isDevelopment ? '[id].chunk.js' : '[id].[hash].chunk.js',
+      publicPath: environment.isDevelopment ? 'http://localhost:51961/' : '/'
+    },
+    module: {
+      loaders: [
+        { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader', 'angular2-router-loader'],
+          exclude: [/\.(spec|e2e)\.ts$/]
+        },
+        { test: /\.ts$/, enforce: 'pre', loader: 'tslint-loader' },
+        { test: /\.json$/, loader: 'json-loader' },
+        { test: /\.html$/, loader: 'raw-loader' },
+        { test: /\.(png|jpe?g|gif|svg|woff|woff2|eot|ttf)(.*?)$/, loader: 'url-loader?limit=10000&name=assets/styles/[name].[hash].[ext]' }
+      ]
     },
     plugins: [
       // with this plugin we make build time vars (like environment settings) available to client app
@@ -42,6 +47,11 @@ module.exports = merge({
           'isProduction': environment.isProduction
         }
       }),
+      new webpack.ContextReplacementPlugin(
+        // The (\\|\/) piece accounts for path separators in *nix and Windows
+        /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+        root('./src') // location of your src
+      ),
       new CopyWebpackPlugin([
         {
           from: 'src/assets/images',
@@ -53,6 +63,9 @@ module.exports = merge({
         }
       ]),
       new ForkCheckerPlugin(),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: ['vendor', 'polyfills']
+      }),
       new webpack.LoaderOptionsPlugin({
         test: /\.ts$/,
         exclude: [/node_modules/, /\.(e2e|spec)\.ts$/],
@@ -64,7 +77,12 @@ module.exports = merge({
           }
         }
       }),
-      new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' })
+      new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }),
+      new HtmlWebpackPlugin({
+        title: 'Angular2 seed',
+        template: './src/index.html',
+        chunksSortMode: 'dependency'
+      })
     ],
     node: {
       global: true,
@@ -77,3 +95,8 @@ module.exports = merge({
   },
   environment.isDevelopment ? devConfig : (environment.isStaging ? stagingConfig : prodConfig)
 );
+
+function root(args) {
+  args = Array.prototype.slice.call(arguments, 0);
+  return path.join.apply(path, [path.resolve(__dirname, '..')].concat(args));
+}

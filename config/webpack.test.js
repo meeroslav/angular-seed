@@ -3,10 +3,11 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: '#inline-source-map',
+  entry: {},
+  output: {},
   resolve: {
-    extensions: ['.ts', '.js', '.json']
+    extensions: ['.ts', '.js', '.json', '.html']
   },
-  entry: '',
   verbose: true,
   module: {
     preLoaders: [

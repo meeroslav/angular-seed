@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     // The selector is what angular internally uses
@@ -11,10 +11,7 @@ import { Component } from '@angular/core';
     // Every Angular template is first compiled by the browser before Angular runs it's compiler
     templateUrl: './home.component.html'
 })
-export class HomeComponent {
-    // TypeScript public modifiers
-    constructor() {}
-
+export class HomeComponent implements OnInit {
     ngOnInit() {
         console.log('hello `Home` component');
         // this.title.getData().subscribe(data => this.data = data);

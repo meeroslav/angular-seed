@@ -10,6 +10,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.NoErrorsPlugin(),
     extractCSS,
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
