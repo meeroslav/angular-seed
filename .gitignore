@@ -12,6 +12,7 @@ npm-debug.log
 .DS_Store
 .AppleDouble
 .LSOverride
+Thumbs.db
 
 # Project generated
 coverage/

@@ -16,7 +16,7 @@ var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
  * Get npm lifecycle event to identify the environment
  */
 var ENV = process.env.npm_lifecycle_event;
-var isTestWatch = ENV === 'test-watch';
+var isTestWatch = ENV === 'test:watch';
 var isTest = ENV === 'test' || isTestWatch;
 var isProd = ENV === 'build';
 
@@ -60,8 +60,8 @@ module.exports = function makeWebpackConfig() {
   config.output = isTest ? {} : {
     path: root('dist'),
     publicPath: isProd ? '/' : 'http://localhost:51961/',
-    filename: isProd ? 'js/[name].[hash].js' : 'js/[name].js',
-    chunkFilename: isProd ? '[id].[hash].chunk.js' : '[id].chunk.js'
+    filename: isProd ? '[name].[hash].js' : '[name].js',
+    chunkFilename: isProd ? 'app/[id].[hash].chunk.js' : 'app/[id].chunk.js'
   };
 
   /**
@@ -99,7 +99,7 @@ module.exports = function makeWebpackConfig() {
       // copy those assets to output
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader?name=fonts/[name].[hash].[ext]?'
+        loader: 'file-loader?name=assets/styles/[name].[hash].[ext]'
       },
 
       // Support for *.json files.
@@ -182,6 +182,18 @@ module.exports = function makeWebpackConfig() {
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       root('./src') // location of your src
     ),
+
+    // copy static resources
+    new CopyWebpackPlugin([
+      {
+        from: root('src/assets/images/'),
+        to: 'assets/images/[path][name].[ext]?[hash]'
+      },
+      {
+        from: root('src/assets/locales'),
+        to: 'assets/locales/[path][name].[ext]?[hash]'
+      }
+    ]),
 
     // Tslint configuration for webpack 2
     new webpack.LoaderOptionsPlugin({
@@ -266,13 +278,7 @@ module.exports = function makeWebpackConfig() {
 
       // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
       // Minify all javascript, switch loaders to minimizing mode
-      new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: { keep_fnames: true }}),
-
-      // Copy assets from the public folder
-      // Reference: https://github.com/kevlened/copy-webpack-plugin
-      new CopyWebpackPlugin([{
-        from: root('src/public')
-      }])
+      new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: { keep_fnames: true }})
     );
   }
 
