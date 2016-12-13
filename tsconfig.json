@@ -1,38 +1,21 @@
 {
-    "compilerOptions": {
-        "target": "es5", /* target of the compilation (es5) */
-        "module": "commonjs", /* System.register([dependencies], function) (in JS)*/
-        "moduleResolution": "node", /* how module gets resolved (needed for Angular 2)*/
-        "sourceMap": true,
-        "emitDecoratorMetadata": true, /* needed for decorators */
-        "experimentalDecorators": true, /* needed for decorators (@Injectable) */
-        "allowSyntheticDefaultImports": true,
-        "noEmitHelpers": true,
-        "noImplicitAny": false, /* any has to be written explicitly*/
-        "baseUrl": "./src",
-        "lib": [
-            "dom",
-            "es6"
-        ],
-        "types": [
-            "hammerjs",
-            "jasmine",
-            "node",
-            "source-map",
-            "uglify-js",
-            "jquery",
-            "webpack"
-        ]
-    },
-    "exclude": [ /* since compiling these packages could take ages, we want to ignore them*/
-        "node_modules",
-        "dist"
-    ],
-    "awesomeTypescriptLoaderOptions": {
-        "forkChecker": true,
-        "useWebpackText": true
-    },
-    "compileOnSave": false, /* on default the compiler will create js files */
-    "buildOnSave": false,
-    "atom": { "rewriteTsconfig": false }
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "noEmitHelpers": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true,
+    "useWebpackText": true
+  }
 }

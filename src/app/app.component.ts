@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
+import '../assets/styles/shared.less';
+import '../assets/styles/test.css';
+
 @Component( {
     selector: 'app',
     templateUrl: './app.component.html'
@@ -34,7 +37,7 @@ export class AppComponent {
     }
 
     private _initializeTranslateService(defaultLanguage: string) {
-        var userLang = navigator.language.split( '-' )[ 0 ];
+        let userLang = navigator.language.split( '-' )[ 0 ];
         userLang = this.languages.indexOf( userLang ) !== -1 ?
             userLang :
             defaultLanguage;

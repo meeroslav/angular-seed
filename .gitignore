@@ -1,19 +1,19 @@
+# Node Files and typings #
 node_modules/
+typings/
+npm-debug.log
+
+# IDE generated files #
 .vscode/
 .idea/
-typings/
-coverage/
+*.swp
 
+# OS generated files #
 .DS_Store
 .AppleDouble
 .LSOverride
 
-# all generated
+# Project generated
+coverage/
 dist/
-temp/
-src/app/**/*.js
-src/app/**/*.js.map
-src/assets/styles/**/*.css
-src/assets/styles/**/*.map
-build/configs/
-npm-debug.log
+doc/
