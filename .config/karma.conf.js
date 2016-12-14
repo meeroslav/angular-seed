@@ -1,6 +1,6 @@
 var path = require('path');
 
-var webpackConfig = require('./webpack.config');
+var webpackConfig = require('../webpack.config.js');
 
 var ENV = process.env.npm_lifecycle_event;
 var isTestWatch = ENV === 'test:watch';
@@ -9,7 +9,7 @@ module.exports = function (config) {
   var _config = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '../',
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -17,7 +17,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: './karma-shim.js', watched: false }
+      { pattern: './.config/karma-shim.js', watched: false }
     ],
 
     // list of files to exclude
@@ -26,7 +26,7 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      './karma-shim.js': ['webpack', 'sourcemap']
+      './.config/karma-shim.js': ['webpack', 'sourcemap']
     },
 
     webpack: webpackConfig,
@@ -53,7 +53,7 @@ module.exports = function (config) {
     colors: true,
 
     // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // possible values: .config.LOG_DISABLE || .config.LOG_ERROR || .config.LOG_WARN || .config.LOG_INFO || .config.LOG_DEBUG
     logLevel: config.LOG_INFO,
 
     // enable / disable watching file and executing tests whenever any file changes
