@@ -1,20 +1,17 @@
 # angular2-seed
 
-> Angular 2 rc4 seed for future applications
-
-BROKEN DUE TO UPDATE
+> Angular 2 seed for future applications
 
 ![](src/assets/images/logo.svg)
 
 ## Included
-- Angular 2 RC4
+- Angular 2
 - Typescript
 - TSLint
-- Karma test runner with PhantomJS and Chrome browsers
+- Webpack
+- Karma test runner with PhantomJS and Chrome
+- Protractor E2E test runner on Chrome
 - Test coverage with HTML and TeamCity reporter
-- Dynamic asset injection
-- Dynamic recursive partial injection
-- Dynamic configuration bundling
 - Translations
 - Minification
 - Bundling
@@ -33,21 +30,30 @@ For minified/uglified/bundled/production-like build run:
 ```shell
 npm run build
 ```
-or
-```shell
-gulp build --prod
-```
+
+## Run
 
 For developement/debugging run:
 ```shell
-gulp build
+npm run start
 ```
 
 ## Watch
 ```shell
 npm run watch
 ```
-or
+
+## Unit test
 ```shell
-gulp watch
+npm run test
+```
+
+## Automation test
+```shell
+npm run e2e
+```
+
+## Docs
+```shell
+npm run docs
 ```
