@@ -6,7 +6,20 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "noImplicitAny": false,
-    "noEmitHelpers": true
+    "noEmitHelpers": true,
+    "lib": [
+      "dom",
+      "es6"
+    ],
+    "types": [
+      "hammerjs",
+      "jasmine",
+      "node",
+      "selenium-webdriver",
+      "source-map",
+      "uglify-js",
+      "webpack"
+    ]
   },
   "exclude": [
     "node_modules",
