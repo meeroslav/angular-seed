@@ -101,7 +101,6 @@ module.exports = function(globalRef, rule, file) {
             written[file.absoluteFrom] = { [hash]: true };
           }
 
-          // TODO: Remove old, add new kind of deal
           if (compilation.assets[file.webpackTo]) {
             info(`adding data to '${file.webpackTo}', because it already exists`);
             let newSize = compilation.assets[file.webpackTo].size() + stat.size;
