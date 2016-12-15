@@ -8,6 +8,8 @@ if (process.env.ENV === 'production') {
 }
 
 export function main() {
+  'use strict';
+
   return platformBrowserDynamic().bootstrapModule(AppModule);
 }
 

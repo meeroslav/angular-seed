@@ -1,12 +1,12 @@
 require('ts-node/register');
-var helpers = require('./helpers');
+var root = require('./helpers').root;
 
 exports.config = {
   baseUrl: 'http://localhost:51961/',
 
   specs: [
-    helpers.root('src/**/**.e2e.ts'),
-    helpers.root('src/**/*.e2e.ts')
+    root('src/**/**.e2e.ts'),
+    root('src/**/*.e2e.ts')
   ],
   exclude: [],
 
