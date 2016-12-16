@@ -1,5 +1,5 @@
 {
-    "prod": { 
+    "prod": {
         "languages": [ "en", "de" ],
         "default": "en"
     }

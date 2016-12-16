@@ -196,6 +196,12 @@ module.exports = function makeWebpackConfig() {
         to: 'assets/locales/[name].json',
         transform: helpers.transformJsonFile,
         merge: helpers.combineJsonFiles
+      },
+      {
+        from: root('src/assets/configs'),
+        to: 'assets/configs/config.json',
+        transform: helpers.transformJsonFileFlat,
+        merge: helpers.combineJsonFiles
       }
     ]),
 

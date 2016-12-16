@@ -12,8 +12,7 @@ function transformJsonFile(content, absolutePath, relativePath) {
   'use strict';
 
   let data = JSON.parse(content.toString());
-  let paths = relativePath.replace(/\\/g, '/').split('/');
-  paths.pop(); // remove name
+  let paths = path.dirname(relativePath).replace(/\\/g, '/').split('/');
   while(paths.length) {
     let path = paths.pop();
     let newData = {};
@@ -22,6 +21,17 @@ function transformJsonFile(content, absolutePath, relativePath) {
   }
 
   return new Buffer(JSON.stringify(data));
+}
+// combine flat json files
+function transformJsonFileFlat(content, absolutePath) {
+  'use strict';
+
+  let data = JSON.parse(content.toString());
+  let name = path.basename(absolutePath, 'json');
+  let newData = {};
+  newData[name] = data;
+
+  return new Buffer(JSON.stringify(newData));
 }
 
 // combine two json files
@@ -38,4 +48,5 @@ function combineJsonFiles(source, destination) {
 
 exports.root = root;
 exports.transformJsonFile = transformJsonFile;
+exports.transformJsonFileFlat = transformJsonFileFlat;
 exports.combineJsonFiles = combineJsonFiles;
