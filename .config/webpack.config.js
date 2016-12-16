@@ -1,17 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
-const root = require('./helpers').root;
+const helpers = require('./helpers');
+const root = helpers.root;
 
 // Webpack Plugins
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('./loaders/index'); // temporary use custom version of copy-webpack-plugin
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
-
-const JsonCombinePlugin = require('./loaders/json-combine');
 
 /**
  * Env
@@ -191,14 +190,23 @@ module.exports = function makeWebpackConfig() {
       {
         from: root('src/assets/images/'),
         to: 'assets/images/[path][name].[ext]'
+      },
+      {
+        from: root('src/assets/locales'),
+        to: 'assets/locales/[name].json',
+        transform: helpers.transformJsonFile,
+        merge: helpers.combineJsonFiles
       }
     ]),
 
-    new JsonCombinePlugin([{
-      from: root('src/assets/locales'),
-      to: 'assets/locales/[name].json',
-      groupBy: '[name]',
-    }]),
+    // new JsonCombinePlugin([{
+    //   from: root('src/assets/locales'),
+    //   to: 'assets/locales/[name].json'
+    // }, {
+    //   from: root('src/assets/configs'),
+    //   to: 'assets/configs/config.json'
+    // }]),
+
 
     // Tslint configuration for webpack 2
     new webpack.LoaderOptionsPlugin({
