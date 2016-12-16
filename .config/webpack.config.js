@@ -200,7 +200,7 @@ module.exports = function makeWebpackConfig() {
     ]),
     new CopyWebpackPlugin([
       {
-        from: root('src/assets/configs'), to: 'assets/configs/config.prod.json',
+        from: root('src/assets/configs'), to: 'assets/configs/config.production.json',
         transform: helpers.transformJsonFileFlat(['prod']),
         merge: helpers.combineJsonConfigFiles
       },
