@@ -1,6 +1,9 @@
 {
     "prod": {
-        "languages": [ "en", "de" ],
+        "isoCodes": [ "en", "de" ],
         "default": "en"
+    },
+    "dev": {
+        "default": "de"
     }
 }

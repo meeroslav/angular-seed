@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const helpers = require('./helpers');
+const helpers = require('./helpers/index');
 const root = helpers.root;
 
 // Webpack Plugins
@@ -196,23 +196,30 @@ module.exports = function makeWebpackConfig() {
         to: 'assets/locales/[name].json',
         transform: helpers.transformJsonFile,
         merge: helpers.combineJsonFiles
-      },
-      {
-        from: root('src/assets/configs'),
-        to: 'assets/configs/config.json',
-        transform: helpers.transformJsonFileFlat,
-        merge: helpers.combineJsonFiles
       }
     ]),
-
-    // new JsonCombinePlugin([{
-    //   from: root('src/assets/locales'),
-    //   to: 'assets/locales/[name].json'
-    // }, {
-    //   from: root('src/assets/configs'),
-    //   to: 'assets/configs/config.json'
-    // }]),
-
+    new CopyWebpackPlugin([
+      {
+        from: root('src/assets/configs'), to: 'assets/configs/config.prod.json',
+        transform: helpers.transformJsonFileFlat(['prod']),
+        merge: helpers.combineJsonConfigFiles
+      },
+      {
+        from: root('src/assets/configs'), to: 'assets/configs/config.dev.json',
+        transform: helpers.transformJsonFileFlat(['dev', 'prod']),
+        merge: helpers.combineJsonConfigFiles
+      },
+      {
+        from: root('src/assets/configs'), to: 'assets/configs/config.ci.json',
+        transform: helpers.transformJsonFileFlat(['ci', 'prod']),
+        merge: helpers.combineJsonConfigFiles
+      },
+      {
+        from: root('src/assets/configs'), to: 'assets/configs/config.staging.json',
+        transform: helpers.transformJsonFileFlat(['staging', 'prod']),
+        merge: helpers.combineJsonConfigFiles
+      }
+    ], { copyUnmodified: true }),
 
     // Tslint configuration for webpack 2
     new webpack.LoaderOptionsPlugin({

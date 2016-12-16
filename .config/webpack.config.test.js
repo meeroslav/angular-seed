@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const root = require('./helpers').root;
+const root = require('./helpers/index').root;
 
 const ENV = process.env.npm_lifecycle_event;
 const isTestWatch = ENV === 'test:watch';

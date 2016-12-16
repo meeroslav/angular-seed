@@ -1,5 +1,5 @@
 require('ts-node/register');
-var root = require('./helpers').root;
+var root = require('./helpers/index').root;
 
 exports.config = {
   baseUrl: 'http://localhost:51961/',
