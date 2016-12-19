@@ -42,7 +42,7 @@ module.exports = function makeWebpackConfig() {
       config.devtool = '#source-map';
     }
   } else {
-    config.devtool = '#inline-source-map';
+    config.devtool = '#cheap-module-source-map';
   }
 
   /**
@@ -63,7 +63,8 @@ module.exports = function makeWebpackConfig() {
     path: root('dist'),
     publicPath: isBuild ? '/' : 'http://localhost:51961/',
     filename: isBuild ? '[name].[hash].js' : '[name].js',
-    chunkFilename: isBuild ? 'app/[id].[hash].chunk.js' : 'app/[id].chunk.js'
+    chunkFilename: isBuild ? 'app/[id].[hash].chunk.js' : 'app/[id].chunk.js',
+    // sourceMapFilename: isBuild ? 'app/[id].[hash].chunk.js.map' : 'app/[id].chunk.js.map',
   };
 
   /**
