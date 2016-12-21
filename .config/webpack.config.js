@@ -86,9 +86,7 @@ module.exports = function makeWebpackConfig() {
       // Support for .ts files.
       {
         test: /\.ts$/,
-        loaders: ['awesome-typescript-loader', 'angular2-template-loader',
-          'angular2-router-loader', '@angularclass/hmr-loader'
-        ],
+        loaders: ['awesome-typescript-loader', 'angular2-template-loader', 'angular2-router-loader'],
         exclude: [/\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
       },
       {
@@ -283,6 +281,7 @@ module.exports = function makeWebpackConfig() {
       );
     }
   } else {
+    config.plugins.push(new webpack.HotModuleReplacementPlugin());
     config.plugins.push(new DashboardPlugin());
   }
 

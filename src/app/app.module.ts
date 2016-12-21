@@ -6,17 +6,18 @@ import { appRouting } from './app.routes';
 import { NgModule } from '@angular/core';
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        HttpModule,
-        TranslateModule.forRoot({
-            provide: TranslateLoader,
-            useFactory: ( http: Http ) => new TranslateStaticLoader( http, 'assets/locales', '.json' ),
-            deps: [Http]
-        }),
-        appRouting
-    ],
-    declarations: [ AppComponent ],
-    bootstrap:    [ AppComponent ]
+  imports: [
+    BrowserModule,
+    HttpModule,
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/locales', '.json'),
+      deps: [Http]
+    }),
+    appRouting
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

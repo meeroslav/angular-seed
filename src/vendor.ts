@@ -10,7 +10,5 @@ import 'ng2-translate/ng2-translate';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
-// import '@angularclass/hmr';
-
 // Other vendors for example jQuery, Lodash or Bootstrap
 // You can import js, ts, css, sass, ...
