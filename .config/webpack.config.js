@@ -19,8 +19,9 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const ENV = process.env.npm_lifecycle_event;
 const NODE_ENV = process.env.NODE_ENV;
 const isBuild = ENV === 'build';
-const isStaging = NODE_ENV && NODE_ENV.indexOf('staging') !== -1;
-const isProduction = NODE_ENV && NODE_ENV.indexOf('production') !== -1;
+const isStaging = isBuild && NODE_ENV && NODE_ENV.indexOf('staging') !== -1;
+const isCi = isBuild && NODE_ENV && NODE_ENV.indexOf('ci') !== -1;
+const isProduction = isBuild && NODE_ENV && NODE_ENV.indexOf('production') !== -1;
 
 module.exports = function makeWebpackConfig() {
   'use strict';
@@ -37,11 +38,9 @@ module.exports = function makeWebpackConfig() {
    * Reference: http://webpack.github.io/docs/configuration.html#devtool
    * Type of sourcemap to use per build type
    */
-  if (isBuild && (isStaging || isProduction)) {
-    if (isStaging) {
-      config.devtool = '#source-map';
-    }
-  } else {
+  if (isStaging || isCi) {
+    config.devtool = '#source-map';
+  } else if (!isProduction) {
     config.devtool = '#cheap-module-source-map';
   }
 
@@ -218,6 +217,17 @@ module.exports = function makeWebpackConfig() {
       {
         from: root('src/assets/configs'), to: 'assets/configs/config.staging.json',
         transform: helpers.transformJsonFileFlat(['staging', 'prod']),
+        merge: helpers.combineJsonConfigFiles
+      },
+      {
+        from: root('src/assets/configs'), to: 'assets/configs/config.json',
+        transform: helpers.transformJsonFileFlat( isProduction ?
+          ['prod'] :
+          isStaging ?
+            ['staging', 'prod'] :
+            isCi ? ['ci', 'prod'] :
+              ['dev', 'prod']
+        ),
         merge: helpers.combineJsonConfigFiles
       }
     ], { copyUnmodified: true }),
