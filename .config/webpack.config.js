@@ -97,8 +97,12 @@ module.exports = function makeWebpackConfig() {
 
       // copy those assets to output
       {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader?name=assets/styles/[name].[hash].[ext]'
+        test: /\.(png|jpe?g|gif|svg|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader?name=assets/images/[name].[hash].[ext]'
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader?name=assets/styles/fonts/[name].[hash].[ext]'
       },
 
       // Support for *.json files.
@@ -181,7 +185,7 @@ module.exports = function makeWebpackConfig() {
     // Extract css files
     // Reference: https://github.com/webpack/extract-text-webpack-plugin
     // Disabled when in test mode or not in build mode
-    new ExtractTextPlugin({filename: 'assets/styles/[name].[hash].css', disable: !isBuild}),
+    new ExtractTextPlugin({filename: '[name].[hash].css', disable: !isBuild}),
 
     // copy static resources
     new CopyWebpackPlugin([
