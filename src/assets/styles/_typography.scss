@@ -10,12 +10,12 @@
     font-family: 'Roboto-Light';
     src: url('fonts/Roboto-Light.ttf');
 }
-.fontRegular() {
+@mixin fontRegular() {
     font-family: 'Roboto-Regular', sans-serif;
 }
-.fontBold() {
+@mixin fontBold() {
     font-family: 'Roboto-Bold', sans-serif;
 }
-.fontLight() {
+@mixin fontLight() {
     font-family: 'Roboto-Light', sans-serif;
 }

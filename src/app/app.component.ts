@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
-import '../assets/styles/shared.less';
-import '../assets/styles/test.css';
+import '../assets/styles/shared.scss';
 
 @Component( {
     selector: 'app',
