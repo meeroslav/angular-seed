@@ -1,12 +1,3 @@
 {
-    "APP_NAME": "Angular 2 Seed",
-    "APP_SUBTITLE": "Some random text",
-    "CLOSE": "Close",
-    "CANCEL": "Cancel",
-    "CREATE": "Create",
-    "SAVE": "Save",
-    "LANGUAGES": {
-        "en": "English",
-        "de": "Deutsch"
-    }
+    "APP_NAME": "Angular 2 Seed"
 }

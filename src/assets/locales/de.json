@@ -1,12 +1,3 @@
 {
-    "APP_NAME": "Angular 2 Samen",
-    "APP_SUBTITLE": "Einige zufällige Text",
-    "CLOSE": "Schließen",
-    "CANCEL": "Stornieren",
-    "CREATE": "Erstellen",
-    "SAVE": "Speichern",
-    "LANGUAGES": {
-        "en": "English",
-        "de": "Deutsch"
-    }
+    "APP_NAME": "Angular 2 Kern"
 }
