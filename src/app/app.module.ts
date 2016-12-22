@@ -11,7 +11,8 @@ import { NgModule } from '@angular/core';
     HttpModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,
-      useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/locales', '.json'),
+      useFactory: (http: Http) =>
+        new TranslateStaticLoader(http, 'assets/locales', `.${process.env.TRANSLATION_HASH}.json`),
       deps: [Http]
     }),
     appRouting

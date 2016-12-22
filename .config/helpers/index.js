@@ -68,8 +68,19 @@ function combineJsonConfigFiles(source, destination) {
   return new Buffer(JSON.stringify(result));
 }
 
+function hashDate(prefix) {
+  'use strict';
+
+  let hash = require("crypto").createHash('md5');
+  let inputDate = new Date();
+
+  hash.update(new Buffer(inputDate.toISOString()));
+  return prefix + hash.digest('hex').substr(0, 9999);
+}
+
 exports.root = root;
 exports.transformJsonFile = transformJsonFile;
 exports.transformJsonFileFlat = transformJsonFileFlat;
 exports.combineJsonFiles = combineJsonFiles;
 exports.combineJsonConfigFiles = combineJsonConfigFiles;
+exports.hashDate = hashDate;

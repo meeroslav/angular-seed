@@ -23,6 +23,9 @@ const isStaging = isBuild && NODE_ENV && NODE_ENV.indexOf('staging') !== -1;
 const isCi = isBuild && NODE_ENV && NODE_ENV.indexOf('ci') !== -1;
 const isProduction = isBuild && NODE_ENV && NODE_ENV.indexOf('production') !== -1;
 
+const TRANSLATION_HASH = helpers.hashDate('tr$-');
+const CONFIG_HASH = helpers.hashDate('con$-');
+
 module.exports = function makeWebpackConfig() {
   'use strict';
 
@@ -155,7 +158,9 @@ module.exports = function makeWebpackConfig() {
     new webpack.DefinePlugin({
       // Environment helpers
       'process.env': {
-        ENV: JSON.stringify(ENV)
+        ENV: JSON.stringify(ENV),
+        TRANSLATION_HASH: JSON.stringify(TRANSLATION_HASH),
+        CONFIG_HASH: JSON.stringify(CONFIG_HASH)
       }
     }),
 
@@ -195,34 +200,34 @@ module.exports = function makeWebpackConfig() {
       },
       {
         from: root('src/assets/locales'),
-        to: 'assets/locales/[name].json',
+        to: 'assets/locales/[name].' + TRANSLATION_HASH + '.json',
         transform: helpers.transformJsonFile,
         merge: helpers.combineJsonFiles
       }
     ]),
     new CopyWebpackPlugin([
       {
-        from: root('src/assets/configs'), to: 'assets/configs/config.production.json',
+        from: root('src/assets/configs'), to: 'assets/configs/config.production.' +  CONFIG_HASH + '.json',
         transform: helpers.transformJsonFileFlat(['prod']),
         merge: helpers.combineJsonConfigFiles
       },
       {
-        from: root('src/assets/configs'), to: 'assets/configs/config.dev.json',
+        from: root('src/assets/configs'), to: 'assets/configs/config.dev.' +  CONFIG_HASH + '.json',
         transform: helpers.transformJsonFileFlat(['dev', 'prod']),
         merge: helpers.combineJsonConfigFiles
       },
       {
-        from: root('src/assets/configs'), to: 'assets/configs/config.ci.json',
+        from: root('src/assets/configs'), to: 'assets/configs/config.ci.' +  CONFIG_HASH + '.json',
         transform: helpers.transformJsonFileFlat(['ci', 'prod']),
         merge: helpers.combineJsonConfigFiles
       },
       {
-        from: root('src/assets/configs'), to: 'assets/configs/config.staging.json',
+        from: root('src/assets/configs'), to: 'assets/configs/config.staging.' +  CONFIG_HASH + '.json',
         transform: helpers.transformJsonFileFlat(['staging', 'prod']),
         merge: helpers.combineJsonConfigFiles
       },
       {
-        from: root('src/assets/configs'), to: 'assets/configs/config.json',
+        from: root('src/assets/configs'), to: 'assets/configs/config.' +  CONFIG_HASH + '.json',
         transform: helpers.transformJsonFileFlat( isProduction ?
           ['prod'] :
           isStaging ?
