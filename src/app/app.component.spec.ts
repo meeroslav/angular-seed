@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { TranslateService } from 'ng2-translate';
 import { Observable } from 'rxjs/Observable';
+import { MockedTranslatePipe } from './_mocks/translate.mock.spec';
 
 class MockedTranslateService {
   getResponse = Observable.of('test');
@@ -19,7 +20,7 @@ describe('App', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [AppComponent],
+      declarations: [AppComponent, MockedTranslatePipe],
       providers: [
           { provide: TranslateService, useClass: MockedTranslateService },
           provideRoutes([])

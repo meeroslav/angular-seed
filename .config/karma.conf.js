@@ -1,12 +1,13 @@
-var path = require('path');
-
-var webpackConfig = require('./webpack.config.test.js');
-
-var ENV = process.env.npm_lifecycle_event;
-var isTestWatch = ENV === 'test:watch';
+const path = require('path');
+const webpackConfig = require('./webpack.config.test.js');
+const ENV = process.env.npm_lifecycle_event;
+const isTestWatch = ENV === 'test:watch';
+const isTeamCity = process.env.TEAMCITY_VERSION;
 
 module.exports = function (config) {
-  var _config = {
+  'use strict';
+
+  let _config = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '../',
@@ -44,7 +45,7 @@ module.exports = function (config) {
     // test results reporter to use
     // possible values: 'dots', 'progress', 'mocha'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ["mocha"],
+    reporters: ['mocha', 'coverage'],
 
     // web server port
     port: 9876,
@@ -69,7 +70,7 @@ module.exports = function (config) {
   };
 
   if (!isTestWatch) {
-    _config.reporters.push("coverage");
+    _config.reporters.push('coverage');
 
     _config.coverageReporter = {
       dir: 'coverage/',
@@ -80,8 +81,11 @@ module.exports = function (config) {
         file: 'coverage-final.json'
       }]
     };
+
+    if (isTeamCity) {
+      _config.reporters.push('teamcity');
+    }
   }
 
   config.set(_config);
-
 };

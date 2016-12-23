@@ -2,8 +2,6 @@
 
 > Angular 2 seed for future applications
 
-![](src/assets/images/logo.svg)
-
 ## Included
 - Angular 2
 - Typescript
@@ -13,8 +11,7 @@
 - Protractor E2E test runner on Chrome
 - Test coverage with HTML and TeamCity reporter
 - Translations
-- Minification
-- Bundling
+- Custom config files
 
 ![](.github/omg.gif)
 
@@ -26,14 +23,29 @@ npm install
 ```
 
 ## Build
-For minified/uglified/bundled/production-like build run:
+For development build. Config used is `dev`.
 ```shell
 npm run build
 ```
 
+### Variants
+
+Production with minified/uglified files and `prod` config:
+```shell
+npm run build:prod
+```
+`staging` config and source maps:
+```shell
+npm run build:staging
+```
+Continuous integration `ci` config and source maps:
+```shell
+npm run build:ci
+```
+
 ## Run
 
-For developement/debugging run:
+For development/debugging run with file watcher included:
 ```shell
 npm run start
 ```

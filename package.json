@@ -86,6 +86,7 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-remap-istanbul": "0.2.1",
     "karma-sourcemap-loader": "^0.3.7",
+    "karma-teamcity-reporter": "^1.0.0",
     "karma-webpack": "1.8.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
