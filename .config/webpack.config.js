@@ -1,4 +1,4 @@
-const path = require('path');
+// const path = require('path');
 const webpack = require('webpack');
 const helpers = require('./helpers/index');
 const root = helpers.root;
@@ -26,7 +26,7 @@ const isProduction = isBuild && NODE_ENV && NODE_ENV.indexOf('production') !== -
 const TRANSLATION_HASH = helpers.hashDate('tr$-');
 const CONFIG_HASH = helpers.hashDate('con$-');
 
-module.exports = function makeWebpackConfig() {
+module.exports = (function makeWebpackConfig() {
   'use strict';
 
   /**
@@ -34,7 +34,7 @@ module.exports = function makeWebpackConfig() {
    * Reference: http://webpack.github.io/docs/configuration.html
    * This is the object where all configuration gets set
    */
-  let config = {};
+  var config = {};
 
   /**
    * Devtool
@@ -65,7 +65,7 @@ module.exports = function makeWebpackConfig() {
     path: root('dist'),
     publicPath: isBuild ? '/' : 'http://localhost:51961/',
     filename: isBuild ? '[name].[hash].js' : '[name].js',
-    chunkFilename: isBuild ? 'app/[id].[hash].chunk.js' : 'app/[id].chunk.js',
+    chunkFilename: isBuild ? 'app/[id].[hash].chunk.js' : 'app/[id].chunk.js'
     // sourceMapFilename: isBuild ? 'app/[id].[hash].chunk.js.map' : 'app/[id].chunk.js.map',
   };
 
@@ -75,7 +75,7 @@ module.exports = function makeWebpackConfig() {
    */
   config.resolve = {
     // only discover files that have those extensions
-    extensions: ['.ts', '.js', '.json', '.css', '.scss', '.less', '.html'],
+    extensions: ['.ts', '.js', '.json', '.css', '.scss', '.less', '.html']
   };
 
   /**
@@ -142,7 +142,7 @@ module.exports = function makeWebpackConfig() {
       { test: /\.less$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!less-loader'},
 
       // support for .html as raw text
-      // todo: change the loader to something that adds a hash to images
+      // change the loader to something that adds a hash to images
       {test: /\.html$/, loader: 'raw-loader',  include: root('src', 'app')}
     ]
   };
@@ -158,7 +158,7 @@ module.exports = function makeWebpackConfig() {
     new webpack.DefinePlugin({
       // Environment helpers
       'process.env': {
-        ENV: JSON.stringify(ENV),
+        ENV: JSON.stringify(isProduction ? 'production' : 'development'),
         TRANSLATION_HASH: JSON.stringify(TRANSLATION_HASH),
         CONFIG_HASH: JSON.stringify(CONFIG_HASH)
       }
@@ -194,6 +194,9 @@ module.exports = function makeWebpackConfig() {
 
     // copy static resources
     new CopyWebpackPlugin([
+      {
+        from: root('src/public')
+      },
       {
         from: root('src/assets/images/'),
         to: 'assets/images/[path][name].[ext]'
@@ -307,4 +310,4 @@ module.exports = function makeWebpackConfig() {
   };
 
   return config;
-}();
+}());
