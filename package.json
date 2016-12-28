@@ -36,7 +36,7 @@
     "e2e": "protractor config/protractor.conf.js",
     "e2e:live": "npm run e2e -- --elementExplorer",
     "postinstall": "npm run webdriver:update",
-    "docs": "typedoc --options typedoc.json src/app/app.component.ts",
+    "docs": "typedoc --options typedoc.json src/",
     "start": "webpack-dashboard -- webpack-dev-server --historyApiFallback --port 51961"
   },
   "dependencies": {
