@@ -2,6 +2,7 @@
 const webpack = require('webpack');
 const helpers = require('./helpers/index');
 const root = helpers.root;
+const chalk = require('chalk');
 
 // Webpack Plugins
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
@@ -29,12 +30,21 @@ const CONFIG_HASH = helpers.hashDate('con$-');
 module.exports = (function makeWebpackConfig() {
   'use strict';
 
+  console.info('');
+  console.info(chalk.cyan('               ______                       __  '));
+  console.info(chalk.cyan(' .-----.-----.|__    |.-----.-----.-----.--|  | '));
+  console.info(chalk.cyan(' |     |  _  ||    __||__ --|  -__|  -__|  _  | '));
+  console.info(chalk.cyan(' |__|__|___  ||______||_____|_____|_____|_____| '));
+  console.info(chalk.cyan('       |_____|                                  '));
+  console.info(chalk.cyan('                                    ........    '));
+  console.info('');
+
   /**
    * Config
    * Reference: http://webpack.github.io/docs/configuration.html
    * This is the object where all configuration gets set
    */
-  var config = {};
+  let config = {};
 
   /**
    * Devtool

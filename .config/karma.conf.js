@@ -74,12 +74,7 @@ module.exports = function (config) {
 
     _config.coverageReporter = {
       dir: 'coverage/',
-      reporters: [{
-        type: 'json',
-        dir: 'coverage',
-        subdir: 'json',
-        file: 'coverage-final.json'
-      }]
+      reporters: [{ type: 'json', subdir: '.', file: 'report.json' }]
     };
 
     if (isTeamCity) {
