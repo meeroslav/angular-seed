@@ -1,12 +1,9 @@
 @import '~bootstrap/scss/bootstrap.scss';
 @import '_mixins.scss';
-@import '_typography.scss';
 
 @include resetCss();
 
 html {
-  @include fontRegular();
-
   background-color: aliceblue;
   color: darkslateblue;
   line-height: 1.231;

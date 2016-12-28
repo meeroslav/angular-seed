@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'OpenSans-Regular';
+  src: url('./fonts/OpenSans-Regular.ttf');
+}
+@font-face {
+  font-family: 'OpenSans-Bold';
+  src: url('./fonts/OpenSans-Bold.ttf');
+}
+@font-face {
+  font-family: 'OpenSans-Light';
+  src: url('./fonts/OpenSans-Light.ttf');
+}
+@mixin fontRegular() {
+  font-family: 'OpenSans-Regular', sans-serif;
+}
+@mixin fontBold() {
+  font-family: 'OpenSans-Bold', sans-serif;
+}
+@mixin fontLight() {
+  font-family: 'OpenSans-Light', sans-serif;
+}
