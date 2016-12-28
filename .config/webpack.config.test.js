@@ -4,9 +4,12 @@ const root = require('./helpers/index').root;
 
 const ENV = process.env.npm_lifecycle_event;
 const isTestWatch = ENV === 'test:watch';
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
-module.exports = function makeWebpackConfig() {
-  var config = {};
+module.exports = (function makeWebpackConfig() {
+  'use strict';
+
+  let config = {};
 
   config.devtool = 'inline-source-map';
   config.entry = {};
@@ -16,7 +19,7 @@ module.exports = function makeWebpackConfig() {
     extensions: ['.ts', '.js', '.html']
   };
 
-  var atlOptions = 'inlineSourceMap=true&sourceMap=false';
+  let atlOptions = 'inlineSourceMap=true&sourceMap=false';
   if (isTestWatch) {
     atlOptions = '';
   }
@@ -73,4 +76,4 @@ module.exports = function makeWebpackConfig() {
   }
 
   return config;
-}();
+}());
