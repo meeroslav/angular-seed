@@ -1,11 +1,11 @@
 @import '~bootstrap/scss/bootstrap.scss';
-@import '_mixins.scss';
+@import 'theme/_mixins';
+@import 'theme/_typography.scss';
+@import 'theme/_loader.scss';
 
 @include resetCss();
 
 html {
-  background-color: aliceblue;
-  color: darkslateblue;
   line-height: 1.231;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
