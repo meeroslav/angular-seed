@@ -1,0 +1,70 @@
+@import '../../../node_modules/bootstrap/scss/variables.scss';
+@import '../../../node_modules/bootstrap/scss/mixins/breakpoints.scss';
+@import 'colors.scss';
+@import 'variables.scss';
+
+app {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+header.navbar {
+  padding: 0;
+
+  .container-fluid {
+    padding: 0;
+  }
+
+  .navbar-brand {
+    width: $nrgs-side-nav-width;
+    background: $greentube_gray_02;
+    font-size: 1rem;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 0;
+  }
+}
+
+.navbar-inverse {
+  background: $greentube_gray_01;
+  color: $white;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.main-menu {
+  background: $greentube_gray_02;
+  color: $white;
+  flex: 0 0 $nrgs-side-nav-width;
+  width: $nrgs-side-nav-width;
+  overflow: hidden;
+  display: none;
+
+  @include media-breakpoint-up(sm) {
+    display: block;
+  }
+}
+
+.main-content {
+  flex: 1;
+  overflow: hidden;
+
+  & > .container-fluid {
+    padding: $grid-gutter-width-base $grid-gutter-width-base;
+  }
+}
+
+aside.main-aside {
+  flex: 0 0 $nrgs-side-nav-width;
+  background: $greentube_gray_04;
+  display: none;
+
+  @include media-breakpoint-up(sm) {
+    display: block;
+  }
+}

@@ -13,4 +13,4 @@ import 'rxjs/add/observable/throw';
 // Other vendors for example jQuery, Lodash or Bootstrap
 // You can import js, ts, css, sass, ...
 
-import './assets/styles/shared.scss';
+import './assets/styles/theme.scss';

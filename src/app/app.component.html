@@ -1,4 +1,52 @@
-<div class="container-fluid">
-  <span class="tag tag-info">{{'APP_NAME' | translate}}</span>
-  <router-outlet></router-outlet>
-</div>
+<header class="navbar navbar-sticky-top navbar-inverse">
+  <div class="container-fluid">
+    <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">☰</button>
+    <a class="navbar-brand" href="#">{{'APP_NAME' | translate}}</a>
+    <ul class="nav navbar-nav hidden-md-down float-xs-left">
+      <li class="nav-item">
+        <a class="nav-link navbar-toggler layout-toggler" href="#">☰</a>
+      </li>
+    </ul>
+    <form class="form-inline float-xs-left hidden-md-down">
+       <input class="form-control" type="text" placeholder="Search..."/>
+    </form>
+
+    <ul class="nav navbar-nav float-xs-right">
+      <li class="nav-item hidden-md-down"><a href="#">test</a></li>
+    </ul>
+  </div>
+</header>
+<main>
+  <div class="main-menu">
+    <div class="sidebar-content">
+      <ul class="navigation navigation-main navigation-accordion">
+        <li>
+          <a href="#" class="has-ul"><i class="icon-stack2"></i><span>Some text</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="main-content">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Second</a></li>
+      <li class="breadcrumb-item active">Current</li>
+    </ol>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <aside class="main-aside">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Text</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active"></div>
+      <div class="tab-pane p1"></div>
+      <div class="tab-pane p1"></div>
+    </div>
+  </aside>
+</main>
+<footer class="navbar navbar-dark navbar-fixed-bottom">Something</footer>

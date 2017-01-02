@@ -1,5 +1,5 @@
 @import '_colors.scss';
-@import '_variables.scss';
+@import 'variables';
 
 @-webkit-keyframes spin {
   0% {
@@ -34,7 +34,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: $z-Spinner;
+  z-index: $nrgs-z-spinner;
   background: $greentube_gray_01;
 
   & > div {

@@ -1,4 +1,8 @@
-@import '../../assets/styles/theme/_typography.scss';
+@import '../../assets/styles/_typography.scss';
+
+:host {
+  display: block;
+}
 
 .card-title {
   color: red;

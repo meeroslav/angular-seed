@@ -1,0 +1,23 @@
+@import '../../../node_modules/bootstrap/scss/bootstrap-flex';
+@import '../../../node_modules/bootstrap/scss/bootstrap-grid';
+
+@import "typography";
+@import 'mixins';
+@import 'loader';
+@import 'layout';
+
+html, body {
+  height: 100%;
+}
+
+body {
+  @include fontRegular();
+}
+
+a, button {
+  color: inherit;
+}
+
+
+
+// just a colors
