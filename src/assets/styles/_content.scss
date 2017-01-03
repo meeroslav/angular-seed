@@ -1,5 +1,17 @@
 @import 'colors';
+@import 'typography';
+@import '../../../node_modules/bootstrap/scss/variables.scss';
 
 .main-content {
   background-color: $nrgs_05;
+}
+
+.content-top {
+  display: flex;
+  padding-bottom: $spacer-y;
+
+  h1 {
+    flex: 1;
+    @include fontBold();
+  }
 }
