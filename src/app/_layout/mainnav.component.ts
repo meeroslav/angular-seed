@@ -9,37 +9,37 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
       <li class="nav-item" routerLinkActive="active">
         <a routerLink="/home" class="nav-link">
           <i class="app-icon-monster"></i>
-          Home
+          <span class="nav-link-text">Home</span>
         </a>
       </li>
       <li class="nav-item nav-dropdown" routerLinkActive="open active" [ngClass]="{ 'open': expandedArea == 'PARK'}">
         <a (click)="toggleSubMenu('PARK')" class="has-ul nav-link">
           <i class="app-icon-monster"></i>
-          Component Park
+          <span class="nav-link-text">Component Park</span>
         </a>
         <ul class="nav-dropdown-items">
           <li class="nav-item" routerLinkActive="active">
             <a routerLink="/buttons" class="nav-link">            
               <i class="app-icon-monster"></i>
-              Buttons
+              <span class="nav-link-text">Buttons</span>
             </a>
           </li>
           <li class="nav-item" routerLinkActive="active">
             <a routerLink="/buttons" class="nav-link">            
               <i class="app-icon-monster"></i>
-              Buttons
+              <span class="nav-link-text">Buttons</span>
             </a>
           </li> 
           <li class="nav-item" routerLinkActive="active">
             <a routerLink="/buttons" class="nav-link">            
               <i class="app-icon-monster"></i>
-              Buttons
+              <span class="nav-link-text">Buttons</span>
             </a>
           </li> 
           <li class="nav-item" routerLinkActive="active">
             <a routerLink="/buttons" class="nav-link">            
               <i class="app-icon-monster"></i>
-              Buttons
+              <span class="nav-link-text">Buttons</span>
             </a>
           </li>                                                 
         </ul>
@@ -48,7 +48,7 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
       <li class="nav-item" routerLinkActive="active">
         <a [routerLink]="['/bla']" class="nav-link">
           <i class="app-icon-monster"></i>
-          Some else
+          <span class="nav-link-text">Some else</span>
         </a>
       </li>                
     </ul>

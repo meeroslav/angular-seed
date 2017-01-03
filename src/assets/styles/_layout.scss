@@ -47,6 +47,10 @@ main {
     &.collapsed {
       width: $nrgs-side-nav-collapsed-width;
       flex: 0 0 $nrgs-side-nav-collapsed-width;
+
+      .nav-link-text {
+        display: none;
+      }
     }
   }
 
