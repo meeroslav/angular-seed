@@ -15,6 +15,10 @@
   from  { opacity: 0; }
   to    { opacity: 1; }
 }
+@-moz-keyframes fadeIn {
+  from  { opacity: 0; }
+  to    { opacity: 1; }
+}
 @keyframes fadeIn {
   from  { opacity: 0; }
   to    { opacity: 1; }
@@ -22,23 +26,31 @@
 
 $animation-duration: 350ms;
 
-@mixin animate($duration: $animation-duration) {
+@mixin animate($duration: $animation-duration, $fillMode: both) {
   -webkit-animation-duration: $duration;
+  -moz-animation-duration: $duration;
   animation-duration: $duration;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
+  -webkit-animation-fill-mode: $fillMode;
+  -moz-animation-fill-mode: $fillMode;
+  animation-fill-mode: $fillMode;
 }
 
 @mixin animateProperty($property: all, $animation: ease-in-out) {
   -webkit-transition: $property $animation $animation-duration;
   -moz-transition: $property $animation $animation-duration;
-  -o-transition: $property $animation $animation-duration;
   transition: $property $animation $animation-duration;
   -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
   animation-fill-mode: both;
 }
 
 @mixin fadeIn() {
   -webkit-animation-name: fadeIn;
+  -moz-animation-name: fadeIn;
   animation-name: fadeIn;
+}
+@mixin rotate($value: 0deg) {
+  -webkit-transform: rotate($value);
+  -moz-transform: rotate($value);
+  transform: rotate($value);
 }

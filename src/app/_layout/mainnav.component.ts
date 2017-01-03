@@ -1,59 +1,57 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { DispatcherService } from '../_common/dispatcher/dispatcher.service';
 import { MAIN_MENU_TOGGLE } from './layout.interface';
 
 @Component( {
   selector: 'main-nav',
   template: `
-    <div class="sidebar-content">
-      <ul class="nav navigation navigation-main">
-        <li class="nav-item" routerLinkActive="active">
-          <a routerLink="/home">
-            <i class="app-icon-monster"></i>
-            Home
-          </a>
-        </li>
-        <li class="nav-item nav-dropdown" routerLinkActive="open active" [ngClass]="{ 'open': expandedArea == 'PARK'}">
-          <a (click)="toggleSubMenu('PARK')" class="has-ul">
-            <i class="app-icon-monster"></i>
-            Component Park
-          </a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item" routerLinkActive="active">
-              <a routerLink="/buttons">            
-                <i class="app-icon-monster"></i>
-                Buttons
-              </a>
-            </li>
-            <li class="nav-item" routerLinkActive="active">
-              <a routerLink="/buttons">            
-                <i class="app-icon-monster"></i>
-                Buttons
-              </a>
-            </li> 
-            <li class="nav-item" routerLinkActive="active">
-              <a routerLink="/buttons">            
-                <i class="app-icon-monster"></i>
-                Buttons
-              </a>
-            </li> 
-            <li class="nav-item" routerLinkActive="active">
-              <a routerLink="/buttons">            
-                <i class="app-icon-monster"></i>
-                Buttons
-              </a>
-            </li>                                                 
-          </ul>
-        </li>
-        <li class="divider"></li>        
-        <li class="nav-item">
-          <a [routerLink]="['/bla']" routerLinkActive="active">
-            <i class="app-icon-monster"></i>
-            Some else
-          </a>
-        </li>                
-      </ul>
-    </div>  
+    <ul class="nav">
+      <li class="nav-item" routerLinkActive="active">
+        <a routerLink="/home" class="nav-link">
+          <i class="app-icon-monster"></i>
+          Home
+        </a>
+      </li>
+      <li class="nav-item nav-dropdown" routerLinkActive="open active" [ngClass]="{ 'open': expandedArea == 'PARK'}">
+        <a (click)="toggleSubMenu('PARK')" class="has-ul nav-link">
+          <i class="app-icon-monster"></i>
+          Component Park
+        </a>
+        <ul class="nav-dropdown-items">
+          <li class="nav-item" routerLinkActive="active">
+            <a routerLink="/buttons" class="nav-link">            
+              <i class="app-icon-monster"></i>
+              Buttons
+            </a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a routerLink="/buttons" class="nav-link">            
+              <i class="app-icon-monster"></i>
+              Buttons
+            </a>
+          </li> 
+          <li class="nav-item" routerLinkActive="active">
+            <a routerLink="/buttons" class="nav-link">            
+              <i class="app-icon-monster"></i>
+              Buttons
+            </a>
+          </li> 
+          <li class="nav-item" routerLinkActive="active">
+            <a routerLink="/buttons" class="nav-link">            
+              <i class="app-icon-monster"></i>
+              Buttons
+            </a>
+          </li>                                                 
+        </ul>
+      </li>
+      <li class="nav-divider"></li>        
+      <li class="nav-item" routerLinkActive="active">
+        <a [routerLink]="['/bla']" class="nav-link">
+          <i class="app-icon-monster"></i>
+          Some else
+        </a>
+      </li>                
+    </ul>
   `,
   host: {
     'id': 'main-nav',

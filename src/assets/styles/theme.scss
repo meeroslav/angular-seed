@@ -1,3 +1,6 @@
+@import 'reset';
+@import 'variables';
+
 @import '../../../node_modules/bootstrap/scss/bootstrap-flex';
 @import '../../../node_modules/bootstrap/scss/bootstrap-grid';
 
@@ -9,25 +12,9 @@
 @import 'navigation';
 @import 'forms';
 @import 'header';
-
-html, body {
-  height: 100%;
-}
+@import 'content';
 
 body {
   @include fontRegular();
   font-size: 0.875rem;
-}
-
-a, button {
-  color: inherit;
-  outline: none;
-  cursor: pointer;
-
-  &:focus {
-    outline: none;
-  }
-  &:hover {
-    color: inherit;
-  }
 }
