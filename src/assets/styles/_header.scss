@@ -1,0 +1,15 @@
+@import 'colors';
+
+header.navbar {
+  .navbar-brand {
+    background: $greentube_gray_02;
+  }
+
+  .logo {
+    background: url('../images/logo.svg') no-repeat center;
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+  }
+}
+

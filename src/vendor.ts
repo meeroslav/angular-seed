@@ -14,3 +14,4 @@ import 'rxjs/add/observable/throw';
 // You can import js, ts, css, sass, ...
 
 import './assets/styles/theme.scss';
+import './assets/styles/appicons.less';

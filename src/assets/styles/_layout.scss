@@ -19,8 +19,6 @@ header.navbar {
 
   .navbar-brand {
     width: $nrgs-side-nav-width;
-    background: $greentube_gray_02;
-    font-size: 1rem;
     padding-left: 0;
     padding-right: 0;
     margin-right: 0;
@@ -31,11 +29,6 @@ header.navbar {
   }
 }
 
-.navbar-inverse {
-  background: $greentube_gray_01;
-  color: $white;
-}
-
 main {
   display: flex;
   flex: 1;
@@ -43,8 +36,6 @@ main {
 }
 
 #main-nav {
-  background: $greentube_gray_02;
-  color: $white;
   flex: 0 0 $nrgs-side-nav-width;
   width: $nrgs-side-nav-width;
   overflow: hidden;
@@ -89,7 +80,6 @@ main {
 
 aside.main-aside {
   flex: 0 0 $nrgs-side-nav-width;
-  background: $greentube_gray_04;
   display: none;
 
   @include media-breakpoint-up(sm) {

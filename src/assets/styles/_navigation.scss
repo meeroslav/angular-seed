@@ -1,0 +1,31 @@
+@import 'colors';
+@import 'animations';
+
+.navbar-inverse {
+  background: $greentube_gray_01;
+  color: $white;
+}
+
+#main-nav {
+  background: $greentube_gray_02;
+  color: $white;
+
+  .active {
+    background: $greentube_green_02;
+  }
+}
+
+.nav-dropdown-items {
+  max-height: 0;
+  overflow-y: hidden;
+  @include animateProperty(max-height);
+}
+
+.open > .nav-dropdown-items {
+  max-height: 1000px;
+}
+
+aside.main-aside {
+  background: $greentube_gray_04;
+}
+

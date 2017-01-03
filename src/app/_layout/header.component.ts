@@ -7,7 +7,10 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
   template: `
   <div class="container-fluid">
     <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button" (click)="toggleMainMenu()">☰</button>
-    <a class="navbar-brand" [routerLink]="['.']">{{'APP_NAME' | translate}}</a>
+    <a class="navbar-brand" [routerLink]="['.']">
+      <i class="logo"></i>
+      {{'APP_NAME' | translate}}
+    </a>
     <ul class="nav navbar-nav hidden-md-down float-xs-left">
       <li class="nav-item">
         <button class="nav-link navbar-toggler layout-toggler" type="button" (click)="toggleMainMenu()">☰</button>

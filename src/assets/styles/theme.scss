@@ -6,6 +6,9 @@
 @import 'loader';
 @import 'layout';
 @import 'animations';
+@import 'navigation';
+@import 'forms';
+@import 'header';
 
 html, body {
   height: 100%;
@@ -13,6 +16,7 @@ html, body {
 
 body {
   @include fontRegular();
+  font-size: 0.875rem;
 }
 
 a, button {
@@ -22,5 +26,8 @@ a, button {
 
   &:focus {
     outline: none;
+  }
+  &:hover {
+    color: inherit;
   }
 }
