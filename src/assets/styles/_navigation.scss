@@ -3,7 +3,7 @@
 @import 'variables';
 
 .navbar-inverse {
-  background: $greentube_gray_01;
+  background: $nrgs_01;
   color: $white;
 }
 
@@ -15,7 +15,8 @@
     background: $nrgs_01;
 
     .nav-link {
-      border-left: $greentube_green_03 2px solid;
+      border-left: $greentube_green_03 $nrgs-selected-nav-border solid;
+      padding-left: $spacer-x - $nrgs-selected-nav-border;
     }
   }
 }

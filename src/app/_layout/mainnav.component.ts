@@ -6,6 +6,7 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
   selector: 'main-nav',
   template: `
     <ul class="nav">
+      <li class="nav-divider"></li>
       <li class="nav-item" routerLinkActive="active">
         <a routerLink="/home" class="nav-link">
           <i class="app-icon-monster"></i>

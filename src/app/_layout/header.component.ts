@@ -20,7 +20,9 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
        <input class="form-control" type="text" placeholder="Search..."/>
     </form>
     <ul class="nav navbar-nav float-xs-right">
-      <li class="nav-item hidden-md-down"><a href="#">test</a></li>
+      <li class="nav-item hidden-md-down"><button class="app-icon-search"></button></li>
+      <li class="nav-item hidden-md-down"><button class="app-icon-notification"></button></li>
+      <li class="nav-item hidden-md-down"><button class="app-icon-mail"></button></li>
     </ul>
   </div>
   `,

@@ -3,6 +3,11 @@ $nrgs-z-spinner: 1000;
 $nrgs-side-nav-width: 14rem;
 $nrgs-side-nav-collapsed-width: 3rem;
 
+$nrgs-selected-nav-border: .2rem;
+
+// overriden values
 $spacer:   0.625rem;
 $spacer-x: $spacer;
 $spacer-y: $spacer;
+
+$grid-gutter-width-base: $spacer;

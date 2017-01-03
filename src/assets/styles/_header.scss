@@ -1,8 +1,13 @@
 @import 'colors';
+@import '../../../node_modules/bootstrap/scss/variables.scss';
 
 header.navbar {
   .navbar-brand {
-    background: $greentube_gray_02;
+    background: $nrgs_02;
+    padding: $spacer;
+    color: $white;
+    @include fontBold();
+    font-size: 1rem;
   }
 
   .logo {
@@ -10,6 +15,11 @@ header.navbar {
     width: 1rem;
     height: 1rem;
     display: inline-block;
+  }
+
+  .nav-item > button {
+    font-size: 1rem;
+    padding: $spacer-x $spacer-y;
   }
 }
 
