@@ -1,0 +1,44 @@
+@-webkit-keyframes spin {
+  0%    { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+  0%    { -moz-transform: rotate(0deg); }
+  100%  { -moz-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0%    { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes fadeIn {
+  from  { opacity: 0; }
+  to    { opacity: 1; }
+}
+@keyframes fadeIn {
+  from  { opacity: 0; }
+  to    { opacity: 1; }
+}
+
+$animation-duration: 350ms;
+
+@mixin animate($duration: $animation-duration) {
+  -webkit-animation-duration: $duration;
+  animation-duration: $duration;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@mixin animateProperty($property: all, $animation: ease-in-out) {
+  -webkit-transition: $property $animation $animation-duration;
+  -moz-transition: $property $animation $animation-duration;
+  -o-transition: $property $animation $animation-duration;
+  transition: $property $animation $animation-duration;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@mixin fadeIn() {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}

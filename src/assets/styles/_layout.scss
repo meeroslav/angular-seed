@@ -1,7 +1,8 @@
 @import '../../../node_modules/bootstrap/scss/variables.scss';
 @import '../../../node_modules/bootstrap/scss/mixins/breakpoints.scss';
-@import 'colors.scss';
-@import 'variables.scss';
+@import 'colors';
+@import 'variables';
+@import 'animations';
 
 app {
   display: flex;
@@ -24,6 +25,10 @@ header.navbar {
     padding-right: 0;
     margin-right: 0;
   }
+
+  .navbar-toggler {
+    float: left;
+  }
 }
 
 .navbar-inverse {
@@ -37,16 +42,39 @@ main {
   overflow: hidden;
 }
 
-.main-menu {
+#main-nav {
   background: $greentube_gray_02;
   color: $white;
   flex: 0 0 $nrgs-side-nav-width;
   width: $nrgs-side-nav-width;
   overflow: hidden;
-  display: none;
+  display: block;
+  @include animateProperty();
 
   @include media-breakpoint-up(sm) {
-    display: block;
+
+    &.collapsed {
+      width: $nrgs-side-nav-collapsed-width;
+      flex: 0 0 $nrgs-side-nav-collapsed-width;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    transform: translate3d(-$nrgs-side-nav-width, 0, 0);
+
+    & + .main-content {
+      transform: translate3d(-$nrgs-side-nav-width, 0, 0);
+      margin-right: -$nrgs-side-nav-width;
+      @include animateProperty();
+    }
+
+    &.collapsed {
+      transform: translate3d(0, 0, 0);
+
+      & + .main-content {
+        transform: translate3d(0, 0, 0);
+      }
+    }
   }
 }
 
@@ -67,4 +95,11 @@ aside.main-aside {
   @include media-breakpoint-up(sm) {
     display: block;
   }
+}
+
+.page {
+  display: block;
+
+  @include animate(1s);
+  @include fadeIn();
 }
