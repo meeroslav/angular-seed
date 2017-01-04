@@ -83,14 +83,6 @@ main {
   }
 }
 
-.tab-content {
-  padding: $grid-gutter-width-base $grid-gutter-width-base;
-  background: $nrgs-tab-content-bg;
-  border-right: $nrgs-tab-border-color solid $card-border-width;
-  border-bottom: $nrgs-tab-border-color solid $card-border-width;
-  border-left: $nrgs-tab-border-color solid $card-border-width;
-}
-
 aside.main-aside {
   flex: 0 0 $nrgs-side-nav-width;
   display: none;
@@ -98,6 +90,10 @@ aside.main-aside {
   @include media-breakpoint-up(sm) {
     display: block;
   }
+}
+
+.tab-content {
+  padding: $grid-gutter-width-base $grid-gutter-width-base;
 }
 
 .page {

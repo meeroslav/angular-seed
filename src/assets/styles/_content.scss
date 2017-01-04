@@ -2,8 +2,10 @@
 @import 'typography';
 @import '../../../node_modules/bootstrap/scss/variables.scss';
 
+// Content colors
+
 .main-content {
-  background-color: $nrgs_05;
+  background-color: $gray-lightest;
 }
 
 .page-header {
@@ -14,6 +16,38 @@
     flex: 1;
   }
 }
+
+// Tag overrides
+
+.tag-pill {
+  border-radius: $tag-pill-border-radius;
+}
+
+.tag {
+  line-height: 1.5;
+}
+
+// Tabs
+
+.tab-content {
+  background: $nrgs-tab-content-bg;
+  border-right: $nrgs-tab-border-color solid $card-border-width;
+  border-bottom: $nrgs-tab-border-color solid $card-border-width;
+  border-left: $nrgs-tab-border-color solid $card-border-width;
+}
+
+// Cards
+
+.card-header > i {
+  margin-right: $grid-gutter-width-base;
+}
+.card-header > button {
+  margin-top: -$grid-gutter-width-base;
+  margin-right: -$grid-gutter-width-base;
+  padding: $grid-gutter-width-base;
+}
+
+// Special text styles
 
 .de-emphasize {
   @include fontRegular();

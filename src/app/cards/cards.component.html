@@ -325,7 +325,67 @@
   <ngb-tab title="With buttons">
     <template ngbTabContent>
       <h4>Cards with button column</h4>
-      <p>TBD</p>
+      <div class="card-deck">
+        <div class="card">
+          <div class="card-header">
+            Card with label
+            <span class="tag tag-success float-xs-right">Success</span>
+          </div>
+          <div class="card-block">
+            <p class="card-text">Lorem ipsum dolor sit amet.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            Card with pill label
+            <span class="tag tag-pill tag-danger float-xs-right">42</span>
+          </div>
+          <div class="card-block">
+            <p class="card-text">Lorem ipsum dolor sit amet.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <i class="app-icon-data-center float-xs-left"></i>
+            Card with left icon
+          </div>
+          <div class="card-block">
+            <p class="card-text">Lorem ipsum dolor sit amet.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <button class="btn app-icon-close float-xs-right" type="button"></button>
+            Card with close button and a very long text
+          </div>
+          <div class="card-block">
+            <p class="card-text">Lorem ipsum dolor sit amet.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-deck">
+        <div class="card">
+          <div class="card-block">
+            <h6 class="card-title">
+              Card with emphasized header
+              <span class="tag tag-pill tag-danger float-xs-right">42</span>
+            </h6>
+            <p class="card-text">Inner header should not be bigger than Card header.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card card-primary card-inverse">
+          <div class="card-block">
+            <h6 class="card-title">Card with emphasized header</h6>
+            <p class="card-text">Inner header should not be bigger than Card header.</p>
+            <a href="#" class="btn">Go somewhere</a>
+          </div>
+        </div>
+      </div>
     </template>
   </ngb-tab>
 
