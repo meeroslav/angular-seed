@@ -8,6 +8,7 @@ import { HeaderComponent } from './_layout/header.component';
 import { MainNavComponent } from './_layout/mainnav.component';
 import { DispatcherModule } from './_common/dispatcher/dispatcher.module';
 import { FooterComponent } from './_layout/footer.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { FooterComponent } from './_layout/footer.component';
         new TranslateStaticLoader(http, 'assets/locales', `.${process.env.TRANSLATION_HASH}.json`),
       deps: [Http]
     }),
+    NgbModule.forRoot(),
     appRouting
   ],
   declarations: [AppComponent, HeaderComponent, MainNavComponent, FooterComponent],

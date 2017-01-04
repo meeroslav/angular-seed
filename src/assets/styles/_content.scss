@@ -15,6 +15,9 @@
   }
 }
 
-.emphasize {
-  @include fontBold();
+.de-emphasize {
+  @include fontRegular();
+}
+.thinner {
+  @include fontLight();
 }

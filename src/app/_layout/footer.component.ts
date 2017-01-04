@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   `,
   host: {
     'id': 'footer',
-    'class': 'navbar navbar-fixed-bottom navbar-inverse'
+    'class': 'navbar navbar-sticky-bottom navbar-inverse'
   }
 })
 export class FooterComponent {

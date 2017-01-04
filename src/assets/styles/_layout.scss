@@ -38,7 +38,8 @@ main {
 #main-nav {
   flex: 0 0 $nrgs-side-nav-width;
   width: $nrgs-side-nav-width;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: block;
   @include animateProperty();
 
@@ -75,11 +76,19 @@ main {
 
 .main-content {
   flex: 1;
-  overflow: hidden;
+  overflow: auto;
 
   & > .container-fluid {
     padding: $grid-gutter-width-base $grid-gutter-width-base;
   }
+}
+
+.tab-content {
+  padding: $grid-gutter-width-base $grid-gutter-width-base;
+  background: $nrgs-tab-content-bg;
+  border-right: $nrgs-tab-border-color solid $card-border-width;
+  border-bottom: $nrgs-tab-border-color solid $card-border-width;
+  border-left: $nrgs-tab-border-color solid $card-border-width;
 }
 
 aside.main-aside {
