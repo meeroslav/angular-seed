@@ -36,15 +36,11 @@
   border-left: $nrgs-tab-border-color solid $card-border-width;
 }
 
-// Cards
-
-.card-header > i {
+.list-group-item i.float-xs-left, .list-group-item span.float-xs-left{
   margin-right: $grid-gutter-width-base;
 }
-.card-header > button {
-  margin-top: -$grid-gutter-width-base;
-  margin-right: -$grid-gutter-width-base;
-  padding: $grid-gutter-width-base;
+.list-group-item i.float-xs-right, .list-group-item span.float-xs-right {
+  margin-left: $grid-gutter-width-base;
 }
 
 // Special text styles

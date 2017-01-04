@@ -40,7 +40,7 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
           <li class="nav-item" routerLinkActive="active">
             <a routerLink="/table" class="nav-link">            
               <i class="app-icon-monster"></i>
-              <span class="nav-link-text">Table</span>
+              <span class="nav-link-text">Data representation</span>
             </a>
           </li>
           <li class="nav-item" routerLinkActive="active">

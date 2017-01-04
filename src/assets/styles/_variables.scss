@@ -6,7 +6,7 @@
 $nrgs-z-spinner: 1000;
 $nrgs-side-nav-width: 14rem;
 $nrgs-side-nav-collapsed-width: 3rem;
-$nrgs-selected-nav-border: .2rem;
+$nrgs-selected-nav-border: .15rem;
 
 $nrgs-tab-content-bg: $white;
 $nrgs-tab-border-color: rgba(0,0,0,.125);
@@ -81,3 +81,7 @@ $card-spacer-x: $spacer;
 $card-spacer-y: $spacer;
 $card-deck-margin: $spacer / 2;
 $card-columns-sm-up-column-gap: $spacer;
+
+// List
+$list-group-item-padding-x: $grid-gutter-width-base;
+$list-group-item-padding-y: $grid-gutter-width-base;

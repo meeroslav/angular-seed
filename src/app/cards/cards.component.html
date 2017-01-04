@@ -13,7 +13,7 @@
         <div class="card-group">
           <!-- card -->
           <div class="card">
-            <img class="card-img-top img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample13.jpg" alt="Card image cap">
+            <img class="card-img-top img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample13.jpg" alt="Card image cap"/>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Cras justo odio</li>
               <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -27,7 +27,7 @@
               <h6 class="card-subtitle">Those cards are grouped</h6>
               <p class="card-text">Use card groups to render equal height cards without gutters between the cards. Use <code>.card-deck</code> for cards that aren’t attached to each another.</p>
             </div>
-            <img class="card-img-bottom img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample13.jpg" alt="Card image cap">
+            <img class="card-img-bottom img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample13.jpg" alt="Card image cap"/>
           </div>
           <!-- card -->
           <div class="card card-block">
@@ -52,6 +52,7 @@
       <div class="row">
         <div class="col-lg-4 col-sm-12">
           <div class="card">
+            <img class="card-img-top img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample13.jpg" alt="Card image cap"/>
             <div class="card-header">
               Card with standard header
             </div>
@@ -272,7 +273,6 @@
             <p class="card-text">Some text</p>
           </div>
         </div>
-
         <div class="col-lg-4 col-sm-12">
           <div class="card card-outline-primary card-block">
             <h4 class="card-title">Outline primary card</h4>
@@ -309,7 +309,42 @@
             <p class="card-text">Some text</p>
           </div>
         </div>
-
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-accent-primary card-block">
+            <h4 class="card-title">Primary card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-accent-secondary card-block">
+            <h4 class="card-title">Primary card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-accent-success card-block">
+            <h4 class="card-title">Primary card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-accent-info card-block">
+            <h4 class="card-title">Primary card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-accent-warning card-block">
+            <h4 class="card-title">Primary card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-accent-danger card-block">
+            <h4 class="card-title">Primary card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
         <div class="col-lg-4 col-sm-12">
           <div class="card card-inverse">
             <img class="card-img img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample1.jpg" alt="Card image"/>
@@ -368,21 +403,68 @@
         </div>
       </div>
       <div class="card-deck">
-        <div class="card">
-          <div class="card-block">
+        <div class="card card-with-toolbar">
+          <div class="card-content">
+            <div class="card-header">
+              <i class="app-icon-data-center float-xs-left"></i>
+              Card with header
+            </div>
+            <div class="card-block">
+              <p class="card-text">Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+          <div class="card-toolbar">
+            <button class="btn app-icon-close btn-secondary float-xs-right" type="button"></button>
+          </div>
+        </div>
+        <div class="card card-with-toolbar">
+          <div class="card-block card-content">
             <h6 class="card-title">
-              Card with emphasized header
-              <span class="tag tag-pill tag-danger float-xs-right">42</span>
+              Card without header
             </h6>
             <p class="card-text">Inner header should not be bigger than Card header.</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
+          <div class="card-toolbar">
+            <button class="btn btn-secondary app-icon-add float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-remove float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-edit float-xs-right" type="button"></button>
+          </div>
         </div>
-        <div class="card card-primary card-inverse">
-          <div class="card-block">
-            <h6 class="card-title">Card with emphasized header</h6>
+        <div class="card card-with-toolbar">
+          <div class="card-block card-content">
+            <h6 class="card-title">
+              Card with many tools
+            </h6>
             <p class="card-text">Inner header should not be bigger than Card header.</p>
-            <a href="#" class="btn">Go somewhere</a>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+          <div class="card-toolbar">
+            <button class="btn btn-secondary app-icon-add float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-remove float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-edit float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-add float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-remove float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-edit float-xs-right" type="button"></button>
+          </div>
+        </div>
+        <div class="card card-primary card-inverse card-with-toolbar">
+          <div class="card-content">
+            <div class="card-block">
+              <h6 class="card-title">Card with emphasized header</h6>
+              <p class="card-text">Inner header should not be bigger than Card header.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-secondary">Go somewhere</a>
+            </div>
+          </div>
+          <div class="card-toolbar">
+            <button class="btn btn-secondary app-icon-add float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-remove float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-edit float-xs-right" type="button"></button>
           </div>
         </div>
       </div>
