@@ -1,13 +1,70 @@
-$nrgs-z-spinner: 1000;
+@import 'colors';
+@import 'typography';
 
+// Custom values
+
+$nrgs-z-spinner: 1000;
 $nrgs-side-nav-width: 14rem;
 $nrgs-side-nav-collapsed-width: 3rem;
-
 $nrgs-selected-nav-border: .2rem;
 
-// overriden values
+/********************************************
+*********************************************
+          Override bootstrap values
+*********************************************
+*********************************************/
+
+// Colors
+// TODO:
+$gray-dark:                 #373a3c;
+$gray:                      #55595c;
+$gray-light:                #818a91;
+$gray-lighter:              #eceeef;
+$gray-lightest:             #f7f7f9;
+
+$brand-primary:             #0275d8;
+$brand-success:             #5cb85c;
+$brand-info:                #5bc0de;
+$brand-warning:             #f0ad4e;
+$brand-danger:              #d9534f;
+$brand-inverse:             $gray-dark;
+
+// Options
+$enable-flex:               true;
+$enable-rounded:            false;
+$enable-shadows:            true;
+$enable-gradients:          true;
+$enable-transitions:        true;
+
+// Body
+// TODO:
+
+// Spacers
 $spacer:   0.625rem;
 $spacer-x: $spacer;
 $spacer-y: $spacer;
 
+// Links
+// TODO:
+
+// Grid columns
 $grid-gutter-width-base: $spacer;
+
+// Font
+// TODO:
+$font-family-sans-serif: 'OpenSans-Regular', Roboto, "Helvetica Neue", Arial, sans-serif;
+
+$font-size-base: 0.875rem;
+$font-size-lg:   1.25 * $font-size-base;
+$font-size-sm:   .875 * $font-size-base;
+$font-size-xs:   .75 * $font-size-base;
+
+$font-size-h1: 1.5rem;
+$font-size-h2: 1.3rem;
+$font-size-h3: 1.2rem;
+$font-size-h4: 1rem;
+
+// Breadcrumbs
+$breadcrumb-padding-y: $spacer / 2;
+$breadcrumb-padding-x: $spacer;
+$breadcrumb-bg: none;

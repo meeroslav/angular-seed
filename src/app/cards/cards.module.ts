@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ButtonsComponent } from './buttons.component';
+import { CardsComponent } from './cards.component';
 import { TranslateModule } from 'ng2-translate';
 
 let routes = [
-  { path: '', component: ButtonsComponent }
+  { path: '', component: CardsComponent }
 ];
 
 @NgModule({
@@ -12,6 +12,6 @@ let routes = [
     TranslateModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ButtonsComponent]
+  declarations: [CardsComponent]
 })
-export class ButtonsPageModule { }
+export class CardsPageModule { }

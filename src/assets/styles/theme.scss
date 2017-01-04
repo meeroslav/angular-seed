@@ -1,5 +1,6 @@
 @import 'reset';
 @import 'variables';
+@import 'colors';
 
 @import '../../../node_modules/bootstrap/scss/bootstrap-flex';
 @import '../../../node_modules/bootstrap/scss/bootstrap-grid';
@@ -13,8 +14,3 @@
 @import 'forms';
 @import 'header';
 @import 'content';
-
-body {
-  @include fontRegular();
-  font-size: 0.875rem;
-}

@@ -6,12 +6,15 @@
   background-color: $nrgs_05;
 }
 
-.content-top {
+.page-header {
   display: flex;
   padding-bottom: $spacer-y;
 
   h1 {
     flex: 1;
-    @include fontBold();
   }
+}
+
+.emphasize {
+  @include fontBold();
 }

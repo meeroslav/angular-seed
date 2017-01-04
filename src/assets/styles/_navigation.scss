@@ -14,7 +14,7 @@
   .active {
     background: $nrgs_01;
 
-    .nav-link {
+    & > .nav-link {
       border-left: $greentube_green_03 $nrgs-selected-nav-border solid;
       padding-left: $spacer-x - $nrgs-selected-nav-border;
     }
