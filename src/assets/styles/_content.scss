@@ -1,0 +1,61 @@
+@import 'colors';
+@import 'typography';
+@import '../../../node_modules/bootstrap/scss/variables.scss';
+
+// Content colors
+
+.main-content {
+  background-color: $gray-lightest;
+}
+
+.page-header {
+  display: flex;
+  padding-bottom: $spacer-y;
+
+  h1 {
+    flex: 1;
+  }
+}
+
+// Tag overrides
+
+.tag-pill {
+  border-radius: $tag-pill-border-radius;
+}
+
+.tag {
+  line-height: 1.5;
+}
+
+// Tabs
+
+.tab-content {
+  background: $nrgs-tab-content-bg;
+  border-right: $nrgs-tab-border-color solid $card-border-width;
+  border-bottom: $nrgs-tab-border-color solid $card-border-width;
+  border-left: $nrgs-tab-border-color solid $card-border-width;
+}
+.nav-tabs .nav-link {
+  line-height: 1;
+}
+.nav-tabs .nav-item + .nav-item {
+  margin-left: 0;
+}
+
+// List group
+
+.list-group-item i.float-xs-left, .list-group-item span.float-xs-left{
+  margin-right: $grid-gutter-width-base;
+}
+.list-group-item i.float-xs-right, .list-group-item span.float-xs-right {
+  margin-left: $grid-gutter-width-base;
+}
+
+// Special text styles
+
+.de-emphasize {
+  @include fontRegular();
+}
+.thinner {
+  @include fontLight();
+}

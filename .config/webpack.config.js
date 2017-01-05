@@ -24,8 +24,8 @@ const isStaging = isBuild && NODE_ENV && NODE_ENV.indexOf('staging') !== -1;
 const isCi = isBuild && NODE_ENV && NODE_ENV.indexOf('ci') !== -1;
 const isProduction = isBuild && NODE_ENV && NODE_ENV.indexOf('production') !== -1;
 
-const TRANSLATION_HASH = helpers.hashDate('tr$-');
-const CONFIG_HASH = helpers.hashDate('con$-');
+const TRANSLATION_HASH = helpers.hashDate('');
+const CONFIG_HASH = helpers.hashDate('');
 
 module.exports = (function makeWebpackConfig() {
   'use strict';

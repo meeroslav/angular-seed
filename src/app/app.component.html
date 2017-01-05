@@ -1,4 +1,10 @@
-<div class="container-fluid">
-  <span class="tag tag-info">{{'APP_NAME' | translate}}</span>
-  <router-outlet></router-outlet>
-</div>
+<header></header>
+<main>
+  <main-nav></main-nav>
+  <div class="main-content">
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</main>
+<footer></footer>

@@ -1,0 +1,83 @@
+<div class="page-header">
+  <h1>Data representation<span class="de-emphasize"> - Park</span></h1>
+  <ol class="breadcrumb mb-0">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item active">Data representation</li>
+  </ol>
+</div>
+
+<ngb-tabset>
+  <ngb-tab title="List">
+    <template ngbTabContent>
+      <h4>Simple list</h4>
+      <ul class="list-group">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+      </ul>
+    </template>
+  </ngb-tab>
+  <ngb-tab title="List + Badge">
+    <template ngbTabContent>
+      <h4>List with badges</h4>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span class="tag tag-pill tag-danger float-xs-right">14</span>
+          Cras justo odio
+        </li>
+        <li class="list-group-item">
+          <span class="tag tag-pill tag-success float-xs-right">2</span>
+          Dapibus ac facilisis in
+        </li>
+        <li class="list-group-item">
+          <span class="tag tag-pill tag-info float-xs-right">1</span>
+          Morbi leo risus
+        </li>
+      </ul>
+    </template>
+  </ngb-tab>
+  <ngb-tab title="Link list">
+    <template ngbTabContent>
+      <h4>Simple with links</h4>
+      <div class="list-group">
+        <a href="#" class="list-group-item active">
+          <i class="app-icon-chevron-right float-xs-right"></i>
+          Cras justo odio
+        </a>
+        <a href="#" class="list-group-item">
+          <i class="app-icon-chevron-right float-xs-right"></i>
+          Dapibus ac facilisis in
+        </a>
+        <a href="#" class="list-group-item">
+          <i class="app-icon-chevron-right float-xs-right"></i>
+          Morbi leo risus
+        </a>
+        <a href="#" class="list-group-item">
+          <i class="app-icon-chevron-right float-xs-right"></i>
+          Porta ac consectetur ac
+        </a>
+        <a href="#" class="list-group-item">
+          <i class="app-icon-chevron-right float-xs-right"></i>
+          Vestibulum at eros
+        </a>
+      </div>
+    </template>
+  </ngb-tab>
+  <ngb-tab title="Button list">
+    <template ngbTabContent>
+      <h4>Simple with buttons</h4>
+      <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action">Cras justo odio</button>
+        <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
+        <button type="button" class="list-group-item list-group-item-action">
+          <i class="app-icon-add float-xs-left"></i>
+          Morbi leo risus
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
+        <button type="button" class="list-group-item list-group-item-action">Vestibulum at eros</button>
+      </div>
+    </template>
+  </ngb-tab>
+</ngb-tabset>

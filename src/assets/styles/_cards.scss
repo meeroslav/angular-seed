@@ -1,0 +1,64 @@
+@import 'colors';
+@import 'variables';
+@import '../../../node_modules/bootstrap/scss/variables.scss';
+
+@mixin card-top-border($color) {
+  border-top: $nrgs-accent-width solid $color;
+}
+
+// New styles
+
+.card-accent-primary {
+  @include card-top-border($btn-primary-bg);
+}
+.card-accent-info {
+  @include card-top-border($btn-info-bg);
+}
+.card-accent-success {
+  @include card-top-border($btn-success-bg);
+}
+.card-accent-warning {
+  @include card-top-border($btn-warning-bg);
+}
+.card-accent-danger {
+  @include card-top-border($btn-danger-bg);
+}
+
+// Overrides
+
+.card-header > i {
+  margin-right: $grid-gutter-width-base;
+}
+.card-header > .btn {
+  margin-top: -$grid-gutter-width-base;
+  margin-right: -$grid-gutter-width-base;
+}
+.card-toolbar > .btn, .card-header > .btn {
+  padding: $grid-gutter-width-base;
+}
+
+$toolbarWidth: 1rem + 5/1.5 * $grid-gutter-width-base;
+
+.card-toolbar {
+  flex: 0 0 $toolbarWidth;
+  padding: $grid-gutter-width-base;
+
+  .btn {
+    padding: $grid-gutter-width-base / 1.5;
+  }
+
+  .btn + .btn {
+    margin-top: $grid-gutter-width-base;
+  }
+}
+.card-content {
+  flex: 1;
+}
+.card-with-toolbar {
+  display: flex;
+
+  .card-header, .card-footer {
+    background-color: inherit;
+    padding-right: 0;
+  }
+}

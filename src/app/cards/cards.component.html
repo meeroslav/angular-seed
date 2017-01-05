@@ -1,0 +1,476 @@
+<div class="page-header">
+  <h1>Cards<span class="de-emphasize"> - Park</span></h1>
+  <ol class="breadcrumb mb-0">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item active">Cards</li>
+  </ol>
+</div>
+
+<ngb-tabset>
+  <ngb-tab title="Grouped">
+    <template ngbTabContent>
+        <h4>Grouped cards</h4>
+        <div class="card-group">
+          <!-- card -->
+          <div class="card">
+            <img class="card-img-top img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample13.jpg" alt="Card image cap"/>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Cras justo odio</li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+          </div>
+          <!-- card -->
+          <div class="card">
+            <div class="card-block">
+              <h4 class="card-title">Grouped</h4>
+              <h6 class="card-subtitle">Those cards are grouped</h6>
+              <p class="card-text">Use card groups to render equal height cards without gutters between the cards. Use <code>.card-deck</code> for cards that aren’t attached to each another.</p>
+            </div>
+            <img class="card-img-bottom img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample13.jpg" alt="Card image cap"/>
+          </div>
+          <!-- card -->
+          <div class="card card-block">
+            <h4 class="card-title">Same Height</h4>
+            <p class="card-text">A frequent problem occurs when you have multiple items in a row with content of varying height. Thanks to flexbox (and display:table) we now have equal height cards!</p>
+            <p>
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </p>
+            <ul class="list-group">
+              <li class="list-group-item">Cras justo odio</li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+          </div>
+        </div>
+    </template>
+  </ngb-tab>
+  <ngb-tab title="Flex">
+    <template ngbTabContent>
+      <h4>Cards in a flex grid</h4>
+      <div class="row">
+        <div class="col-lg-4 col-sm-12">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample13.jpg" alt="Card image cap"/>
+            <div class="card-header">
+              Card with standard header
+            </div>
+            <div class="card-block">
+              <p class="card-text">Should never have inner header.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card">
+            <h4 class="card-header">
+              Some heading text
+            </h4>
+            <div class="card-block">
+              <h6 class="card-title">Card with emphasized header</h6>
+              <p class="card-text">Inner header should not be bigger than Card header.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card">
+            <div class="card-block">
+              <h6 class="card-title">Card with footer</h6>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            <div class="card-footer">
+              2 days ago
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </ngb-tab>
+  <ngb-tab title="In decks">
+    <template ngbTabContent>
+      <h4>Cards in deck</h4>
+      <div class="card-deck">
+        <div class="card">
+          <img class="card-img-top img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample5.jpg" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample6.jpg" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample7.jpg" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+    </template>
+  </ngb-tab>
+  <ngb-tab title="In columns">
+    <template ngbTabContent>
+      <h4>Cards in columns</h4>
+      <div class="card-columns">
+        <div class="card">
+          <img class="card-img-top img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample5.jpg" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <h4 class="card-header">
+            Some heading text
+          </h4>
+          <div class="card-block">
+            <h6 class="card-title">Card with emphasized header</h6>
+            <p class="card-text">Inner header should not be bigger than Card header.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample6.jpg" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample7.jpg" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card card-primary card-inverse card-block">
+          <h4 class="card-title">Inverse primary card</h4>
+          <p class="card-text">Some text</p>
+        </div>
+        <div class="card card-inverse">
+          <img class="card-img img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample1.jpg" alt="Card image"/>
+          <div class="card-img-overlay">
+            <h4 class="card-title">Inverse card</h4>
+            <p class="card-text">With photo overlay</p>
+          </div>
+        </div>
+        <div class="card">
+          <h4 class="card-header">
+            Some heading text
+          </h4>
+          <div class="card-block">
+            <h6 class="card-title">Card with emphasized header</h6>
+            <p class="card-text">Inner header should not be bigger than Card header.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </template>
+  </ngb-tab>
+  <ngb-tab title="With navigation">
+    <template ngbTabContent>
+      <h4>Cards with header navigation</h4>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <div class="card">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs float-xs-left">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-block">
+              <h6 class="card-title">Card with tabs</h6>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <div class="card">
+            <div class="card-header">
+              <ul class="nav nav-pills card-header-pills float-xs-right">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-block">
+              <h6 class="card-title">Special title treatment</h6>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </ngb-tab>
+  <ngb-tab title="Colors">
+    <template ngbTabContent>
+      <h4>Card color variants</h4>
+      <div class="row">
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-primary card-block">
+            <h4 class="card-title">Primary card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-primary card-inverse card-block">
+            <h4 class="card-title">Inverse primary card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-success card-inverse card-block">
+            <h4 class="card-title">Inverse success card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-info card-inverse card-block">
+            <h4 class="card-title">Inverse info card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-warning card-inverse card-block">
+            <h4 class="card-title">Inverse warning card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-danger card-inverse card-block">
+            <h4 class="card-title">Inverse danger card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-outline-primary card-block">
+            <h4 class="card-title">Outline primary card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-outline-secondary card-block">
+            <h4 class="card-title">Outline secondary card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-outline-success card-block">
+            <h4 class="card-title">Outline success card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-outline-info card-block">
+            <h4 class="card-title">Outline info card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-outline-warning card-block">
+            <h4 class="card-title">Outline warning card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-outline-danger card-block">
+            <h4 class="card-title">Outline danger card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-accent-primary card-block">
+            <h4 class="card-title">Accent primary card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-accent-success card-block">
+            <h4 class="card-title">Accent success card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-accent-info card-block">
+            <h4 class="card-title">Accent info card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-accent-warning card-block">
+            <h4 class="card-title">Accent warning card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-accent-danger card-block">
+            <h4 class="card-title">Accent danger card</h4>
+            <p class="card-text">Some text</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card card-inverse">
+            <img class="card-img img-fluid" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample1.jpg" alt="Card image"/>
+            <div class="card-img-overlay">
+              <h4 class="card-title">Inverse card</h4>
+              <p class="card-text">With photo overlay</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </ngb-tab>
+  <ngb-tab title="With buttons">
+    <template ngbTabContent>
+      <h4>Cards with button column</h4>
+      <div class="card-deck">
+        <div class="card">
+          <div class="card-header">
+            Card with label
+            <span class="tag tag-success float-xs-right">Success</span>
+          </div>
+          <div class="card-block">
+            <p class="card-text">Lorem ipsum dolor sit amet.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            Card with pill label
+            <span class="tag tag-pill tag-danger float-xs-right">42</span>
+          </div>
+          <div class="card-block">
+            <p class="card-text">Lorem ipsum dolor sit amet.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <i class="app-icon-data-center float-xs-left"></i>
+            Card with left icon
+          </div>
+          <div class="card-block">
+            <p class="card-text">Lorem ipsum dolor sit amet.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <button class="btn app-icon-close float-xs-right" type="button"></button>
+            Card with close button and a very long text
+          </div>
+          <div class="card-block">
+            <p class="card-text">Lorem ipsum dolor sit amet.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-deck">
+        <div class="card card-with-toolbar">
+          <div class="card-content">
+            <div class="card-header">
+              <i class="app-icon-data-center float-xs-left"></i>
+              Card with header
+            </div>
+            <div class="card-block">
+              <p class="card-text">Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+          <div class="card-toolbar">
+            <button class="btn app-icon-close btn-secondary float-xs-right" type="button"></button>
+          </div>
+        </div>
+        <div class="card card-with-toolbar">
+          <div class="card-block card-content">
+            <h6 class="card-title">
+              Card without header
+            </h6>
+            <p class="card-text">Inner header should not be bigger than Card header.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+          <div class="card-toolbar">
+            <button class="btn btn-secondary app-icon-add float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-remove float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-edit float-xs-right" type="button"></button>
+          </div>
+        </div>
+        <div class="card card-with-toolbar">
+          <div class="card-block card-content">
+            <h6 class="card-title">
+              Card with many tools
+            </h6>
+            <p class="card-text">Inner header should not be bigger than Card header.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+          <div class="card-toolbar">
+            <button class="btn btn-secondary app-icon-add float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-remove float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-edit float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-add float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-remove float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-edit float-xs-right" type="button"></button>
+          </div>
+        </div>
+        <div class="card card-primary card-inverse card-with-toolbar">
+          <div class="card-content">
+            <div class="card-block">
+              <h6 class="card-title">Card with emphasized header</h6>
+              <p class="card-text">Inner header should not be bigger than Card header.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-secondary">Go somewhere</a>
+            </div>
+          </div>
+          <div class="card-toolbar">
+            <button class="btn btn-secondary app-icon-add float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-remove float-xs-right" type="button"></button>
+            <button class="btn btn-secondary app-icon-edit float-xs-right" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </template>
+  </ngb-tab>
+
+</ngb-tabset>
+
+
+
+
+
+
+
+

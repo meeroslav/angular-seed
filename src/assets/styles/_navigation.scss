@@ -1,0 +1,95 @@
+@import 'colors';
+@import 'animations';
+@import 'variables';
+@import 'mixins';
+@import '../../../node_modules/bootstrap/scss/variables.scss';
+
+.navbar-inverse {
+  background: $nrgs_01;
+  color: $white;
+}
+
+#main-nav {
+  background: $nrgs_02;
+  color: $white;
+
+  .active {
+    background: $nrgs_01;
+
+    & > .nav-link {
+      border-left: $greentube_green_03 $nrgs-accent-width solid;
+      padding-left: $spacer-x - $nrgs-accent-width;
+    }
+  }
+
+  .nav-link {
+    height: 1rem + 2 * $spacer-y;
+  }
+}
+
+.nav-item {
+  margin-top: 1px;
+
+  .nav-link {
+    color: inherit;
+    text-decoration: none;
+    padding: $spacer-y $spacer-x;
+    display: block;
+
+    i {
+      margin-right: $spacer-x;
+      float: left;
+    }
+
+    .nav-link-text {
+      @include ellipsis();
+      display: block;
+    }
+  }
+
+  .nav-link.has-ul {
+    position: relative;
+    padding-right: $spacer-x * 2 + .5rem;
+
+    &:after {
+      font-family: 'appicons';
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: absolute;
+      right: $spacer-x;
+      top: $spacer-y + .25rem;
+      font-size: .625rem;
+      content: "\f053";
+      @include animateProperty();
+      @include rotate();
+    }
+  }
+}
+
+.nav-divider {
+  margin: 0 $spacer-x / 2;
+  border-top: 1px solid rgba(255,255,255, 0.1);
+}
+
+.nav-dropdown-items {
+  max-height: 0;
+  overflow-y: hidden;
+  background: $nrgs_01;
+
+  @include animateProperty(max-height);
+}
+
+.open {
+  & .nav-link.has-ul:after {
+    @include rotate(-90deg);
+  }
+
+  & > .nav-dropdown-items {
+    max-height: 500px;
+  }
+}
+
+aside.main-aside {
+  background: $greentube_gray_04;
+}
+

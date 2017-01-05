@@ -1,0 +1,108 @@
+@import '../../../node_modules/bootstrap/scss/variables.scss';
+@import '../../../node_modules/bootstrap/scss/mixins/breakpoints.scss';
+@import 'colors';
+@import 'variables';
+@import 'animations';
+
+app {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+header.navbar {
+  padding: 0;
+
+  .container-fluid {
+    padding: 0;
+  }
+
+  .navbar-brand {
+    width: $nrgs-side-nav-width;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  .navbar-toggler {
+    float: left;
+  }
+}
+
+main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+#main-nav {
+  flex: 0 0 $nrgs-side-nav-width;
+  width: $nrgs-side-nav-width;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: block;
+  @include animateProperty();
+
+  .nav-link-text {
+    @include animateProperty();
+  }
+
+  @include media-breakpoint-up(sm) {
+
+    &.collapsed {
+      width: $nrgs-side-nav-collapsed-width;
+      flex: 0 0 $nrgs-side-nav-collapsed-width;
+
+      .nav-link-text {
+        opacity: 0;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    transform: translate3d(-$nrgs-side-nav-width, 0, 0);
+
+    & + .main-content {
+      transform: translate3d(-$nrgs-side-nav-width, 0, 0);
+      margin-right: -$nrgs-side-nav-width;
+      @include animateProperty();
+    }
+
+    &.collapsed {
+      transform: translate3d(0, 0, 0);
+
+      & + .main-content {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+}
+
+.main-content {
+  flex: 1;
+  overflow: auto;
+
+  & > .container-fluid {
+    padding: $grid-gutter-width-base $grid-gutter-width-base;
+  }
+}
+
+aside.main-aside {
+  flex: 0 0 $nrgs-side-nav-width;
+  display: none;
+
+  @include media-breakpoint-up(sm) {
+    display: block;
+  }
+}
+
+.tab-content {
+  padding: $grid-gutter-width-base $grid-gutter-width-base;
+}
+
+.page {
+  display: block;
+
+  @include animate(1s);
+  @include fadeIn();
+}

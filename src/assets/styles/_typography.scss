@@ -1,21 +1,21 @@
 @font-face {
-    font-family: 'Roboto-Regular';
-    src: url('./fonts/Roboto-Regular.ttf');
+  font-family: 'OpenSans-Regular';
+  src: url('./fonts/OpenSans-Regular.ttf');
 }
 @font-face {
-    font-family: 'Roboto-Bold';
-    src: url('./fonts/Roboto-Bold.ttf');
+  font-family: 'OpenSans-Bold';
+  src: url('./fonts/OpenSans-Bold.ttf');
 }
 @font-face {
-    font-family: 'Roboto-Light';
-    src: url('./fonts/Roboto-Light.ttf');
+  font-family: 'OpenSans-Light';
+  src: url('./fonts/OpenSans-Light.ttf');
 }
 @mixin fontRegular() {
-    font-family: 'Roboto-Regular', sans-serif;
+  font-family: 'OpenSans-Regular', sans-serif;
 }
 @mixin fontBold() {
-    font-family: 'Roboto-Bold', sans-serif;
+  font-family: 'OpenSans-Bold', sans-serif;
 }
 @mixin fontLight() {
-    font-family: 'Roboto-Light', sans-serif;
+  font-family: 'OpenSans-Light', sans-serif;
 }
