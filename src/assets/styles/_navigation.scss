@@ -17,8 +17,8 @@
     background: $nrgs_01;
 
     & > .nav-link {
-      border-left: $greentube_green_03 $nav-tabs-border-width solid;
-      padding-left: $spacer-x - $nav-tabs-border-width / $font-size-root;
+      border-left: $greentube_green_03 $nrgs-accent-width solid;
+      padding-left: $spacer-x - $nrgs-accent-width;
     }
   }
 
