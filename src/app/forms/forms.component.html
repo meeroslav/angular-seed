@@ -5,5 +5,181 @@
     <li class="breadcrumb-item active">Forms</li>
   </ol>
 </div>
+<ngb-tabset>
+  <ngb-tab title="Basic Example">
+    <template ngbTabContent>
+      <div class="card-group">
+        <div class="card">
+          <div class="card-block">
+            <h2>Basic form controls</h2>
+            <br/>
+            <form [formGroup]="basicControlsForm" novalidate>
+              <!-- Text input -->
+              <div class="row">
+                <div class="col-xs-8">
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" formControlName="name" class="form-control" id="name" placeholder="Name">
+                    <div *ngIf="basicControlsForm.controls.name.errors" class="form-notification-wrapper">
+                      <div class="form-notification" *ngIf="basicControlsForm.controls.name.errors.required">
+                        {{'form.NAME_REQUIRED' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-Forms go here
+              <!-- Number input -->
+              <div class="row">
+                <div class="col-xs-4">
+                  <div class="form-group">
+                    <label for="favoriteNumber">Favorite number</label>
+                    <input type="number" formControlName="favoriteNumber" class="form-control" id="favoriteNumber"
+                           placeholder="Favorite number">
+                    <div *ngIf="basicControlsForm.controls.favoriteNumber.errors" class="form-notification-wrapper">
+                      <div class="form-notification" *ngIf="basicControlsForm.controls.favoriteNumber.errors.required">
+                        {{'form.FAVORITE_NUMBER_REQUIRED' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Select input -->
+              <div class="row">
+                <div class="col-xs-4">
+                  <div class="form-group">
+                    <label for="favoriteColor">Select</label>
+
+                    <select class="form-control" formControlName="favoriteColor" id="favoriteColor">
+                      <option [selected]="basicControlsForm.controls.favoriteColor.value == null" value="">-- Pick a
+                        color
+                        --
+                      </option>
+                      <option *ngFor="let color of colors" [value]="color.id">{{color.color}}</option>
+                    </select>
+                    <div *ngIf="basicControlsForm.controls.favoriteColor.errors" class="form-notification-wrapper">
+                      <div class="form-notification" *ngIf="basicControlsForm.controls.favoriteColor.errors.required">
+                        {{'form.FAVORITE_COLOR_REQUIRED' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Text area input -->
+              <div class="row">
+                <div class="col-xs-4">
+                  <div class="form-group has-error">
+                    <label for="observation">Text area Input</label>
+                    <textarea class="form-control" formControlName="observation" id="observation" rows="4"
+                              placeholder="Observation"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Check-box -->
+              <div class="row">
+                <div class="col-xs-4">
+                  <div class="form-group">
+                    <label>Check-box</label>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" formControlName="optin" value="">
+                        Opt-in for something good
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-success" [disabled]="!basicControlsForm.valid">Save data</button>
+            </form>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-block">
+            <h2>Form information</h2>
+            <p>
+            <code>
+              <p>Form Values</p>
+              {{basicControlsForm.value | json}}
+            </code>
+            </p>
+            <p>Form Status: {{basicControlsForm.status}}</p>
+          </div>
+        </div>
+      </div>
+    </template>
+  </ngb-tab>
+  <ngb-tab title="Control Sizing">
+    <template ngbTabContent>
+      <div class="card-group">
+        <div class="card">
+          <div class="card-block">
+            <h2>Inputs - Column sizing</h2>
+            <br/>
+            <form>
+              <div class="row">
+                <div class="col-xs-2">
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="email" class="form-control" id="name" placeholder="col-xs-2">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-3">
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="email" class="form-control" id="name" placeholder="col-xs-3">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-8">
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="email" class="form-control" id="name" placeholder="col-xs-4">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-block">
+            <h2>Inputs - Column sizing</h2>
+            <br/>
+            <form>
+              <div class="row">
+                <div class="col-xs-2">
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="email" class="form-control" id="name" placeholder="col-xs-2">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-3">
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="email" class="form-control" id="name" placeholder="col-xs-3">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-4">
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="email" class="form-control" id="name" placeholder="col-xs-4">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </template>
+  </ngb-tab>
+</ngb-tabset>
