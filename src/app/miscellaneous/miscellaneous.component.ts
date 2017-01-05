@@ -36,4 +36,43 @@ export class MiscComponent implements OnInit {
       }
     });
   }
+
+  openSimpleModalWithCallback() {
+    this.modalDialogService.openDialog(this.viewContainer, {
+      title: 'Simple',
+      childComponent: SimpleModalComponent,
+      data: {
+        text: 'Some text content. It will close after 1 sec.'
+      },
+      onClose: () => new Promise((resolve: any) => {
+        setTimeout(() => {
+          resolve();
+        }, 1000);
+      })
+    });
+  }
+
+  openPromptModal() {
+    this.modalDialogService.openDialog(this.viewContainer, {
+      title: 'Simple',
+      childComponent: SimpleModalComponent,
+      data: {
+        text: 'Not so simple modal dialog. Do you agree?\n(It will close on Fine but fail on close)'
+      },
+      prompt: {
+        textOk: 'Im fine, thanks',
+        onPromptOk: () => new Promise((resolve: any) => {
+          setTimeout(() => {
+            resolve();
+          }, 20);
+        }),
+        textCancel: 'Brake, please',
+        onPromptCancel: () => new Promise((resolve: any, reject: any) => {
+          setTimeout(() => {
+            reject();
+          }, 20);
+        })
+      }
+    });
+  }
 }

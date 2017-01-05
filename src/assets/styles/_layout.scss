@@ -104,5 +104,5 @@ aside.main-aside {
   display: block;
 
   @include animate(1s);
-  @include fadeIn();
+  @include runAnimation(fadeIn);
 }

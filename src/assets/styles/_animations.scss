@@ -1,3 +1,5 @@
+@import 'mixins';
+
 @-webkit-keyframes spin {
   0%    { transform: rotate(0deg); }
   100%  { transform: rotate(360deg); }
@@ -23,16 +25,36 @@
   from  { opacity: 0; }
   to    { opacity: 1; }
 }
+@-moz-keyframes shakeCentral {
+  from, to                { transform: translate3d(0, -50%, 0); }
+  10%, 30%, 50%, 70%, 90% { transform: translate3d(-2rem, -50%, 0); }
+  20%, 40%, 60%, 80%      { transform: translate3d(2rem, -50%, 0); }
+}
+@-webkit-keyframes shakeCentral {
+  from, to                { transform: translate3d(0, -50%, 0); }
+  10%, 30%, 50%, 70%, 90% { transform: translate3d(-2rem, -50%, 0); }
+  20%, 40%, 60%, 80%      { transform: translate3d(2rem, -50%, 0); }
+}
+@keyframes shakeCentral {
+  from, to                { transform: translate3d(0, -50%, 0); }
+  10%, 30%, 50%, 70%, 90% { transform: translate3d(-2rem, -50%, 0); }
+  20%, 40%, 60%, 80%      { transform: translate3d(2rem, -50%, 0); }
+}
 
 $animation-duration: 350ms;
 
-@mixin animate($duration: $animation-duration, $fillMode: both) {
+@mixin animate($duration: $animation-duration, $fill-mode: both, $animation-count: 1) {
   -webkit-animation-duration: $duration;
   -moz-animation-duration: $duration;
   animation-duration: $duration;
-  -webkit-animation-fill-mode: $fillMode;
-  -moz-animation-fill-mode: $fillMode;
-  animation-fill-mode: $fillMode;
+  -webkit-animation-fill-mode: $fill-mode;
+  -moz-animation-fill-mode: $fill-mode;
+  animation-fill-mode: $fill-mode;
+  -webkit-animation-iteration-count: $animation-count;
+  -moz-animation-iteration-count: $animation-count;
+  animation-iteration-count: $animation-count;
+
+  backface-visibility: hidden;
 }
 
 @mixin animateProperty($property: all, $animation: ease-in-out) {
@@ -44,10 +66,10 @@ $animation-duration: 350ms;
   animation-fill-mode: both;
 }
 
-@mixin fadeIn() {
-  -webkit-animation-name: fadeIn;
-  -moz-animation-name: fadeIn;
-  animation-name: fadeIn;
+@mixin runAnimation($animation-name) {
+  -webkit-animation-name: $animation-name;
+  -moz-animation-name: $animation-name;
+  animation-name: $animation-name;
 }
 @mixin rotate($value: 0deg) {
   -webkit-transform: rotate($value);
