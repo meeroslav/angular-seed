@@ -21,6 +21,16 @@
     position: absolute;
     top: 0;
     left: 0;
+    @include animateProperty(all);
+  }
+
+  #map {
+    @include animateProperty(all);
+    -moz-transform: translate(50%, 50%) scale(0.1);
+    -ms-transform: translate(50%, 50%) scale(0.1);
+    -o-transform: translate(50%, 50%) scale(0.1);
+    -webkit-transform: translate(50%, 50%) scale(0.1);
+    transform: translate(50%, 50%) scale(0.1);
   }
 
   #map-zooming {
