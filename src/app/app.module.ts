@@ -11,6 +11,7 @@ import { FooterComponent } from './_layout/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainNav } from './_layout/mainnav.service';
 import { CommonModule } from '@angular/common';
+import { ModalDialogModule } from './_common/modal-dialog/modal-dialog.module';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { CommonModule } from '@angular/common';
       deps: [Http]
     }),
     NgbModule.forRoot(),
+    ModalDialogModule.forRoot(),
     appRouting
   ],
   declarations: [AppComponent, HeaderComponent, MainNavComponent, FooterComponent],

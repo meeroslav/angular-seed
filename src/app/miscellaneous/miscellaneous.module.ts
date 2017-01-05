@@ -4,6 +4,7 @@ import { MiscComponent } from './miscellaneous.component';
 import { TranslateModule } from 'ng2-translate';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDialogModule } from '../_common/modal-dialog/modal-dialog.module';
 
 let routes = [
   { path: '', component: MiscComponent }
@@ -14,6 +15,7 @@ let routes = [
     CommonModule,
     TranslateModule,
     NgbModule,
+    ModalDialogModule,
     RouterModule.forChild(routes)
   ],
   declarations: [MiscComponent]

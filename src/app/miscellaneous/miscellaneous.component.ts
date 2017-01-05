@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { ModalDialogService } from '../_common/modal-dialog/modal-dialog.service';
+import { SimpleModalComponent } from '../_common/modal-dialog/simple-modal.component';
 
 @Component({
   // The selector is what angular internally uses
@@ -15,8 +17,23 @@ import { Component, OnInit } from '@angular/core';
   }
 })
 export class MiscComponent implements OnInit {
+
+  constructor (
+    private modalDialogService: ModalDialogService,
+    private viewContainer: ViewContainerRef) {}
+
   ngOnInit() {
     console.log('hello `Misc` component');
     // this.title.getData().subscribe(data => this.data = data);
+  }
+
+  openSimpleModal() {
+    this.modalDialogService.openDialog(this.viewContainer, {
+      title: 'Simple',
+      childComponent: SimpleModalComponent,
+      data: {
+        text: 'Some text content'
+      }
+    });
   }
 }
