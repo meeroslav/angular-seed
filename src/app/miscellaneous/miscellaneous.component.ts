@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ElementRef } from '@angular/core';
 import { ModalDialogService } from '../_common/modal-dialog/modal-dialog.service';
 import { SimpleModalComponent } from '../_common/modal-dialog/simple-modal.component';
+import { IMapChange, WorldMapComponent } from '../_common/custom-components/world-map/world-map.component';
 
 @Component({
   // The selector is what angular internally uses
@@ -20,7 +21,8 @@ export class MiscComponent implements OnInit {
 
   constructor (
     private modalDialogService: ModalDialogService,
-    private viewContainer: ViewContainerRef) {}
+    private viewContainer: ViewContainerRef,
+    private element: ElementRef) {}
 
   ngOnInit() {
     console.log('hello `Misc` component');
@@ -74,5 +76,17 @@ export class MiscComponent implements OnInit {
         })
       }
     });
+  }
+
+  repositionTheDot(data: IMapChange) {
+    let dot = this.element.nativeElement.querySelector('#dot');
+    // position of Vienna
+    let X = 100 * (16.363553 - data.leftLongitude) /
+      (data.rightLongitude - data.leftLongitude);
+    let Y = 100 * (data.maxVerticalPos - WorldMapComponent.latitudeToPosition(48.186928)) /
+      (data.maxVerticalPos - data.minVerticalPos);
+
+    dot.style.left = `${X}%`;
+    dot.style.top = `${Y}%`;
   }
 }

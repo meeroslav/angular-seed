@@ -9,6 +9,15 @@ const MAP_CONFIG = {
   bottomLatitude: -58.488473
 };
 
+export interface IMapChange {
+  maxVerticalPos: number;
+  minVerticalPos: number;
+  leftLongitude: number;
+  rightLongitude: number;
+  height: number;
+  width: number;
+}
+
 @Component({
   selector: '[world-map]',
   styleUrls: [ './world-map.component.scss' ],
@@ -842,7 +851,7 @@ export class WorldMapComponent implements OnInit {
    * Calculates vertical position from latitude in degrees
    * @param value
    */
-  private static latitudeToPosition(value: number) {
+  static latitudeToPosition(value: number) {
     return Math.log(Math.tan(value / 360 * Math.PI + Math.PI / 4));
   }
 
@@ -883,7 +892,14 @@ export class WorldMapComponent implements OnInit {
     this.setStyles();
 
     // emit change
-    this.change.emit();
+    this.change.emit({
+      maxVerticalPos: this.maxVerticalPos,
+      minVerticalPos: this.minVerticalPos,
+      leftLongitude: MAP_CONFIG.leftLongitude,
+      rightLongitude: MAP_CONFIG.rightLongitude,
+      height: this.height,
+      width: this.width
+    });
   }
 
   /**

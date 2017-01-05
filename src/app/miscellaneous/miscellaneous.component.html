@@ -16,7 +16,9 @@
   </ngb-tab>
   <ngb-tab title="Map">
     <template ngbTabContent>
-      <div world-map id="world-map"></div>
+      <div world-map id="world-map" (change)="repositionTheDot($event)">
+        <div id="dot">Vienna</div>
+      </div>
     </template>
   </ngb-tab>
   <ngb-tab title="Tree">

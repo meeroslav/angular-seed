@@ -17,6 +17,12 @@
     @include animateProperty(none);
   }
 
+  #content-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
   #map-zooming {
     position: absolute;
     top: 0;
