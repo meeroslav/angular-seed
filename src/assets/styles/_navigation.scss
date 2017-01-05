@@ -1,6 +1,8 @@
 @import 'colors';
 @import 'animations';
 @import 'variables';
+@import 'mixins';
+@import '../../../node_modules/bootstrap/scss/variables.scss';
 
 .navbar-inverse {
   background: $nrgs_01;
@@ -15,9 +17,13 @@
     background: $nrgs_01;
 
     & > .nav-link {
-      border-left: $greentube_green_03 $nrgs-selected-nav-border solid;
-      padding-left: $spacer-x - $nrgs-selected-nav-border;
+      border-left: $greentube_green_03 $nav-tabs-border-width solid;
+      padding-left: $spacer-x - $nav-tabs-border-width / $font-size-root;
     }
+  }
+
+  .nav-link {
+    height: 1rem + 2 * $spacer-y;
   }
 }
 
@@ -29,6 +35,16 @@
     text-decoration: none;
     padding: $spacer-y $spacer-x;
     display: block;
+
+    i {
+      margin-right: $spacer-x;
+      float: left;
+    }
+
+    .nav-link-text {
+      @include ellipsis();
+      display: block;
+    }
   }
 
   .nav-link.has-ul {

@@ -43,6 +43,10 @@ main {
   display: block;
   @include animateProperty();
 
+  .nav-link-text {
+    @include animateProperty();
+  }
+
   @include media-breakpoint-up(sm) {
 
     &.collapsed {
@@ -50,7 +54,7 @@ main {
       flex: 0 0 $nrgs-side-nav-collapsed-width;
 
       .nav-link-text {
-        display: none;
+        opacity: 0;
       }
     }
   }

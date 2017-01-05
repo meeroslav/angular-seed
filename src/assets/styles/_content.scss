@@ -35,6 +35,14 @@
   border-bottom: $nrgs-tab-border-color solid $card-border-width;
   border-left: $nrgs-tab-border-color solid $card-border-width;
 }
+.nav-tabs .nav-link {
+  line-height: 1;
+}
+.nav-tabs .nav-item + .nav-item {
+  margin-left: 0;
+}
+
+// List group
 
 .list-group-item i.float-xs-left, .list-group-item span.float-xs-left{
   margin-right: $grid-gutter-width-base;

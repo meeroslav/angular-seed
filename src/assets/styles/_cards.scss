@@ -3,16 +3,13 @@
 @import '../../../node_modules/bootstrap/scss/variables.scss';
 
 @mixin card-top-border($color) {
-  border-top: $nrgs-selected-nav-border solid $color;
+  border-top: $card-border-width solid $color;
 }
 
 // New styles
 
 .card-accent-primary {
   @include card-top-border($btn-primary-bg);
-}
-.card-accent-secondary {
-  @include card-top-border($btn-secondary-border);
 }
 .card-accent-info {
   @include card-top-border($btn-info-bg);

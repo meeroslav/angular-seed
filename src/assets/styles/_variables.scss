@@ -6,7 +6,6 @@
 $nrgs-z-spinner: 1000;
 $nrgs-side-nav-width: 14rem;
 $nrgs-side-nav-collapsed-width: 3rem;
-$nrgs-selected-nav-border: .15rem;
 
 $nrgs-tab-content-bg: $white;
 $nrgs-tab-border-color: rgba(0,0,0,.125);
@@ -19,14 +18,14 @@ $nrgs-tab-border-color: rgba(0,0,0,.125);
 
 // Colors
 // TODO:
-$gray-dark:                 #373a3c;
-$gray:                      #55595c;
-$gray-light:                #818a91;
-$gray-lighter:              #eceeef;
-$gray-lightest:             #f7f7f9;
+$gray-dark:                 #231f20;
+$gray:                      #404041;
+$gray-light:                #8E97A8;
+$gray-lighter:              #e3e3e3;
+$gray-lightest:             #f5f5f5;
 
-$brand-primary:             #0275d8;
-$brand-success:             #5cb85c;
+$brand-primary:             #0080bf;
+$brand-success:             #a0cf67;
 $brand-info:                #5bc0de;
 $brand-warning:             #f0ad4e;
 $brand-danger:              #d9534f;

@@ -12,3 +12,9 @@
     -webkit-box-sizing: $value;
     box-sizing: $value;
 }
+
+@mixin ellipsis() {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
