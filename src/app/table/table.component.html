@@ -368,21 +368,21 @@
   </ngb-tab>
   <ngb-tab title="With pagination">
     <template ngbTabContent>
-      <table class="table table-sm thead-default">
+      <table class="table table-sm table-bordered">
         <thead>
         <tr>
           <th></th>
-          <th>Name</th>
-          <th>Height</th>
-          <th>Mass</th>
+          <th class="text-xs-center">Name</th>
+          <th class="text-xs-center">Height</th>
+          <th class="text-xs-center">Mass</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let user of users">
-          <th scope="row">1</th>
-          <td>{{user.name}}</td>
-          <td>{{user.height}}</td>
-          <td>{{user.mass}}</td>
+        <tr *ngFor="let user of users; let i = index">
+          <th scope="row" class="text-xs-center">{{page * 10 + i - 9}}</th>
+          <td class="text-xs-left">{{user.name}}</td>
+          <td class="text-xs-right">{{user.height}}</td>
+          <td class="text-xs-right">{{user.mass}}</td>
         </tr>
         </tbody>
         <tfoot>
