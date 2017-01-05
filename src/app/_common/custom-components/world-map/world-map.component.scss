@@ -35,8 +35,8 @@
 
   #map-zooming {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: $spacer-y;
+    left: $spacer-x;
   }
 }
 
