@@ -51,6 +51,15 @@
   margin-left: $grid-gutter-width-base;
 }
 
+// Pagination
+.pagination {
+  margin: 0;
+}
+.page-link {
+  min-width: 2 * $spacer-x + $font-size-base;
+  text-align: center;
+}
+
 // Special text styles
 
 .de-emphasize {

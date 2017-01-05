@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TableService, ISWUser, ICountable } from './table.service';
 
 @Component({
   // The selector is what angular internally uses
@@ -15,8 +16,26 @@ import { Component, OnInit } from '@angular/core';
   }
 })
 export class TableComponent implements OnInit {
+  collectionSize: number;
+  page: number;
+
+  users: ISWUser[];
+
+  constructor (private service: TableService) {
+    this.collectionSize = 0;
+    this.users = [];
+  }
+
   ngOnInit() {
-    console.log('hello `Table` component');
-    // this.title.getData().subscribe(data => this.data = data);
+    this.page = 1;
+    this.getData();
+  }
+
+  getData() {
+
+    this.service.getAll(this.page).subscribe((response: ICountable<ISWUser>) => {
+      this.collectionSize = response.count;
+      this.users = response.results;
+    });
   }
 }

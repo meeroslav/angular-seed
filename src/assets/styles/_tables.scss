@@ -1,0 +1,5 @@
+@import 'typography';
+
+th {
+  @include fontBold();
+}
