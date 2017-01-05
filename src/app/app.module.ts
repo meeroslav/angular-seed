@@ -18,7 +18,7 @@ import { ModalDialogModule } from './_common/modal-dialog/modal-dialog.module';
     BrowserModule,
     HttpModule,
     CommonModule,
-    DispatcherModule,
+    DispatcherModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (http: Http) =>

@@ -1,0 +1,33 @@
+@import '../../../../assets/styles/animations';
+@import '../../../../assets/styles/variables';
+
+:host {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background-color: $map-bg;
+  position: relative;
+  overflow: hidden;
+
+  &.dragging #map {
+    @include animateProperty(clip-path);
+  }
+
+  &.dragging #content-layer {
+    @include animateProperty(none);
+  }
+
+  #map-zooming {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+
+
+.map-country {
+  fill: $map-country-bg;
+  stroke: $map-line-color;
+  stroke-width: 0.1;
+}
