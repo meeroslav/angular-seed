@@ -1,64 +1,38 @@
 import { Component } from '@angular/core';
 import { DispatcherService } from '../_common/dispatcher/dispatcher.service';
 import { MAIN_MENU_TOGGLE } from './layout.interface';
+import { INavigationConfig, MainNav } from './mainnav.service';
 
 @Component( {
   selector: 'main-nav',
   template: `
-    <ul class="nav">
-      <li class="nav-divider"></li>
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="/home" class="nav-link">
-          <i class="app-icon-monster"></i>
-          <span class="nav-link-text">Home</span>
-        </a>
-      </li>
-      <li class="nav-item nav-dropdown" routerLinkActive="open active" [ngClass]="{ 'open': expandedArea == 'PARK'}">
-        <a (click)="toggleSubMenu('PARK')" class="has-ul nav-link">
-          <i class="app-icon-monster"></i>
-          <span class="nav-link-text">Component Park</span>
-        </a>
-        <ul class="nav-dropdown-items">
-          <li class="nav-item" routerLinkActive="active">
-            <a routerLink="/buttons" class="nav-link">            
-              <i class="app-icon-monster"></i>
-              <span class="nav-link-text">Buttons</span>
-            </a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a routerLink="/forms" class="nav-link">            
-              <i class="app-icon-monster"></i>
-              <span class="nav-link-text">Forms</span>
-            </a>
-          </li> 
-          <li class="nav-item" routerLinkActive="active">
-            <a routerLink="/cards" class="nav-link">            
-              <i class="app-icon-monster"></i>
-              <span class="nav-link-text">Cards</span>
-            </a>
-          </li> 
-          <li class="nav-item" routerLinkActive="active">
-            <a routerLink="/table" class="nav-link">            
-              <i class="app-icon-monster"></i>
-              <span class="nav-link-text">Data representation</span>
-            </a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a routerLink="/misc" class="nav-link">
-              <i class="app-icon-monster"></i>
-              <span class="nav-link-text">Miscellaneous</span>
-            </a>
-          </li>                                                           
-        </ul>
-      </li>
-      <li class="nav-divider"></li>        
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="/colors" class="nav-link">
-          <i class="app-icon-monster"></i>
-          <span class="nav-link-text">Colors and typefaces</span>
-        </a>
-      </li>                
-    </ul>
+  <ul class="nav">
+    <li *ngFor="let item of navigation" 
+      [ngClass]="{
+        'nav-divider': item.divider, 
+        'nav-item': !item.divider, 
+        'nav-dropdown': item.children && item.children.length,
+        'open': item.areaName && expandedArea == item.areaName }"
+      routerLinkActive="active">
+      <a *ngIf="item.url" [routerLink]="item.url" class="nav-link">
+        <i *ngIf="item.icon" [class]="item.icon"></i>
+        <span class="nav-link-text">{{item.text}}</span>
+      </a>
+      <a *ngIf="item.children" (click)="toggleSubMenu(item.areaName)" class="nav-link has-ul">
+        <i *ngIf="item.icon" [class]="item.icon"></i>
+        <span class="nav-link-text">{{item.text}}</span>
+      </a>
+      <ul class="nav-dropdown-items" *ngIf="item.children && item.children.length">
+        <li class="nav-item" routerLinkActive="active" *ngFor="let subItem of item.children">
+          <a [routerLink]="subItem.url" class="nav-link">            
+            <i *ngIf="subItem.icon" [class]="subItem.icon"></i>
+            <span class="nav-link-text">{{subItem.text}}</span>
+          </a>
+        </li>          
+      </ul>              
+    </li>
+  </ul>    
+      
   `,
   host: {
     'id': 'main-nav',
@@ -69,13 +43,16 @@ export class MainNavComponent {
   expandedArea: string;
   collapsed: boolean = false;
 
+  navigation: INavigationConfig;
+
   /**
    * CTOR
    */
-  constructor() {
+  constructor(navService: MainNav) {
     DispatcherService.subscribe(MAIN_MENU_TOGGLE, () => {
        this.collapsed = !this.collapsed;
     });
+    this.navigation = navService.navigation;
   }
 
   /**

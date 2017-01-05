@@ -9,11 +9,14 @@ import { MainNavComponent } from './_layout/mainnav.component';
 import { DispatcherModule } from './_common/dispatcher/dispatcher.module';
 import { FooterComponent } from './_layout/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MainNav } from './_layout/mainnav.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
+    CommonModule,
     DispatcherModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,
@@ -25,6 +28,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     appRouting
   ],
   declarations: [AppComponent, HeaderComponent, MainNavComponent, FooterComponent],
+  providers: [MainNav],
   bootstrap: [AppComponent]
 })
 export class AppModule {
