@@ -35,7 +35,8 @@ export class FormsComponent implements OnInit {
       favoriteNumber: 0,
       favoriteColor: '',
       observation: '',
-      optin: true
+      optin: true,
+      newsLetter: true
     };
 
     this.colors = [
@@ -56,7 +57,8 @@ export class FormsComponent implements OnInit {
       favoriteNumber: [this.user.favoriteNumber, [Validators.required]],
       favoriteColor: [this.user.favoriteColor, [Validators.required]],
       observation: this.user.observation,
-      optin: this.user.optin
+      optin: this.user.optin,
+      newsLetter: this.user.newsLetter
     });
   }
 }
