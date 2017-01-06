@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import {User, Colors} from "./form.interface";
+import {User, Colors} from './form.interface';
 
 @Component({
   // The selector is what angular internally uses
@@ -40,9 +40,9 @@ export class FormsComponent implements OnInit {
     };
 
     this.colors = [
-      {id: 1, color: "Red"},
-      {id: 2, color: "Blue"},
-      {id: 3, color: "Green"}
+      {id: 1, color: 'Red'},
+      {id: 2, color: 'Blue'},
+      {id: 3, color: 'Green'}
     ];
 
     this.buildBasicControlsForm();
