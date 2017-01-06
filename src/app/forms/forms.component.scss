@@ -1,0 +1,20 @@
+.star {
+  font-size: 2rem;
+  color: #d3d3d3;
+}
+
+.star-grained {
+  position: relative;
+  display: inline-block;
+}
+
+.full {
+  color: #fd0;
+}
+
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #fd0;
+}

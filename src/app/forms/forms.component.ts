@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import {User, Colors} from './form.interface';
+import {User, Colors, Movie} from './form.interface';
 
 @Component({
   // The selector is what angular internally uses
@@ -18,8 +18,11 @@ import {User, Colors} from './form.interface';
 })
 export class FormsComponent implements OnInit {
   user: User;
+  movie: Movie;
   colors: Array<Colors>;
+
   private basicControlsForm: FormGroup;
+  private advancedControlsForm: FormGroup;
 
   /**
    * CTOR
@@ -39,6 +42,12 @@ export class FormsComponent implements OnInit {
       newsLetter: true
     };
 
+    this.movie = {
+      firstRate: 0,
+      secondRate: 0,
+      averageRating: 0
+    };
+
     this.colors = [
       {id: 1, color: 'Red'},
       {id: 2, color: 'Blue'},
@@ -46,6 +55,11 @@ export class FormsComponent implements OnInit {
     ];
 
     this.buildBasicControlsForm();
+    this.buildAdvancedControlsForm();
+  }
+
+  changeRate() {
+    this.movie.averageRating = (this.movie.firstRate + this.movie.secondRate) / 2;
   }
 
   /**
@@ -59,6 +73,13 @@ export class FormsComponent implements OnInit {
       observation: this.user.observation,
       optin: this.user.optin,
       newsLetter: this.user.newsLetter
+    });
+  }
+
+  private buildAdvancedControlsForm() {
+    this.advancedControlsForm = this.formBuilder.group({
+      firstRate: [this.movie.firstRate, Validators.required],
+      secondRate: [this.movie.secondRate, Validators.required],
     });
   }
 }

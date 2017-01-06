@@ -7,10 +7,9 @@
 </div>
 <ngb-tabset>
 
-  <ngb-tab title="Basic Example">
+  <ngb-tab title="Basic controls ">
     <template ngbTabContent>
       <div class="row">
-
         <div class="col-lg-6">
           <div class="card">
             <div class="card-block">
@@ -109,7 +108,6 @@
             </div>
           </div>
         </div>
-
         <div class="col-lg-6">
           <div class="card">
             <div class="card-block">
@@ -124,7 +122,94 @@
             </div>
           </div>
         </div>
+      </div>
+    </template>
+  </ngb-tab>
 
+  <ngb-tab title="Advanced controls">
+    <template ngbTabContent>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-block">
+              <h2>Advanced form controls</h2>
+              <br/>
+              <form [formGroup]="advancedControlsForm" novalidate>
+
+                <!-- Basic ratings component -->
+                <div class="col-xs-8">
+                  <div class="form-group">
+                    <p>First rate</p>
+                    <ngb-rating formControlName="firstRate"
+                                [(rate)]="movie.firstRate"
+                                (rateChange)="changeRate($event)">
+                      <template let-fill="fill">
+                        <span class="star" [class.full]="fill === 100">&#9733;</span>
+                      </template>
+                    </ngb-rating>
+                    <div *ngIf="advancedControlsForm.controls.firstRate.errors" class="form-notification-wrapper">
+                      <div class="form-notification" *ngIf="advancedControlsForm.controls.firstRate.errors.required">
+                        {{'form.RATING_REQUIRED' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Basic ratings component -->
+                <div class="col-xs-8">
+                  <div class="form-group">
+                    <p>Second rate</p>
+                    <ngb-rating formControlName="secondRate"
+                                [(rate)]="movie.secondRate"
+                                (rateChange)="changeRate($event)">
+                      <template let-fill="fill">
+                        <span class="star" [class.full]="fill === 100">&#9733;</span>
+                      </template>
+                    </ngb-rating>
+                    <div *ngIf="advancedControlsForm.controls.secondRate.errors" class="form-notification-wrapper">
+                      <div class="form-notification" *ngIf="advancedControlsForm.controls.secondRate.errors.required">
+                        {{'form.RATING_REQUIRED' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Custom decimal ratings component -->
+                <div class="col-xs-8">
+                  <div class="form-group">
+                    <p>Read-only decimal rating</p>
+                    <template #t let-fill="fill">
+                      <span *ngIf="fill === 100" class="star star-grained full">&#9733;</span>
+                      <span *ngIf="fill === 0" class="star star-grained">&#9733;</span>
+                      <span *ngIf="fill < 100 && fill > 0" class="star star-grained">
+                        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                      </span>
+                    </template>
+                    <ngb-rating [(rate)]="movie.averageRating" [readonly]="true" [starTemplate]="t"></ngb-rating>
+                    {{movie.averageRating}}
+                  </div>
+                </div>
+
+                <button class="btn btn-success" [disabled]="!advancedControlsForm.valid">Save data</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-block">
+              <h2>Form information</h2>
+              <p>
+                <code>
+              <p>Form Values</p>
+              {{advancedControlsForm.value | json}}
+              </code>
+              </p>
+              <p>Form Status: {{basicControlsForm.status}}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </template>
   </ngb-tab>

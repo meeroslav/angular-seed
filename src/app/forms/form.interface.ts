@@ -11,3 +11,9 @@ export interface Colors {
   id: number;
   color: string
 }
+
+export interface Movie{
+  firstRate: number;
+  secondRate: number;
+  averageRating: number;
+}
