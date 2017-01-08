@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormsComponent} from './forms.component';
 import {TranslateModule} from 'ng2-translate';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {FormsService} from './forms.service';
 
 let routes = [
   {path: '', component: FormsComponent}
@@ -19,6 +20,7 @@ let routes = [
     NgbModule,
     RouterModule.forChild(routes)
   ],
+  providers: [FormsService],
   declarations: [FormsComponent]
 })
 export class FormsPageModule {

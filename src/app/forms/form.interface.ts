@@ -17,3 +17,9 @@ export interface Movie{
   secondRate: number;
   averageRating: number;
 }
+
+export interface ISWPlanet{
+  name: string;
+  terrain: string;
+  climate: string;
+}

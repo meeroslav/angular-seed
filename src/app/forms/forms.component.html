@@ -6,7 +6,6 @@
   </ol>
 </div>
 <ngb-tabset>
-
   <ngb-tab title="Basic controls ">
     <template ngbTabContent>
       <div class="row">
@@ -125,7 +124,6 @@
       </div>
     </template>
   </ngb-tab>
-
   <ngb-tab title="Advanced controls">
     <template ngbTabContent>
       <div class="row">
@@ -190,12 +188,22 @@
                   </div>
                 </div>
 
+                <!-- static typeahed not editable field -->
+                <div class="col-xs-8">
+                  <div class="form-group">
+                    <label for="name">Static typeahead non editable - Star wars planets </label>
+                    <input type="text" class="form-control" formControlName="planet"
+                           [ngbTypeahead]="search"
+                           [resultFormatter]="formatter"
+                           [inputFormatter]="formatter"
+                           [editable]="false"/>
+                  </div>
+                </div>
                 <button class="btn btn-success" [disabled]="!advancedControlsForm.valid">Save data</button>
               </form>
             </div>
           </div>
         </div>
-
         <div class="col-lg-6">
           <div class="card">
             <div class="card-block">
@@ -213,7 +221,6 @@
       </div>
     </template>
   </ngb-tab>
-
   <ngb-tab title="Control Sizing">
     <template ngbTabContent>
       <div class="card-group">
