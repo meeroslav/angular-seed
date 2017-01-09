@@ -3,14 +3,14 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 
 export interface ISWUser {
-  name: string,
-  height: string,
-  mass: string
+  name: string;
+  height: string;
+  mass: string;
 }
 
 export interface ICountable<T> {
-  count: number,
-  results: T[]
+  count: number;
+  results: T[];
 }
 
 @Injectable()

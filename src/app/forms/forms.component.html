@@ -6,16 +6,17 @@
   </ol>
 </div>
 <ngb-tabset>
-  <ngb-tab title="Basic Example">
+  <ngb-tab title="Basic controls ">
     <template ngbTabContent>
-      <div class="card-group">
-        <div class="card">
-          <div class="card-block">
-            <h2>Basic form controls</h2>
-            <br/>
-            <form [formGroup]="basicControlsForm" novalidate>
-              <!-- Text input -->
-              <div class="row">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-block">
+              <h2>Basic form controls</h2>
+              <br/>
+              <form [formGroup]="basicControlsForm" novalidate>
+
+                <!-- Text input -->
                 <div class="col-xs-8">
                   <div class="form-group">
                     <label for="name">Name</label>
@@ -27,34 +28,29 @@
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Number input -->
-              <div class="row">
+                <!-- Number input -->
                 <div class="col-xs-4">
                   <div class="form-group">
                     <label for="favoriteNumber">Favorite number</label>
                     <input type="number" formControlName="favoriteNumber" class="form-control" id="favoriteNumber"
                            placeholder="Favorite number">
                     <div *ngIf="basicControlsForm.controls.favoriteNumber.errors" class="form-notification-wrapper">
-                      <div class="form-notification" *ngIf="basicControlsForm.controls.favoriteNumber.errors.required">
+                      <div class="form-notification"
+                           *ngIf="basicControlsForm.controls.favoriteNumber.errors.required">
                         {{'form.FAVORITE_NUMBER_REQUIRED' | translate}}
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Select input -->
-              <div class="row">
-                <div class="col-xs-4">
+                <!-- Select input -->
+                <div class="col-xs-8">
                   <div class="form-group">
-                    <label for="favoriteColor">Select</label>
-
+                    <label for="favoriteColor">Favorite color</label>
                     <select class="form-control" formControlName="favoriteColor" id="favoriteColor">
-                      <option [selected]="basicControlsForm.controls.favoriteColor.value == null" value="">-- Pick a
-                        color
-                        --
+                      <option [selected]="basicControlsForm.controls.favoriteColor.value == null" value="">
+                        Pick a color
                       </option>
                       <option *ngFor="let color of colors" [value]="color.id">{{color.color}}</option>
                     </select>
@@ -65,24 +61,20 @@
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Text area input -->
-              <div class="row">
-                <div class="col-xs-4">
+                <!-- Text area input -->
+                <div class="col-xs-8">
                   <div class="form-group has-error">
-                    <label for="observation">Text area Input</label>
+                    <label for="observation">Observation</label>
                     <textarea class="form-control" formControlName="observation" id="observation" rows="4"
                               placeholder="Observation"></textarea>
                   </div>
                 </div>
-              </div>
 
-              <!-- Check-box -->
-              <div class="row">
-                <div class="col-xs-4">
+                <!-- Check-box -->
+                <div class="col-xs-6">
                   <div class="form-group">
-                    <label>Check-box</label>
+                    <label>Opt-in for goodies</label>
                     <div class="checkbox">
                       <label>
                         <input type="checkbox" formControlName="optin" value="">
@@ -91,21 +83,139 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <button class="btn btn-success" [disabled]="!basicControlsForm.valid">Save data</button>
-            </form>
+
+                <!-- Vertical radio group -->
+                <div class="col-xs-6">
+                  <div class="form-group">
+                    <label>Receive news?</label>
+                    <div class="radio">
+                      <label>
+                        <input type="radio" formControlName="newsLetter" value="true" checked>
+                        Yes
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input type="radio" formControlName="newsLetter" value="false">
+                        No
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-success" [disabled]="!basicControlsForm.valid">Save data</button>
+              </form>
+            </div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-block">
-            <h2>Form information</h2>
-            <p>
-            <code>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-block">
+              <h2>Form information</h2>
+              <p>
+                <code>
               <p>Form Values</p>
               {{basicControlsForm.value | json}}
-            </code>
-            </p>
-            <p>Form Status: {{basicControlsForm.status}}</p>
+              </code>
+              </p>
+              <p>Form Status: {{basicControlsForm.status}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </ngb-tab>
+  <ngb-tab title="Advanced controls">
+    <template ngbTabContent>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-block">
+              <h2>Advanced form controls</h2>
+              <br/>
+              <form [formGroup]="advancedControlsForm" novalidate>
+
+                <!-- Basic ratings component -->
+                <div class="col-xs-8">
+                  <div class="form-group">
+                    <p>First rate</p>
+                    <ngb-rating formControlName="firstRate"
+                                [(rate)]="movie.firstRate"
+                                (rateChange)="changeRate($event)">
+                      <template let-fill="fill">
+                        <span class="star" [class.full]="fill === 100">&#9733;</span>
+                      </template>
+                    </ngb-rating>
+                    <div *ngIf="advancedControlsForm.controls.firstRate.errors" class="form-notification-wrapper">
+                      <div class="form-notification" *ngIf="advancedControlsForm.controls.firstRate.errors.required">
+                        {{'form.RATING_REQUIRED' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Basic ratings component -->
+                <div class="col-xs-8">
+                  <div class="form-group">
+                    <p>Second rate</p>
+                    <ngb-rating formControlName="secondRate"
+                                [(rate)]="movie.secondRate"
+                                (rateChange)="changeRate($event)">
+                      <template let-fill="fill">
+                        <span class="star" [class.full]="fill === 100">&#9733;</span>
+                      </template>
+                    </ngb-rating>
+                    <div *ngIf="advancedControlsForm.controls.secondRate.errors" class="form-notification-wrapper">
+                      <div class="form-notification" *ngIf="advancedControlsForm.controls.secondRate.errors.required">
+                        {{'form.RATING_REQUIRED' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Custom decimal ratings component -->
+                <div class="col-xs-8">
+                  <div class="form-group">
+                    <p>Read-only decimal rating</p>
+                    <template #t let-fill="fill">
+                      <span *ngIf="fill === 100" class="star star-grained full">&#9733;</span>
+                      <span *ngIf="fill === 0" class="star star-grained">&#9733;</span>
+                      <span *ngIf="fill < 100 && fill > 0" class="star star-grained">
+                        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                      </span>
+                    </template>
+                    <ngb-rating [(rate)]="movie.averageRating" [readonly]="true" [starTemplate]="t"></ngb-rating>
+                    {{movie.averageRating}}
+                  </div>
+                </div>
+
+                <!-- static typeahed not editable field -->
+                <div class="col-xs-8">
+                  <div class="form-group">
+                    <label for="name">Static typeahead non editable - Star wars planets </label>
+                    <input type="text" class="form-control" formControlName="planet"
+                           [ngbTypeahead]="search"
+                           [resultFormatter]="formatter"
+                           [inputFormatter]="formatter"
+                           [editable]="false"/>
+                  </div>
+                </div>
+                <button class="btn btn-success" [disabled]="!advancedControlsForm.valid">Save data</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-block">
+              <h2>Form information</h2>
+              <p>
+                <code>
+              <p>Form Values</p>
+              {{advancedControlsForm.value | json}}
+              </code>
+              </p>
+              <p>Form Status: {{basicControlsForm.status}}</p>
+            </div>
           </div>
         </div>
       </div>
