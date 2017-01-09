@@ -6,7 +6,7 @@ import { INavigationConfig, MainNav } from './mainnav.service';
 @Component( {
   selector: 'main-nav',
   template: `
-  <ul class="nav">
+  <ul class="nav navbar-nav">
     <li *ngFor="let item of navigation" 
       [ngClass]="{
         'nav-divider': item.divider, 

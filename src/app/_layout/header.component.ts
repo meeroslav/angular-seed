@@ -11,15 +11,15 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
       <i class="logo"></i>
       {{'APP_NAME' | translate}}
     </a>
-    <ul class="nav navbar-nav hidden-md-down float-xs-left">
+    <ul class="nav navbar-nav hidden-md-down float-left">
       <li class="nav-item">
         <button class="nav-link navbar-toggler layout-toggler" type="button" (click)="toggleMainMenu()">☰</button>
       </li>
     </ul>
-    <form class="form-inline float-xs-left hidden-md-down">
+    <form class="form-inline float-left hidden-md-down">
        <input class="form-control" type="text" placeholder="Search..."/>
     </form>
-    <ul class="nav navbar-nav float-xs-right">
+    <ul class="nav float-right">
       <li class="nav-item hidden-md-down"><button class="app-icon-search"></button></li>
       <li class="nav-item hidden-md-down"><button class="app-icon-notification"></button></li>
       <li class="nav-item hidden-md-down"><button class="app-icon-mail"></button></li>
