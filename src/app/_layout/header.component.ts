@@ -18,13 +18,14 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
       </ul>
       <form class="form-inline float-left hidden-sm-down">
          <input class="form-control" type="text" placeholder="Search..."/>
+         <i class="app-icon-search"></i>
       </form>
-      <ul class="nav float-right hidden-sm-down">
-        <li class="nav-item"><button class="app-icon-search"></button></li>
-        <li class="nav-item"><button class="app-icon-notification"></button></li>
-        <li class="nav-item"><button class="app-icon-mail"></button></li>
-      </ul>
     </div>
+    <ul class="nav hidden-sm-down">
+      <li class="nav-item float-right"><button class="app-icon-archive"></button></li>
+      <li class="nav-item float-right"><button class="app-icon-notification"></button></li>
+      <li class="nav-item float-right"><button class="app-icon-mail"></button></li>
+    </ul>    
   `,
   host: {
     'class': 'navbar navbar-sticky-top navbar-inverse navbar-toggleable'

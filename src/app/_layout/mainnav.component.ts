@@ -6,7 +6,7 @@ import { INavigationConfig, MainNav } from './mainnav.service';
 @Component( {
   selector: 'main-nav',
   template: `
-  <ul class="nav navbar-nav">
+  <ul class="navbar-nav">
     <li *ngFor="let item of navigation" 
       [ngClass]="{
         'nav-divider': item.divider, 
@@ -36,6 +36,7 @@ import { INavigationConfig, MainNav } from './mainnav.service';
   `,
   host: {
     'id': 'main-nav',
+    'class': 'navbar-inverse',
     '[class.collapsed]': 'collapsed'
   }
 })

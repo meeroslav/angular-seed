@@ -19,9 +19,16 @@ header.navbar {
 
   .navbar-brand {
     width: $nrgs-side-nav-width;
+    flex: 0 0 $nrgs-side-nav-width;
     padding-left: 0;
     padding-right: 0;
     margin-right: 0;
+  }
+
+  @include media-breakpoint-down(sm) {
+    .navbar-brand {
+      flex: auto;
+    }
   }
 
   .navbar-toggler {

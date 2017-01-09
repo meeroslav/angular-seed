@@ -3,9 +3,7 @@
 
 header.navbar {
   .navbar-brand {
-    background: $nrgs_02;
     padding: $spacer;
-    color: $white;
     @include fontBold();
     font-size: 1rem;
   }
