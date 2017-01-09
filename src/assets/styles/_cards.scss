@@ -24,6 +24,10 @@
   @include card-top-border($btn-danger-bg);
 }
 
+.card-deck {
+  margin-bottom: $grid-gutter-width-base;
+}
+
 // Overrides
 
 .card-header > i {
@@ -54,8 +58,8 @@ $toolbarWidth: 1rem + 5/1.5 * $grid-gutter-width-base;
 .card-content {
   flex: 1;
 }
-.card-with-toolbar {
-  display: flex;
+.card.card-with-toolbar {
+  flex-direction: row;
 
   .card-header, .card-footer {
     background-color: inherit;
