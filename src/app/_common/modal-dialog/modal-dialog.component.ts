@@ -23,15 +23,15 @@ import { IModalDialog, IModalDialogOptions, IModalDialogPrompt } from './modal-d
 @Component({
   selector: 'modal-dialog',
   template: `
-    <div class="modal-backdrop fade in" (click)="!prompt && close()"></div>
-    <div class="modal fade in">
+    <div class="modal-backdrop fade show" (click)="!prompt && close()"></div>
+    <div class="modal fade show">
       <div class="modal-content" [ngClass]="{'shake': alert}">
         <div class="modal-header">
+          <h4 class="modal-title">{{title | translate}}</h4>        
           <button (click)="close()" *ngIf="!prompt" type="button"
             [title]="'CLOSE' | translate"
             class="close app-icon-close">
           </button>
-          <h4>{{title | translate}}</h4>
         </div>
         <div  class="modal-body">
           <i #modalDialogBody class="pointer"></i>

@@ -3,3 +3,7 @@
 th {
   @include fontBold();
 }
+
+.table .row {
+  margin: 0;
+}
