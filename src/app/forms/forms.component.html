@@ -5,120 +5,101 @@
     <li class="breadcrumb-item active">Forms</li>
   </ol>
 </div>
+
 <ngb-tabset>
   <ngb-tab title="Basic controls ">
     <template ngbTabContent>
       <div class="row">
         <div class="col-lg-6">
-          <div class="card">
-            <div class="card-block">
-              <h2>Basic form controls</h2>
-              <br/>
-              <form [formGroup]="basicControlsForm" novalidate>
-
-                <!-- Text input -->
-                <div class="col-xs-8">
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" formControlName="name" class="form-control" id="name" placeholder="Name">
-                    <div *ngIf="basicControlsForm.controls.name.errors" class="form-notification-wrapper">
-                      <div class="form-notification" *ngIf="basicControlsForm.controls.name.errors.required">
-                        {{'form.NAME_REQUIRED' | translate}}
-                      </div>
+          <div class="card card-block">
+            <h2>Basic form controls</h2>
+            <form [formGroup]="basicControlsForm" novalidate>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="name">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" formControlName="name" class="form-control" id="name" placeholder="Name">
+                  <div *ngIf="basicControlsForm.controls.name.errors" class="form-notification-wrapper">
+                    <div class="form-notification" *ngIf="basicControlsForm.controls.name.errors.required">
+                      {{'form.NAME_REQUIRED' | translate}}
                     </div>
                   </div>
                 </div>
-
-                <!-- Number input -->
-                <div class="col-xs-4">
-                  <div class="form-group">
-                    <label for="favoriteNumber">Favorite number</label>
-                    <input type="number" formControlName="favoriteNumber" class="form-control" id="favoriteNumber"
-                           placeholder="Favorite number">
-                    <div *ngIf="basicControlsForm.controls.favoriteNumber.errors" class="form-notification-wrapper">
-                      <div class="form-notification"
-                           *ngIf="basicControlsForm.controls.favoriteNumber.errors.required">
-                        {{'form.FAVORITE_NUMBER_REQUIRED' | translate}}
-                      </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label" for="favoriteNumber">Favorite number</label>
+                <div class="col-sm-4">
+                  <input type="number" formControlName="favoriteNumber" class="form-control" id="favoriteNumber"
+                         placeholder="Favorite number">
+                  <div *ngIf="basicControlsForm.controls.favoriteNumber.errors" class="form-notification-wrapper">
+                    <div class="form-notification"
+                         *ngIf="basicControlsForm.controls.favoriteNumber.errors.required">
+                      {{'form.FAVORITE_NUMBER_REQUIRED' | translate}}
                     </div>
                   </div>
                 </div>
-
-                <!-- Select input -->
-                <div class="col-xs-8">
-                  <div class="form-group">
-                    <label for="favoriteColor">Favorite color</label>
-                    <select class="form-control" formControlName="favoriteColor" id="favoriteColor">
-                      <option [selected]="basicControlsForm.controls.favoriteColor.value == null" value="">
-                        Pick a color
-                      </option>
-                      <option *ngFor="let color of colors" [value]="color.id">{{color.color}}</option>
-                    </select>
-                    <div *ngIf="basicControlsForm.controls.favoriteColor.errors" class="form-notification-wrapper">
-                      <div class="form-notification" *ngIf="basicControlsForm.controls.favoriteColor.errors.required">
-                        {{'form.FAVORITE_COLOR_REQUIRED' | translate}}
-                      </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label" for="favoriteColor">Favorite color</label>
+                <div class="col-sm-8">
+                  <select class="custom-select" formControlName="favoriteColor" id="favoriteColor">
+                    <option [selected]="basicControlsForm.controls.favoriteColor.value == null" value="">
+                      Pick a color
+                    </option>
+                    <option *ngFor="let color of colors" [value]="color.id">{{color.color}}</option>
+                  </select>
+                  <div *ngIf="basicControlsForm.controls.favoriteColor.errors" class="form-notification-wrapper">
+                    <div class="form-notification" *ngIf="basicControlsForm.controls.favoriteColor.errors.required">
+                      {{'form.FAVORITE_COLOR_REQUIRED' | translate}}
                     </div>
                   </div>
                 </div>
-
-                <!-- Text area input -->
-                <div class="col-xs-8">
-                  <div class="form-group has-error">
-                    <label for="observation">Observation</label>
-                    <textarea class="form-control" formControlName="observation" id="observation" rows="4"
-                              placeholder="Observation"></textarea>
-                  </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label" for="observation">Observation</label>
+                <textarea class="form-control col-sm-8" formControlName="observation" id="observation" rows="4"
+                          placeholder="Observation"></textarea>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label">Opt-in for goodies</label>
+                <div class="checkbox col-sm-12">
+                  <label class="custom-control custom-checkbox">
+                    <input type="checkbox" formControlName="optin" class="custom-control-input" value="">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Remember my preference</span>
+                  </label>
                 </div>
+              </div>
+              <div class="form-group row">
+                <label>Receive news?</label>
+                <label class="col-sm-12 custom-control custom-radio">
+                  <input type="radio" formControlName="newsLetter" class="custom-control-input" value="Maybe">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Maybe</span>
+                </label>
+                <label class="col-sm-12 custom-control custom-radio">
+                  <input type="radio" formControlName="newsLetter" class="custom-control-input" value="No">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Hell, no</span>
+                </label>
+                <label class="col-sm-12 custom-control custom-radio">
+                  <input type="radio" formControlName="newsLetter" class="custom-control-input" value="Yes">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Yeah</span>
+                </label>
+              </div>
 
-                <!-- Check-box -->
-                <div class="col-xs-6">
-                  <div class="form-group">
-                    <label>Opt-in for goodies</label>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" formControlName="optin" value="">
-                        Opt-in for something good
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Vertical radio group -->
-                <div class="col-xs-6">
-                  <div class="form-group">
-                    <label>Receive news?</label>
-                    <div class="radio">
-                      <label>
-                        <input type="radio" formControlName="newsLetter" value="true" checked>
-                        Yes
-                      </label>
-                    </div>
-                    <div class="radio">
-                      <label>
-                        <input type="radio" formControlName="newsLetter" value="false">
-                        No
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <button class="btn btn-success" [disabled]="!basicControlsForm.valid">Save data</button>
-              </form>
-            </div>
+              <button class="btn btn-success" [disabled]="!basicControlsForm.valid">Save data</button>
+            </form>
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="card">
-            <div class="card-block">
-              <h2>Form information</h2>
-              <p>
-                <code>
-              <p>Form Values</p>
+          <div class="card card-block">
+            <h2>Form information</h2>
+            <p>Form Values</p>
+            <code>
               {{basicControlsForm.value | json}}
-              </code>
-              </p>
-              <p>Form Status: {{basicControlsForm.status}}</p>
-            </div>
+            </code>
+            <p>Form Status: {{basicControlsForm.status}}</p>
           </div>
         </div>
       </div>
@@ -128,12 +109,10 @@
     <template ngbTabContent>
       <div class="row">
         <div class="col-lg-6">
-          <div class="card">
-            <div class="card-block">
-              <h2>Advanced form controls</h2>
-              <br/>
-              <form [formGroup]="advancedControlsForm" novalidate>
-
+          <div class="card card-block">
+            <h2>Advanced form controls</h2>
+            <form [formGroup]="advancedControlsForm" novalidate>
+              <div class="row">
                 <!-- Basic ratings component -->
                 <div class="col-xs-8">
                   <div class="form-group">
@@ -199,21 +178,19 @@
                            [editable]="false"/>
                   </div>
                 </div>
-                <button class="btn btn-success" [disabled]="!advancedControlsForm.valid">Save data</button>
-              </form>
-            </div>
+              </div>
+              <button class="btn btn-success" [disabled]="!advancedControlsForm.valid">Save data</button>
+            </form>
           </div>
         </div>
         <div class="col-lg-6">
           <div class="card">
             <div class="card-block">
               <h2>Form information</h2>
-              <p>
-                <code>
               <p>Form Values</p>
-              {{advancedControlsForm.value | json}}
+              <code>
+                {{advancedControlsForm.value | json}}
               </code>
-              </p>
               <p>Form Status: {{basicControlsForm.status}}</p>
             </div>
           </div>
@@ -224,70 +201,64 @@
   <ngb-tab title="Control Sizing">
     <template ngbTabContent>
       <div class="card-group">
-        <div class="card">
-          <div class="card-block">
-            <h2>Inputs - Column sizing</h2>
-            <br/>
-            <form>
-              <div class="row">
-                <div class="col-xs-2">
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="email" class="form-control" id="name" placeholder="col-xs-2">
-                  </div>
+        <div class="card card-block">
+          <h2>Inputs - Column sizing</h2>
+          <form>
+            <div class="row">
+              <div class="col-xs-2">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="email" class="form-control" placeholder="col-xs-2">
                 </div>
               </div>
-              <div class="row">
-                <div class="col-xs-3">
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="email" class="form-control" id="name" placeholder="col-xs-3">
-                  </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="email" class="form-control" placeholder="col-xs-3">
                 </div>
               </div>
-              <div class="row">
-                <div class="col-xs-8">
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="email" class="form-control" id="name" placeholder="col-xs-4">
-                  </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-8">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="email" class="form-control" placeholder="col-xs-4">
                 </div>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
 
-        <div class="card">
-          <div class="card-block">
-            <h2>Inputs - Column sizing</h2>
-            <br/>
-            <form>
-              <div class="row">
-                <div class="col-xs-2">
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="email" class="form-control" id="name" placeholder="col-xs-2">
-                  </div>
+        <div class="card card-block">
+          <h2>Inputs - Column sizing</h2>
+          <form>
+            <div class="row">
+              <div class="col-xs-2">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="email" class="form-control" placeholder="col-xs-2">
                 </div>
               </div>
-              <div class="row">
-                <div class="col-xs-3">
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="email" class="form-control" id="name" placeholder="col-xs-3">
-                  </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="email" class="form-control" placeholder="col-xs-3">
                 </div>
               </div>
-              <div class="row">
-                <div class="col-xs-4">
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="email" class="form-control" id="name" placeholder="col-xs-4">
-                  </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="email" class="form-control" placeholder="col-xs-4">
                 </div>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </template>

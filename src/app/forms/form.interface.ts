@@ -4,7 +4,7 @@ export interface User {
   favoriteColor: string;
   observation: string;
   optin: boolean;
-  newsLetter: boolean;
+  newsLetter: string;
 }
 
 export interface Colors {

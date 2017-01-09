@@ -43,11 +43,11 @@ export class FormsComponent implements OnInit {
 
     this.user = {
       name: '',
-      favoriteNumber: 0,
+      favoriteNumber: null,
       favoriteColor: '',
       observation: '',
-      optin: true,
-      newsLetter: true
+      optin: false,
+      newsLetter: 'No'
     };
     this.movie = {
       firstRate: 0,
@@ -105,9 +105,9 @@ export class FormsComponent implements OnInit {
       name: [this.user.name, [Validators.required]],
       favoriteNumber: [this.user.favoriteNumber, [Validators.required]],
       favoriteColor: [this.user.favoriteColor, [Validators.required]],
-      observation: this.user.observation,
-      optin: this.user.optin,
-      newsLetter: this.user.newsLetter
+      observation: [this.user.observation, [Validators.required]],
+      optin: [this.user.optin, [Validators.required]],
+      newsLetter: [this.user.newsLetter, [Validators.required]],
     });
   }
 
