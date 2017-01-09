@@ -1,8 +1,11 @@
+@import 'variables';
+
 .form-control {
-  font-size: 0.875rem;
+  font-size: $nrgs-input-font-size;
+  margin-bottom: $spacer-y;
 }
 
 .ng-invalid{
-  border-color: #d9534f;
+  border-color: $brand-danger;
 }
 

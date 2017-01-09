@@ -200,65 +200,88 @@
   </ngb-tab>
   <ngb-tab title="Control Sizing">
     <template ngbTabContent>
-      <div class="card-group">
-        <div class="card card-block">
-          <h2>Inputs - Column sizing</h2>
-          <form>
+      <h2>Inputs - Column sizing</h2>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card card-block">
             <div class="row">
-              <div class="col-xs-2">
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="email" class="form-control" placeholder="col-xs-2">
-                </div>
+              <div class="col-sm-2">
+                <input type="email" class="form-control" placeholder="2x">
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-3">
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="email" class="form-control" placeholder="col-xs-3">
-                </div>
+              <div class="col-sm-4">
+                <input type="email" class="form-control" placeholder="4x">
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-8">
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="email" class="form-control" placeholder="col-xs-4">
-                </div>
+              <div class="col-sm-6">
+                <input type="email" class="form-control" placeholder="6x">
               </div>
             </div>
-          </form>
+          </div>
         </div>
-
-        <div class="card card-block">
-          <h2>Inputs - Column sizing</h2>
-          <form>
+        <div class="col-sm-6">
+          <div class="card card-block">
             <div class="row">
-              <div class="col-xs-2">
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="email" class="form-control" placeholder="col-xs-2">
-                </div>
+              <div class="col-sm-8">
+                <input type="email" class="form-control" placeholder="8x">
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-3">
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="email" class="form-control" placeholder="col-xs-3">
-                </div>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" placeholder="10x">
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-4">
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="email" class="form-control" placeholder="col-xs-4">
-                </div>
+              <div class="col-sm-12">
+                <input type="email" class="form-control" placeholder="12x">
               </div>
             </div>
-          </form>
+          </div>
+        </div>
+      </div>
+      <h2>Inline elements</h2>
+      <div class="card card-block">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row">
+              <label class="col-sm-4">Label for input</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" placeholder="Short input">
+              </div>
+              <label class="col-sm-6">Longer text</label>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-1">
+                <input type="email" class="form-control" placeholder="Short">
+              </div>
+              <div class="col-sm-2">
+                <input type="email" class="form-control" placeholder="Small">
+              </div>
+              <div class="col-sm-3">
+                <input type="email" class="form-control" placeholder="Normal">
+              </div>
+              <div class="col-sm-6">
+                <input type="email" class="form-control" placeholder="Long input">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <input type="email" class="form-control" placeholder="Medium input">
+              </div>
+              <div class="col-sm-8">
+                <input type="email" class="form-control" placeholder="Extra long input">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <input type="email" class="form-control" placeholder="Crazy long input">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </template>
