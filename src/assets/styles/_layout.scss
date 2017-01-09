@@ -10,6 +10,10 @@ app {
   flex-direction: column;
 }
 
+p {
+  margin-bottom: $grid-gutter-width-base;
+}
+
 header {
   padding: 0 !important;
   flex-direction: row !important;
@@ -41,6 +45,23 @@ main {
   display: flex;
   flex: 1;
   overflow: hidden;
+}
+
+.btn, .list-group-item {
+  &[class^="app-icon-"], &[class*=" app-icon-"] {
+    &:before {
+      padding-right: $spacer-x;
+    }
+    &:empty:before {
+      padding: 0;
+    }
+
+    &.align-icon-right:before {
+      padding-left: $spacer-x;
+      padding-right: 0;
+      float: right;
+    }
+  }
 }
 
 #main-nav {

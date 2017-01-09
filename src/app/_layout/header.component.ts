@@ -5,15 +5,19 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
 @Component( {
   selector: 'header',
   template: `
-    <button class="navbar-toggler hidden-md-up" type="button" (click)="toggleMainMenu()">☰</button>
+    <ul class="nav navbar-nav hidden-md-up">
+      <li class="nav-item">
+        <button class="nav-link navbar-toggler" type="button" (click)="toggleMainMenu()">☰</button>
+      </li>
+    </ul>    
     <a class="navbar-brand" [routerLink]="['.']">
       <i class="logo"></i>
       {{'APP_NAME' | translate}}
     </a>
     <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav hidden-sm-down float-left">
+      <ul class="nav navbar-nav hidden-sm-down">
         <li class="nav-item">
-          <button class="nav-link navbar-toggler layout-toggler" type="button" (click)="toggleMainMenu()">☰</button>
+          <button class="nav-link navbar-toggler" type="button" (click)="toggleMainMenu()">☰</button>
         </li>
       </ul>
       <form class="form-inline float-left hidden-sm-down">
