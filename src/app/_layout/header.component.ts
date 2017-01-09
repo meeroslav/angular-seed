@@ -28,7 +28,7 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
     </ul>    
   `,
   host: {
-    'class': 'navbar navbar-sticky-top navbar-inverse navbar-toggleable'
+    'class': 'navbar navbar-sticky-top navbar-inverse navbar-toggleable bg-inverse'
   }
 })
 export class HeaderComponent {

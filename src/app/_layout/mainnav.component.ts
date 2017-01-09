@@ -36,7 +36,7 @@ import { INavigationConfig, MainNav } from './mainnav.service';
   `,
   host: {
     'id': 'main-nav',
-    'class': 'navbar-inverse',
+    'class': 'bg-inverse navbar-inverse',
     '[class.collapsed]': 'collapsed'
   }
 })
