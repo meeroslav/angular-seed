@@ -806,11 +806,11 @@ export class WorldMapComponent implements OnInit {
     this.element = element.nativeElement;
   }
 
-  ngOnInit(){
-    // asign pointers
+  ngOnInit() {
+    // assign pointers
     this.element.setAttribute('draggable', 'true');
-    this.mapSvg = this.element.querySelector("#map");
-    this.contentWrapper = this.element.querySelector("#content-layer");
+    this.mapSvg = this.element.querySelector('#map');
+    this.contentWrapper = this.element.querySelector('#content-layer');
 
     // set map height
     this.mapSvg.style.width = `${MAP_CONFIG.width}px`;

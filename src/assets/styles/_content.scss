@@ -1,5 +1,6 @@
 @import 'colors';
 @import 'typography';
+@import 'variables';
 @import '../../../node_modules/bootstrap/scss/variables.scss';
 
 // Content colors
@@ -20,7 +21,7 @@
 // Tag overrides
 
 .tag-pill {
-  border-radius: $tag-pill-border-radius;
+  border-radius: $nav-pills-border-radius;
 }
 
 .tag {

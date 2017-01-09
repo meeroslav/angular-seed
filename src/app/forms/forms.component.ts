@@ -90,8 +90,8 @@ export class FormsComponent implements OnInit {
       text$
           .debounceTime(200)
           .distinctUntilChanged()
-          .map(term => term.length < 2 ? []
-              : this.planets.filter(p => new RegExp(term, 'gi').test(p.name)).splice(0, 10));
+          .map((term: any) => term.length < 2 ? []
+              : this.planets.filter((p: any) => new RegExp(term, 'gi').test(p.name)).splice(0, 10));
 
   /**
    * Formatter for the typeahed control
