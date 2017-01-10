@@ -51,9 +51,9 @@ export class FormsComponent implements OnInit {
       newsLetter: null
     };
     this.movie = {
-      firstRate: 0,
-      secondRate: 0,
-      averageRating: 0
+      firstRate: null,
+      secondRate: 2,
+      averageRating: 3
     };
     this.colors = [
       {id: 1, color: 'Red'},
@@ -68,11 +68,6 @@ export class FormsComponent implements OnInit {
     this.buildBasicControlsForm();
     this.buildAdvancedControlsForm();
   }
-
-  changeRate() {
-    this.movie.averageRating = (this.movie.firstRate + this.movie.secondRate) / 2;
-  }
-
 
   /**
    * Get the planets from the SW api
@@ -137,6 +132,7 @@ export class FormsComponent implements OnInit {
     this.advancedControlsForm = this.formBuilder.group({
       firstRate: [this.movie.firstRate, Validators.required],
       secondRate: [this.movie.secondRate, Validators.required],
+      averageRating: [this.movie.averageRating],
       planet: '',
       category: ''
     });

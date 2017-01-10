@@ -139,61 +139,26 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="card card-block">
-            <h2>Advanced form controls</h2>
             <form [formGroup]="advancedControlsForm" novalidate>
               <div class="row">
                 <!-- Basic ratings component -->
                 <div class="col-sm-8">
-                  <div class="form-group">
-                    <p>First rate</p>
-                    <ngb-rating formControlName="firstRate"
-                                [(rate)]="movie.firstRate"
-                                (rateChange)="changeRate($event)">
-                      <template let-fill="fill">
-                        <span class="star" [class.full]="fill === 100">&#9733;</span>
-                      </template>
-                    </ngb-rating>
-                    <div *ngIf="advancedControlsForm.controls.firstRate.errors" class="form-notification-wrapper">
-                      <div class="form-notification" *ngIf="advancedControlsForm.controls.firstRate.errors.required">
-                        {{'form.RATING_REQUIRED' | translate}}
-                      </div>
+                  <ngb-rating class="form-control" formControlName="firstRate" placement="bottom" max="5"
+                              [ngbTooltip]="advancedControlsForm.controls.firstRate.errors && firstRateTT">
+                  </ngb-rating>
+                  <template #firstRateTT>
+                    <div *ngIf="advancedControlsForm.controls.firstRate.errors.required">
+                      This text will be super long text with lorem ipsum dolor sit amet.
                     </div>
-                  </div>
+                  </template>
                 </div>
-
-                <!-- Basic ratings component -->
                 <div class="col-sm-8">
-                  <div class="form-group">
-                    <p>Second rate</p>
-                    <ngb-rating formControlName="secondRate"
-                                [(rate)]="movie.secondRate"
-                                (rateChange)="changeRate($event)">
-                      <template let-fill="fill">
-                        <span class="star" [class.full]="fill === 100">&#9733;</span>
-                      </template>
-                    </ngb-rating>
-                    <div *ngIf="advancedControlsForm.controls.secondRate.errors" class="form-notification-wrapper">
-                      <div class="form-notification" *ngIf="advancedControlsForm.controls.secondRate.errors.required">
-                        {{'form.RATING_REQUIRED' | translate}}
-                      </div>
-                    </div>
-                  </div>
+                  <ngb-rating class="form-control" formControlName="secondRate" max="5">
+                  </ngb-rating>
                 </div>
-
-                <!-- Custom decimal ratings component -->
                 <div class="col-sm-8">
-                  <div class="form-group">
-                    <p>Read-only decimal rating</p>
-                    <template #t let-fill="fill">
-                      <span *ngIf="fill === 100" class="star star-grained full">&#9733;</span>
-                      <span *ngIf="fill === 0" class="star star-grained">&#9733;</span>
-                      <span *ngIf="fill < 100 && fill > 0" class="star star-grained">
-                        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
-                      </span>
-                    </template>
-                    <ngb-rating [(rate)]="movie.averageRating" [readonly]="true" [starTemplate]="t"></ngb-rating>
-                    {{movie.averageRating}}
-                  </div>
+                  <ngb-rating class="form-control" formControlName="averageRating" max="5" readonly="true">
+                  </ngb-rating>
                 </div>
 
                 <!-- static typeahed not editable field -->

@@ -15,6 +15,17 @@ input + .custom-control-indicator {
   border: $input-btn-border-width solid $input-border-color;
 }
 
+ngb-rating.form-control {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  font-size: $nrgs-input-font-size * 2;
+
+  span {
+    color: $input-color;
+  }
+}
+
 .ng-invalid {
   border-color: $brand-danger;
 
@@ -22,4 +33,15 @@ input + .custom-control-indicator {
     border-color: $brand-danger;
   }
 }
+ngb-rating.ng-invalid.form-control span {
+  color: $brand-danger;
+}
+ngb-rating.form-control[readonly] {
+  background: none;
+
+  span {
+    color: $input-bg-disabled;
+  }
+}
+
 
