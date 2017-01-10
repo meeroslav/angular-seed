@@ -1,11 +1,25 @@
 @import 'variables';
+@import '../../../node_modules/bootstrap/scss/variables.scss';
+@import '../../../node_modules/bootstrap/scss/mixins.scss';
 
 .form-control {
   font-size: $nrgs-input-font-size;
   margin-bottom: $spacer-y;
 }
 
-.ng-invalid{
+.custom-select {
+  @include box-shadow($input-box-shadow);
+}
+
+input + .custom-control-indicator {
+  border: $input-btn-border-width solid $input-border-color;
+}
+
+.ng-invalid {
   border-color: $brand-danger;
+
+  &:not([disabled]) + .custom-control-indicator {
+    border-color: $brand-danger;
+  }
 }
 

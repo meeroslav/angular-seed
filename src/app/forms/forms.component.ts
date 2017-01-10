@@ -46,8 +46,8 @@ export class FormsComponent implements OnInit {
       favoriteNumber: null,
       favoriteColor: '',
       observation: '',
-      optin: false,
-      newsLetter: 'No'
+      optin: null,
+      newsLetter: null
     };
     this.movie = {
       firstRate: 0,

@@ -1,5 +1,6 @@
 @import 'colors';
 @import 'typography';
+@import '../../../node_modules/bootstrap/scss/variables.scss';
 
 // Custom values
 
@@ -104,6 +105,25 @@ $card-columns-gap: $spacer;
 // Forms
 $input-padding-x: $spacer-x;
 $input-padding-y: $spacer-y;
+
+$input-box-shadow: $btn-box-shadow;
+$input-border-focus: lighten($brand-success, 25%);
+$custom-control-indicator-bg: $input-bg;
+$custom-control-indicator-box-shadow: $btn-box-shadow;
+$custom-control-active-indicator-bg: lighten($brand-success, 35%);
+$custom-control-focus-indicator-box-shadow: 0 0 0 1px $brand-success;
+$custom-control-checked-indicator-bg: $brand-success;
+$custom-checkbox-indeterminate-bg: $brand-success;
+$custom-select-focus-border-color: lighten($brand-success, 25%);
+$custom-select-focus-box-shadow: $btn-box-shadow;
+
+// Tooltips
+$tooltip-bg: $brand-danger;
+$tooltip-arrow-color: $tooltip-bg;
+$tooltip-padding-y: $spacer-y;
+$tooltip-padding-x: $spacer-x;
+$tooltip-margin: 0;
+$tooltip-arrow-width: $spacer-x;
 
 // List
 $list-group-item-padding-x: $spacer;

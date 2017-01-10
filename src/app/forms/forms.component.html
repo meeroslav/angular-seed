@@ -17,75 +17,105 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="name">Name</label>
                 <div class="col-sm-10">
-                  <input type="text" formControlName="name" class="form-control" id="name" placeholder="Name">
-                  <div *ngIf="basicControlsForm.controls.name.errors" class="form-notification-wrapper">
-                    <div class="form-notification" *ngIf="basicControlsForm.controls.name.errors.required">
+                  <input type="text" formControlName="name" class="form-control" id="name" placeholder="Name"
+                         placement="bottom"
+                         [ngbTooltip]="basicControlsForm.controls.name.errors && nameTT" >
+                  <template #nameTT>
+                    <div *ngIf="basicControlsForm.controls.name.errors.required">
                       {{'form.NAME_REQUIRED' | translate}}
                     </div>
-                  </div>
+                  </template>
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="favoriteNumber">Favorite number</label>
                 <div class="col-sm-4">
                   <input type="number" formControlName="favoriteNumber" class="form-control" id="favoriteNumber"
-                         placeholder="Favorite number">
-                  <div *ngIf="basicControlsForm.controls.favoriteNumber.errors" class="form-notification-wrapper">
-                    <div class="form-notification"
-                         *ngIf="basicControlsForm.controls.favoriteNumber.errors.required">
+                         placeholder="Favorite number" placement="bottom"
+                         [ngbTooltip]="basicControlsForm.controls.favoriteNumber.errors && favoriteNumberTT">
+                  <template #favoriteNumberTT>
+                    <div *ngIf="basicControlsForm.controls.favoriteNumber.errors.required">
                       {{'form.FAVORITE_NUMBER_REQUIRED' | translate}}
                     </div>
-                  </div>
+                  </template>
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="favoriteColor">Favorite color</label>
                 <div class="col-sm-8">
-                  <select class="custom-select" formControlName="favoriteColor" id="favoriteColor">
+                  <select class="custom-select" formControlName="favoriteColor" id="favoriteColor" placement="right"
+                          [ngbTooltip]="basicControlsForm.controls.favoriteColor.errors && favoriteColorTT">
                     <option [selected]="basicControlsForm.controls.favoriteColor.value == null" value="">
                       Pick a color
                     </option>
                     <option *ngFor="let color of colors" [value]="color.id">{{color.color}}</option>
                   </select>
-                  <div *ngIf="basicControlsForm.controls.favoriteColor.errors" class="form-notification-wrapper">
-                    <div class="form-notification" *ngIf="basicControlsForm.controls.favoriteColor.errors.required">
+                  <template #favoriteColorTT>
+                    <div *ngIf="basicControlsForm.controls.favoriteColor.errors.required">
                       {{'form.FAVORITE_COLOR_REQUIRED' | translate}}
                     </div>
-                  </div>
+                  </template>
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="observation">Observation</label>
-                <textarea class="form-control col-sm-8" formControlName="observation" id="observation" rows="4"
-                          placeholder="Observation"></textarea>
+                <div class="col-sm-8">
+                  <textarea class="form-control" formControlName="observation" id="observation" rows="4"
+                          placeholder="Observation" placement="bottom"
+                            [ngbTooltip]="basicControlsForm.controls.observation.errors && observationTT"></textarea>
+                  <template #observationTT>
+                    <div *ngIf="basicControlsForm.controls.observation.errors.required">
+                      This text will be super long text with lorem ipsum dolor sit amet.
+                    </div>
+                  </template>
+                </div>
               </div>
               <div class="form-group row">
-                <label class="col-form-label">Opt-in for goodies</label>
-                <div class="checkbox col-sm-12">
-                  <label class="custom-control custom-checkbox">
+                <label class="col-sm-4">Opt-in for goodies</label>
+                <div class="col-sm-12">
+                  <label class="custom-control custom-checkbox" placement="bottom"
+                         [ngbTooltip]="basicControlsForm.controls.optin.errors && optinTT">
                     <input type="checkbox" formControlName="optin" class="custom-control-input" value="">
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">Remember my preference</span>
                   </label>
+                  <template #optinTT class="bollocks">
+                    <div *ngIf="basicControlsForm.controls.optin.errors.required">
+                      This text will be super long text with lorem ipsum dolor sit amet.
+                    </div>
+                  </template>
                 </div>
               </div>
               <div class="form-group row">
-                <label>Receive news?</label>
-                <label class="col-sm-12 custom-control custom-radio">
-                  <input type="radio" formControlName="newsLetter" class="custom-control-input" value="Maybe">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">Maybe</span>
-                </label>
-                <label class="col-sm-12 custom-control custom-radio">
-                  <input type="radio" formControlName="newsLetter" class="custom-control-input" value="No">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">Hell, no</span>
-                </label>
-                <label class="col-sm-12 custom-control custom-radio">
-                  <input type="radio" formControlName="newsLetter" class="custom-control-input" value="Yes">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">Yeah</span>
-                </label>
+                <label class="col-sm-4">Receive news?</label>
+                <div class="col-sm-12" placement="bottom"
+                     [ngbTooltip]="basicControlsForm.controls.newsLetter.errors && newsLetterTT">
+                  <label class="custom-control custom-radio">
+                    <input type="radio" formControlName="newsLetter" class="custom-control-input" value="Maybe">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Maybe</span>
+                  </label>
+                  <label class="custom-control custom-radio">
+                    <input type="radio" formControlName="newsLetter" class="custom-control-input" value="No">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Hell, no</span>
+                  </label>
+                  <label class="custom-control custom-radio">
+                    <input type="radio" formControlName="newsLetter" class="custom-control-input" value="Yes">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Yeah</span>
+                  </label>
+                  <label class="custom-control custom-radio">
+                    <input type="radio" formControlName="newsLetter" disabled class="custom-control-input" value="WTH">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">I'm disabled</span>
+                  </label>
+                  <template #newsLetterTT>
+                    <div *ngIf="basicControlsForm.controls.newsLetter.errors.required">
+                      This text will be super long text with lorem ipsum dolor sit amet.
+                    </div>
+                  </template>
+                </div>
               </div>
 
               <button class="btn btn-success" [disabled]="!basicControlsForm.valid">Save data</button>
