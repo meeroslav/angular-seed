@@ -87,7 +87,6 @@
                   <span class="custom-control-description">Yeah</span>
                 </label>
               </div>
-
               <button class="btn btn-success" [disabled]="!basicControlsForm.valid">Save data</button>
             </form>
           </div>
@@ -114,7 +113,7 @@
             <form [formGroup]="advancedControlsForm" novalidate>
               <div class="row">
                 <!-- Basic ratings component -->
-                <div class="col-xs-8">
+                <div class="col-sm-8">
                   <div class="form-group">
                     <p>First rate</p>
                     <ngb-rating formControlName="firstRate"
@@ -133,7 +132,7 @@
                 </div>
 
                 <!-- Basic ratings component -->
-                <div class="col-xs-8">
+                <div class="col-sm-8">
                   <div class="form-group">
                     <p>Second rate</p>
                     <ngb-rating formControlName="secondRate"
@@ -152,7 +151,7 @@
                 </div>
 
                 <!-- Custom decimal ratings component -->
-                <div class="col-xs-8">
+                <div class="col-sm-8">
                   <div class="form-group">
                     <p>Read-only decimal rating</p>
                     <template #t let-fill="fill">
@@ -168,7 +167,7 @@
                 </div>
 
                 <!-- static typeahed not editable field -->
-                <div class="col-xs-8">
+                <div class="col-sm-8">
                   <div class="form-group">
                     <label for="name">Static typeahead non editable - Star wars planets </label>
                     <input type="text" class="form-control" formControlName="planet"
@@ -176,6 +175,17 @@
                            [resultFormatter]="formatter"
                            [inputFormatter]="formatter"
                            [editable]="false"/>
+                  </div>
+                </div>
+
+                <!-- Tree component -->
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label for="name">Tree component - Not yet connected to FormGroup</label>
+                    <tree [collapsed]="true"
+                          [treeDataCallback]="getTreeData()"
+                          [nodeSelectCallback]="nodeSelectCallback">
+                    </tree>
                   </div>
                 </div>
               </div>
