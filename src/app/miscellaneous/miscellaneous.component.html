@@ -23,6 +23,15 @@
   </ngb-tab>
   <ngb-tab title="Tree">
     <template ngbTabContent>
+
+      <tree [collapsed]="false"
+            [treeDataCallback]="getTreeData()"
+            [nodeSelectCallback]="nodeSelectCallback">
+      </tree>
+
+      <h4>Selected node:</h4>
+      <pre>{{selectedTreeNode | json}}</pre>
+
     </template>
   </ngb-tab>
   <ngb-tab title="Graphs">
