@@ -22,4 +22,5 @@ export interface ISWPlanet{
   name: string;
   terrain: string;
   climate: string;
+  residents: string[];
 }

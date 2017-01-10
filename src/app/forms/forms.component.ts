@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import {User, Colors, Movie, ISWPlanet} from './form.interface';
-import {FormsService} from './forms.service';
-import {ICountable} from '../table/table.service';
 import {Observable} from 'rxjs/Observable';
-
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+
+import {User, Colors, Movie, ISWPlanet} from './form.interface';
+import {FormsService} from './forms.service';
+import {ICountable} from '../table/table.service';
+import {ITreeNode} from '../_common/custom-components/tree/tree-node.component';
 
 @Component({
   // The selector is what angular internally uses
@@ -100,6 +101,27 @@ export class FormsComponent implements OnInit {
    */
   formatter = (result: ISWPlanet) => result.name;
 
+  /**
+   * callback executed when a node
+   * is selected on the tree
+   * @param node: The node selected
+   */
+  nodeSelectCallback(node: any) {
+    console.log(node);
+  }
+
+  /**
+   * callback executed by the TreeComponent
+   * Fetch the data and returns in the expected format
+   * by the tree
+   * @see {ITreeNode}
+   */
+  getTreeData() {
+    return () => {
+      return Observable.of(this.extendTree(this.planets));
+    };
+  }
+
   private buildBasicControlsForm() {
     this.basicControlsForm = this.formBuilder.group({
       name: [this.user.name, [Validators.required]],
@@ -115,7 +137,34 @@ export class FormsComponent implements OnInit {
     this.advancedControlsForm = this.formBuilder.group({
       firstRate: [this.movie.firstRate, Validators.required],
       secondRate: [this.movie.secondRate, Validators.required],
-      planet: ''
+      planet: '',
+      category: ''
     });
+  }
+
+  /**
+   * Extend the planets array and returns
+   * data in the expected format by the TreeComponent
+   * @param planets
+   * @returns {ITreeNode[]}
+   */
+  private extendTree(planets: any): ITreeNode[] {
+    let tree: ITreeNode[] = [];
+    planets.forEach((planet: ISWPlanet) => {
+
+      let node: ITreeNode = {
+        text: planet.name,
+        children: []
+      };
+
+      for (let i = 0; i < planet.residents.length; i++) {
+        node.children.push({
+          id: i.toString(),
+          text: planet.residents[i]
+        });
+      }
+      tree.push(node);
+    });
+    return tree;
   }
 }

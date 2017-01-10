@@ -1,0 +1,43 @@
+@import "../../../../assets/styles/_mixins";
+@import "../../../../assets/styles/_animations";
+@import "../../../../assets/styles/_colors";
+
+.tree-node {
+  display: block;
+}
+
+.tree-node-header {
+  display: flex;
+  margin-bottom:0.3em;
+
+  span {
+    width: auto;
+  }
+  div {
+    flex: auto;
+  }
+}
+
+.tree-node-list {
+  overflow: hidden;
+  padding-left: 1.6em;
+  height: auto;
+}
+
+.tree-node-list.collapsed {
+  height: 0;
+}
+
+.tree-toggler {
+  padding: .4em .5em;
+  font-size: .5em;
+  border: 1px solid $greentube_gray_03;
+  border-radius: 0.3em;
+  cursor: pointer;
+  margin-right: .5em;
+  line-height: 1.5;
+}
+
+.selected {
+  font-weight: bold;
+}

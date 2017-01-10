@@ -17,7 +17,7 @@
               <form [formGroup]="basicControlsForm" novalidate>
 
                 <!-- Text input -->
-                <div class="col-xs-8">
+                <div class="col-sm-8">
                   <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" formControlName="name" class="form-control" id="name" placeholder="Name">
@@ -30,7 +30,7 @@
                 </div>
 
                 <!-- Number input -->
-                <div class="col-xs-4">
+                <div class="col-sm-4">
                   <div class="form-group">
                     <label for="favoriteNumber">Favorite number</label>
                     <input type="number" formControlName="favoriteNumber" class="form-control" id="favoriteNumber"
@@ -45,7 +45,7 @@
                 </div>
 
                 <!-- Select input -->
-                <div class="col-xs-8">
+                <div class="col-sm-8">
                   <div class="form-group">
                     <label for="favoriteColor">Favorite color</label>
                     <select class="form-control" formControlName="favoriteColor" id="favoriteColor">
@@ -63,7 +63,7 @@
                 </div>
 
                 <!-- Text area input -->
-                <div class="col-xs-8">
+                <div class="col-sm-8">
                   <div class="form-group has-error">
                     <label for="observation">Observation</label>
                     <textarea class="form-control" formControlName="observation" id="observation" rows="4"
@@ -72,7 +72,7 @@
                 </div>
 
                 <!-- Check-box -->
-                <div class="col-xs-6">
+                <div class="col-sm-6">
                   <div class="form-group">
                     <label>Opt-in for goodies</label>
                     <div class="checkbox">
@@ -85,7 +85,7 @@
                 </div>
 
                 <!-- Vertical radio group -->
-                <div class="col-xs-6">
+                <div class="col-sm-6">
                   <div class="form-group">
                     <label>Receive news?</label>
                     <div class="radio">
@@ -135,7 +135,7 @@
               <form [formGroup]="advancedControlsForm" novalidate>
 
                 <!-- Basic ratings component -->
-                <div class="col-xs-8">
+                <div class="col-sm-8">
                   <div class="form-group">
                     <p>First rate</p>
                     <ngb-rating formControlName="firstRate"
@@ -154,7 +154,7 @@
                 </div>
 
                 <!-- Basic ratings component -->
-                <div class="col-xs-8">
+                <div class="col-sm-8">
                   <div class="form-group">
                     <p>Second rate</p>
                     <ngb-rating formControlName="secondRate"
@@ -173,7 +173,7 @@
                 </div>
 
                 <!-- Custom decimal ratings component -->
-                <div class="col-xs-8">
+                <div class="col-sm-8">
                   <div class="form-group">
                     <p>Read-only decimal rating</p>
                     <template #t let-fill="fill">
@@ -189,7 +189,7 @@
                 </div>
 
                 <!-- static typeahed not editable field -->
-                <div class="col-xs-8">
+                <div class="col-sm-8">
                   <div class="form-group">
                     <label for="name">Static typeahead non editable - Star wars planets </label>
                     <input type="text" class="form-control" formControlName="planet"
@@ -199,6 +199,18 @@
                            [editable]="false"/>
                   </div>
                 </div>
+
+                <!-- Tree component -->
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label for="name">Tree component - Not yet connected to FormGroup</label>
+                    <tree [collapsed]="true"
+                          [treeDataCallback]="getTreeData()"
+                          [nodeSelectCallback]="nodeSelectCallback">
+                    </tree>
+                    </div>
+                  </div>
+
                 <button class="btn btn-success" [disabled]="!advancedControlsForm.valid">Save data</button>
               </form>
             </div>
@@ -230,26 +242,26 @@
             <br/>
             <form>
               <div class="row">
-                <div class="col-xs-2">
+                <div class="col-sm-2">
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="email" class="form-control" id="name" placeholder="col-xs-2">
+                    <input type="email" class="form-control" id="name" placeholder="col-sm-2">
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="email" class="form-control" id="name" placeholder="col-xs-3">
+                    <input type="email" class="form-control" id="name" placeholder="col-sm-3">
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-xs-8">
+                <div class="col-sm-8">
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="email" class="form-control" id="name" placeholder="col-xs-4">
+                    <input type="email" class="form-control" id="name" placeholder="col-sm-4">
                   </div>
                 </div>
               </div>
@@ -263,26 +275,26 @@
             <br/>
             <form>
               <div class="row">
-                <div class="col-xs-2">
+                <div class="col-sm-2">
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="email" class="form-control" id="name" placeholder="col-xs-2">
+                    <input type="email" class="form-control" id="name" placeholder="col-sm-2">
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="email" class="form-control" id="name" placeholder="col-xs-3">
+                    <input type="email" class="form-control" id="name" placeholder="col-sm-3">
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-xs-4">
+                <div class="col-sm-4">
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="email" class="form-control" id="name" placeholder="col-xs-4">
+                    <input type="email" class="form-control" id="name" placeholder="col-sm-4">
                   </div>
                 </div>
               </div>
