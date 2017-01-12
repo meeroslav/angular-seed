@@ -19,7 +19,7 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
  */
 const ENV = process.env.npm_lifecycle_event;
 const NODE_ENV = process.env.NODE_ENV;
-const isBuild = ENV === 'build';
+const isBuild = ENV === 'build' || ENV === 'watch';
 const isStaging = isBuild && NODE_ENV && NODE_ENV.indexOf('staging') !== -1;
 const isCi = isBuild && NODE_ENV && NODE_ENV.indexOf('ci') !== -1;
 const isProduction = isBuild && NODE_ENV && NODE_ENV.indexOf('production') !== -1;
