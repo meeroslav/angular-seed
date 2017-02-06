@@ -143,7 +143,7 @@ describe('ModalDialog.Component:', () => {
             reject();
         });
         fixture.detectChanges();
-        let modalDialog = fixture.nativeElement.querySelector('.modal-dialog');
+        let modalDialog = fixture.nativeElement.querySelector('.modal-content');
         // pre-check
         spyOn(fixture.componentRef, 'destroy').and.callThrough();
         // act
@@ -227,7 +227,7 @@ describe('ModalDialog.Component:', () => {
             reject();
         });
         fixture.detectChanges();
-        let modalDialog = fixture.nativeElement.querySelector('.modal-dialog');
+        let modalDialog = fixture.nativeElement.querySelector('.modal-content');
         // pre-check
         spyOn(fixture.componentRef, 'destroy').and.callThrough();
         // act
@@ -392,7 +392,7 @@ describe('ModalDialog.Component:', () => {
         tick();
         fixture.detectChanges();
 
-        let innerComponent = fixture.debugElement.query(By.css('.modal-dialog-body')).nativeElement;
+        let innerComponent = fixture.debugElement.query(By.css('.modal-body')).nativeElement;
 
         expect(innerComponent).toBeDefined('modal dialog body should be defined');
         expect(innerComponent.innerHTML).toContain(testString);

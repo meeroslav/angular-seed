@@ -33,7 +33,7 @@ import { IModalDialog, IModalDialogOptions, IModalDialogPrompt } from './modal-d
             class="close app-icon-close">
           </button>
         </div>
-        <div  class="modal-body">
+        <div class="modal-body">
           <i #modalDialogBody class="pointer"></i>
         </div>
         <div class="modal-footer" *ngIf="prompt">
