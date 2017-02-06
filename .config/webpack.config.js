@@ -11,7 +11,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('./loaders/index'); // temporary use custom version of copy-webpack-plugin
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 
 /**
  * Env
@@ -20,14 +19,18 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const ENV = process.env.npm_lifecycle_event;
 const NODE_ENV = process.env.NODE_ENV;
 const isBuild = ENV === 'build' || ENV === 'watch';
-const isStaging = isBuild && NODE_ENV && NODE_ENV.indexOf('staging') !== -1;
-const isCi = isBuild && NODE_ENV && NODE_ENV.indexOf('ci') !== -1;
 const isProduction = isBuild && NODE_ENV && NODE_ENV.indexOf('production') !== -1;
+const isTeamCity = process.env.TEAMCITY_VERSION;
 
 const TRANSLATION_HASH = helpers.hashDate('');
 const CONFIG_HASH = helpers.hashDate('');
 
+const childProcess = require('child_process');
+const GIT_COMMIT = isTeamCity ? 'Not available' : childProcess.execSync('git rev-parse HEAD').toString();
+const GIT_BRANCH = isTeamCity ? 'Unknown' : childProcess.execSync('git rev-parse --abbrev-ref HEAD').toString();
+
 module.exports = (function makeWebpackConfig() {
+
   'use strict';
 
   console.info('');
@@ -51,9 +54,9 @@ module.exports = (function makeWebpackConfig() {
    * Reference: http://webpack.github.io/docs/configuration.html#devtool
    * Type of sourcemap to use per build type
    */
-  if (isStaging || isCi) {
+  if (isProduction) {
     config.devtool = '#source-map';
-  } else if (!isProduction) {
+  } else {
     config.devtool = '#cheap-module-source-map';
   }
 
@@ -170,7 +173,9 @@ module.exports = (function makeWebpackConfig() {
       'process.env': {
         ENV: JSON.stringify(isProduction ? 'production' : 'development'),
         TRANSLATION_HASH: JSON.stringify(TRANSLATION_HASH),
-        CONFIG_HASH: JSON.stringify(CONFIG_HASH)
+        CONFIG_HASH: JSON.stringify(CONFIG_HASH),
+        BRANCH: JSON.stringify(GIT_BRANCH),
+        COMMITHASH: JSON.stringify(GIT_COMMIT)
       }
     }),
 
@@ -180,8 +185,6 @@ module.exports = (function makeWebpackConfig() {
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       root('./src') // location of your src
     ),
-
-    new ForkCheckerPlugin(),
 
     // Generate common chunks if necessary
     // Reference: https://webpack.github.io/docs/code-splitting.html
@@ -241,14 +244,13 @@ module.exports = (function makeWebpackConfig() {
       },
       {
         from: root('src/assets/configs'), to: 'assets/configs/config.' +  CONFIG_HASH + '.json',
-        transform: helpers.transformJsonFileFlat( isProduction ?
-          ['prod'] :
-          isStaging ?
-            ['staging', 'prod'] :
-            isCi ? ['ci', 'prod'] :
-              ['dev', 'prod']
-        ),
+        transform: helpers.transformJsonFileFlat( isProduction ? ['prod'] : ['dev', 'prod']),
         merge: helpers.combineJsonConfigFiles
+      },
+      {
+        from: root('src/health'),
+        to: 'health/',
+        transform: helpers.injectIntoHealth(CONFIG_HASH)
       }
     ], { copyUnmodified: true }),
 
@@ -261,8 +263,8 @@ module.exports = (function makeWebpackConfig() {
          * Reference: https://github.com/wbuchwalter/tslint-loader
          */
         tslint: {
-          emitErrors: false,
-          failOnHint: false
+          emitErrors: true,
+          failOnHint: true
         },
         /**
          * Sass
@@ -299,7 +301,7 @@ module.exports = (function makeWebpackConfig() {
     if (isProduction) {
       config.plugins.push(
         new webpack.NoErrorsPlugin(),
-        new webpack.optimize.UglifyJsPlugin({sourceMap: false, mangle: {keep_fnames: false}})
+        new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: {keep_fnames: false}})
       );
     }
   } else {

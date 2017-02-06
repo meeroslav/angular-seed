@@ -6,13 +6,13 @@ import {SimpleModalComponent} from '../_common/modal-dialog/simple-modal.compone
 import {IMapChange, WorldMapComponent} from '../_common/custom-components/world-map/world-map.component';
 
 const tree = [
-  {text: 'Category 1', children: [{id: "1", text: "Sub-Category1"}, {id: "2", text: "Sub-Category2"}]},
-  {text: 'Category 2', children: [{id: "1", text: "Sub-Category1"}]},
+  {text: 'Category 1', children: [{id: '1', text: 'Sub-Category1'}, {id: '2', text: 'Sub-Category2'}]},
+  {text: 'Category 2', children: [{id: '1', text: 'Sub-Category1'}]},
   {
     text: 'Category 3', children: [
-    {id: "1", text: "Sub-Category1"},
-    {id: "2", text: "Sub-Category2"},
-    {id: "3", text: "Sub-Category3"}
+    {id: '1', text: 'Sub-Category1'},
+    {id: '2', text: 'Sub-Category2'},
+    {id: '3', text: 'Sub-Category3'}
   ]
   }
 ];
@@ -126,5 +126,5 @@ export class MiscComponent implements OnInit {
     if (node) {
       this.selectedTreeNode = node;
     }
-  };
+  }
 }
