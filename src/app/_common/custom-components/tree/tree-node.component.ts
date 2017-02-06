@@ -78,7 +78,7 @@ export class TreeNode implements ControlValueAccessor {
   /**
    * Fires up the callback
    * passed in by the parent component
-   * @param id
+   * @param node
    */
   onNodeSelect(node: any) {
     if (this.nodeSelectCallback) {

@@ -1,5 +1,4 @@
-import {Component, OnInit, Input, forwardRef} from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {Component, OnInit, Input} from '@angular/core';
 import {Observable} from 'rxjs/observable';
 import {ITreeNode} from './tree-node.component';
 
@@ -16,9 +15,6 @@ export class TreeComponent implements OnInit {
   @Input() collapsed: boolean;
   @Input() nodeSelectCallback: (node: any) => any;
   @Input() treeDataCallback: () => Observable<ITreeNode[]>;
-
-  constructor() {
-  }
 
   ngOnInit(): void {
     this.getContent();

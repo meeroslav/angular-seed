@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { ModalDialogComponent } from './modal-dialog.component';
 import { IModalDialog, IModalDialogOptions } from './modal-dialog.interface';
-import { MockedTranslatePipe } from '../../_core/mocks/translate.mock.spec';
+import { MockedTranslatePipe } from '../../_mocks/translate.mock.spec';
 import { CommonModule } from '@angular/common';
 
 let fixture: ComponentFixture<ModalDialogComponent>;

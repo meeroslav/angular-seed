@@ -58,14 +58,39 @@ function transformJsonFileFlat(rules) {
   }
 }
 
-function combineJsonConfigFiles(source, destination) {
+function combineJsonConfigFiles(source, destination, absoluteFrom) {
   'use strict';
+  let result;
 
   let sourceData = JSON.parse(source.toString());
   let destinationData = JSON.parse(destination.toString());
+  let name = path.basename(absoluteFrom, '.json');
+  let localIndex = name.indexOf('.local');
+  let trimmedName = name.replace('.local', '');
 
-  let result = _.merge(sourceData, destinationData);
+  if (localIndex !== -1 && sourceData[trimmedName]) {
+    let temp = {};
+    temp[trimmedName] = destinationData[name];
+    result = _.merge(sourceData, temp);
+  } if (sourceData[name + '.local']) {
+    let temp = {};
+    temp[name] = sourceData[name + '.local'];
+    delete sourceData[name + '.local'];
+    result = _.merge(sourceData, destinationData);
+    result = _.merge(result, temp);
+  } else {
+    result = _.merge(sourceData, destinationData);
+  }
+
   return new Buffer(JSON.stringify(result));
+}
+
+function injectIntoHealth(config_hash) {
+  'use strict';
+
+   return function(content) {
+     return new Buffer(content.toString().replace('#CONFIGHASH#', config_hash));
+   };
 }
 
 function hashDate(prefix) {
@@ -84,3 +109,4 @@ exports.transformJsonFileFlat = transformJsonFileFlat;
 exports.combineJsonFiles = combineJsonFiles;
 exports.combineJsonConfigFiles = combineJsonConfigFiles;
 exports.hashDate = hashDate;
+exports.injectIntoHealth = injectIntoHealth;

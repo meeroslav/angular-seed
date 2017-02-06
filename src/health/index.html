@@ -1,0 +1,98 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <base href="/">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta charset="utf-8" />
+  <title>Health page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: Helvetica, Arial, sans-serif;
+    }
+
+    h1 {
+      background-color: #00B5AD;
+      color: #ffffff;
+      padding: .2em;
+      margin-top: 0;
+    }
+
+    #main {
+      list-style-type: none;
+      margin: .5em 0;
+      padding: 0;
+    }
+
+    .accordion {
+      border-bottom: 1px solid #3B404C;
+    }
+
+    .accordion pre {
+      display: none;
+      background-color: #eeeeee;
+      border: 1px solid #a8a8a8;
+      max-height: 300px;
+      overflow-y: auto;
+      margin: 0;
+      padding: .5em;
+    }
+
+    .accordion h3 {
+      background-color: #00B5AD;
+      color: #ffffff;
+      margin: 0;
+      padding: .2em .5em;
+      font-size: 1em;
+      font-weight: normal;
+      text-transform: capitalize;
+    }
+
+    .accordion.expanded pre {
+      display: block
+    }
+  </style>
+</head>
+<body>
+<h1>Health page</h1>
+<ul id="main"></ul>
+
+<script type="text/javascript">
+  function Get(url) {
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET", url, false);
+    Httpreq.send(null);
+    return Httpreq.responseText;
+  }
+
+  var input = JSON.parse(Get('assets/configs/config.#CONFIGHASH#.json'));
+  // populate gitinfo
+  var node = document.createElement("div");
+
+  if (input) {
+
+    // populate json configs
+    var main = document.getElementById('main');
+    Object.keys(input).forEach(function (key) {
+      node = document.createElement("li");
+      node.id = key;
+      node.className = "accordion";
+      var h3 = document.createElement("h3");
+      h3.innerHTML = key;
+      node.appendChild(h3);
+      var preNode = document.createElement("pre");
+      node.appendChild(preNode);
+      var textNode = document.createTextNode(JSON.stringify(input[key], null, 4));
+      preNode.appendChild(textNode);
+      main.appendChild(node);
+      // set listener
+      node.onclick = function () {
+        this.classList.toggle("expanded");
+      };
+    });
+  }
+</script>
+</body>
+</html>

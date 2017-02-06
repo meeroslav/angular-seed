@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
+    "target": "es5", /* target of the compilation (es5) */
+    "module": "commonjs", /* System.register([dependencies], function) (in JS)*/
+    "moduleResolution": "node", /* how module gets resolved (needed for Angular 2)*/
+    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true,
-    "noImplicitAny": false,
+    "removeComments": true,
+    "noImplicitAny": false, /* any has to be written explicity*/
     "noEmitHelpers": true,
     "lib": [
       "dom",
@@ -21,8 +23,11 @@
       "webpack"
     ]
   },
+  "files": [
+    "src/**/*.ts"
+  ],
   "exclude": [
-    "node_modules",
+    ".",
     "dist"
   ],
   "compileOnSave": false,

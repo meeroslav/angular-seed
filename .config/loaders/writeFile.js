@@ -100,7 +100,7 @@ function writeFile(globalRef, pattern, file) {
                     var _ret = function () {
                         info('merging \'' + file.absoluteFrom + '\' to compilation asset \'' + file.webpackTo + '\'');
                         var totalSize = compilation.assets[file.webpackTo].size() + stat.size;
-                        var mergedContent = pattern.merge(compilation.assets[file.webpackTo].source(), content);
+                        var mergedContent = pattern.merge(compilation.assets[file.webpackTo].source(), content, file.absoluteFrom, file.webpackTo);
                         compilation.assets[file.webpackTo] = {
                             size: function size() {
                                 return totalSize;

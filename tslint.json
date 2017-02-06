@@ -11,7 +11,6 @@
         "indent": [ true, "spaces" ],
         "interface-name": [ true, "always-prefix" ],
         "label-position": true,
-        "label-undefined": true,
         "member-ordering": [
             true,
             "public-before-private",
@@ -29,9 +28,8 @@
             "trace"
         ],
         "no-construct": true,
-        "no-constructor-vars": false,
+        "no-parameter-properties": false,
         "no-debugger": true,
-        "no-duplicate-key": true,
         "no-duplicate-variable": true,
         "no-empty": true,
         "no-eval": true,
@@ -40,9 +38,8 @@
         "no-trailing-whitespace": true,
         "no-unused-expression": false,
         "no-unused-variable": true,
-        "no-unreachable": true,
         "no-use-before-declare": true,
-        "no-var-requires": true,
+        "no-var-requires": false,
         "one-line": [
             true,
             "check-open-brace",
@@ -56,7 +53,6 @@
         "triple-equals": [ true, "allow-null-check" ],
         "typedef": [
             true,
-            "arrow-parameter",
             "property-declaration"
         ],
         "typedef-whitespace": [
@@ -68,11 +64,6 @@
                 "property-declaration": "nospace",
                 "variable-declaration": "nospace"
             }
-        ],
-        "use-strict": [
-            true,
-            "check-module",
-            "check-function"
         ],
         "variable-name": [ true, "ban-keywords", "check-format", "allow-leading-underscore" ],
         "whitespace": [

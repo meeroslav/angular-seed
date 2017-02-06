@@ -1,4 +1,3 @@
-const path = require('path');
 const webpackConfig = require('./webpack.config.test.js');
 const ENV = process.env.npm_lifecycle_event;
 const isTestWatch = ENV === 'test:watch';

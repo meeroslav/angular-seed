@@ -7,6 +7,9 @@ npm-debug.log
 .vscode/
 .idea/
 *.swp
+.project
+*.launch
+.settings/
 
 # OS generated files #
 .DS_Store
@@ -18,3 +21,4 @@ Thumbs.db
 coverage/
 dist/
 doc/
+src/*.js
