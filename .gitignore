@@ -21,4 +21,4 @@ Thumbs.db
 coverage/
 dist/
 doc/
-src/*.js
+src/**/*.js
