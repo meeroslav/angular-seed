@@ -12,8 +12,6 @@ module.exports = (function makeWebpackConfig() {
   let config = {};
 
   config.devtool = 'inline-source-map';
-  config.entry = {};
-  config.output = {};
 
   config.resolve = {
     extensions: ['.ts', '.js', '.html']
