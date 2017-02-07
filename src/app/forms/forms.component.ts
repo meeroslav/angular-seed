@@ -29,6 +29,7 @@ export class FormsComponent implements OnInit {
   movie: Movie;
   colors: Array<Colors>;
   planets: ISWPlanet[];
+  search: Observable<string>;
 
   private basicControlsForm: FormGroup;
   private advancedControlsForm: FormGroup;
@@ -60,6 +61,10 @@ export class FormsComponent implements OnInit {
       {id: 2, color: 'Blue'},
       {id: 3, color: 'Green'}
     ];
+
+    this.search = Observable.create((observer: any) => {
+      observer.next(this.advancedControlsForm.controls['planet'].value);
+    }).mergeMap((token: Observable<string>) => this.getPlanetsAsObservable(token));
   }
 
   ngOnInit() {
@@ -82,19 +87,13 @@ export class FormsComponent implements OnInit {
    * Search method for the typeahed control
    * @param text$
    */
-  search = (text$: Observable<string>) =>
+
+  getPlanetsAsObservable = (text$: Observable<string>) =>
       text$
           .debounceTime(200)
           .distinctUntilChanged()
           .map((term: any) => term.length < 2 ? []
               : this.planets.filter((p: any) => new RegExp(term, 'gi').test(p.name)).splice(0, 10));
-
-  /**
-   * Formatter for the typeahed control
-   * Format the result to display.
-   * @param result
-   */
-  formatter = (result: ISWPlanet) => result.name;
 
   /**
    * callback executed when a node

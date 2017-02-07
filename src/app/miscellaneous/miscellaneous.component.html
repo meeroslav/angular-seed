@@ -6,36 +6,34 @@
   </ol>
 </div>
 
-<ngb-tabset>
-  <ngb-tab title="Modal Dialog">
-    <template ngbTabContent>
+<tabset>
+  <tab heading="Modal Dialog">
       <button class="btn btn-primary" type="button" (click)="openSimpleModal()">Open simple modal</button>
       <button class="btn btn-warning" type="button" (click)="openSimpleModalWithCallback()">Open modal with close callback</button>
       <button class="btn btn-danger" type="button" (click)="openPromptModal()">Open modal with prompt</button>
-    </template>
-  </ngb-tab>
-  <ngb-tab title="Map">
-    <template ngbTabContent>
+  </tab>
+  <tab heading="Map">
       <div world-map id="world-map" (change)="repositionTheDot($event)">
         <div id="dot">Vienna</div>
       </div>
-    </template>
-  </ngb-tab>
-  <ngb-tab title="Tree">
-    <template ngbTabContent>
+  </tab>
+  <tab>
+    <template tabHeading><h4 class="app-icon-application">Tab</h4></template>
+    This tab control
+  </tab>
+  <tab heading="Tree">
+    <tree [collapsed]="false"
+          [treeDataCallback]="getTreeData()"
+          [nodeSelectCallback]="nodeSelectCallback">
+    </tree>
 
-      <tree [collapsed]="false"
-            [treeDataCallback]="getTreeData()"
-            [nodeSelectCallback]="nodeSelectCallback">
-      </tree>
-
-      <h4>Selected node:</h4>
-      <pre>{{selectedTreeNode | json}}</pre>
-
-    </template>
-  </ngb-tab>
-  <ngb-tab title="Graphs">
-    <template ngbTabContent>
-    </template>
-  </ngb-tab>
-</ngb-tabset>
+    <h4>Selected node:</h4>
+    <pre>{{selectedTreeNode | json}}</pre>
+  </tab>
+  <tab heading="Date picker">
+    <datepicker [(ngModel)]="dt" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
+  </tab>
+  <tab heading="Graphs">
+    TBD...
+  </tab>
+</tabset>

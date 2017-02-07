@@ -6,146 +6,144 @@
   </ol>
 </div>
 
-<ngb-tabset>
-  <ngb-tab title="Basic controls ">
-    <template ngbTabContent>
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="card card-block">
-            <h2>Basic form controls</h2>
-            <form [formGroup]="basicControlsForm" novalidate>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="name">Name</label>
-                <div class="col-sm-10">
-                  <input type="text" formControlName="name" class="form-control" id="name" placeholder="Name"
-                         placement="bottom"
-                         [ngbTooltip]="basicControlsForm.controls.name.errors && nameTT" >
-                  <template #nameTT>
-                    <div *ngIf="basicControlsForm.controls.name.errors.required">
-                      {{'form.NAME_REQUIRED' | translate}}
-                    </div>
-                  </template>
-                </div>
+<tabset>
+  <tab heading="Basic controls">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card card-block">
+          <h2>Basic form controls</h2>
+          <form [formGroup]="basicControlsForm" novalidate>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label" for="name">Name</label>
+              <div class="col-sm-10">
+                <input type="text" formControlName="name" class="form-control" id="name" placeholder="Name"
+                       placement="bottom"
+                       [tooltip]="basicControlsForm.controls.name.errors && nameTT" >
+                <template #nameTT>
+                  <div *ngIf="basicControlsForm.controls.name.errors.required">
+                    {{'form.NAME_REQUIRED' | translate}}
+                  </div>
+                </template>
               </div>
-              <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="favoriteNumber">Favorite number</label>
-                <div class="col-sm-4">
-                  <input type="number" formControlName="favoriteNumber" class="form-control" id="favoriteNumber"
-                         placeholder="Favorite number" placement="bottom"
-                         [ngbTooltip]="basicControlsForm.controls.favoriteNumber.errors && favoriteNumberTT">
-                  <template #favoriteNumberTT>
-                    <div *ngIf="basicControlsForm.controls.favoriteNumber.errors.required">
-                      {{'form.FAVORITE_NUMBER_REQUIRED' | translate}}
-                    </div>
-                  </template>
-                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label" for="favoriteNumber">Favorite number</label>
+              <div class="col-sm-4">
+                <input type="number" formControlName="favoriteNumber" class="form-control" id="favoriteNumber"
+                       placeholder="Favorite number" placement="bottom"
+                       [tooltip]="basicControlsForm.controls.favoriteNumber.errors && favoriteNumberTT">
+                <template #favoriteNumberTT>
+                  <div *ngIf="basicControlsForm.controls.favoriteNumber.errors.required">
+                    {{'form.FAVORITE_NUMBER_REQUIRED' | translate}}
+                  </div>
+                </template>
               </div>
-              <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="favoriteColor">Favorite color</label>
-                <div class="col-sm-8">
-                  <select class="custom-select" formControlName="favoriteColor" id="favoriteColor" placement="right"
-                          [ngbTooltip]="basicControlsForm.controls.favoriteColor.errors && favoriteColorTT">
-                    <option [selected]="basicControlsForm.controls.favoriteColor.value == null" value="">
-                      Pick a color
-                    </option>
-                    <option *ngFor="let color of colors" [value]="color.id">{{color.color}}</option>
-                  </select>
-                  <template #favoriteColorTT>
-                    <div *ngIf="basicControlsForm.controls.favoriteColor.errors.required">
-                      {{'form.FAVORITE_COLOR_REQUIRED' | translate}}
-                    </div>
-                  </template>
-                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label" for="favoriteColor">Favorite color</label>
+              <div class="col-sm-8">
+                <select class="custom-select" formControlName="favoriteColor" id="favoriteColor" placement="right"
+                        [tooltip]="basicControlsForm.controls.favoriteColor.errors && favoriteColorTT">
+                  <option [selected]="basicControlsForm.controls.favoriteColor.value == null" value="">
+                    Pick a color
+                  </option>
+                  <option *ngFor="let color of colors" [value]="color.id">{{color.color}}</option>
+                </select>
+                <template #favoriteColorTT>
+                  <div *ngIf="basicControlsForm.controls.favoriteColor.errors.required">
+                    {{'form.FAVORITE_COLOR_REQUIRED' | translate}}
+                  </div>
+                </template>
               </div>
-              <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="observation">Observation</label>
-                <div class="col-sm-8">
-                  <textarea class="form-control" formControlName="observation" id="observation" rows="4"
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label" for="observation">Observation</label>
+              <div class="col-sm-8">
+                <textarea class="form-control" formControlName="observation" id="observation" rows="4"
                           placeholder="Observation" placement="bottom"
-                            [ngbTooltip]="basicControlsForm.controls.observation.errors && observationTT"></textarea>
-                  <template #observationTT>
-                    <div *ngIf="basicControlsForm.controls.observation.errors.required">
-                      This text will be super long text with lorem ipsum dolor sit amet.
-                    </div>
-                  </template>
-                </div>
+                          [tooltip]="basicControlsForm.controls.observation.errors && observationTT"></textarea>
+                <template #observationTT>
+                  <div *ngIf="basicControlsForm.controls.observation.errors.required">
+                    This text will be super long text with lorem ipsum dolor sit amet.
+                  </div>
+                </template>
               </div>
-              <div class="form-group row">
-                <label class="col-sm-4">Opt-in for goodies</label>
-                <div class="col-sm-12">
-                  <label class="custom-control custom-checkbox" placement="bottom"
-                         [ngbTooltip]="basicControlsForm.controls.optin.errors && optinTT">
-                    <input type="checkbox" formControlName="optin" class="custom-control-input" value="">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">Remember my preference</span>
-                  </label>
-                  <template #optinTT class="bollocks">
-                    <div *ngIf="basicControlsForm.controls.optin.errors.required">
-                      This text will be super long text with lorem ipsum dolor sit amet.
-                    </div>
-                  </template>
-                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4">Opt-in for goodies</label>
+              <div class="col-sm-12">
+                <label class="custom-control custom-checkbox" placement="bottom"
+                       [tooltip]="basicControlsForm.controls.optin.errors && optinTT">
+                  <input type="checkbox" formControlName="optin" class="custom-control-input" value="">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Remember my preference</span>
+                </label>
+                <template #optinTT class="bollocks">
+                  <div *ngIf="basicControlsForm.controls.optin.errors.required">
+                    This text will be super long text with lorem ipsum dolor sit amet.
+                  </div>
+                </template>
               </div>
-              <div class="form-group row">
-                <label class="col-sm-4">Receive news?</label>
-                <div class="col-sm-12" placement="bottom"
-                     [ngbTooltip]="basicControlsForm.controls.newsLetter.errors && newsLetterTT">
-                  <label class="custom-control custom-radio">
-                    <input type="radio" formControlName="newsLetter" class="custom-control-input" value="Maybe">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">Maybe</span>
-                  </label>
-                  <label class="custom-control custom-radio">
-                    <input type="radio" formControlName="newsLetter" class="custom-control-input" value="No">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">Hell, no</span>
-                  </label>
-                  <label class="custom-control custom-radio">
-                    <input type="radio" formControlName="newsLetter" class="custom-control-input" value="Yes">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">Yeah</span>
-                  </label>
-                  <label class="custom-control custom-radio">
-                    <input type="radio" formControlName="newsLetter" disabled class="custom-control-input" value="WTH">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">I'm disabled</span>
-                  </label>
-                  <template #newsLetterTT>
-                    <div *ngIf="basicControlsForm.controls.newsLetter.errors.required">
-                      This text will be super long text with lorem ipsum dolor sit amet.
-                    </div>
-                  </template>
-                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4">Receive news?</label>
+              <div class="col-sm-12" placement="bottom"
+                   [tooltip]="basicControlsForm.controls.newsLetter.errors && newsLetterTT">
+                <label class="custom-control custom-radio">
+                  <input type="radio" formControlName="newsLetter" class="custom-control-input" value="Maybe">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Maybe</span>
+                </label>
+                <label class="custom-control custom-radio">
+                  <input type="radio" formControlName="newsLetter" class="custom-control-input" value="No">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Hell, no</span>
+                </label>
+                <label class="custom-control custom-radio">
+                  <input type="radio" formControlName="newsLetter" class="custom-control-input" value="Yes">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Yeah</span>
+                </label>
+                <label class="custom-control custom-radio">
+                  <input type="radio" formControlName="newsLetter" disabled class="custom-control-input" value="WTH">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">I'm disabled</span>
+                </label>
+                <template #newsLetterTT>
+                  <div *ngIf="basicControlsForm.controls.newsLetter.errors.required">
+                    This text will be super long text with lorem ipsum dolor sit amet.
+                  </div>
+                </template>
               </div>
-              <button class="btn btn-success" [disabled]="!basicControlsForm.valid">Save data</button>
-            </form>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card card-block">
-            <h2>Form information</h2>
-            <p>Form Values</p>
-            <code>
-              {{basicControlsForm.value | json}}
-            </code>
-            <p>Form Status: {{basicControlsForm.status}}</p>
-          </div>
+            </div>
+            <button class="btn btn-success" [disabled]="!basicControlsForm.valid">Save data</button>
+          </form>
         </div>
       </div>
-    </template>
-  </ngb-tab>
-  <ngb-tab title="Advanced controls">
-    <template ngbTabContent>
-      <div class="row">
+      <div class="col-lg-6">
+        <div class="card card-block">
+          <h2>Form information</h2>
+          <p>Form Values</p>
+          <code>
+            {{basicControlsForm.value | json}}
+          </code>
+          <p>Form Status: {{basicControlsForm.status}}</p>
+        </div>
+      </div>
+    </div>
+  </tab>
+  <tab heading="Advanced controls">
+    <div class="row">
         <div class="col-lg-6">
           <div class="card card-block">
             <form [formGroup]="advancedControlsForm" novalidate>
               <div class="row">
                 <!-- Basic ratings component -->
                 <div class="col-sm-8">
-                  <ngb-rating class="form-control" formControlName="firstRate" placement="bottom" max="5"
-                              [ngbTooltip]="advancedControlsForm.controls.firstRate.errors && firstRateTT">
-                  </ngb-rating>
+                  <rating formControlName="firstRate" placement="bottom" max="5"
+                          stateOn="app-icon-monster" stateOff="app-icon-application"
+                              [tooltip]="advancedControlsForm.controls.firstRate.errors && firstRateTT">
+                  </rating>
                   <template #firstRateTT>
                     <div *ngIf="advancedControlsForm.controls.firstRate.errors.required">
                       This text will be super long text with lorem ipsum dolor sit amet.
@@ -153,12 +151,14 @@
                   </template>
                 </div>
                 <div class="col-sm-8">
-                  <ngb-rating class="form-control" formControlName="secondRate" max="5">
-                  </ngb-rating>
+                  <rating formControlName="secondRate" max="5"
+                          stateOn="app-icon-monster" stateOff="app-icon-application">
+                  </rating>
                 </div>
                 <div class="col-sm-8">
-                  <ngb-rating class="form-control" formControlName="averageRating" max="5" readonly="true">
-                  </ngb-rating>
+                  <rating formControlName="averageRating" max="5" readonly="true"
+                          stateOn="app-icon-monster" stateOff="app-icon-application">
+                  </rating>
                 </div>
 
                 <!-- static typeahed not editable field -->
@@ -166,10 +166,10 @@
                   <div class="form-group">
                     <label for="name">Static typeahead non editable - Star wars planets </label>
                     <input type="text" class="form-control" formControlName="planet"
-                           [ngbTypeahead]="search"
-                           [resultFormatter]="formatter"
-                           [inputFormatter]="formatter"
-                           [editable]="false"/>
+                           [typeahead]="search"
+                           typeaheadOptionField="name"
+                           typeaheadGroupField="rotation_period"
+                    />
                   </div>
                 </div>
 
@@ -201,84 +201,81 @@
           </div>
         </div>
       </div>
-    </template>
-  </ngb-tab>
-  <ngb-tab title="Control Sizing">
-    <template ngbTabContent>
-      <h2>Inputs - Column sizing</h2>
+  </tab>
+  <tab heading="Control Sizing">
+    <h2>Inputs - Column sizing</h2>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card card-block">
+          <div class="row">
+            <div class="col-sm-2">
+              <input type="email" class="form-control" placeholder="2x">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <input type="email" class="form-control" placeholder="4x">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <input type="email" class="form-control" placeholder="6x">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card card-block">
+          <div class="row">
+            <div class="col-sm-8">
+              <input type="email" class="form-control" placeholder="8x">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-10">
+              <input type="email" class="form-control" placeholder="10x">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <input type="email" class="form-control" placeholder="12x">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h2>Inline form</h2>
+    <div class="card card-block">
+      <form class="form-inline">
+        <label class="col-sm-4">Label for input</label>
+        <input type="text" class="col-sm-2 form-control" placeholder="Short input">
+      </form>
+    </div>
+    <h2>Floating elements</h2>
+    <div class="card card-block">
       <div class="row">
-        <div class="col-sm-6">
-          <div class="card card-block">
-            <div class="row">
-              <div class="col-sm-2">
-                <input type="email" class="form-control" placeholder="2x">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-4">
-                <input type="email" class="form-control" placeholder="4x">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <input type="email" class="form-control" placeholder="6x">
-              </div>
-            </div>
-          </div>
+        <div class="col-sm-1">
+          <input type="email" class="form-control" placeholder="Short">
+        </div>
+        <div class="col-sm-2">
+          <input type="email" class="form-control" placeholder="Small">
+        </div>
+        <div class="col-sm-3">
+          <input type="email" class="form-control" placeholder="Normal">
         </div>
         <div class="col-sm-6">
-          <div class="card card-block">
-            <div class="row">
-              <div class="col-sm-8">
-                <input type="email" class="form-control" placeholder="8x">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-10">
-                <input type="email" class="form-control" placeholder="10x">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <input type="email" class="form-control" placeholder="12x">
-              </div>
-            </div>
-          </div>
+          <input type="email" class="form-control" placeholder="Long input">
+        </div>
+        <div class="col-sm-4">
+          <input type="email" class="form-control" placeholder="Medium input">
+        </div>
+        <div class="col-sm-8">
+          <input type="email" class="form-control" placeholder="Extra long input">
+        </div>
+        <div class="col-sm-12">
+          <input type="email" class="form-control" placeholder="Crazy long input">
         </div>
       </div>
-      <h2>Inline form</h2>
-      <div class="card card-block">
-        <form class="form-inline">
-          <label class="col-sm-4">Label for input</label>
-          <input type="text" class="col-sm-2 form-control" placeholder="Short input">
-        </form>
-      </div>
-      <h2>Floating elements</h2>
-      <div class="card card-block">
-        <div class="row">
-          <div class="col-sm-1">
-            <input type="email" class="form-control" placeholder="Short">
-          </div>
-          <div class="col-sm-2">
-            <input type="email" class="form-control" placeholder="Small">
-          </div>
-          <div class="col-sm-3">
-            <input type="email" class="form-control" placeholder="Normal">
-          </div>
-          <div class="col-sm-6">
-            <input type="email" class="form-control" placeholder="Long input">
-          </div>
-          <div class="col-sm-4">
-            <input type="email" class="form-control" placeholder="Medium input">
-          </div>
-          <div class="col-sm-8">
-            <input type="email" class="form-control" placeholder="Extra long input">
-          </div>
-          <div class="col-sm-12">
-            <input type="email" class="form-control" placeholder="Crazy long input">
-          </div>
-        </div>
-      </div>
-    </template>
-  </ngb-tab>
-</ngb-tabset>
+    </div>
+  </tab>
+</tabset>

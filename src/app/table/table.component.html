@@ -7,44 +7,39 @@
 </div>
 
 <h2>Lists</h2>
-<ngb-tabset>
-  <ngb-tab title="List">
-    <template ngbTabContent>
-      <h4>Simple list</h4>
-      <ul class="list-group">
-        <li class="list-group-item">
-          <span class="list-group-item-heading">Cras justo odio</span>
-          <span class="list-group-item-text">This is just a simple text inside list group item</span>
-        </li>
-        <li class="list-group-item"><span class="list-group-item-heading">Dapibus ac facilisis in</span></li>
-        <li class="list-group-item"><span class="list-group-item-heading">Morbi leo risus</span></li>
-        <li class="list-group-item"><span class="list-group-item-heading">Porta ac consectetur ac</span></li>
-        <li class="list-group-item"><span class="list-group-item-heading">Vestibulum at eros</span></li>
-      </ul>
-    </template>
-  </ngb-tab>
-  <ngb-tab title="List + Badge">
-    <template ngbTabContent>
-      <h4>List with badges</h4>
-      <ul class="list-group">
-        <li class="list-group-item justify-content-between" >
-          <span class="list-group-item-heading">Cras justo odio</span>
-          <span class="badge-pill badge-warning badge">14</span>
-        </li>
-        <li class="list-group-item justify-content-between">
-          <span class="list-group-item-heading">Dapibus ac facilisis in</span>
-          <span class="badge-pill badge badge-danger">2</span>
-        </li>
-        <li class="list-group-item justify-content-between">
-          <!--<span class="tag tag-pill tag-info float-right">1</span>-->
-          <span class="list-group-item-heading">Morbi leo risus</span>
-          <span class="badge-pill badge badge-info">1</span>
-        </li>
-      </ul>
-    </template>
-  </ngb-tab>
-  <ngb-tab title="Link list">
-    <template ngbTabContent>
+<tabset>
+  <tab heading="List">
+    <h4>Simple list</h4>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <span class="list-group-item-heading">Cras justo odio</span>
+        <span class="list-group-item-text">This is just a simple text inside list group item</span>
+      </li>
+      <li class="list-group-item"><span class="list-group-item-heading">Dapibus ac facilisis in</span></li>
+      <li class="list-group-item"><span class="list-group-item-heading">Morbi leo risus</span></li>
+      <li class="list-group-item"><span class="list-group-item-heading">Porta ac consectetur ac</span></li>
+      <li class="list-group-item"><span class="list-group-item-heading">Vestibulum at eros</span></li>
+    </ul>
+  </tab>
+  <tab heading="List + Badge">
+    <h4>List with badges</h4>
+    <ul class="list-group">
+      <li class="list-group-item justify-content-between" >
+        <span class="list-group-item-heading">Cras justo odio</span>
+        <span class="badge-pill badge-warning badge">14</span>
+      </li>
+      <li class="list-group-item justify-content-between">
+        <span class="list-group-item-heading">Dapibus ac facilisis in</span>
+        <span class="badge-pill badge badge-danger">2</span>
+      </li>
+      <li class="list-group-item justify-content-between">
+        <!--<span class="tag tag-pill tag-info float-right">1</span>-->
+        <span class="list-group-item-heading">Morbi leo risus</span>
+        <span class="badge-pill badge badge-info">1</span>
+      </li>
+    </ul>
+  </tab>
+  <tab heading="Link list">
       <h4>Simple with links</h4>
       <div class="list-group">
         <a href="#" class="list-group-item justify-content-between active">
@@ -68,10 +63,8 @@
           <i class="app-icon-chevron-right float-right"></i>
         </a>
       </div>
-    </template>
-  </ngb-tab>
-  <ngb-tab title="Button list">
-    <template ngbTabContent>
+  </tab>
+  <tab heading="Button list">
       <h4>Simple with buttons</h4>
       <div class="list-group">
         <button type="button" class="list-group-item list-group-item-action">Cras justo odio</button>
@@ -82,13 +75,11 @@
         <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
         <button type="button" class="list-group-item list-group-item-action">Vestibulum at eros</button>
       </div>
-    </template>
-  </ngb-tab>
-</ngb-tabset>
+  </tab>
+</tabset>
 <h2>Data grids</h2>
-<ngb-tabset>
-  <ngb-tab title="Simple">
-    <template ngbTabContent>
+<tabset>
+  <tab heading="Simple">
       <h4>Simple table</h4>
       <table class="table">
         <thead>
@@ -126,10 +117,8 @@
         </tr>
         </tbody>
       </table>
-    </template>
-  </ngb-tab>
-  <ngb-tab title="Compressed">
-    <template ngbTabContent>
+  </tab>
+  <tab heading="Compressed">
       <h4>Compressed table</h4>
       <table class="table table-sm">
         <thead>
@@ -167,10 +156,8 @@
         </tr>
         </tbody>
       </table>
-    </template>
-  </ngb-tab>
-  <ngb-tab title="Bordered">
-    <template ngbTabContent>
+  </tab>
+  <tab heading="Bordered">
       <h4>Bordered table</h4>
       <table class="table table-bordered">
         <thead>
@@ -208,10 +195,8 @@
         </tr>
         </tbody>
       </table>
-    </template>
-  </ngb-tab>
-  <ngb-tab title="Striped">
-    <template ngbTabContent>
+  </tab>
+  <tab heading="Striped">
       <h4>Striped table</h4>
       <table class="table table-striped">
         <thead>
@@ -249,10 +234,8 @@
         </tr>
         </tbody>
       </table>
-    </template>
-  </ngb-tab>
-  <ngb-tab title="Mixed">
-    <template ngbTabContent>
+  </tab>
+  <tab heading="Mixed">
       <h4>Mixed style table</h4>
       <table class="table table-sm table-bordered table-striped">
         <thead>
@@ -290,10 +273,8 @@
         </tr>
         </tbody>
       </table>
-    </template>
-  </ngb-tab>
-  <ngb-tab title="Table Styles">
-    <template ngbTabContent>
+  </tab>
+  <tab heading="Table Styles">
       <h4>Different table styles</h4>
       <table class="table table-sm thead-default">
         <thead>
@@ -367,10 +348,8 @@
         </tr>
         </tbody>
       </table>
-    </template>
-  </ngb-tab>
-  <ngb-tab title="With pagination">
-    <template ngbTabContent>
+  </tab>
+  <tab heading="With pagination">
       <table class="table table-sm thead-default table-bordered">
         <thead>
         <tr class="row">
@@ -397,15 +376,13 @@
         <tfoot>
         <tr class="row">
           <th class="col-sm-12" colspan="5">
-            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [rotate]="true" [ellipses]="false"
+            <pagination [totalItems]="collectionSize" [(ngModel)]="page" [rotate]="true" [itemsPerPage]="10"
                             [maxSize]="5" [boundaryLinks]="collectionSize > 50" (pageChange)="getData()"
             class="float-right">
-            </ngb-pagination>
+            </pagination>
           </th>
         </tr>
         </tfoot>
       </table>
-
-    </template>
-  </ngb-tab>
- </ngb-tabset>
+  </tab>
+ </tabset>

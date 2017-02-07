@@ -3,9 +3,11 @@ import { RouterModule } from '@angular/router';
 import { MiscComponent } from './miscellaneous.component';
 import { TranslateModule } from 'ng2-translate';
 import { CommonModule } from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalDialogModule } from '../_common/modal-dialog/modal-dialog.module';
 import { CustomComponentsModule } from '../_common/custom-components/custom-components.module';
+import { TabsModule } from 'ng2-bootstrap';
+import { DatepickerModule } from 'ng2-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 let routes = [
   { path: '', component: MiscComponent }
@@ -15,8 +17,11 @@ let routes = [
   imports: [
     CommonModule,
     TranslateModule,
-    NgbModule,
+    TabsModule,
+    DatepickerModule.forRoot(),
     ModalDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
     CustomComponentsModule,
     RouterModule.forChild(routes)
   ],

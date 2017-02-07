@@ -1,17 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es5", /* target of the compilation (es5) */
-    "module": "commonjs", /* System.register([dependencies], function) (in JS)*/
-    "moduleResolution": "node", /* how module gets resolved (needed for Angular 2)*/
+    "target": "es5",
+    "module": "es6",
+    "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": true,
-    "noImplicitAny": false, /* any has to be written explicity*/
+    "noImplicitAny": false,
     "noEmitHelpers": true,
     "lib": [
       "dom",
       "es6"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
     ],
     "types": [
       "hammerjs",
@@ -24,10 +27,11 @@
     ]
   },
   "files": [
-    "src/**/*.ts"
+    "src/**/*"
   ],
   "exclude": [
     ".",
+    "node_modules",
     "dist"
   ],
   "compileOnSave": false,

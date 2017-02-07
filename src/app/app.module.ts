@@ -8,10 +8,10 @@ import { HeaderComponent } from './_layout/header.component';
 import { MainNavComponent } from './_layout/mainnav.component';
 import { DispatcherModule } from './_common/dispatcher/dispatcher.module';
 import { FooterComponent } from './_layout/footer.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainNav } from './_layout/mainnav.service';
 import { CommonModule } from '@angular/common';
 import { ModalDialogModule } from './_common/modal-dialog/modal-dialog.module';
+import { TabsModule, PaginationModule } from 'ng2-bootstrap';
 
 @NgModule({
   imports: [
@@ -25,8 +25,10 @@ import { ModalDialogModule } from './_common/modal-dialog/modal-dialog.module';
         new TranslateStaticLoader(http, 'assets/locales', `.${process.env.TRANSLATION_HASH}.json`),
       deps: [Http]
     }),
-    NgbModule.forRoot(),
     ModalDialogModule.forRoot(),
+    // ng2-bootstrap stuff
+    TabsModule.forRoot(),
+    PaginationModule.forRoot(),
     appRouting
   ],
   declarations: [AppComponent, HeaderComponent, MainNavComponent, FooterComponent],

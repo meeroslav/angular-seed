@@ -32,11 +32,19 @@ const tree = [
   }
 })
 export class MiscComponent implements OnInit {
+  // tree node related
   selectedTreeNode: any;
+
+  // date picker related
+  tomorrow: Date;
+  dateDisabled: {date: Date, mode: string}[] = [];
+  dt: Date = new Date();
 
   constructor(private modalDialogService: ModalDialogService,
               private viewContainer: ViewContainerRef,
               private element: ElementRef) {
+    (this.tomorrow = new Date()).setDate(this.tomorrow.getDate() + 1);
+    this.dateDisabled = [{date: this.tomorrow, mode: 'day'}];
   }
 
   ngOnInit() {
