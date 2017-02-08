@@ -141,7 +141,7 @@
                 <!-- Basic ratings component -->
                 <div class="col-sm-8">
                   <rating formControlName="firstRate" placement="bottom" max="5"
-                          stateOn="app-icon-monster" stateOff="app-icon-application"
+                          stateOn="app-icon-star" stateOff="app-icon-star-o"
                               [tooltip]="advancedControlsForm.controls.firstRate.errors && firstRateTT">
                   </rating>
                   <template #firstRateTT>
@@ -152,12 +152,12 @@
                 </div>
                 <div class="col-sm-8">
                   <rating formControlName="secondRate" max="5"
-                          stateOn="app-icon-monster" stateOff="app-icon-application">
+                          stateOn="app-icon-star" stateOff="app-icon-star-o">
                   </rating>
                 </div>
                 <div class="col-sm-8">
                   <rating formControlName="averageRating" max="5" readonly="true"
-                          stateOn="app-icon-monster" stateOff="app-icon-application">
+                          stateOn="app-icon-star" stateOff="app-icon-star-o">
                   </rating>
                 </div>
 
@@ -250,6 +250,17 @@
         <label class="col-sm-4">Label for input</label>
         <input type="text" class="col-sm-2 form-control" placeholder="Short input">
       </form>
+    </div>
+    <h2>Half form</h2>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card card-block">
+          <div class="row">
+            <label class="col-sm-8">Label for input</label>
+            <input type="text" class="col-sm-4 form-control" placeholder="Short input">
+          </div>
+        </div>
+      </div>
     </div>
     <h2>Floating elements</h2>
     <div class="card card-block">

@@ -22,26 +22,14 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.app-icon-tree:before {
-  content: "\e908";
-}
-.app-icon-monster:before {
-  content: "\e904";
-}
-.app-icon-server:before {
-  content: "\e907";
-}
-.app-icon-map:before {
-  content: "\e900";
-}
 .app-icon-stats:before {
   content: "\e903";
 }
+.app-icon-list:before {
+  content: "\f00b";
+}
 .app-icon-alert:before {
   content: "\f02d";
-}
-.app-icon-languages:before {
-  content: "\e96d";
 }
 .app-icon-search:before {
   content: "\e986";
@@ -61,53 +49,8 @@
 .app-icon-remove:before {
   content: "\e901";
 }
-.app-icon-distribution:before {
-  content: "\e905";
-}
 .app-icon-add:before {
   content: "\e902";
-}
-.app-icon-double-view:before {
-  content: "\e906";
-}
-.app-icon-test-partners:before {
-  content: "\f035";
-}
-.app-icon-data-center:before {
-  content: "\f096";
-}
-.app-icon-archive:before {
-  content: "\f0c4";
-}
-.app-icon-jurisdiction:before {
-  content: "\e921";
-}
-.app-icon-mail:before {
-  content: "\e945";
-}
-.app-icon-notification:before {
-  content: "\e951";
-}
-.app-icon-site:before {
-  content: "\e9d2";
-}
-.app-icon-text:before {
-  content: "\ea6d";
-}
-.app-icon-list:before {
-  content: "\f00b";
-}
-.app-icon-countries:before {
-  content: "\f0ac";
-}
-.app-icon-supplier:before {
-  content: "\f0d1";
-}
-.app-icon-application:before {
-  content: "\f135";
-}
-.app-icon-brand:before {
-  content: "\f02b";
 }
 .app-icon-edit:before {
   content: "\f044";
@@ -124,37 +67,39 @@
 .app-icon-chevron-right:before {
   content: "\f054";
 }
-.app-icon-chevron:before {
-  content: "\f054";
-}
 .app-icon-chevron-up:before {
   content: "\f077";
 }
 .app-icon-chevron-down:before {
   content: "\f078";
 }
-.app-icon-gears:before {
-  content: "\f085";
+.app-icon-mail:before {
+  content: "\e945";
 }
-.app-icon-game:before {
-  content: "\f11b";
+.app-icon-notification:before {
+  content: "\e951";
 }
-.app-icon-operator:before {
-  content: "\f132";
+.app-icon-zoom-in:before {
+  content: "\e987";
 }
-.app-icon-currencies:before {
-  content: "\f153";
+.app-icon-zoom-out:before {
+  content: "\e988";
 }
-.app-icon-environment:before {
-  content: "\f1cb";
+.app-icon-star:before {
+  content: "\f005";
 }
-.app-icon-toggle-off:before {
-  content: "\f204";
+.app-icon-star-o:before {
+  content: "\f006";
 }
-.app-icon-toggle-on:before {
-  content: "\f205";
+.app-icon-cards:before {
+  content: "\f009";
 }
-.app-icon-hourglass:before {
-  content: "\f252";
+.app-icon-question:before {
+  content: "\f128";
 }
-
+.app-icon-info:before {
+  content: "\f129";
+}
+.app-icon-exclamation:before {
+  content: "\f12a";
+}
