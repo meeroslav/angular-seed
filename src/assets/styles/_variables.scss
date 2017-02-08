@@ -27,7 +27,7 @@ $gray-dark:                 #231f20;
 $gray:                      #404041;
 $gray-light:                #8E97A8;
 $gray-lighter:              #e3e3e3;
-$gray-lightest:             #f5f5f5;
+$gray-lightest:             #efefef;
 
 $brand-primary:             #0080bf;
 $brand-success:             #a0cf67;
@@ -57,6 +57,13 @@ $spacer-y: $spacer;
 
 // Grid columns
 $grid-gutter-width-base: $spacer;
+$grid-gutter-widths: (
+  xs: $grid-gutter-width-base,
+  sm: $grid-gutter-width-base,
+  md: $grid-gutter-width-base,
+  lg: $grid-gutter-width-base,
+  xl: $grid-gutter-width-base
+);
 
 // Font
 // TODO:

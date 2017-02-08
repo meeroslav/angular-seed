@@ -50,17 +50,18 @@ main {
   overflow: hidden;
 }
 
-.btn, .list-group-item {
+.btn, .list-group-item, .icon-container {
   &[class^="app-icon-"], &[class*=" app-icon-"] {
     &:before {
-      padding-right: $spacer-x;
+      padding-right: $spacer-x / 2;
+      line-height: 0.9;
     }
     &:empty:before {
       padding: 0;
     }
 
     &.align-icon-right:before {
-      padding-left: $spacer-x;
+      padding-left: $spacer-x / 2;
       padding-right: 0;
       float: right;
     }

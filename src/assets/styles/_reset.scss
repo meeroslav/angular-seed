@@ -49,9 +49,6 @@ ul li a {
   text-decoration: none;
   color: inherit;
 }
-button:focus {
-  outline: 0;
-}
 button {
   background: none;
   border: none;
@@ -65,10 +62,10 @@ button, a {
   color: inherit;
 }
 a {
-  &:focus {
-    outline: none;
-  }
   &:hover {
     color: inherit;
   }
+}
+*:focus {
+  outline:none;
 }

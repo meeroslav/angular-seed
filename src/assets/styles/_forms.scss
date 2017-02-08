@@ -1,6 +1,7 @@
 @import 'variables';
-@import '../../../node_modules/bootstrap/scss/variables.scss';
-@import '../../../node_modules/bootstrap/scss/mixins.scss';
+@import 'typography';
+@import '../../../node_modules/bootstrap/scss/_variables.scss';
+@import '../../../node_modules/bootstrap/scss/_mixins.scss';
 
 .form-control {
   font-size: $nrgs-input-font-size;
@@ -41,6 +42,28 @@ ngb-rating.form-control[readonly] {
 
   span {
     color: $input-bg-disabled;
+  }
+}
+
+datepicker {
+  @include fontRegular();
+
+  .card {
+    padding: $spacer-y $spacer-x;
+  }
+
+  .btn {
+    box-shadow: none;
+    width: 100%;
+    padding: .5rem;
+  }
+  .btn-default {
+    background: $white;
+    border: 1px solid $btn-secondary-border;
+  }
+
+  .btn-info .text-info {
+    color: $white !important;
   }
 }
 

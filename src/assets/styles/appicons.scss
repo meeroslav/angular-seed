@@ -8,7 +8,8 @@
     font-style: normal;
 }
 
-[class^="app-icon-"]:before, [class*=" app-icon-"]:before {
+[class^="app-icon-"]:before, [class*=" app-icon-"]:before,
+.glyphicon:before {
     font-family: 'appicons';
     speak: none;
     font-style: normal;
@@ -61,10 +62,10 @@
 .app-icon-step-forward:before {
   content: "\f051";
 }
-.app-icon-chevron-left:before {
+.app-icon-chevron-left:before, .glyphicon-chevron-left:before {
   content: "\f053";
 }
-.app-icon-chevron-right:before {
+.app-icon-chevron-right:before, .glyphicon-chevron-right:before {
   content: "\f054";
 }
 .app-icon-chevron-up:before {

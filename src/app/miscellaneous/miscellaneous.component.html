@@ -18,7 +18,7 @@
       </div>
   </tab>
   <tab>
-    <template tabHeading><h4 class="app-icon-application">Tab</h4></template>
+    <template tabHeading><span class="icon-container app-icon-plus">Tab</span></template>
     This tab control
   </tab>
   <tab heading="Tree">
@@ -31,7 +31,17 @@
     <pre>{{selectedTreeNode | json}}</pre>
   </tab>
   <tab heading="Date picker">
-    <datepicker [(ngModel)]="dt" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
+    <div class="row">
+      <div class="col-sm-4">
+        <datepicker [(ngModel)]="dt" [datepickerMode]="'day'" minMode="day" [showWeeks]="false" [dateDisabled]="dateDisabled"></datepicker>
+      </div>
+      <div class="col-sm-4">
+        <datepicker [(ngModel)]="dt" [datepickerMode]="'month'" minMode="month" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
+      </div>
+      <div class="col-sm-4">
+        <datepicker [(ngModel)]="dt" [datepickerMode]="'year'" minMode="year" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
+      </div>
+    </div>
   </tab>
   <tab heading="Graphs">
     TBD...
