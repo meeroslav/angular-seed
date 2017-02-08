@@ -22,13 +22,35 @@
     This tab control
   </tab>
   <tab heading="Tree">
-    <tree [collapsed]="false"
-          [treeDataCallback]="getTreeData()"
-          [nodeSelectCallback]="nodeSelectCallback">
-    </tree>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="card card-block">
+          <h4>Flat tree</h4>
+          <tree
+                [content]="treeData"
+                [collapsed]="false"></tree>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="card card-block">
+          <h4>Normal tree</h4>
+          <tree
+            [content]="treeDataMultiLevel"
+            [collapsed]="false"></tree>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="card card-block">
+          <h4>Tree with icons</h4>
+          <tree
+            [content]="treeDataMultiLevelWithIcons"
+            [collapsed]="true"></tree>
+        </div>
+      </div>
+    </div>
 
-    <h4>Selected node:</h4>
-    <pre>{{selectedTreeNode | json}}</pre>
   </tab>
   <tab heading="Date picker">
     <div class="row">

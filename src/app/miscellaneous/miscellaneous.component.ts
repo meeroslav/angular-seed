@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {ModalDialogService} from '../_common/modal-dialog/modal-dialog.service';
 import {SimpleModalComponent} from '../_common/modal-dialog/simple-modal.component';
 import {IMapChange, WorldMapComponent} from '../_common/custom-components/world-map/world-map.component';
+import { ITreeNode } from '../_common/custom-components/tree/tree-node.component';
 
 const tree = [
   {text: 'Category 1', children: [{id: '1', text: 'Sub-Category1'}, {id: '2', text: 'Sub-Category2'}]},
@@ -40,6 +41,10 @@ export class MiscComponent implements OnInit {
   dateDisabled: {date: Date, mode: string}[] = [];
   dt: Date = new Date();
 
+  treeData: ITreeNode[];
+  treeDataMultiLevel: ITreeNode[];
+  treeDataMultiLevelWithIcons: ITreeNode[];
+
   constructor(private modalDialogService: ModalDialogService,
               private viewContainer: ViewContainerRef,
               private element: ElementRef) {
@@ -47,10 +52,33 @@ export class MiscComponent implements OnInit {
     this.dateDisabled = [{date: this.tomorrow, mode: 'day'}];
   }
 
+//   export interface ITreeNode {
+//   id?: string;
+//   text: string;
+//   icon?: string;
+//   children?: Array<ITreeNode>;
+// }
+
   ngOnInit() {
     this.selectedTreeNode = {};
     console.log('hello `Misc` component');
     // this.title.getData().subscribe(data => this.data = data);
+
+    this.treeData = [{text: 'Element One'}, {text: 'Element Two'}];
+    this.treeDataMultiLevel = [{
+      text: 'Element One',
+      children: [{text: 'child 11', children: [{text: 'child 111'}]}, {text: 'child 12'}]
+    }, {
+      text: 'Element Two',
+      children: [{text: 'child 21'}, {text: 'child 22', children: [{text: 'child 221'}]}]
+    }];
+    this.treeDataMultiLevelWithIcons = [{
+      text: 'Element One', icon: 'app-icon-star',
+      children: [{text: 'child 11', icon: 'app-icon-list', children: [{text: 'child 111', icon: 'app-icon-notification'}]}, {text: 'child 12'}]
+    }, {
+      text: 'Element Two', icon: 'app-icon-question',
+      children: [{text: 'child 21', icon: 'app-icon-cards'}, {text: 'child 22', icon: 'app-icon-zoom-in', children: [{text: 'child 221'}]}]
+    }];
   }
 
   openSimpleModal() {
