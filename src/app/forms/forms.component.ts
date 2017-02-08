@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
@@ -119,7 +119,7 @@ export class FormsComponent implements OnInit {
   private buildBasicControlsForm() {
     this.basicControlsForm = this.formBuilder.group({
       name: [this.user.name, [Validators.required]],
-      favoriteNumber: [this.user.favoriteNumber, [Validators.required]],
+      favoriteNumber: [this.user.favoriteNumber],
       favoriteColor: [this.user.favoriteColor, [Validators.required]],
       observation: [this.user.observation, [Validators.required]],
       optin: [this.user.optin, [Validators.required]],
@@ -131,7 +131,7 @@ export class FormsComponent implements OnInit {
     this.advancedControlsForm = this.formBuilder.group({
       firstRate: [this.movie.firstRate, Validators.required],
       secondRate: [this.movie.secondRate, Validators.required],
-      averageRating: [this.movie.averageRating],
+      averageRating: new FormControl({value: this.movie.averageRating, disabled: true}),
       planet: '',
       category: ''
     });

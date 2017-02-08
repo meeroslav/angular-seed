@@ -18,7 +18,7 @@
               <div class="col-sm-10">
                 <input type="text" formControlName="name" class="form-control" id="name" placeholder="Name"
                        placement="bottom"
-                       [tooltip]="basicControlsForm.controls.name.errors && nameTT" >
+                       [tooltip]="basicControlsForm.controls.favoriteNumber.errors && nameTT" >
                 <template #nameTT>
                   <div *ngIf="basicControlsForm.controls.name.errors.required">
                     {{'form.NAME_REQUIRED' | translate}}
@@ -30,13 +30,7 @@
               <label class="col-sm-4 col-form-label" for="favoriteNumber">Favorite number</label>
               <div class="col-sm-4">
                 <input type="number" formControlName="favoriteNumber" class="form-control" id="favoriteNumber"
-                       placeholder="Favorite number" placement="bottom"
-                       [tooltip]="basicControlsForm.controls.favoriteNumber.errors && favoriteNumberTT">
-                <template #favoriteNumberTT>
-                  <div *ngIf="basicControlsForm.controls.favoriteNumber.errors.required">
-                    {{'form.FAVORITE_NUMBER_REQUIRED' | translate}}
-                  </div>
-                </template>
+                       placeholder="Favorite number" placement="bottom">
               </div>
             </div>
             <div class="form-group row">
@@ -140,9 +134,9 @@
               <div class="row">
                 <!-- Basic ratings component -->
                 <div class="col-sm-8">
-                  <rating formControlName="firstRate" placement="bottom" max="5"
+                  <rating formControlName="firstRate" placement="right" max="5"
                           stateOn="app-icon-star" stateOff="app-icon-star-o"
-                              [tooltip]="advancedControlsForm.controls.firstRate.errors && firstRateTT">
+                          [tooltip]="advancedControlsForm.controls.firstRate.errors && firstRateTT">
                   </rating>
                   <template #firstRateTT>
                     <div *ngIf="advancedControlsForm.controls.firstRate.errors.required">
