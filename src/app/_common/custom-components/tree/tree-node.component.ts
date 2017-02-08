@@ -1,6 +1,4 @@
-import { Component, Input, forwardRef, ElementRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SelectionDispatcher } from '../../dispatcher/selection-dispatcher.service';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 export interface ITreeNode {
   id?: string;
@@ -11,105 +9,44 @@ export interface ITreeNode {
 
 @Component({
   selector: 'tree-node',
+  styleUrls: ['./tree-node.component.scss'],
   template: `
-        <div class="tree-node-header">
-            <span *ngIf="content.children && content.children.length" class="tree-toggler" (click)="toggle()"
-                [ngClass]="{'collapsed app-icon-plus': collapsed, 'expanded app-icon-minus': !collapsed}"></span>
+        <div class="tree-node-header" (click)="toggle()">
+            <span *ngIf="content.children && content.children.length" class="tree-toggler"
+                [ngClass]="{'collapsed app-icon-chevron-right': collapsed, 'expanded app-icon-chevron-down': !collapsed}"></span>
             <div>{{content.text | translate}}</div>
             <span *ngIf="content.icon" [ngClass]="content.icon" class="tree-node-icon"></span>
         </div>
         <div *ngIf="content.children && content.children.length" class="tree-node-list" [ngClass]="{'collapsed': collapsed}">
-            <tree-node *ngFor="let node of content.children" [content]="node" (click)="onNodeSelect(node)"></tree-node>
+            <tree-node #t *ngFor="let node of content.children" [selected]="selected" 
+              [content]="node" (click)="onNodeSelect(t)"></tree-node>
         </div>
     `,
-  styleUrls: ['./tree-node.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TreeNode),
-    multi: true
-  }],
   host: {
     'class': 'tree-node',
-    '(click)': 'selectNode()'
+    '[class.selected]': 'this.content.id && this.content.id === selected'
   }
 })
-export class TreeNode implements ControlValueAccessor {
+export class TreeNode {
   @Input() content: ITreeNode;
   @Input() collapsed: boolean;
-  @Input() nodeSelectCallback: (node: any) => any;
+  @Input() selected: string;
+  @Output() nodeClick = new EventEmitter();
 
-  // private collapsed: boolean;
-  private _checked: boolean = false;
-
-  constructor(private elementRef: ElementRef, private selectionDispatcher: SelectionDispatcher) {
+  constructor() {
     this.collapsed = false;
-    this._checked = false;
-
-    this.selectionDispatcher.listen((newValue: string, name: string) => {
-      if (!newValue) {
-        return;
-      }
-      if (newValue !== this.content.id) {
-        this.checked = false;
-        this.writeValue(newValue);
-      }
-    });
-  }
-
-  @Input()
-  get checked(): boolean { return this._checked; }
-  set checked(newCheckedState: boolean) {
-    this._checked = newCheckedState;
-
-    if (newCheckedState) {
-      this.selectionDispatcher.notify(this.content.id, null);
-    }
   }
 
   /**
-   * Select a node from the tree
-   * and setup the dispatcher
+   * select the node and
+   * propagates the event to the observer
+   * @param treeNode
    */
-  selectNode() {
-    this.checked = true;
-    this.writeValue(this.content.id);
-  }
-
-  /**
-   * Fires up the callback
-   * passed in by the parent component
-   * @param node
-   */
-  onNodeSelect(node: any) {
-    if (this.nodeSelectCallback) {
-      this.nodeSelectCallback(node);
-    }
-  }
-
-  /**
-   * Applies the Selected css class
-   * to nodes
-   * @param  {string} value
-   */
-  writeValue(value: string) {
-
-    // Does not apply for root nodes
-    if (!this.content.id) {
-      return;
-    }
-
-    const checked = this.content.id === value;
-    this._checked = checked;
-    this.elementRef.nativeElement.classList.toggle('selected', checked);
-    if (checked) { this.onChange(value); }
+  onNodeSelect(treeNode: TreeNode) {
+    this.nodeClick.emit({node: treeNode.content});
   }
 
   toggle() {
     this.collapsed = !this.collapsed;
   }
-
-  onChange = (_: any) => { /**/ };
-  onTouched = () => { /**/ };
-  registerOnChange(fn: (_: any) => void): void { this.onChange = fn; }
-  registerOnTouched(fn: () => void): void { this.onTouched = fn; }
 }

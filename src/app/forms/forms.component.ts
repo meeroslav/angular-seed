@@ -30,6 +30,7 @@ export class FormsComponent implements OnInit {
   colors: Array<Colors>;
   planets: ISWPlanet[];
   search: Observable<string>;
+  treeData: ITreeNode[];
 
   private basicControlsForm: FormGroup;
   private advancedControlsForm: FormGroup;
@@ -80,6 +81,7 @@ export class FormsComponent implements OnInit {
   getPlanets() {
     this.service.getAllStarships(this.page).subscribe((response: ICountable<ISWPlanet>) => {
       this.planets = response.results;
+      this.treeData = this.extendTree(this.planets);
     });
   }
 
@@ -104,18 +106,6 @@ export class FormsComponent implements OnInit {
     console.log(node);
   }
 
-  /**
-   * callback executed by the TreeComponent
-   * Fetch the data and returns in the expected format
-   * by the tree
-   * @see {ITreeNode}
-   */
-  getTreeData() {
-    return () => {
-      return Observable.of(this.extendTree(this.planets));
-    };
-  }
-
   private buildBasicControlsForm() {
     this.basicControlsForm = this.formBuilder.group({
       name: [this.user.name, [Validators.required]],
@@ -133,7 +123,7 @@ export class FormsComponent implements OnInit {
       secondRate: [this.movie.secondRate, Validators.required],
       averageRating: new FormControl({value: this.movie.averageRating, disabled: true}),
       planet: '',
-      category: ''
+      category: [null, Validators.required]
     });
   }
 

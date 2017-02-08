@@ -170,11 +170,11 @@
                 <!-- Tree component -->
                 <div class="col-sm-8">
                   <div class="form-group">
-                    <label for="name">Tree component - Not yet connected to FormGroup</label>
-                    <tree [collapsed]="true"
-                          [treeDataCallback]="getTreeData()"
-                          [nodeSelectCallback]="nodeSelectCallback">
-                    </tree>
+                    <label for="name">Tree component</label>
+                    <tree formControlName="category" class="form-control"
+                          [content]="treeData"
+                          [collapsed]="true"
+                          (nodeClick)="nodeSelectCallback($event)"></tree>
                   </div>
                 </div>
               </div>
