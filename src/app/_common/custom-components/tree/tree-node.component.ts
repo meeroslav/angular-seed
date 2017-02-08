@@ -14,7 +14,7 @@ export interface ITreeNode {
         <div class="tree-node-header" (click)="toggle()">
             <span *ngIf="content.children && content.children.length" class="tree-toggler"
                 [ngClass]="{'collapsed app-icon-chevron-right': collapsed, 'expanded app-icon-chevron-down': !collapsed}"></span>
-            <div>{{content.text | translate}}</div>
+            <div [ngClass]="{'no-children': !content.children || !content.children.length}">{{content.text | translate}}</div>
             <span *ngIf="content.icon" [ngClass]="content.icon" class="tree-node-icon"></span>
         </div>
         <div *ngIf="content.children && content.children.length" class="tree-node-list" [ngClass]="{'collapsed': collapsed}">
@@ -24,7 +24,7 @@ export interface ITreeNode {
     `,
   host: {
     'class': 'tree-node',
-    '[class.selected]': 'this.content.id && this.content.id === selected'
+    '[class.selected]': 'markSelection()'
   }
 })
 export class TreeNode {
@@ -35,6 +35,16 @@ export class TreeNode {
 
   constructor() {
     this.collapsed = false;
+  }
+
+  markSelection(): boolean {
+    let isSelected = this.content.id && this.content.id === this.selected;
+    let hasChildSelected = this.content.children &&
+      this.content.children.map((child: ITreeNode) => child.id).indexOf(this.selected) !== -1;
+
+    console.log(isSelected, hasChildSelected, this.content);
+
+    return isSelected || hasChildSelected;
   }
 
   /**

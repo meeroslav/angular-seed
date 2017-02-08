@@ -141,10 +141,9 @@ export class FormsComponent implements OnInit {
         text: planet.name,
         children: []
       };
-
       for (let i = 0; i < planet.residents.length; i++) {
         node.children.push({
-          id: i.toString(),
+          id: planet.residents[i],
           text: planet.residents[i]
         });
       }
