@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomeModule' },
+  { path: 'data-list', loadChildren: './data-list/data-list.module#DataListPageModule' },
   { path: 'buttons', loadChildren: './buttons/buttons.module#ButtonsPageModule' },
   { path: 'forms', loadChildren: './forms/forms.module#FormsPageModule' },
   { path: 'cards', loadChildren: './cards/cards.module#CardsPageModule' },

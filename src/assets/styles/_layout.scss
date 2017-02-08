@@ -1,7 +1,6 @@
 @import 'colors';
 @import 'variables';
 @import 'animations';
-@import '../../../node_modules/bootstrap/scss/variables.scss';
 @import '../../../node_modules/bootstrap/scss/mixins/breakpoints.scss';
 
 app {
@@ -39,6 +38,10 @@ header {
   .navbar-toggler {
     float: left;
   }
+}
+
+footer {
+  border-top: 1px solid $gray-dark;
 }
 
 main {
@@ -134,4 +137,9 @@ aside.main-aside {
 
   @include animate(1s);
   @include runAnimation(fadeIn);
+
+  & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
+    margin-top: $spacer-y;
+    margin-bottom: $spacer-y;
+  }
 }

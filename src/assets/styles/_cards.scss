@@ -64,5 +64,6 @@ $toolbarWidth: 1rem + 5/1.5 * $grid-gutter-width-base;
   .card-header, .card-footer {
     background-color: inherit;
     padding-right: 0;
+    text-align: center;
   }
 }

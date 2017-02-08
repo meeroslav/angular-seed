@@ -1,83 +1,10 @@
 <div class="page-header">
-  <h1>Data representation<span class="de-emphasize"> - Park</span></h1>
+  <h1>Data grid<span class="de-emphasize"> - Park</span></h1>
   <ol class="breadcrumb mb-0">
     <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-    <li class="breadcrumb-item active">Data representation</li>
+    <li class="breadcrumb-item active">Data grid</li>
   </ol>
 </div>
-
-<h2>Lists</h2>
-<tabset>
-  <tab heading="List">
-    <h4>Simple list</h4>
-    <ul class="list-group">
-      <li class="list-group-item">
-        <span class="list-group-item-heading">Cras justo odio</span>
-        <span class="list-group-item-text">This is just a simple text inside list group item</span>
-      </li>
-      <li class="list-group-item"><span class="list-group-item-heading">Dapibus ac facilisis in</span></li>
-      <li class="list-group-item"><span class="list-group-item-heading">Morbi leo risus</span></li>
-      <li class="list-group-item"><span class="list-group-item-heading">Porta ac consectetur ac</span></li>
-      <li class="list-group-item"><span class="list-group-item-heading">Vestibulum at eros</span></li>
-    </ul>
-  </tab>
-  <tab heading="List + Badge">
-    <h4>List with badges</h4>
-    <ul class="list-group">
-      <li class="list-group-item justify-content-between" >
-        <span class="list-group-item-heading">Cras justo odio</span>
-        <span class="badge-pill badge-warning badge">14</span>
-      </li>
-      <li class="list-group-item justify-content-between">
-        <span class="list-group-item-heading">Dapibus ac facilisis in</span>
-        <span class="badge-pill badge badge-danger">2</span>
-      </li>
-      <li class="list-group-item justify-content-between">
-        <!--<span class="tag tag-pill tag-info float-right">1</span>-->
-        <span class="list-group-item-heading">Morbi leo risus</span>
-        <span class="badge-pill badge badge-info">1</span>
-      </li>
-    </ul>
-  </tab>
-  <tab heading="Link list">
-      <h4>Simple with links</h4>
-      <div class="list-group">
-        <a href="#" class="list-group-item justify-content-between active">
-          Cras justo odio
-          <i class="app-icon-chevron-right float-right"></i>
-        </a>
-        <a href="#" class="list-group-item justify-content-between">
-          Dapibus ac facilisis in
-          <i class="app-icon-chevron-right float-right"></i>
-        </a>
-        <a href="#" class="list-group-item justify-content-between">
-          Morbi leo risus
-          <i class="app-icon-chevron-right float-right"></i>
-        </a>
-        <a href="#" class="list-group-item justify-content-between">
-          Porta ac consectetur ac
-          <i class="app-icon-chevron-right float-right"></i>
-        </a>
-        <a href="#" class="list-group-item justify-content-between">
-          Vestibulum at eros
-          <i class="app-icon-chevron-right float-right"></i>
-        </a>
-      </div>
-  </tab>
-  <tab heading="Button list">
-      <h4>Simple with buttons</h4>
-      <div class="list-group">
-        <button type="button" class="list-group-item list-group-item-action">Cras justo odio</button>
-        <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-        <button type="button" class="app-icon-add list-group-item list-group-item-action">
-          Morbi leo risus
-        </button>
-        <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-        <button type="button" class="list-group-item list-group-item-action">Vestibulum at eros</button>
-      </div>
-  </tab>
-</tabset>
-<h2>Data grids</h2>
 <tabset>
   <tab heading="Simple">
       <h4>Simple table</h4>
@@ -354,23 +281,22 @@
         <thead>
         <tr class="row">
           <th class="col-sm-1"></th>
-          <th class="col-sm-6 text-center">Name</th>
+          <th class="col-sm-7 text-center">Name</th>
           <th class="col-sm-1 text-center">Height</th>
           <th class="col-sm-1 text-center">Mass</th>
-          <th class="col-sm-3"></th>
+          <th class="col-sm-2"></th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let user of users; let i = index" class="row">
           <td class="col-sm-1 text-center">{{page * 10 + i - 9}}</td>
-          <td class="col-sm-6 text-left">{{user.name}}</td>
+          <td class="col-sm-7 text-left">{{user.name}}</td>
           <td class="col-sm-1 text-right">{{user.height}}</td>
           <td class="col-sm-1 text-right">{{user.mass}}</td>
-          <th class="col-sm-3 text-center">
-            <button class="btn btn-secondary app-icon-edit" type="button"></button>
-            <button class="btn btn-secondary app-icon-remove" type="button"></button>
-            <button class="btn btn-secondary app-icon-monster" type="button"></button>
-          </th>
+          <td class="col-sm-2 text-center">
+            <button class="btn btn-secondary btn-sm app-icon-edit" type="button"></button>
+            <button class="btn btn-secondary btn-sm app-icon-remove" type="button"></button>
+          </td>
         </tr>
         </tbody>
         <tfoot>

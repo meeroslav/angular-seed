@@ -11,10 +11,14 @@
 
 .page-header {
   display: flex;
-  padding-bottom: $spacer-y;
+  margin: (-$spacer-y) (-$spacer-x) $spacer-y;
+  padding: $spacer-y;
+  background: $breadcrumb-bg;
+  box-shadow: $breadcrumb-shadow;
 
   h1 {
     flex: 1;
+    margin: 0;
   }
 }
 

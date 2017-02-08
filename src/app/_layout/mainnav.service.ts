@@ -39,9 +39,14 @@ export class MainNav {
           url: '/cards'
         },
         {
-          text: 'Data representation',
+          text: 'Data grids',
           icon: 'app-icon-list',
           url: '/table'
+        },
+        {
+          text: 'Data lists',
+          icon: 'app-icon-list',
+          url: '/data-list'
         },
         {
           text: 'Miscellaneous',
