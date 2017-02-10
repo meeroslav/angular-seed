@@ -5,6 +5,7 @@ import {ModalDialogService} from '../_common/modal-dialog/modal-dialog.service';
 import {SimpleModalComponent} from '../_common/modal-dialog/simple-modal.component';
 import {IMapChange, WorldMapComponent} from '../_common/custom-components/world-map/world-map.component';
 import { ITreeNode } from '../_common/custom-components/tree/tree-node.component';
+import { LoadingIndicatorService } from '../_common/locading-indicator/loading-indicator.service';
 
 const tree = [
   {text: 'Category 1', children: [{id: '1', text: 'Sub-Category1'}, {id: '2', text: 'Sub-Category2'}]},
@@ -45,7 +46,7 @@ export class MiscComponent implements OnInit {
   treeDataMultiLevel: ITreeNode[];
   treeDataMultiLevelWithIcons: ITreeNode[];
 
-  constructor(private modalDialogService: ModalDialogService,
+  constructor(private modalDialogService: ModalDialogService, private loadingIndicator: LoadingIndicatorService,
               private viewContainer: ViewContainerRef,
               private element: ElementRef) {
     (this.tomorrow = new Date()).setDate(this.tomorrow.getDate() + 1);
@@ -162,5 +163,12 @@ export class MiscComponent implements OnInit {
     if (node) {
       this.selectedTreeNode = node;
     }
+  }
+
+  showLoadingIndicator() {
+    this.loadingIndicator.start();
+    setTimeout(() => {
+      this.loadingIndicator.done();
+    }, 2000);
   }
 }

@@ -2,7 +2,7 @@
 @import 'variables';
 @import 'animations';
 
-#preloader {
+#loading-indicator {
   position: fixed;
   top: 0;
   left: 0;
@@ -10,6 +10,10 @@
   height: 100%;
   z-index: $theme-spinner-z;
   background: $greentube_gray_01;
+
+  &.overlay {
+    opacity: 0.5;
+  }
 
   & > div {
     display: block;
