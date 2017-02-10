@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { ModalDialogModule } from './_common/modal-dialog/modal-dialog.module';
 import { TabsModule, PaginationModule } from 'ng2-bootstrap';
 import { LoadingIndicatorModule } from './_common/locading-indicator/loading-indicator.module';
+import { FeedbackModule } from './_common/feedback/feedback.module';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { LoadingIndicatorModule } from './_common/locading-indicator/loading-ind
     TabsModule.forRoot(),
     PaginationModule.forRoot(),
     LoadingIndicatorModule.forRoot(),
+    FeedbackModule.forRoot(),
     appRouting
   ],
   declarations: [AppComponent, HeaderComponent, MainNavComponent, FooterComponent],
