@@ -35,10 +35,10 @@
 // Tabs
 
 .tab-content {
-  background: $nrgs-tab-content-bg;
-  border-right: $nrgs-tab-border-color solid $card-border-width;
-  border-bottom: $nrgs-tab-border-color solid $card-border-width;
-  border-left: $nrgs-tab-border-color solid $card-border-width;
+  background: $theme-tab-content-bg;
+  border-right: $theme-border-color solid $card-border-width;
+  border-bottom: $theme-border-color solid $card-border-width;
+  border-left: $theme-border-color solid $card-border-width;
 }
 .nav-tabs .nav-link {
   line-height: 1;

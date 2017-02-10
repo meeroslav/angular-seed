@@ -66,6 +66,8 @@ a {
     color: inherit;
   }
 }
-*:focus {
-  outline:none;
+a, button, input, select {
+  &:focus {
+    outline: none !important;
+  }
 }

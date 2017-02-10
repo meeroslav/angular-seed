@@ -1,0 +1,134 @@
+@import "../../../../assets/styles/variables";
+
+$bullet-width: $spacer-x;
+$bullet-border-width: $theme-accent-width;
+
+:host {
+  display: block;
+  margin-bottom: $spacer-y;
+
+  .wizard-content {
+    padding: $spacer-y 0;
+  }
+
+  .wizard-nav {
+    display: block;
+    border-width: 0 0 $theme-accent-width 0;
+    border-style: solid;
+    margin-bottom: 0;
+    border-color: $theme-border-color;
+    background: $gray-lightest;
+
+    &:after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+  }
+
+  .wizard-footer {
+    padding: $spacer-y / 2 0;
+    border-width: $bullet-border-width 0 0 0;
+    border-style: solid;
+    border-color: $theme-border-color;
+    clear: both;
+
+    &:after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+  }
+
+  .wizard-nav-item {
+    float: left;
+  }
+
+  &.vertical {
+    display: flex;
+    flex-wrap: wrap;
+
+    .wizard-content {
+      flex: 1 0;
+    }
+
+    .wizard-footer {
+      flex: 1 0 100%;
+    }
+
+    .wizard-nav {
+      flex: 0 1 10rem;
+      border-width: 0 $theme-accent-width 0 0;
+      margin-right: $spacer-x;
+      margin-bottom: 0;
+    }
+    .wizard-nav-item {
+      float: none;
+      margin-right: -$bullet-border-width;
+      min-width: 10rem;
+    }
+    .wizard-nav-link {
+      border-width: 0 $bullet-border-width 0 0;
+      margin-bottom: 0;
+      width: 100%;
+      text-align: right;
+      padding: $spacer-y * 1.5 $spacer-x * 2;
+
+      &:before {
+        left: auto;
+        right: -$bullet-width + $bullet-border-width;
+        top: 50%;
+        bottom: auto;
+        margin-top: -$bullet-width + $bullet-border-width;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .wizard-nav-link {
+    padding: $spacer-y $spacer-x * 2;
+    border-width: 0 0 $bullet-border-width 0;
+    border-style: solid;
+    border-color: $theme-border-color;
+    position: relative;
+    margin-bottom: -$bullet-border-width;
+    box-sizing: border-box;
+
+    &:before {
+      bottom: -$bullet-width + $bullet-border-width;
+      margin-left: -$bullet-width;
+      left: 50%;
+      width: $bullet-width + $bullet-border-width;
+      height: $bullet-width + $bullet-border-width;
+      border-width: $bullet-border-width;
+      border-style: solid;
+      border-color: inherit;
+      box-shadow: 0 0 0 $theme-accent-width $white, inset 0 0 0 ($bullet-border-width * 2) $white;
+      border-radius: 50%;
+      position: absolute;
+      content: "";
+    }
+
+    &.active {
+      border-color: $brand-primary;
+    }
+
+    &.current {
+      color: $brand-primary;
+
+      &:before {
+        border-width: ($bullet-border-width * 2);
+        width: 0;
+        height: 0;
+      }
+    }
+
+    &[disabled] {
+      color: darken($white, 20%);
+      background: none;
+    }
+    &[disabled]:before {
+      border-color: darken($white, 20%);
+    }
+  }
+}

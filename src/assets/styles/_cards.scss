@@ -1,9 +1,8 @@
 @import 'colors';
 @import 'variables';
-@import '../../../node_modules/bootstrap/scss/variables.scss';
 
 @mixin card-top-border($color) {
-  border-top: $nrgs-accent-width solid $color;
+  border-top: $theme-accent-width solid $color;
 }
 
 // New styles

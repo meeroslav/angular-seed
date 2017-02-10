@@ -10,8 +10,8 @@
     background: $nrgs_01;
 
     & > .nav-link {
-      border-left: $greentube_green_03 $nrgs-accent-width solid;
-      padding-left: $spacer-x - $nrgs-accent-width;
+      border-left: $greentube_green_03 $theme-accent-width solid;
+      padding-left: $spacer-x - $theme-accent-width;
     }
   }
 

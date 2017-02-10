@@ -22,8 +22,8 @@ header {
   }
 
   .navbar-brand {
-    width: $nrgs-side-nav-width;
-    flex: 0 0 $nrgs-side-nav-width;
+    width: $theme-side-nav-width;
+    flex: 0 0 $theme-side-nav-width;
     padding-left: 0;
     padding-right: 0;
     margin-right: 0;
@@ -68,9 +68,14 @@ main {
   }
 }
 
+.btn[class^="app-icon-"]:before, .btn[class*=" app-icon-"]:before {
+  float: left;
+  line-height: 1.3;
+}
+
 #main-nav {
-  flex: 0 0 $nrgs-side-nav-width;
-  width: $nrgs-side-nav-width;
+  flex: 0 0 $theme-side-nav-width;
+  width: $theme-side-nav-width;
   overflow-y: auto;
   overflow-x: hidden;
   display: block;
@@ -83,8 +88,8 @@ main {
   @include media-breakpoint-up(sm) {
 
     &.collapsed {
-      width: $nrgs-side-nav-collapsed-width;
-      flex: 0 0 $nrgs-side-nav-collapsed-width;
+      width: $theme-side-nav-collapsed-width;
+      flex: 0 0 $theme-side-nav-collapsed-width;
 
       .nav-link-text {
         opacity: 0;
@@ -93,11 +98,11 @@ main {
   }
 
   @include media-breakpoint-down(sm) {
-    transform: translate3d(-$nrgs-side-nav-width, 0, 0);
+    transform: translate3d(-$theme-side-nav-width, 0, 0);
 
     & + .main-content {
-      transform: translate3d(-$nrgs-side-nav-width, 0, 0);
-      margin-right: -$nrgs-side-nav-width;
+      transform: translate3d(-$theme-side-nav-width, 0, 0);
+      margin-right: -$theme-side-nav-width;
       @include animateProperty();
     }
 
@@ -121,7 +126,7 @@ main {
 }
 
 aside.main-aside {
-  flex: 0 0 $nrgs-side-nav-width;
+  flex: 0 0 $theme-side-nav-width;
   display: none;
 
   @include media-breakpoint-up(sm) {
