@@ -8,6 +8,7 @@
   }
 
   notify(feedback: IFeedback) {
+    feedback.type = feedback.type || 'info';
     this.toasts.unshift(feedback);
     feedback.timer = window.setTimeout(() => {
       this.cancel(feedback);
@@ -37,4 +38,5 @@ export interface IFeedback {
   bodyData?: Object;
   timer?: any;
   action?: { text: string, textData?: Object, callback: Function };
+  type?: 'success' | 'info' | 'warning' | 'danger';
 }

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'toaster',
   template: `
-    <alert type="success" *ngFor="let toast of toasts" dismissible="true" (onClose)="removeToast(toast)">
+    <alert [type]="toast.type" *ngFor="let toast of toasts" dismissible="true" (onClose)="removeToast(toast)">
       <div class="alert-body">
         <div class="info">
             <div class="heading">{{toast.heading | translate:(toast.headingData || {})}}</div>

@@ -179,21 +179,17 @@ export class MiscComponent implements OnInit {
 
   fireToast(type?: number) {
     if (!type) {
-      this.feedbackService.notify({ heading: 'A random toaster' });
+      this.feedbackService.notify({ heading: 'A random toaster', type: 'success' });
       return;
     }
     if (type === 1) {
       this.feedbackService.notify({heading: 'A random toaster with action', action: {text: 'My action', callback: () => { alert('this is action'); }}});
     }
     if (type === 2) {
-      this.feedbackService.notify({heading: 'A random toaster with body', body: 'This is some body text'});
+      this.feedbackService.notify({heading: 'A random toaster with body', type: 'danger', body: 'This is some body text'});
     }
     if (type === 3) {
-      this.feedbackService.notify({heading: 'A random toaster with action and body', body: 'This is some body text', action: {text: 'My action', callback: () => { alert('this is action'); }}});
+      this.feedbackService.notify({heading: 'A random toaster with action and body', type: 'warning', body: 'This is some body text', action: {text: 'My action', callback: () => { alert('this is action'); }}});
     }
-  }
-
-  fireWithButton() {
-    this.feedbackService.notify({heading: 'A random toaster with action'});
   }
 }
