@@ -1,5 +1,6 @@
 ﻿export class FeedbackService {
   static delay = 5000;
+
   toasts: IFeedback[];
 
   constructor() {
@@ -7,7 +8,7 @@
   }
 
   notify(feedback: IFeedback) {
-    this.toasts.push(feedback);
+    this.toasts.unshift(feedback);
     feedback.timer = window.setTimeout(() => {
       this.cancel(feedback);
     }, FeedbackService.delay);
