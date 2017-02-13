@@ -1,3 +1,6 @@
+@import '../../../assets/styles/typography';
+@import '../../../assets/styles/variables';
+
 @keyframes FeedbackItemAnimation {
   0% {
     -ms-transform: scaleY(0) translateY(50%);
@@ -10,6 +13,36 @@
     transform: scaleY(1) translateY(0%);
   }
 }
-.feedback-item {
+alert {
   animation: FeedbackItemAnimation 250ms;
+  margin: 0 $grid-gutter-width-base;
+  display: block;
+  position: relative;
+}
+
+.alert-body {
+  display: flex;
+  width: 100%;
+  padding-right: 2 * $spacer-x;
+}
+
+:host {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.info {
+  flex: 1;
+  @include fontLight();
+}
+.heading {
+  @include fontBold();
+}
+.link {
+  flex: 0 0 auto;
+  position: relative;
+  cursor: pointer;
+  padding: $spacer-y / 2 0;
 }

@@ -119,6 +119,7 @@ main {
 .main-content {
   flex: 1;
   overflow: auto;
+  position: relative;
 
   & > .container-fluid {
     padding: $grid-gutter-width-base $grid-gutter-width-base;
@@ -148,4 +149,10 @@ aside.main-aside {
     margin-top: $spacer-y;
     margin-bottom: $spacer-y;
   }
+}
+
+.alert-dismissible .close {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

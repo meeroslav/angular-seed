@@ -1,5 +1,5 @@
 ﻿export class FeedbackService {
-  static delay = 3000;
+  static delay = 5000;
   toasts: IFeedback[];
 
   constructor() {

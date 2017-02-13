@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FeedbackService } from './feedback.service';
 import { ToasterComponent } from './toaster.component';
 import { TranslateModule } from 'ng2-translate';
+import { AlertModule } from 'ng2-bootstrap/alert';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, AlertModule.forRoot()],
   declarations: [ToasterComponent],
   exports: [ToasterComponent]
 })
