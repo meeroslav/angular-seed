@@ -44,7 +44,7 @@ describe('Toaster.Component',
             let component = new ToasterComponent(service);
             let testText = 'some text';
 
-            service.toastNotifications.push({ heading: testText });
+            service.toasts.push({ heading: testText });
 
             expect(component.toasts).toEqual([{ heading: testText }], 'toasts should be equal to service toasts');
         });
@@ -72,7 +72,7 @@ describe('Toaster.Component',
 
         it('should show toast items if defined', () => {
             let testText = 'some text';
-            service.toastNotifications.push({ heading: testText });
+            service.toasts.push({ heading: testText });
             fixture.detectChanges();
 
             let indicator = fixture.debugElement.query(By.css('.feedback-item'));

@@ -103,7 +103,7 @@ $bullet-border-width: $theme-accent-width;
       border-width: $bullet-border-width;
       border-style: solid;
       border-color: inherit;
-      box-shadow: 0 0 0 $theme-accent-width $white, inset 0 0 0 ($bullet-border-width * 2) $white;
+      box-shadow: inset 0 0 0 ($bullet-border-width * 2) $white;
       border-radius: 50%;
       position: absolute;
       content: "";

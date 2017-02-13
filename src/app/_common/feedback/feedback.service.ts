@@ -1,53 +1,39 @@
 ﻿export class FeedbackService {
-    static delay = 3000;
+  static delay = 3000;
+  toasts: IFeedback[];
 
-    toastNotifications: IToastFeedback[];
-    modalNotifications: IFeedback[];
+  constructor() {
+    this.toasts = [];
+  }
 
-    constructor() {
-        this.modalNotifications = [];
-        this.toastNotifications = [];
+  notify(feedback: IFeedback) {
+    this.toasts.push(feedback);
+    feedback.timer = window.setTimeout(() => {
+      this.cancel(feedback);
+    }, FeedbackService.delay);
+  }
+
+  cancel(feedback: IFeedback) {
+    let list: Array<IFeedback> = this.toasts;
+    const index = list.indexOf(feedback);
+    if (index !== -1) {
+      if (feedback.timer) {
+        clearTimeout(feedback.timer);
+        feedback.timer = null;
+      }
+      list.splice(index, 1);
     }
-
-    notify(feedback: IFeedback, isModal?: boolean) {
-        if (isModal) {
-            this.modalNotifications.push(feedback);
-        } else {
-            let toastFeedback = feedback as IToastFeedback;
-            this.toastNotifications.push(toastFeedback);
-            toastFeedback.timer = window.setTimeout(() => {
-                this.cancel(toastFeedback , false);
-            }, FeedbackService.delay);
-        }
-    }
-
-    cancel(feedback: IToastFeedback, isModal?: boolean) {
-        let list: Array<IToastFeedback|IFeedback> = isModal ? this.modalNotifications : this.toastNotifications;
-        const index = list.indexOf(feedback);
-        if (index !== -1) {
-            if (feedback.timer) {
-                clearTimeout(feedback.timer);
-                feedback.timer = null;
-            }
-            list.splice(index, 1);
-        }
-    }
+  }
 }
 
 /**
- * Feedback iterface
+ * Feedback interface
  */
 export interface IFeedback {
-    heading: string;
-    headingData?: Object;
-    body?: string;
-    bodyData?: Object;
-    action?: { text: string, textData?: Object, callback: Function };
-}
-
-/**
- * Toast feedback
- */
-export interface IToastFeedback extends IFeedback {
-    timer?: any;
+  heading: string;
+  headingData?: Object;
+  body?: string;
+  bodyData?: Object;
+  timer?: any;
+  action?: { text: string, textData?: Object, callback: Function };
 }

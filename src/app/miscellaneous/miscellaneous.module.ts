@@ -8,6 +8,7 @@ import { CustomComponentsModule } from '../_common/custom-components/custom-comp
 import { TabsModule } from 'ng2-bootstrap';
 import { DatepickerModule } from 'ng2-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FeedbackModule } from '../_common/feedback/feedback.module';
 
 let routes = [
   { path: '', component: MiscComponent }
@@ -23,6 +24,7 @@ let routes = [
     FormsModule,
     ReactiveFormsModule,
     CustomComponentsModule,
+    FeedbackModule,
     RouterModule.forChild(routes)
   ],
   declarations: [MiscComponent]

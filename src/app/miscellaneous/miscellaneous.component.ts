@@ -6,6 +6,7 @@ import {SimpleModalComponent} from '../_common/modal-dialog/simple-modal.compone
 import {IMapChange, WorldMapComponent} from '../_common/custom-components/world-map/world-map.component';
 import { ITreeNode } from '../_common/custom-components/tree/tree-node.component';
 import { LoadingIndicatorService } from '../_common/locading-indicator/loading-indicator.service';
+import { FeedbackService } from '../_common/feedback/feedback.service';
 
 const tree = [
   {text: 'Category 1', children: [{id: '1', text: 'Sub-Category1'}, {id: '2', text: 'Sub-Category2'}]},
@@ -46,9 +47,13 @@ export class MiscComponent implements OnInit {
   treeDataMultiLevel: ITreeNode[];
   treeDataMultiLevelWithIcons: ITreeNode[];
 
-  constructor(private modalDialogService: ModalDialogService, private loadingIndicator: LoadingIndicatorService,
-              private viewContainer: ViewContainerRef,
-              private element: ElementRef) {
+  constructor(
+    private modalDialogService: ModalDialogService,
+    private loadingIndicator: LoadingIndicatorService,
+    private viewContainer: ViewContainerRef,
+    private element: ElementRef,
+    private feedbackService: FeedbackService
+  ) {
     (this.tomorrow = new Date()).setDate(this.tomorrow.getDate() + 1);
     this.dateDisabled = [{date: this.tomorrow, mode: 'day'}];
   }
@@ -170,5 +175,25 @@ export class MiscComponent implements OnInit {
     setTimeout(() => {
       this.loadingIndicator.done();
     }, 2000);
+  }
+
+  fireToast(type?: number) {
+    if (!type) {
+      this.feedbackService.notify({ heading: 'A random toaster' });
+      return;
+    }
+    if (type === 1) {
+      this.feedbackService.notify({heading: 'A random toaster with action', action: {text: 'My action', callback: () => { alert('this is action'); }}});
+    }
+    if (type === 2) {
+      this.feedbackService.notify({heading: 'A random toaster with body', body: 'This is some body text'});
+    }
+    if (type === 3) {
+      this.feedbackService.notify({heading: 'A random toaster with action and body', body: 'This is some body text', action: {text: 'My action', callback: () => { alert('this is action'); }}});
+    }
+  }
+
+  fireWithButton() {
+    this.feedbackService.notify({heading: 'A random toaster with action'});
   }
 }

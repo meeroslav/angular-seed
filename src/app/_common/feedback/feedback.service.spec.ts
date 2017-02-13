@@ -17,13 +17,13 @@ describe('Feedback.Service: ', () => {
     });
 
     afterEach(() => {
-        service.toastNotifications.forEach((toast: IToastFeedback) => {
+        service.toasts.forEach((toast: IToastFeedback) => {
             toast.timer && clearTimeout(toast.timer);
         });
     });
 
     it('should initialize feedback service', () => {
-        expect(service.toastNotifications).toBeDefined();
+        expect(service.toasts).toBeDefined();
     });
 
     it('should add new toast notification with text only and start timer', () => {
@@ -32,8 +32,8 @@ describe('Feedback.Service: ', () => {
         };
         service.notify(feedback);
 
-        expect(service.toastNotifications.length).toEqual(1);
-        expect(service.toastNotifications[0].timer).toBeDefined();
+        expect(service.toasts.length).toEqual(1);
+        expect(service.toasts[0].timer).toBeDefined();
     });
     it('should add new modal notification', () => {
         var feedback: IFeedback = {
@@ -51,7 +51,7 @@ describe('Feedback.Service: ', () => {
         service.notify(feedback);
         jasmine.clock().tick(3000);
 
-        expect(service.toastNotifications.length).toEqual(0);
+        expect(service.toasts.length).toEqual(0);
         expect(feedback.timer).toBeNull();
     });
     it('should remove toast but not stop timer if modified', () => {
@@ -62,7 +62,7 @@ describe('Feedback.Service: ', () => {
         feedback.timer = 0;
         jasmine.clock().tick(3000);
 
-        expect(service.toastNotifications.length).toEqual(0);
+        expect(service.toasts.length).toEqual(0);
         expect(feedback.timer).not.toBeNull();
     });
     it('should remove toast after canceling it', () => {
@@ -72,7 +72,7 @@ describe('Feedback.Service: ', () => {
         service.notify(feedback);
         service.cancel(feedback);
 
-        expect(service.toastNotifications.length).toEqual(0);
+        expect(service.toasts.length).toEqual(0);
         expect(feedback.timer).toBeNull();
     });
     it('should remove modal after canceling it', () => {
@@ -91,7 +91,7 @@ describe('Feedback.Service: ', () => {
         service.notify(feedback);
         service.cancel({heading: 'def'});
 
-        expect(service.toastNotifications.length).toEqual(1);
+        expect(service.toasts.length).toEqual(1);
     });
     it('should rnot emove modal if wrong toast canceled', () => {
         var feedback: IFeedback = {

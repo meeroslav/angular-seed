@@ -105,6 +105,9 @@
     <button type="button" class="btn btn-primary" (click)="showLoadingIndicator()">Turn on loading indicator for 2 sec</button>
   </tab>
   <tab heading="Toasters and Feedback">
-    TBDec
+    <button type="button" class="btn btn-primary" (click)="fireToast()">Fire toast</button>
+    <button type="button" class="btn btn-success" (click)="fireToast(1)">Fire toast with action</button>
+    <button type="button" class="btn btn-danger" (click)="fireToast(2)">Fire toast with body</button>
+    <button type="button" class="btn btn-info" (click)="fireToast(3)">Fire toast with body and action</button>
   </tab>
 </tabset>
