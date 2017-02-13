@@ -9,6 +9,7 @@ import {User, Colors, Movie, ISWPlanet} from './form.interface';
 import {FormsService} from './forms.service';
 import {ICountable} from '../table/table.service';
 import {ITreeNode} from '../_common/custom-components/tree/tree-node.component';
+import { IHighlightMarker } from '../_common/custom-components/highlight-area/highlight-area.interface';
 
 @Component({
   // The selector is what angular internally uses
@@ -123,8 +124,32 @@ export class FormsComponent implements OnInit {
       secondRate: [this.movie.secondRate, Validators.required],
       averageRating: new FormControl({value: this.movie.averageRating, disabled: true}),
       planet: '',
-      category: [null, Validators.required]
+      category: [null, Validators.required],
+      randomText: ['', Validators.required],
     });
+  }
+
+  private markerCallback(): (value: string) => IHighlightMarker[] {
+    return (value: string) => {
+      // extract all that match regex
+      let regex = new RegExp('angular-\\w*', 'g');
+      let found = regex.exec(value);
+      let results = [];
+      while (found) {
+        let result = {
+          value: found[0],
+          index: found.index,
+          duplicate: results.some((r: any) => r.value === found[0])
+        };
+        results.push(result);
+        // get next IP
+        found = regex.exec(value);
+      }
+
+      return results.map((res: any) => {
+        return { start: res.index, end: res.index + res.value.length, special: res.duplicate };
+      });
+    };
   }
 
   /**

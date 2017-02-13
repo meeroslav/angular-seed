@@ -11,11 +11,12 @@ import { Wizard } from './wizard/wizard.component';
 import { SimpleWizardSlide } from './wizard/simple-wizard-slide.component';
 import { LoadingIndicatorModule } from '../locading-indicator/loading-indicator.module';
 import { WizardSlide } from './wizard/wizard-slide';
+import { HighlightAreaComponent } from './highlight-area/highlight-area.component';
 
 @NgModule({
   imports: [TranslateModule, CommonModule, DispatcherModule.forRoot(), LoadingIndicatorModule],
-  declarations: [WorldMapComponent, TreeNode, TreeComponent, Wizard, WizardSlide, SimpleWizardSlide],
-  exports: [WorldMapComponent, TreeNode, TreeComponent, Wizard, WizardSlide, SimpleWizardSlide]
+  declarations: [WorldMapComponent, TreeNode, TreeComponent, Wizard, WizardSlide, SimpleWizardSlide, HighlightAreaComponent],
+  exports: [WorldMapComponent, TreeNode, TreeComponent, Wizard, WizardSlide, SimpleWizardSlide, HighlightAreaComponent]
 })
 export class CustomComponentsModule {
 }

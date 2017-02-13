@@ -134,7 +134,8 @@
               <div class="row">
                 <!-- Basic ratings component -->
                 <div class="col-sm-8">
-                  <rating formControlName="firstRate" placement="right" max="5"
+                  <label for="firstRate">Ratings</label><br/>
+                  <rating formControlName="firstRate" placement="right" max="5" id="firstRate"
                           stateOn="app-icon-star" stateOff="app-icon-star-o"
                           [tooltip]="advancedControlsForm.controls.firstRate.errors && firstRateTT">
                   </rating>
@@ -157,25 +158,28 @@
 
                 <!-- static typeahed not editable field -->
                 <div class="col-sm-8">
-                  <div class="form-group">
-                    <label for="name">Static typeahead non editable - Star wars planets </label>
-                    <input type="text" class="form-control" formControlName="planet"
-                           [typeahead]="search"
-                           typeaheadOptionField="name"
-                           typeaheadGroupField="rotation_period"
-                    />
-                  </div>
+                  <label for="planet">Static typeahead non editable - Star wars planets </label>
+                  <input type="text" class="form-control" formControlName="planet" id="planet"
+                         [typeahead]="search"
+                         typeaheadOptionField="name"
+                         typeaheadGroupField="rotation_period"
+                  />
                 </div>
 
                 <!-- Tree component -->
                 <div class="col-sm-8">
-                  <div class="form-group">
-                    <label for="name">Tree component</label>
-                    <tree formControlName="category" class="form-control"
-                          [content]="treeData"
-                          [collapsed]="true"
-                          (nodeClick)="nodeSelectCallback($event)"></tree>
-                  </div>
+                  <label for="category">Tree component</label>
+                  <tree formControlName="category" class="form-control" id="category"
+                        [content]="treeData"
+                        [collapsed]="true"
+                        (nodeClick)="nodeSelectCallback($event)"></tree>
+                </div>
+
+                <!-- Highlight area -->
+                <div class="col-sm-8">
+                  <label for="randomText">Highlight area - marks: angular-*</label>
+                  <highlightarea formControlName="randomText" [markerCallback]="markerCallback()"
+                    class="form-control" id="randomText"></highlightarea>
                 </div>
               </div>
               <button class="btn btn-success" [disabled]="!advancedControlsForm.valid">Save data</button>
