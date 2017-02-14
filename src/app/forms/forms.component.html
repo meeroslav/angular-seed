@@ -14,9 +14,9 @@
           <h2>Basic form controls</h2>
           <form [formGroup]="basicControlsForm" novalidate>
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label" for="name">Name</label>
+              <label class="col-sm-12 col-form-label" for="name">Name</label>
               <div class="col-sm-10">
-                <input type="text" formControlName="name" class="form-control" id="name" placeholder="Name"
+                <input type="text" formControlName="name" class="form-control" id="name" placeholder="Enter your name"
                        placement="bottom"
                        [tooltip]="basicControlsForm.controls.favoriteNumber.errors && nameTT" >
                 <template #nameTT>
@@ -27,20 +27,17 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-4 col-form-label" for="favoriteNumber">Favorite number</label>
-              <div class="col-sm-4">
+              <label class="col-sm-2 col-form-label" for="favoriteNumber">Favorite number</label>
+              <div class="col-sm-4 col-lg-2">
                 <input type="number" formControlName="favoriteNumber" class="form-control" id="favoriteNumber"
-                       placeholder="Favorite number" placement="bottom">
+                       placement="bottom">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-4 col-form-label" for="favoriteColor">Favorite color</label>
-              <div class="col-sm-8">
-                <select class="custom-select" formControlName="favoriteColor" id="favoriteColor" placement="right"
-                        [tooltip]="basicControlsForm.controls.favoriteColor.errors && favoriteColorTT">
-                  <option [selected]="basicControlsForm.controls.favoriteColor.value == null" value="">
-                    Pick a color
-                  </option>
+              <label class="col-sm-2 col-form-label" for="favoriteColor">Favorite color</label>
+              <div class="col-sm-6 col-lg-4">
+                <select class="custom-select form-control" formControlName="favoriteColor" id="favoriteColor" placement="right"
+                        [tooltip]="basicControlsForm.controls.favoriteColor.errors && favoriteColorTT" infield-label="Enter value">
                   <option *ngFor="let color of colors" [value]="color.id">{{color.color}}</option>
                 </select>
                 <template #favoriteColorTT>
@@ -51,7 +48,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-4 col-form-label" for="observation">Observation</label>
+              <label class="col-sm-12 col-form-label" for="observation">Observation</label>
               <div class="col-sm-8">
                 <textarea class="form-control" formControlName="observation" id="observation" rows="4"
                           placeholder="Observation" placement="bottom"
@@ -110,6 +107,19 @@
                 </template>
               </div>
             </div>
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <input type="text" formControlName="name" class="form-control" id="name2"
+                       placement="bottom" infield-label="Enter name"
+                       [tooltip]="basicControlsForm.controls.favoriteNumber.errors && nameTT" >
+                <template #nameTT>
+                  <div *ngIf="basicControlsForm.controls.name.errors.required">
+                    {{'form.NAME_REQUIRED' | translate}}
+                  </div>
+                </template>
+              </div>
+            </div>
+
             <button class="btn btn-success" [disabled]="!basicControlsForm.valid">Save data</button>
           </form>
         </div>

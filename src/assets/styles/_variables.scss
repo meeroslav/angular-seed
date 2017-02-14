@@ -126,15 +126,24 @@ $input-padding-y: $spacer-y;
 
 $input-bg: $white;
 $input-box-shadow: $btn-box-shadow;
-$input-border-focus: lighten($brand-success, 25%);
+
+// $input-color-focus: $gray-dark;
+$input-border-focus: $brand-primary;
+$input-color-focus: $brand-primary;
+
+$input-color-placeholder: $gray-light;
+
 $custom-control-indicator-bg: $input-bg;
 $custom-control-indicator-box-shadow: $btn-box-shadow;
 $custom-control-active-indicator-bg: lighten($brand-success, 35%);
 $custom-control-focus-indicator-box-shadow: 0 0 0 1px $brand-success;
 $custom-control-checked-indicator-bg: $brand-success;
 $custom-checkbox-indeterminate-bg: $brand-success;
+
 $custom-select-focus-border-color: lighten($brand-success, 25%);
 $custom-select-focus-box-shadow: $btn-box-shadow;
+$custom-select-padding-x: $spacer-x;
+$custom-select-padding-y: $spacer-y;
 
 // Tooltips
 $tooltip-bg: $brand-danger;

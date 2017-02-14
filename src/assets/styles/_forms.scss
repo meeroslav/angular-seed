@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'typography';
+@import 'animations';
 @import '../../../node_modules/bootstrap/scss/_variables.scss';
 @import '../../../node_modules/bootstrap/scss/_mixins.scss';
 
@@ -10,6 +11,11 @@
 
 .custom-select {
   @include box-shadow($input-box-shadow);
+  width: 100%;
+}
+
+input[type=number] {
+  text-align: right;
 }
 
 input + .custom-control-indicator {
@@ -57,6 +63,33 @@ datepicker {
 
     &.active { box-shadow: none; }
     .text-info { color: $white !important; }
+  }
+}
+
+.infield-label-wrapper {
+  display: block;
+  width: 100%;
+  position: relative;
+
+  .form-control {
+    transition: all $animation-duration ease-in-out;
+  }
+}
+.infield-label {
+  position: absolute;
+  top: $spacer-y;
+  left: $spacer-x;
+  font-size: $theme-input-font-size;
+  color: $input-color-placeholder;
+}
+.infield-label-active {
+  .form-control {
+    padding-top: $spacer-y * 1.5;
+    padding-bottom: $spacer-y * 0.5;
+  }
+  .infield-label {
+    top: $spacer-y * 0.5;
+    font-size: $theme-input-font-size * 0.75;
   }
 }
 
