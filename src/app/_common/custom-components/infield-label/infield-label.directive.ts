@@ -7,7 +7,7 @@ const HAS_VALUE_CLASS: string = 'infield-label-active';
 @Directive({
   selector: '[infield-label]'
 })
-export class InfieldLabelDirective implements OnInit, DoCheck, AfterViewInit {
+export class InfieldLabelDirective implements DoCheck, AfterViewInit {
   @Input('infield-label') placeholder: string;
 
   locationElement: HTMLLabelElement;
@@ -31,7 +31,7 @@ export class InfieldLabelDirective implements OnInit, DoCheck, AfterViewInit {
    * On init if placeholder set wrap the form element
    * Attach a listener to keyup event
    */
-  ngOnInit() {
+  ngAfterViewInit() {
     if (this.placeholder) {
       let nativeElem = this.elementRef.nativeElement;
       let parent = nativeElem.parentNode;
@@ -48,9 +48,6 @@ export class InfieldLabelDirective implements OnInit, DoCheck, AfterViewInit {
         this.togglePlaceHolderVisibility();
       });
     }
-  }
-
-  ngAfterViewInit() {
     if (this.placeholder) {
       this.togglePlaceHolderVisibility();
     }

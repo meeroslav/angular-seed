@@ -13,11 +13,18 @@ import { LoadingIndicatorModule } from '../locading-indicator/loading-indicator.
 import { WizardSlide } from './wizard/wizard-slide';
 import { HighlightAreaComponent } from './highlight-area/highlight-area.component';
 import { InfieldLabelDirective } from './infield-label/infield-label.directive';
+import { TypeaheadComponent } from './typeahead/typeahead.component';
 
 @NgModule({
   imports: [TranslateModule, CommonModule, DispatcherModule.forRoot(), LoadingIndicatorModule],
-  declarations: [WorldMapComponent, TreeNode, TreeComponent, Wizard, WizardSlide, SimpleWizardSlide, HighlightAreaComponent, InfieldLabelDirective],
-  exports: [WorldMapComponent, TreeNode, TreeComponent, Wizard, WizardSlide, SimpleWizardSlide, HighlightAreaComponent, InfieldLabelDirective]
+  declarations: [
+    WorldMapComponent, TreeNode, TreeComponent, Wizard, WizardSlide, SimpleWizardSlide,
+    HighlightAreaComponent, InfieldLabelDirective, TypeaheadComponent
+  ],
+  exports: [
+    WorldMapComponent, TreeNode, TreeComponent, Wizard, WizardSlide, SimpleWizardSlide,
+    HighlightAreaComponent, InfieldLabelDirective, TypeaheadComponent
+  ]
 })
 export class CustomComponentsModule {
 }

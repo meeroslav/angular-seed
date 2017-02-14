@@ -1,0 +1,83 @@
+// @import "../../../../assets/styles/_colorDefinitions";
+
+:host {
+  height: auto;
+  padding: .2em .2em 0;
+  position: relative;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  &[disabled] {
+    // background-color: @color_6;
+
+    input {
+      background-color: inherit;
+    }
+  }
+
+  button {
+    white-space: nowrap;
+    margin-right: .2em;
+    margin-bottom: .2em;
+    margin-left: 0;
+  }
+
+  input {
+    margin-bottom: .2em;
+    padding-right: 1.5em;
+    outline: 0;
+    flex: 1;
+
+    &:active, &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .input-pointer {
+    position: absolute;
+    bottom: .2em;
+    right: .2em;
+    padding: .2em;
+  }
+
+  div {
+    width: 100%;
+    height: auto;
+    max-height: 10em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    // border: 1px solid @input_border;
+    transform-origin: top left;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    float: left;
+    min-width: 10em;
+    text-align: left;
+    background-color: white;
+    display: none;
+
+    button.suggestion {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: .2em;
+      cursor: pointer;
+      display: block;
+      text-align: left;
+      margin: 0;
+
+      &:focus {
+        background: rgba(0,0,0,.1);
+
+      }
+    }
+
+    &.expanded {
+      display: block;
+    }
+  }
+}

@@ -167,13 +167,17 @@
                 </div>
 
                 <!-- static typeahed not editable field -->
+                <div class="col-sm-12">
+                  <label>Static typeahead non editable - Star wars planets </label>
+                </div>
                 <div class="col-sm-8">
-                  <label for="planet">Static typeahead non editable - Star wars planets </label>
-                  <input type="text" class="form-control" formControlName="planet" id="planet"
-                         [typeahead]="search"
-                         typeaheadOptionField="name"
-                         typeaheadGroupField="rotation_period"
-                  />
+                  <!--<input type="text" class="form-control" formControlName="planet" id="planet"-->
+                         <!--[typeahead]="search"-->
+                         <!--typeaheadOptionField="name"-->
+                         <!--typeaheadGroupField="rotation_period"-->
+                  <!--/>-->
+                  <!--<typeahead class="form-control" formControlName="planet" infield-label="Get planet"-->
+                             <!--[suggestions]="planetNames" (valueChange)="getFilteredPlanets($event)"></typeahead>-->
                 </div>
 
                 <!-- Tree component -->

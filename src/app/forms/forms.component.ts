@@ -10,6 +10,7 @@ import {FormsService} from './forms.service';
 import {ICountable} from '../table/table.service';
 import {ITreeNode} from '../_common/custom-components/tree/tree-node.component';
 import { IHighlightMarker } from '../_common/custom-components/highlight-area/highlight-area.interface';
+import { ITypeaheadChange } from '../_common/custom-components/typeahead/typeahead.component';
 
 @Component({
   // The selector is what angular internally uses
@@ -30,6 +31,7 @@ export class FormsComponent implements OnInit {
   movie: Movie;
   colors: Array<Colors>;
   planets: ISWPlanet[];
+  planetNames: string[];
   search: Observable<string>;
   treeData: ITreeNode[];
 
@@ -82,8 +84,22 @@ export class FormsComponent implements OnInit {
   getPlanets() {
     this.service.getAllStarships(this.page).subscribe((response: ICountable<ISWPlanet>) => {
       this.planets = response.results;
+      this.planetNames = this.planets.map((planet: ISWPlanet) => planet.name);
       this.treeData = this.extendTree(this.planets);
     });
+  }
+
+  getFilteredPlanets(event: ITypeaheadChange) {
+
+    function filterItem(item: string) {
+      let itemUsed = event.existing.indexOf(item) !== -1;
+      if (itemUsed) {
+        return false;
+      }
+      return item.toLowerCase().indexOf(event.value.toLowerCase()) !== -1;
+    }
+
+    this.planetNames = this.planets.map((planet: ISWPlanet) => planet.name).filter(filterItem);
   }
 
   /**
@@ -91,12 +107,13 @@ export class FormsComponent implements OnInit {
    * @param text$
    */
 
-  getPlanetsAsObservable = (text$: Observable<string>) =>
-      text$
-          .debounceTime(200)
-          .distinctUntilChanged()
-          .map((term: any) => term.length < 2 ? []
-              : this.planets.filter((p: any) => new RegExp(term, 'gi').test(p.name)).splice(0, 10));
+  getPlanetsAsObservable(text$: Observable<string>) {
+    return text$
+      .debounceTime(200)
+      .distinctUntilChanged()
+      .map((term: any) => term.length < 2 ? []
+        : this.planets.filter((p: any) => new RegExp(term, 'gi').test(p.name)).splice(0, 10));
+  }
 
   /**
    * callback executed when a node
@@ -123,7 +140,7 @@ export class FormsComponent implements OnInit {
       firstRate: [this.movie.firstRate, Validators.required],
       secondRate: [this.movie.secondRate, Validators.required],
       averageRating: new FormControl({value: this.movie.averageRating, disabled: true}),
-      planet: '',
+      planet: [null, Validators.required],
       category: [null, Validators.required],
       randomText: ['', Validators.required],
     });
