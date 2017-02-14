@@ -14,6 +14,12 @@
     }
   }
 
+  .dropdown-toggle {
+    position: absolute;
+    bottom: $spacer-y;
+    right: $spacer-x;
+  }
+
   .btn.badge {
     white-space: nowrap;
     margin-right: $spacer-x / 4;
@@ -25,49 +31,6 @@
     border: none;
     outline: 0;
     flex: 1;
-  }
-
-  //
-  //.input-pointer {
-  //  position: absolute;
-  //  bottom: .2em;
-  //  right: .2em;
-  //  padding: .2em;
-  //}
-  //
-  .dropdown {
-  //  width: 100%;
-  //  height: auto;
-  //  max-height: 10em;
-  //  overflow-x: hidden;
-  //  overflow-y: auto;
-  //  // border: 1px solid @input_border;
-  //  transform-origin: top left;
-  //  z-index: 10;
-  //  float: left;
-  //  min-width: 10em;
-  //  text-align: left;
-  //  background-color: white;
-  //
-  //  button.suggestion {
-  //    width: 100%;
-  //    overflow: hidden;
-  //    text-overflow: ellipsis;
-  //    white-space: nowrap;
-  //    padding: .2em;
-  //    cursor: pointer;
-  //    display: block;
-  //    text-align: left;
-  //    margin: 0;
-  //
-  //    &:focus {
-  //      background: rgba(0,0,0,.1);
-  //
-  //    }
-  //  }
-  //
-  //  &.open {
-  //    display: block;
-  //  }
+    padding-right: $spacer-x;
   }
 }

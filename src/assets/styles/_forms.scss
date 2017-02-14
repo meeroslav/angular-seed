@@ -88,6 +88,7 @@ datepicker {
   left: $spacer-x;
   font-size: $theme-input-font-size;
   color: $input-color-placeholder;
+  pointer-events: none;
 }
 .infield-label-active {
   .form-control {

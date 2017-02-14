@@ -1,6 +1,6 @@
 import {
   Component, forwardRef, Input, OnDestroy, ElementRef, Output,
-  EventEmitter, Renderer, HostListener, AfterViewInit
+  EventEmitter, Renderer, HostListener, AfterViewInit, Inject
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -25,22 +25,19 @@ const MAXIMAL_WAIT = 800;
       />
 
     <i class="dropdown-toggle" *ngIf="showSuggestions && !isDisabled" (click)="toggleExpanded()"></i>
-    <ul role="menu" class="dropdown-menu" *ngIf="showSuggestions">
-      <li role="menuitem" *ngFor="let suggestion of suggestions">
-        <button class="dropdown-item" type="button"
-          (click)="addTag(suggestion)" (keydown)="handleButton($event)" (keyup)="handleButton($event)">
-          {{suggestion}}
-        </button>
-      </li>
-      <li *ngIf="!suggestions.length">
-        <button disabled="true" class="dropdown-item" type="button">{{'NO_RESULTS' | translate}}</button>      
-      </li>
-    </ul>
+    <div role="menu" class="dropdown-menu" *ngIf="showSuggestions">
+      <button role="menuitem" class="dropdown-item" type="button" *ngFor="let suggestion of suggestions"
+        (click)="addTag(suggestion)" (keydown)="handleButton($event)" (keyup)="handleButton($event)">
+        {{suggestion}}
+      </button>
+      <button *ngIf="!suggestions.length" disabled="true" class="dropdown-item" type="button">
+        {{'NO_RESULTS' | translate}}
+      </button>      
+    </div>
   `,
   styleUrls: ['./typeahead.component.scss'],
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => TypeaheadComponent), multi: true }],
   host: {
-    '[class.focused]': '_focused',
     '[class.show]': '_expanded',
     '[attr.disabled]': 'isDisabled || null',
     '[class.with-suggestions]': 'showSuggestions',
@@ -58,7 +55,6 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
   _multiValue: string[] = [];
 
   // ui state
-  _focused: boolean = false;
   _expanded: boolean = false;
 
   private _safeToRemove = false;
@@ -72,7 +68,7 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
    * @param elementRef
    * @param renderer
    */
-  constructor(private elementRef: ElementRef, private renderer: Renderer) {
+  constructor(@Inject(ElementRef) private elementRef: ElementRef, @Inject(Renderer) private renderer: Renderer) {
     this._accumulatedTimeout = 0;
   }
 
@@ -151,6 +147,8 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
    * Toggle dropdown
    */
   toggleExpanded(value?: boolean) {
+    this.setFocus();
+    this.elementRef.nativeElement.focus();
     this._expanded = value !== void 0 ?
       value :
       !this._expanded;
@@ -188,9 +186,9 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
    */
   handleInput(event: Event | KeyboardEvent) {
     event.stopPropagation(); // stop event bleeding
+    this.setFocus();
 
     let target = (event.target as HTMLInputElement);
-    this._focused = !!target.value;
     this._expanded = true;
 
     if (this.multiselect) {
@@ -210,7 +208,7 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
     }
     if (event.type === 'keydown' || event.type === 'keyup') {
       if ((event as KeyboardEvent).keyCode === 40 && this.suggestions.length > 0) { // arrow down
-        let button = this.elementRef.nativeElement.querySelector('button.suggestion:first-child');
+        let button = this.elementRef.nativeElement.querySelector('button.dropdown-item:first-child');
         this.renderer.invokeElementMethod(button, 'focus', []);
       }
     }
@@ -223,6 +221,7 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
    */
   handleButton(event: KeyboardEvent) {
     event.stopPropagation(); // stop event bleeding
+    this.setFocus();
 
     let target = (event.target as HTMLButtonElement);
 
@@ -238,6 +237,10 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
     } else {
       this.scrollToTarget(target);
     }
+  }
+
+  setFocus() {
+    this.renderer.invokeElementMethod(this.elementRef.nativeElement, 'focus', []);
   }
 
   /**
@@ -257,18 +260,17 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
     if (!value || !value.length) {
       value = void 0;
     }
-    this.elementRef.nativeElement.value = value;
     if (this.multiselect) {
       this._multiValue = value as string[] || [];
     } else {
       this._value = value as string;
     }
-    this.onChange(value);
+    this.elementRef.nativeElement.value = value;
+    console.log('change', this.value);
+    this.onChange(this.value);
   }
 
-  setDisabledState(isDisabled: boolean): void {
-    this.isDisabled = isDisabled;
-  }
+  setDisabledState(isDisabled: boolean): void { this.isDisabled = isDisabled; }
 
   onChange = (_) => { /**/ };
   onTouched = () => { /**/ };

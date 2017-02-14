@@ -91,8 +91,6 @@ export class FormsComponent implements OnInit {
   }
 
   getFilteredPlanets(event: ITypeaheadChange) {
-    console.log(event);
-
     function filterItem(item: string) {
       let itemUsed = event.existing.indexOf(item) !== -1;
       if (itemUsed) {
