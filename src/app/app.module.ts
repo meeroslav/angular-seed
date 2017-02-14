@@ -14,6 +14,7 @@ import { ModalDialogModule } from './_common/modal-dialog/modal-dialog.module';
 import { TabsModule, PaginationModule } from 'ng2-bootstrap';
 import { LoadingIndicatorModule } from './_common/locading-indicator/loading-indicator.module';
 import { FeedbackModule } from './_common/feedback/feedback.module';
+import { DropdownModule } from 'ng2-bootstrap/dropdown';
 
 @NgModule({
   imports: [
@@ -27,12 +28,15 @@ import { FeedbackModule } from './_common/feedback/feedback.module';
         new TranslateStaticLoader(http, 'assets/locales', `.${process.env.TRANSLATION_HASH}.json`),
       deps: [Http]
     }),
-    ModalDialogModule.forRoot(),
     // ng2-bootstrap stuff
     TabsModule.forRoot(),
     PaginationModule.forRoot(),
+    DropdownModule.forRoot(),
+    // custom stuff
+    ModalDialogModule.forRoot(),
     LoadingIndicatorModule.forRoot(),
     FeedbackModule.forRoot(),
+    // routes
     appRouting
   ],
   declarations: [AppComponent, HeaderComponent, MainNavComponent, FooterComponent],

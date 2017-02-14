@@ -15,8 +15,8 @@ const MAXIMAL_WAIT = 800;
 @Component({
   selector: 'typeahead',
   template: `
-    <button class="action-button thin-button icon-after option" [disabled]="isDisabled" [class.app-icon-remove]="!isDisabled" type="button"
-        *ngFor="let tag of _multiValue" (click)="removeTag(tag)">{{tag}}</button>
+    <button class="btn badge badge-primary align-icon-right" [class.app-icon-remove]="!isDisabled" 
+      [disabled]="isDisabled" type="button" *ngFor="let tag of _multiValue" (click)="removeTag(tag)">{{tag}}</button>
     <input *ngIf="!isDisabled || !multiselect || !_multiValue.length" [disabled]="isDisabled" type="text" autocomplete="off"
       (keyup)="handleInput($event)"
       (keydown)="handleInput($event)"
@@ -24,23 +24,26 @@ const MAXIMAL_WAIT = 800;
       (click)="toggleExpanded(true)"
       />
 
-    <i class="input-pointer" (click)="toggleExpanded()" *ngIf="showSuggestions"
-      [ngClass]="{'app-icon-chevron-down': !_expanded, 'app-icon-chevron-up': _expanded}"></i>
-    <div [class.expanded]="_expanded" *ngIf="showSuggestions">
-      <button class="suggestion" type="button" *ngFor="let suggestion of suggestions"
-      (click)="addTag(suggestion)" (keydown)="handleButton($event)" (keyup)="handleButton($event)">
-        {{suggestion}}
-      </button>
-      <button disabled="true" class="suggestion" type="button" *ngIf="!suggestions.length">
-        {{'NO_RESULTS' | translate}}
-      </button>
-    </div>
+    <i class="dropdown-toggle" *ngIf="showSuggestions && !isDisabled" (click)="toggleExpanded()"></i>
+    <ul role="menu" class="dropdown-menu" *ngIf="showSuggestions">
+      <li role="menuitem" *ngFor="let suggestion of suggestions">
+        <button class="dropdown-item" type="button"
+          (click)="addTag(suggestion)" (keydown)="handleButton($event)" (keyup)="handleButton($event)">
+          {{suggestion}}
+        </button>
+      </li>
+      <li *ngIf="!suggestions.length">
+        <button disabled="true" class="dropdown-item" type="button">{{'NO_RESULTS' | translate}}</button>      
+      </li>
+    </ul>
   `,
   styleUrls: ['./typeahead.component.scss'],
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => TypeaheadComponent), multi: true }],
   host: {
     '[class.focused]': '_focused',
-    '[attr.disabled]': 'isDisabled || null'
+    '[class.show]': '_expanded',
+    '[attr.disabled]': 'isDisabled || null',
+    '[class.with-suggestions]': 'showSuggestions',
   }
 })
 export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit , OnDestroy {

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { TranslateModule } from 'ng2-translate';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'ng2-bootstrap/dropdown';
 
 // components and directives
 import { WorldMapComponent } from './world-map/world-map.component';
@@ -17,7 +18,7 @@ import { InfieldLabelDirective } from './infield-label/infield-label.directive';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
 
 @NgModule({
-  imports: [TranslateModule, CommonModule, DispatcherModule.forRoot(), LoadingIndicatorModule, FormsModule],
+  imports: [TranslateModule, CommonModule, DispatcherModule.forRoot(), LoadingIndicatorModule, FormsModule, DropdownModule],
   declarations: [
     WorldMapComponent, TreeNode, TreeInputComponent, Wizard, WizardSlide, SimpleWizardSlide,
     HighlightAreaComponent, InfieldLabelDirective, TypeaheadComponent
