@@ -149,7 +149,7 @@ export class MiscComponent implements OnInit {
   }
 
   /**
-   * callback executed by the TreeComponent
+   * callback executed by the TreeInputComponent
    * Fetch the data and returns to the tree
    * @see {ITreeNode}
    */

@@ -9,6 +9,13 @@
   margin-bottom: $spacer-y;
 }
 
+.form-label {
+  @include fontBold();
+  margin-bottom: $spacer-y / 2;
+  text-transform: uppercase;
+  font-size: $theme-input-font-size * 0.8;
+}
+
 .custom-select {
   @include box-shadow($input-box-shadow);
   width: 100%;

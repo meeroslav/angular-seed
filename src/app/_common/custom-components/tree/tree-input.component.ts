@@ -4,7 +4,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'tree',
-  styleUrls: ['./tree.component.scss'],
+  styleUrls: ['./tree-input.component.scss'],
   template: `
       <tree-node *ngFor="let node of content" 
       [content]="node" 
@@ -14,11 +14,11 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
       `,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TreeComponent),
+    useExisting: forwardRef(() => TreeInputComponent),
     multi: true
   }]
 })
-export class TreeComponent implements ControlValueAccessor {
+export class TreeInputComponent implements ControlValueAccessor {
   @Input() content: ITreeNode[];
   @Input() collapsed: boolean;
   @Output() nodeClick = new EventEmitter();
@@ -32,7 +32,7 @@ export class TreeComponent implements ControlValueAccessor {
 
   /**
    * click fired by tree-node child
-   * @param $event
+   * @param event
    */
   onNodeClick(event: any) {
     this.selectedNode = event.node.id;

@@ -90,6 +90,7 @@ export class FormsComponent implements OnInit {
   }
 
   getFilteredPlanets(event: ITypeaheadChange) {
+    console.log(event);
 
     function filterItem(item: string) {
       let itemUsed = event.existing.indexOf(item) !== -1;
@@ -171,7 +172,7 @@ export class FormsComponent implements OnInit {
 
   /**
    * Extend the planets array and returns
-   * data in the expected format by the TreeComponent
+   * data in the expected format by the TreeInputComponent
    * @param planets
    * @returns {ITreeNode[]}
    */
