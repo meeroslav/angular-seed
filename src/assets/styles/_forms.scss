@@ -62,14 +62,14 @@ datepicker {
     padding: .5rem;
   }
   .btn-default {
-    background: $white;
+    background: $theme-datepicker-bg;
     border: 1px solid $btn-secondary-border;
   }
 
   .btn-info {
 
     &.active { box-shadow: none; }
-    .text-info { color: $white !important; }
+    .text-info { color: $theme-datepicker-bg !important; }
   }
 }
 

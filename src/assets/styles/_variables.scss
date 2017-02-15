@@ -1,29 +1,29 @@
-@import 'colors';
 @import 'typography';
 @import '../../../node_modules/bootstrap/scss/variables.scss';
 
-// Custom theme values
+/********************************
+    Custom theme values
+*********************************/
+// Colors
+$black: #000000;
+$white: #ffffff;
 
-$theme-spinner-z: 1000;
-$theme-side-nav-width: 14rem;
-$theme-side-nav-collapsed-width: 3rem;
+$greentube_blue_01: #00285e; // top gradient
+$greentube_blue_02: #005996;
+$greentube_blue_03: #0080bf; // bottom gradient
+$greentube_blue_04: #43c7f4;
 
-$theme-accent-width: 0.2rem;
+$greentube_green_01: #a0cf67;
+$greentube_green_02: #bcd75e;
+$greentube_green_03: #dce069;
+$greentube_green_04: #f0eb82;
 
-$theme-tab-content-bg: $white;
-
-$theme-border-color: #dadada;
-
-$theme-input-font-size: 0.875rem;
-
-/********************************************
-*********************************************
-          Override bootstrap values
-*********************************************
-*********************************************/
+$greentube_gray_01: #231f20;
+$greentube_gray_02: #404041;
+$greentube_gray_03: #b1b3b5;
+$greentube_gray_04: #e3e3e3;
 
 // Colors
-// TODO:
 $gray-dark:                 #231f20;
 $gray:                      #404041;
 $gray-light:                #8E97A8;
@@ -36,6 +36,29 @@ $brand-info:                #5bc0de;
 $brand-warning:             #f0ad4e;
 $brand-danger:              #d9534f;
 $brand-inverse:             $gray-dark;
+
+// Defined colors
+$theme-tab-content-bg: $white;
+$theme-wizard-bullet-bg: $white;
+$theme-datepicker-bg: $white;
+$theme-border-color: #dadada;
+
+$map-bg: $brand-info;
+$map-line-color: $black;
+$map-country-bg: $brand-success;
+
+// Values
+$theme-spinner-z: 1000;
+$theme-side-nav-width: 14rem;
+$theme-side-nav-collapsed-width: 3rem;
+$theme-accent-width: 0.2rem;
+$theme-input-font-size: 0.875rem;
+
+/********************************************
+*********************************************
+          Override bootstrap values
+*********************************************
+*********************************************/
 
 // Options
 $enable-flex:               true;
@@ -104,10 +127,6 @@ $btn-box-shadow: 0 3px 1px -2px rgba($black,.2), 0 2px 2px 0 rgba($black,.14), 0
 $btn-focus-box-shadow: 0 3px 1px -2px rgba($black,.2), 0 2px 2px 0 rgba($black,.14), 0 1px 2px 0 rgba($black,.12);
 $btn-active-box-shadow: 0 5px 5px -3px rgba($black,.2), 0 8px 10px 1px rgba($black,.14), 0 3px 14px 2px rgba($black,.12);
 
-// Maps
-$map-bg: $brand-info;
-$map-line-color: $black;
-$map-country-bg: $brand-success;
 $nav-pills-border-radius: 1rem;
 
 // Modal

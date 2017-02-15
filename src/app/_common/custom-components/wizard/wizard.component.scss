@@ -103,7 +103,7 @@ $bullet-border-width: $theme-accent-width;
       border-width: $bullet-border-width;
       border-style: solid;
       border-color: inherit;
-      box-shadow: inset 0 0 0 ($bullet-border-width * 2) $white;
+      box-shadow: inset 0 0 0 ($bullet-border-width * 2) $theme-wizard-bullet-bg;
       border-radius: 50%;
       position: absolute;
       content: "";
@@ -124,11 +124,11 @@ $bullet-border-width: $theme-accent-width;
     }
 
     &[disabled] {
-      color: darken($white, 20%);
+      color: darken($theme-wizard-bullet-bg, 20%);
       background: none;
     }
     &[disabled]:before {
-      border-color: darken($white, 20%);
+      border-color: darken($theme-wizard-bullet-bg, 20%);
     }
   }
 }

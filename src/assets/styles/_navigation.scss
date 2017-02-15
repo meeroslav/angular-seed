@@ -1,4 +1,3 @@
-@import 'colors';
 @import 'animations';
 @import 'variables';
 @import 'mixins';
@@ -7,7 +6,7 @@
 #main-nav {
 
   .active {
-    background: $nrgs_01;
+    background: $gray-dark;
 
     & > .nav-link {
       border-left: $greentube_green_03 $theme-accent-width solid;
@@ -66,7 +65,7 @@
 .nav-dropdown-items {
   max-height: 0;
   overflow-y: hidden;
-  background: $nrgs_01;
+  background: $gray-dark;
 
   @include animateProperty(max-height);
 }
