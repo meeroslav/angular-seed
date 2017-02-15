@@ -8,7 +8,6 @@
 
   &[disabled] {
     background-color: $input-bg-disabled;
-    pointer-events: none;
     cursor: not-allowed;
 
     input {

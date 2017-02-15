@@ -17,9 +17,9 @@ const MAXIMAL_WAIT = 800;
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <button class="btn badge badge-primary align-icon-right" [class.app-icon-remove]="!isDisabled"
-      [attr.tabindex]="isDisabled ? -1 : 0" [disabled]="isDisabled" type="button" 
+      [attr.tabindex]="isDisabled ? -1 : 0" [disabled]="isDisabled || null" type="button" 
       *ngFor="let tag of _multiValue" (click)="removeTag(tag)">{{tag}}</button>
-    <input *ngIf="!isDisabled || !multiselect || !_multiValue.length" [disabled]="isDisabled" type="text" autocomplete="off"
+    <input *ngIf="!isDisabled || !multiselect || !_multiValue.length" [disabled]="isDisabled || null" type="text" autocomplete="off"
       (keyup)="handleInput($event)"
       (keydown)="handleInput($event)"
       (paste)="handleInput($event)"
