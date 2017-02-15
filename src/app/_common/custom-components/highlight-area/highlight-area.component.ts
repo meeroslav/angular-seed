@@ -94,7 +94,18 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
     }
     this._value = this.elementRef.nativeElement.value = value;
     this.onChange(value);
+    this.triggerOnChange(this.elementRef.nativeElement);
     this.renderContent(value, isTrimmed);
+  }
+
+  triggerOnChange(element: any) {
+    if ('createEvent' in document) {
+      let evt = document.createEvent('HTMLEvents');
+      evt.initEvent('change', false, true);
+      element.dispatchEvent(evt);
+    } else {
+      element.fireEvent('onchange');
+    }
   }
 
   onChange = (_) => { /**/ };

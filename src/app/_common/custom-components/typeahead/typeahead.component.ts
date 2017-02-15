@@ -1,5 +1,5 @@
 import {
-  Component, forwardRef, Input, OnDestroy, ElementRef, Output,
+  Component, forwardRef, Input, OnDestroy, ElementRef, Output, ChangeDetectionStrategy,
   EventEmitter, Renderer, HostListener, AfterViewInit, Inject
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -14,17 +14,19 @@ const MAXIMAL_WAIT = 800;
 
 @Component({
   selector: 'typeahead',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <button class="btn badge badge-primary align-icon-right" [class.app-icon-remove]="!isDisabled" 
-      [disabled]="isDisabled" type="button" *ngFor="let tag of _multiValue" (click)="removeTag(tag)">{{tag}}</button>
+    <button class="btn badge badge-primary align-icon-right" [class.app-icon-remove]="!isDisabled"
+      [attr.tabindex]="isDisabled ? -1 : 0" [disabled]="isDisabled" type="button" 
+      *ngFor="let tag of _multiValue" (click)="removeTag(tag)">{{tag}}</button>
     <input *ngIf="!isDisabled || !multiselect || !_multiValue.length" [disabled]="isDisabled" type="text" autocomplete="off"
       (keyup)="handleInput($event)"
       (keydown)="handleInput($event)"
       (paste)="handleInput($event)"
-      (click)="toggleExpanded(true)"
-      />
+      (click)="toggleExpanded($event, true)"
+    />
 
-    <i class="dropdown-toggle" *ngIf="showSuggestions && !isDisabled" (click)="toggleExpanded()"></i>
+    <i class="dropdown-toggle" *ngIf="showSuggestions && !isDisabled" (click)="toggleExpanded($event)"></i>
     <div role="menu" class="dropdown-menu" *ngIf="showSuggestions">
       <button role="menuitem" class="dropdown-item" type="button" *ngFor="let suggestion of suggestions"
         (click)="addTag(suggestion)" (keydown)="handleButton($event)" (keyup)="handleButton($event)">
@@ -146,9 +148,10 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
   /**
    * Toggle dropdown
    */
-  toggleExpanded(value?: boolean) {
-    this.setFocus();
-    this.elementRef.nativeElement.focus();
+  toggleExpanded(event: Event, value?: boolean) {
+    event.stopPropagation();
+    event.preventDefault();
+
     this._expanded = value !== void 0 ?
       value :
       !this._expanded;
@@ -169,15 +172,11 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
    * @param value
    */
   set value(value: string | string[]) {
-    if (this.multiselect) {
-      if (value !== this.getMultiValue()) {
-        this.writeValue(value);
-      }
-    } else {
-      if (value !== this._value) {
-        this.writeValue(value);
-      }
+    if ((this.multiselect && value === this.getMultiValue()) || value === this._value) {
+      return;
     }
+
+    this.writeValue(value);
   }
 
   /**
@@ -186,7 +185,6 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
    */
   handleInput(event: Event | KeyboardEvent) {
     event.stopPropagation(); // stop event bleeding
-    this.setFocus();
 
     let target = (event.target as HTMLInputElement);
     this._expanded = true;
@@ -221,7 +219,6 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
    */
   handleButton(event: KeyboardEvent) {
     event.stopPropagation(); // stop event bleeding
-    this.setFocus();
 
     let target = (event.target as HTMLButtonElement);
 
@@ -237,10 +234,6 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
     } else {
       this.scrollToTarget(target);
     }
-  }
-
-  setFocus() {
-    this.renderer.invokeElementMethod(this.elementRef.nativeElement, 'focus', []);
   }
 
   /**
@@ -265,13 +258,23 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
     } else {
       this._value = value as string;
     }
+
     this.elementRef.nativeElement.value = value;
-    console.log('change', this.value);
-    this.onChange(this.value);
+    this.triggerOnChange(this.elementRef.nativeElement); // trigger on change event
+    this.onChange(value);
+  }
+
+  triggerOnChange(element: any) {
+    if ('createEvent' in document) {
+      let evt = document.createEvent('HTMLEvents');
+      evt.initEvent('change', false, true);
+      element.dispatchEvent(evt);
+    } else {
+      element.fireEvent('onchange');
+    }
   }
 
   setDisabledState(isDisabled: boolean): void { this.isDisabled = isDisabled; }
-
   onChange = (_) => { /**/ };
   onTouched = () => { /**/ };
   registerOnChange(fn: (_: any) => void): void { this.onChange = fn; }

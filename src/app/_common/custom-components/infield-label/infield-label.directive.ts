@@ -47,10 +47,12 @@ export class InfieldLabelDirective implements AfterViewInit {
       this.renderer.listen(this.nativeElem, 'keyup',   () => { this.togglePlaceHolderVisibility(); });
       this.renderer.listen(this.nativeElem, 'change',  () => { this.togglePlaceHolderVisibility(); });
       this.renderer.listen(this.nativeElem, 'blur',    () => { this.togglePlaceHolderVisibility(); });
-      this.renderer.listen(this.nativeElem, 'focus',   () => {
-console.log('focused', this.nativeElem);
-        this.locationElement.classList.toggle(HAS_VALUE_CLASS, true);
-      });
+      this.renderer.listen(this.nativeElem, 'focusout', () => { this.togglePlaceHolderVisibility(); });
+
+      this.renderer.listen(this.nativeElem, 'focusin',
+        () => { this.locationElement.classList.toggle(HAS_VALUE_CLASS, true); });
+      this.renderer.listen(this.nativeElem, 'focus',
+        () => { this.locationElement.classList.toggle(HAS_VALUE_CLASS, true); });
 
       /** run initial check */
       this.togglePlaceHolderVisibility();
@@ -59,7 +61,6 @@ console.log('focused', this.nativeElem);
 
   private togglePlaceHolderVisibility() {
     let value = !!this.nativeElem.value || this.nativeElem.selectedIndex >= 0;
-console.log('toggled', value, this.nativeElem);
     this.locationElement.classList.toggle(HAS_VALUE_CLASS, value);
   }
 }

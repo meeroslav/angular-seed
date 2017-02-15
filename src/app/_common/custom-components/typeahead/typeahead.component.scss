@@ -8,9 +8,15 @@
 
   &[disabled] {
     background-color: $input-bg-disabled;
+    pointer-events: none;
+    cursor: not-allowed;
 
     input {
       background-color: inherit;
+    }
+
+    .btn.badge {
+      opacity: 0.5;
     }
   }
 

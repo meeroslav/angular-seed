@@ -151,7 +151,7 @@
                 <!-- Basic ratings component -->
                 <div class="col-sm-8">
                   <label for="firstRate" class="form-label">Ratings</label><br/>
-                  <rating formControlName="firstRate" placement="right" max="5" id="firstRate"
+                  <rating formControlName="firstRate" placement="right" max="5" id="firstRate" tabindex="0"
                           stateOn="app-icon-star" stateOff="app-icon-star-o"
                           [tooltip]="advancedControlsForm.controls.firstRate.errors && firstRateTT">
                   </rating>
@@ -162,12 +162,12 @@
                   </template>
                 </div>
                 <div class="col-sm-8">
-                  <rating formControlName="secondRate" max="5"
+                  <rating formControlName="secondRate" max="5" tabindex="1"
                           stateOn="app-icon-star" stateOff="app-icon-star-o">
                   </rating>
                 </div>
                 <div class="col-sm-8">
-                  <rating formControlName="averageRating" max="5" readonly="true"
+                  <rating formControlName="averageRating" max="5" readonly="true" tabindex="2"
                           stateOn="app-icon-star" stateOff="app-icon-star-o">
                   </rating>
                 </div>
@@ -178,19 +178,21 @@
                 </div>
                 <div class="col-sm-8">
                   <typeahead class="form-control" formControlName="planet" (valueChange)="getFilteredPlanets($event)"
-                             infield-label="Get planet" custom="true" multiselect="true" [suggestions]="planetNames">
+                             infield-label="Get planet" custom="true" multiselect="true" [suggestions]="planetNames"
+                             tabindex="3">
                   </typeahead>
                 </div>
                 <div class="col-sm-8">
                   <typeahead class="form-control" formControlName="planet2" (valueChange)="getFilteredPlanets($event)"
-                             infield-label="Get planet" custom="true" multiselect="true" [suggestions]="planetNames">
+                             infield-label="Get planet" custom="true" multiselect="true" [suggestions]="planetNames"
+                             tabindex="4">
                   </typeahead>
                 </div>
 
                 <!-- Tree component -->
                 <div class="col-sm-8">
                   <label for="category" class="form-label">Tree component</label>
-                  <tree formControlName="category" class="form-control" id="category"
+                  <tree formControlName="category" class="form-control" id="category" tabindex="5"
                         [content]="treeData"
                         [collapsed]="true"
                         (nodeClick)="nodeSelectCallback($event)"></tree>
@@ -199,12 +201,12 @@
                 <!-- Highlight area -->
                 <div class="col-sm-8">
                   <label for="randomText" class="form-label">Highlight area - marks: angular-*</label>
-                  <highlightarea formControlName="randomText" [markerCallback]="markerCallback()"
+                  <highlightarea formControlName="randomText" [markerCallback]="markerCallback()" tabindex="6"
                     infield-label="Highlights"
                     class="form-control" id="randomText"></highlightarea>
                 </div>
               </div>
-              <button class="btn btn-success" [disabled]="!advancedControlsForm.valid">Save data</button>
+              <button class="btn btn-success" [disabled]="!advancedControlsForm.valid" tabindex="7">Save data</button>
             </form>
           </div>
         </div>

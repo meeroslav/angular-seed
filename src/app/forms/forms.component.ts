@@ -128,7 +128,7 @@ export class FormsComponent implements OnInit {
     this.basicControlsForm = this.formBuilder.group({
       name: [this.user.name, [Validators.required]],
       favoriteNumber: [this.user.favoriteNumber],
-      disabledNumber: new FormControl({value: 3, disabled: true}),
+      disabledNumber: [{value: 3, disabled: true}],
       favoriteColor: [this.user.favoriteColor, [Validators.required]],
       observation: [this.user.observation, [Validators.required]],
       optin: [this.user.optin, [Validators.required]],
@@ -140,9 +140,9 @@ export class FormsComponent implements OnInit {
     this.advancedControlsForm = this.formBuilder.group({
       firstRate: [this.movie.firstRate, Validators.required],
       secondRate: [this.movie.secondRate, Validators.required],
-      averageRating: new FormControl({value: this.movie.averageRating, disabled: true}),
+      averageRating: [{value: this.movie.averageRating, disabled: true}],
       planet: [null, Validators.required],
-      planet2: new FormControl({value: null, disabled: true}),
+      planet2: [{value: ['Orange', 'Apple', 'Kiwi'], disabled: true}],
       category: [null, Validators.required],
       randomText: ['', Validators.required],
     });

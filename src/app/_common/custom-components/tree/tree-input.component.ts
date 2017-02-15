@@ -1,4 +1,4 @@
-import {Component, Input, forwardRef, Output, EventEmitter} from '@angular/core';
+import {Component, Input, forwardRef, Output, EventEmitter, ElementRef, Inject} from '@angular/core';
 import {ITreeNode} from './tree-node.component';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
@@ -26,7 +26,7 @@ export class TreeInputComponent implements ControlValueAccessor {
   _value: any;
   selectedNode: string;
 
-  constructor() {
+  constructor(@Inject(ElementRef) private elementRef: ElementRef) {
     this.selectedNode = '';
   }
 
@@ -55,10 +55,22 @@ export class TreeInputComponent implements ControlValueAccessor {
   writeValue(value: string) {
     this._value = value;
     this.onChange(value);
+    this.elementRef.nativeElement.value = value;
+    this.triggerOnChange(this.elementRef.nativeElement); // trigger on change event
 
     // set the selectedNode in edit mode
     if (!this.selectedNode && value) {
       this.selectedNode = value;
+    }
+  }
+
+  triggerOnChange(element: any) {
+    if ('createEvent' in document) {
+      let evt = document.createEvent('HTMLEvents');
+      evt.initEvent('change', false, true);
+      element.dispatchEvent(evt);
+    } else {
+      element.fireEvent('onchange');
     }
   }
 
