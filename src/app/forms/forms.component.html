@@ -178,13 +178,16 @@
                 </div>
                 <div class="col-sm-8">
                   <typeahead class="form-control" formControlName="planet" (valueChange)="getFilteredPlanets($event)"
-                             infield-label="Get planet" custom="true" multiselect="true" [suggestions]="planetNames"
+                             infield-label="Get planet" custom="true" multiValue="true" [suggestions]="planetNames"
                              tabindex="3">
                   </typeahead>
                 </div>
+                <div class="col-sm-12">
+                  <label class="form-label">Disabled typeahead</label>
+                </div>
                 <div class="col-sm-8">
                   <typeahead class="form-control" formControlName="planet2" (valueChange)="getFilteredPlanets($event)"
-                             infield-label="Get planet" custom="true" multiselect="true" [suggestions]="planetNames"
+                             infield-label="Get planet" custom="true" multiValue="true" [suggestions]="planetNames"
                              tabindex="4">
                   </typeahead>
                 </div>
