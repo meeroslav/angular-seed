@@ -15,12 +15,12 @@ export class MainNav {
   navigation: INavigationConfig = [
     {
       text: 'Home',
-      icon: 'app-icon-server',
+      icon: 'app-icon-list',
       url: '/home'
     },
     {
       text: 'Components',
-      icon: 'app-icon-distribution',
+      icon: 'app-icon-list',
       areaName: 'PARK',
       children: [
         {
@@ -57,7 +57,7 @@ export class MainNav {
     },
     {
       text: 'Colors and typefaces',
-      icon: 'app-icon-edit',
+      icon: 'app-icon-list',
       url: '/colors'
     }
   ];

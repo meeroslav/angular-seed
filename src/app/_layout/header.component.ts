@@ -20,13 +20,12 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
           <button class="nav-link navbar-toggler" type="button" (click)="toggleMainMenu()">☰</button>
         </li>
       </ul>
-      <form class="form-inline float-left hidden-sm-down">
-         <input class="form-control" type="text" placeholder="Search..."/>
-         <i class="app-icon-search"></i>
+      <form class="form-inline hidden-sm-down search-form">
+        <label for="search" class="app-icon-search search-icon"></label>
+        <input id="search" class="search-control" type="text" placeholder="Search..."/>
       </form>
     </div>
     <ul class="nav hidden-sm-down">
-      <li class="nav-item float-right"><button class="app-icon-archive"></button></li>
       <li class="nav-item float-right"><button class="app-icon-notification"></button></li>
       <li class="nav-item float-right"><button class="app-icon-mail"></button></li>
     </ul>    

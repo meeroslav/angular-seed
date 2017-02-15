@@ -5,9 +5,6 @@
     Custom theme values
 *********************************/
 // Colors
-$black: #000000;
-$white: #ffffff;
-
 $greentube_blue_01: #00285e; // top gradient
 $greentube_blue_02: #005996;
 $greentube_blue_03: #0080bf; // bottom gradient
@@ -23,18 +20,27 @@ $greentube_gray_02: #404041;
 $greentube_gray_03: #b1b3b5;
 $greentube_gray_04: #e3e3e3;
 
+//$red:    #d9534f !default;
+//$orange: #f0ad4e !default;
+//$yellow: #ffd500 !default;
+//$green:  #5cb85c !default;
+$blue:   #2196f3;
+//$teal:   #5bc0de !default;
+//$pink:   #ff5b77 !default;
+//$purple: #613d7c !default;
+
 // Colors
-$gray-dark:                 #231f20;
-$gray:                      #404041;
+$gray-dark:                 #263238;
+$gray:                      #2e3c44;
 $gray-light:                #8E97A8;
 $gray-lighter:              #e3e3e3;
 $gray-lightest:             #efefef;
 
-$brand-primary:             #0080bf;
-$brand-success:             #a0cf67;
-$brand-info:                #5bc0de;
-$brand-warning:             #f0ad4e;
-$brand-danger:              #d9534f;
+$brand-primary:             $blue;
+$brand-success:             $green;
+$brand-info:                $teal;
+$brand-warning:             $orange;
+$brand-danger:              $red;
 $brand-inverse:             $gray-dark;
 
 // Defined colors
@@ -42,6 +48,8 @@ $theme-tab-content-bg: $white;
 $theme-wizard-bullet-bg: $white;
 $theme-datepicker-bg: $white;
 $theme-border-color: #dadada;
+$theme-menu-bg: $gray;
+$theme-header-color: $gray-lightest;
 
 $map-bg: $brand-info;
 $map-line-color: $black;

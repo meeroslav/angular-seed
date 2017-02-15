@@ -1,10 +1,39 @@
 @import 'variables';
+@import 'animations';
 
 header.navbar {
+  color: $theme-header-color;
+
+  .search-control {
+    color: $theme-header-color;
+    background: inherit;
+    border: none;
+    padding: $spacer-y / 2 $spacer-x $spacer-y / 2 $spacer-x * 3;
+    background: mix($theme-header-color, rgba(0,0,0,0), 10);
+    transition: all $animation-duration ease-in-out;
+
+    &:focus {
+      flex: auto;
+    }
+  }
+
+  .search-icon {
+    margin-right: -2 * $spacer-x;
+  }
+
+  .search-form {
+    padding-left: $spacer-x;
+    flex: auto;
+  }
+
   .navbar-brand {
     padding: $spacer;
     @include fontBold();
     font-size: 1rem;
+  }
+
+  .navbar-toggler {
+    border: none;
   }
 
   .logo {

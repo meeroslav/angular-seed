@@ -4,6 +4,7 @@
 @import '../../../node_modules/bootstrap/scss/variables.scss';
 
 #main-nav {
+  background: $theme-menu-bg;
 
   .active {
     background: $gray-dark;
