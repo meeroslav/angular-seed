@@ -5,12 +5,13 @@
 
 #main-nav {
   background: $theme-menu-bg;
+  padding-top: $spacer-y;
 
   .active {
     background: $gray-dark;
 
     & > .nav-link {
-      border-left: $greentube_green_03 $theme-accent-width solid;
+      border-left: $brand-primary $theme-accent-width solid;
       padding-left: $spacer-x - $theme-accent-width;
     }
   }
@@ -82,6 +83,6 @@
 }
 
 aside.main-aside {
-  background: $greentube_gray_04;
+  background: $gray-lighter;
 }
 

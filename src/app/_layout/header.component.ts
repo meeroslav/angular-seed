@@ -12,7 +12,7 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
     </ul>    
     <a class="navbar-brand" [routerLink]="['.']">
       <i class="logo"></i>
-      {{'APP_NAME' | translate}}
+      <!--{{'APP_NAME' | translate}}-->
     </a>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav hidden-sm-down">
