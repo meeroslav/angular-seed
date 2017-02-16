@@ -1,4 +1,7 @@
 import { Component, Output, EventEmitter, ElementRef, OnInit } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/switchMap';
 
 const MAP_CONFIG = {
   width: 1009.6727,
@@ -16,6 +19,11 @@ export interface IMapChange {
   rightLongitude: number;
   height: number;
   width: number;
+}
+
+export interface ICoordinate {
+  x: number;
+  y: number;
 }
 
 @Component({
@@ -245,8 +253,6 @@ export class WorldMapComponent implements OnInit {
 
   // element refs
   private element;
-  // private mapWrapper;
-  // private mapElement;
   private mapSvg;
   private contentWrapper;
 
@@ -256,6 +262,8 @@ export class WorldMapComponent implements OnInit {
   private currentX;
   private currentY;
 
+  private dragOverEventEmitter: Subject<ICoordinate>;
+
   /**
    * Calculates vertical position from latitude in degrees
    * @param value
@@ -264,7 +272,16 @@ export class WorldMapComponent implements OnInit {
     return Math.log(Math.tan(value / 360 * Math.PI + Math.PI / 4));
   }
 
-  static GetPercentagePosition(data: IMapChange, longitude: number, latitude: number): {x: number, y: number} {
+  /**
+   * Calculate new position in percentage (of map width and height)
+   * from IMapChange and original latitude and longitude
+   * @param data
+   * @param longitude
+   * @param latitude
+   * @returns {{x: number, y: number}}
+   * @constructor
+   */
+  static GetPercentagePosition(data: IMapChange, longitude: number, latitude: number): ICoordinate {
     return {
       x: 100 * (longitude - data.leftLongitude) / (data.rightLongitude - data.leftLongitude),
       y: 100 * (data.maxVerticalPos - WorldMapComponent.latitudeToPosition(latitude)) /
@@ -281,6 +298,15 @@ export class WorldMapComponent implements OnInit {
     this.zoom = 1;
 
     this.element = element.nativeElement;
+    this.dragOverEventEmitter = new Subject<ICoordinate>();
+
+    this.dragOverEventEmitter.debounceTime(10).subscribe((dragCoordinate: ICoordinate) => {
+      this.x = dragCoordinate.x;
+      this.y = dragCoordinate.y;
+
+      this.checkCoordinates();
+      this.setStyles();
+    });
   }
 
   ngOnInit() {
@@ -381,11 +407,10 @@ export class WorldMapComponent implements OnInit {
    * @param {DragEvent} event
    */
   onDragOver(event: DragEvent) {
-    this.x = this.currentX + (event.x - this.dragStartX);
-    this.y = this.currentY + (event.y - this.dragStartY);
-
-    this.checkCoordinates();
-    this.setStyles();
+    this.dragOverEventEmitter.next({
+      x: this.currentX + (event.x - this.dragStartX),
+      y: this.currentY + (event.y - this.dragStartY)
+    });
   }
 
   /**

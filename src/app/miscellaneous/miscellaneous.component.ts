@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 
 import {ModalDialogService} from '../_common/modal-dialog/modal-dialog.service';
 import {SimpleModalComponent} from '../_common/modal-dialog/simple-modal.component';
-import {IMapChange, WorldMapComponent} from '../_common/custom-components/world-map/world-map.component';
+import { IMapChange, WorldMapComponent, ICoordinate } from '../_common/custom-components/world-map/world-map.component';
 import { ITreeNode } from '../_common/custom-components/tree/tree-node.component';
 import { LoadingIndicatorService } from '../_common/locading-indicator/loading-indicator.service';
 import { FeedbackService } from '../_common/feedback/feedback.service';
@@ -139,7 +139,7 @@ export class MiscComponent implements OnInit {
   repositionTheDot(data: IMapChange) {
     let dot = this.element.nativeElement.querySelector('#dot');
     // position of Vienna
-    let cords: {x: number, y: number} = WorldMapComponent.GetPercentagePosition(data, 16.363553, 48.186928);
+    let cords: ICoordinate = WorldMapComponent.GetPercentagePosition(data, 16.363553, 48.186928);
 
     dot.style.left = `${cords.x}%`;
     dot.style.top = `${cords.y}%`;
