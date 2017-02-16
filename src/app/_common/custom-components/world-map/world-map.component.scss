@@ -5,7 +5,7 @@
   cursor: pointer;
   width: 100%;
   height: 100%;
-  background-color: $map-bg;
+  background-color: $theme-map-bg;
   position: relative;
   overflow: hidden;
 
@@ -43,7 +43,7 @@
 
 
 .map-country {
-  fill: $map-country-bg;
-  stroke: $map-line-color;
+  fill: $theme-map-country-bg;
+  stroke: $theme-map-line-color;
   stroke-width: 0.1;
 }
