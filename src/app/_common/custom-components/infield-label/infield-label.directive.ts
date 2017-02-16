@@ -44,9 +44,7 @@ export class InfieldLabelDirective implements AfterViewInit {
       this.placeholderElement.innerHTML = this.placeholder;
       this.locationElement.appendChild(this.placeholderElement);
 
-      this.renderer.listen(this.nativeElem, 'keyup',   () => { this.togglePlaceHolderVisibility(); });
-      this.renderer.listen(this.nativeElem, 'change',  () => { this.togglePlaceHolderVisibility(); });
-      this.renderer.listen(this.nativeElem, 'blur',    () => { this.togglePlaceHolderVisibility(); });
+      this.renderer.listen(this.nativeElem, 'blur', () => { this.togglePlaceHolderVisibility(); });
       this.renderer.listen(this.nativeElem, 'focusout', () => { this.togglePlaceHolderVisibility(); });
 
       this.renderer.listen(this.nativeElem, 'focusin',
