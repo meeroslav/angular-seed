@@ -264,6 +264,14 @@ export class WorldMapComponent implements OnInit {
     return Math.log(Math.tan(value / 360 * Math.PI + Math.PI / 4));
   }
 
+  static GetPercentagePosition(data: IMapChange, longitude: number, latitude: number): {x: number, y: number} {
+    return {
+      x: 100 * (longitude - data.leftLongitude) / (data.rightLongitude - data.leftLongitude),
+      y: 100 * (data.maxVerticalPos - WorldMapComponent.latitudeToPosition(latitude)) /
+      (data.maxVerticalPos - data.minVerticalPos)
+    };
+  }
+
   /**
    * CTOR
    */

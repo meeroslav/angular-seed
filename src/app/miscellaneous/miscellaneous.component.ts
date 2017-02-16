@@ -139,13 +139,10 @@ export class MiscComponent implements OnInit {
   repositionTheDot(data: IMapChange) {
     let dot = this.element.nativeElement.querySelector('#dot');
     // position of Vienna
-    let X = 100 * (16.363553 - data.leftLongitude) /
-        (data.rightLongitude - data.leftLongitude);
-    let Y = 100 * (data.maxVerticalPos - WorldMapComponent.latitudeToPosition(48.186928)) /
-        (data.maxVerticalPos - data.minVerticalPos);
+    let cords: {x: number, y: number} = WorldMapComponent.GetPercentagePosition(data, 16.363553, 48.186928);
 
-    dot.style.left = `${X}%`;
-    dot.style.top = `${Y}%`;
+    dot.style.left = `${cords.x}%`;
+    dot.style.top = `${cords.y}%`;
   }
 
   /**
