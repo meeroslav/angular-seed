@@ -19,14 +19,14 @@ const MAXIMAL_WAIT = 800;
   template: `
     <button class="btn badge badge-primary align-icon-right" [class.theme-icon-remove]="!_isDisabled"
       [attr.tabindex]="_isDisabled ? -1 : 0" [disabled]="_isDisabled || null" type="button" 
-      *ngFor="let tag of _arrayOfValues" (click)="removeTag(tag)">{{tag}}</button>
+      *ngFor="let tag of _arrayOfValues" (click)="removeTag($event, tag)">{{tag}}</button>
     <input *ngIf="!_isDisabled || !multiValue || !_arrayOfValues.length" type="text" autocomplete="off"
       (keyup)="handleInput($event)" (keydown)="handleInput($event)" (paste)="handleInput($event)" 
       (click)="toggleExpanded($event, true)" [disabled]="_isDisabled || null" />
     <i class="dropdown-toggle" *ngIf="showSuggestions && !_isDisabled" (click)="toggleExpanded($event)"></i>
     <div role="menu" class="dropdown-menu" *ngIf="showSuggestions">
       <button role="menuitem" class="dropdown-item" type="button" *ngFor="let suggestion of suggestions"
-        (click)="addTag(suggestion)" (keydown)="handleButton($event)" (keyup)="handleButton($event)">
+        (mousedown)="addTag($event, suggestion)" (keydown)="handleButton($event, suggestion)" (keyup)="handleButton($event, suggestion)">
         {{suggestion}}
       </button>
       <button *ngIf="!suggestions.length" disabled="true" class="dropdown-item" type="button">
@@ -97,7 +97,7 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
    * Init method
    */
   ngAfterViewInit() {
-      this._input = this.elementRef.nativeElement.querySelector('input');
+    this._input = this.elementRef.nativeElement.querySelector('input');
   }
 
   /**
@@ -107,19 +107,30 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
     this.cleanUpTimeout();
   }
 
-  @HostListener('window:click', ['$event'])
-  clickHandler(event) {
-    let parent = event.target;
-    while (parent && parent !== this.elementRef.nativeElement && parent !== document) {
-      parent = parent.parentNode;
-    }
-    if (parent === document || !parent) {
-      this._expanded = false;
-      // if not custom and not in suggestions list
-      if (!this.custom && (this.suggestions as string[]).indexOf(this._input.value) === -1) {
-        this._input.value = this.value = null;
-        this._emitChangedEvent('');
+  @HostListener('focusout', ['$event'])
+  focusOutHandler(event: any) {
+    if (event.relatedTarget) {
+      // related target is typeahead, input or one of the buttons
+      if (event.relatedTarget === this.elementRef.nativeElement ||
+        event.relatedTarget.parentElement === this.elementRef.nativeElement ||
+        event.relatedTarget.parentElement.parentElement === this.elementRef.nativeElement) {
+
+        // grab back input focus after button click since `focus out` cancelled it
+        if (event.target === this._input && event.relatedTarget === this.elementRef.nativeElement) {
+          this.renderer.invokeElementMethod(this._input, 'focus', []);
+        }
+        return;
       }
+    }
+
+    this._expanded = false;
+
+    if (!this.custom && (this.suggestions as string[]).indexOf(this._input.value) === -1) {
+      this._input.value = this.value = null;
+      this._emitChangedEvent('');
+    } else if (this.multiValue) {
+      this._input.value = null;
+      this._emitChangedEvent('');
     }
   }
 
@@ -127,7 +138,10 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
    * Remove tag from input
    * @param tag
    */
-  removeTag(tag) {
+  removeTag(event: Event, tag) {
+    event.stopImmediatePropagation();
+    event.stopPropagation();
+
     let index = this._value && this._value.indexOf(tag);
     if (index !== -1) {
       if (index === this._value.length - 1) {
@@ -142,7 +156,10 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
    * Add new tag (on enter and data list selection)
    * @param tag
    */
-  addTag(tag: string) {
+  addTag(event: Event, tag: string) {
+    event.stopImmediatePropagation();
+    event.stopPropagation();
+
     if (!this.custom && (this.suggestions as string[]).indexOf(tag) === -1) {
       return;
     }
@@ -151,14 +168,14 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
       if (notExists && tag.length) {
         this.value = this._arrayOfValues = (this._value || []).concat([tag]);
         this._input.value = '';
-        this._input.focus();
+        this.renderer.invokeElementMethod(this._input, 'focus', []);
         this._expanded = false;
         this._emitChangedEvent('');
       }
     } else {
       this.value = tag;
       this._input.value = tag;
-      this._input.focus();
+      this.renderer.invokeElementMethod(this._input, 'focus', []);
       this._expanded = false;
       this._emitChangedEvent(tag);
     }
@@ -201,6 +218,7 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
    * @param event
    */
   handleInput(event: Event | KeyboardEvent) {
+    event.stopImmediatePropagation();
     event.stopPropagation(); // stop event bleeding
 
     let target = (event.target as HTMLInputElement);
@@ -209,14 +227,14 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
     if (this.multiValue) {
       if (event.type === 'keydown' || event.type === 'keyup') {
         if ((event as KeyboardEvent).keyCode === 13 && target.value !== '') { // enter
-          this.addTag(target.value);
+          this.addTag(event, target.value);
         }
         if ((event as KeyboardEvent).keyCode === 8 && target.value === '') { // backspace
           if (event.type === 'keydown') {
             this._safeToRemove = true;
           } else if (this._safeToRemove && this._value) {
             this._safeToRemove = false;
-            this.removeTag(this._value[this._value.length - 1]);
+            this.removeTag(event, this._value[this._value.length - 1]);
           }
         }
       }
@@ -234,14 +252,16 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
    * Move through collection on arrow commands
    * @param event
    */
-  handleButton(event: KeyboardEvent) {
+  handleButton(event: KeyboardEvent, tag: string) {
+    event.stopImmediatePropagation();
     event.stopPropagation(); // stop event bleeding
 
     let target = (event.target as HTMLButtonElement);
 
     if (event.type === 'keydown') {
-      // this.scrollToTarget(target);
-
+      if (event.keyCode === 13 && target.nextElementSibling) {  // enter
+        this.addTag(event, tag);
+      }
       if (event.keyCode === 40 && target.nextElementSibling) {  // arrow down
         this.renderer.invokeElementMethod(target.nextElementSibling, 'focus', []);
       }
