@@ -90,6 +90,7 @@ datepicker {
   font-size: $theme-input-font-size;
   color: $input-color-placeholder;
   pointer-events: none;
+  transition: all $animation-duration ease-in-out;
 }
 .infield-label-active {
   .form-control {

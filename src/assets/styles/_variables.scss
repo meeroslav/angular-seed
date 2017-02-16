@@ -169,7 +169,7 @@ $custom-control-focus-indicator-box-shadow: 0 0 0 1px $brand-success;
 $custom-control-checked-indicator-bg: $brand-success;
 $custom-checkbox-indeterminate-bg: $brand-success;
 
-$custom-select-focus-border-color: lighten($brand-success, 25%);
+$custom-select-focus-border-color: $brand-primary;
 $custom-select-focus-box-shadow: $btn-box-shadow;
 $custom-select-padding-x: $spacer-x;
 $custom-select-padding-y: $spacer-y;
