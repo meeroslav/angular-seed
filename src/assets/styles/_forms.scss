@@ -43,9 +43,10 @@ input + .custom-control-indicator {
 
 rating {
   font-size: 1.5rem;
+  cursor: pointer;
 
   .theme-icon-star {
-    color: $yellow;
+    color: $brand-primary;
   }
 }
 
