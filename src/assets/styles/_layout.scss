@@ -50,7 +50,7 @@ main {
 }
 
 .btn, .list-group-item, .icon-container {
-  &[class^="app-icon-"], &[class*=" app-icon-"] {
+  &[class^="theme-icon-"], &[class*=" theme-icon-"] {
     &:before {
       padding-right: $spacer-x / 2;
       line-height: 0.9;
@@ -67,7 +67,7 @@ main {
   }
 }
 
-.btn[class^="app-icon-"]:before, .btn[class*=" app-icon-"]:before {
+.btn[class^="theme-icon-"]:before, .btn[class*=" theme-icon-"]:before {
   float: left;
   line-height: 1.3;
 }

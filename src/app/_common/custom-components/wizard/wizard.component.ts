@@ -62,7 +62,7 @@ export class Wizard implements AfterContentInit {
   @Input('skipStep') skipStep: boolean = false;
   @Input('vertical') vertical: boolean = false;
   @Input('enabledBack') enabledBack: boolean = true;
-  @Input('previousButtonClass') previousButtonClass: string = 'btn btn-secondary app-icon-chevron-left float-left';
+  @Input('previousButtonClass') previousButtonClass: string = 'btn btn-secondary theme-icon-chevron-left float-left';
   @Input('nextButtonClass') nextButtonClass: string = 'btn btn-primary align-icon-right float-right';
   @ContentChildren(WizardSlide) slides;
 
@@ -147,9 +147,9 @@ export class Wizard implements AfterContentInit {
    */
   private _setSlideContent(slide: WizardSlide) {
     if (this.slides.length - 1 === this._selectedIndex) {
-      this._nextIcon = 'app-icon-checkmark';
+      this._nextIcon = 'theme-icon-checkmark';
     } else {
-      this._nextIcon = 'app-icon-chevron-right';
+      this._nextIcon = 'theme-icon-chevron-right';
     }
   }
 }

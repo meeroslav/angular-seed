@@ -79,11 +79,11 @@ export class MiscComponent implements OnInit {
       children: [{text: 'child 21'}, {text: 'child 22', children: [{text: 'child 221'}]}]
     }];
     this.treeDataMultiLevelWithIcons = [{
-      text: 'Element One', icon: 'app-icon-star',
-      children: [{text: 'child 11', icon: 'app-icon-list', children: [{text: 'child 111', icon: 'app-icon-notification'}]}, {text: 'child 12'}]
+      text: 'Element One', icon: 'theme-icon-star',
+      children: [{text: 'child 11', icon: 'theme-icon-list', children: [{text: 'child 111', icon: 'theme-icon-notification'}]}, {text: 'child 12'}]
     }, {
-      text: 'Element Two', icon: 'app-icon-question',
-      children: [{text: 'child 21', icon: 'app-icon-cards'}, {text: 'child 22', icon: 'app-icon-zoom-in', children: [{text: 'child 221'}]}]
+      text: 'Element Two', icon: 'theme-icon-question',
+      children: [{text: 'child 21', icon: 'theme-icon-cards'}, {text: 'child 22', icon: 'theme-icon-zoom-in', children: [{text: 'child 221'}]}]
     }];
   }
 

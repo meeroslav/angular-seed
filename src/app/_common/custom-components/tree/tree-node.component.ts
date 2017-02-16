@@ -13,7 +13,7 @@ export interface ITreeNode {
   template: `
         <div class="tree-node-header" (click)="toggle()" [ngClass]="{'no-children': !content.children || !content.children.length}">
             <span *ngIf="content.children && content.children.length" class="tree-toggler"
-                [ngClass]="{'collapsed app-icon-chevron-right': collapsed, 'expanded app-icon-chevron-down': !collapsed}"></span>
+                [ngClass]="{'collapsed theme-icon-chevron-right': collapsed, 'expanded theme-icon-chevron-down': !collapsed}"></span>
             <div>
               {{content.text | translate}}
             </div>

@@ -17,7 +17,7 @@ const MAXIMAL_WAIT = 800;
   selector: 'typeahead',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <button class="btn badge badge-primary align-icon-right" [class.app-icon-remove]="!_isDisabled"
+    <button class="btn badge badge-primary align-icon-right" [class.theme-icon-remove]="!_isDisabled"
       [attr.tabindex]="_isDisabled ? -1 : 0" [disabled]="_isDisabled || null" type="button" 
       *ngFor="let tag of _arrayOfValues" (click)="removeTag(tag)">{{tag}}</button>
     <input *ngIf="!_isDisabled || !multiValue || !_arrayOfValues.length" type="text" autocomplete="off"

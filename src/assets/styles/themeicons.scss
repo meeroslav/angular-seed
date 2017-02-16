@@ -1,26 +1,26 @@
-@font-face {
-  font-family: 'themeicons';
-  src:
-    url('fonts/themeicons.ttf?al9v5w') format('truetype'),
-    url('fonts/themeicons.woff?al9v5w') format('woff'),
-    url('fonts/themeicons.svg?al9v5w#themeicons') format('svg');
-  font-weight: normal;
-  font-style: normal;
+﻿@font-face {
+    font-family: 'themeicons';
+    src:
+        url('./fonts/themeicons.ttf') format('truetype'),
+        url('./fonts/themeicons.woff') format('woff'),
+        url('./fonts/themeicons.svg#appicons') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
-[class^="theme-icon-"], [class*=" theme-icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'themeicons' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
+[class^="theme-icon-"]:before, [class*=" theme-icon-"]:before,
+.glyphicon:before {
+    font-family: 'themeicons';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
 
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .theme-icon-stats:before {
@@ -62,10 +62,10 @@
 .theme-icon-step-forward:before {
   content: "\f051";
 }
-.theme-icon-chevron-left:before {
+.theme-icon-chevron-left:before, .glyphicon-chevron-left:before {
   content: "\f053";
 }
-.theme-icon-chevron-right:before {
+.theme-icon-chevron-right:before, .glyphicon-chevron-right:before {
   content: "\f054";
 }
 .theme-icon-chevron-up:before {

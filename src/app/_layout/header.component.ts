@@ -21,13 +21,13 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
         </li>
       </ul>
       <form class="form-inline hidden-sm-down search-form">
-        <label for="search" class="app-icon-search search-icon"></label>
+        <label for="search" class="theme-icon-search search-icon"></label>
         <input id="search" class="search-control" type="text" placeholder="Search..."/>
       </form>
     </div>
     <ul class="nav hidden-sm-down">
-      <li class="nav-item float-right"><button class="app-icon-notification"></button></li>
-      <li class="nav-item float-right"><button class="app-icon-mail"></button></li>
+      <li class="nav-item float-right"><button class="theme-icon-notification"></button></li>
+      <li class="nav-item float-right"><button class="theme-icon-mail"></button></li>
     </ul>    
   `,
   host: {

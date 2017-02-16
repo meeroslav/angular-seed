@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
             <div class="heading">{{toast.heading | translate:(toast.headingData || {})}}</div>
             <div *ngIf="toast.body">{{toast.body | translate:(toast.bodyData || {})}}</div>
         </div>
-        <button class="btn link app-icon-chevron-right align-icon-right" *ngIf="toast.action" (click)="toast.action.callback()">
+        <button class="btn link theme-icon-chevron-right align-icon-right" *ngIf="toast.action" (click)="toast.action.callback()">
             {{toast.action.text | translate:(toast.action.textData || {})}}
         </button>
       </div>

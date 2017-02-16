@@ -15,49 +15,49 @@ export class MainNav {
   navigation: INavigationConfig = [
     {
       text: 'Home',
-      icon: 'app-icon-list',
+      icon: 'theme-icon-list',
       url: '/home'
     },
     {
       text: 'Components',
-      icon: 'app-icon-list',
+      icon: 'theme-icon-list',
       areaName: 'PARK',
       children: [
         {
           text: 'Buttons',
-          icon: 'app-icon-list',
+          icon: 'theme-icon-list',
           url: '/buttons'
         },
         {
           text: 'Forms',
-          icon: 'app-icon-list',
+          icon: 'theme-icon-list',
           url: '/forms'
         },
         {
           text: 'Cards',
-          icon: 'app-icon-list',
+          icon: 'theme-icon-list',
           url: '/cards'
         },
         {
           text: 'Data grids',
-          icon: 'app-icon-list',
+          icon: 'theme-icon-list',
           url: '/table'
         },
         {
           text: 'Data lists',
-          icon: 'app-icon-list',
+          icon: 'theme-icon-list',
           url: '/data-list'
         },
         {
           text: 'Miscellaneous',
-          icon: 'app-icon-list',
+          icon: 'theme-icon-list',
           url: '/misc'
         }
       ]
     },
     {
       text: 'Colors and typefaces',
-      icon: 'app-icon-list',
+      icon: 'theme-icon-list',
       url: '/colors'
     }
   ];

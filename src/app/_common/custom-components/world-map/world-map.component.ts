@@ -743,8 +743,8 @@ export interface IMapChange {
   <ng-content></ng-content>
 </div>
 <div id="map-zooming">
-    <button class="btn btn-sm btn-secondary app-icon-plus" (click)="zoomIn()"></button>
-    <button class="btn btn-sm btn-secondary app-icon-minus" (click)="zoomOut()"></button>
+    <button class="btn btn-sm btn-secondary theme-icon-plus" (click)="zoomIn()"></button>
+    <button class="btn btn-sm btn-secondary theme-icon-minus" (click)="zoomOut()"></button>
 </div>
   `,
   host: {

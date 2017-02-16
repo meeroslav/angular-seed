@@ -16,4 +16,4 @@ import 'rxjs/add/operator/filter';
 // You can import js, ts, css, sass, ...
 
 import './assets/styles/theme.scss';
-import './assets/styles/appicons.scss';
+import './assets/styles/themeicons.scss';

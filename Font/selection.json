@@ -753,7 +753,7 @@
   ],
   "height": 1024,
   "metadata": {
-    "name": "appicons"
+    "name": "themeicons"
   },
   "preferences": {
     "showGlyphs": true,
@@ -761,9 +761,9 @@
     "showQuickUse2": true,
     "showSVGs": true,
     "fontPref": {
-      "prefix": "app-icon-",
+      "prefix": "theme-icon-",
       "metadata": {
-        "fontFamily": "appicons",
+        "fontFamily": "themeicons",
         "majorVersion": 1,
         "minorVersion": 0
       },

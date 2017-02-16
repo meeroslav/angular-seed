@@ -30,7 +30,7 @@ import { IModalDialog, IModalDialogOptions, IModalDialogPrompt } from './modal-d
           <h4 class="modal-title">{{title | translate}}</h4>        
           <button (click)="close()" *ngIf="!prompt" type="button"
             [title]="'CLOSE' | translate"
-            class="close app-icon-close">
+            class="close theme-icon-close">
           </button>
         </div>
         <div class="modal-body">

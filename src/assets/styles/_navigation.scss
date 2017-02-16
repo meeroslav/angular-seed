@@ -41,14 +41,14 @@
     padding-right: $spacer-x * 2 + .5rem;
 
     &:after {
-      font-family: 'appicons';
+      font-family: 'themeicons';
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       position: absolute;
       right: $spacer-x;
       top: $spacer-y + .25rem;
       font-size: .625rem;
-      content: "\f053";
+      content: "\f054";
       @include animateProperty();
       @include rotate();
     }
@@ -74,7 +74,7 @@
 
 .open {
   & .nav-link.has-ul:after {
-    @include rotate(-90deg);
+    @include rotate(90deg);
   }
 
   & > .nav-dropdown-items {
