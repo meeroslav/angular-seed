@@ -1,6 +1,6 @@
-import { Component, Output, EventEmitter, ElementRef, OnInit } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Component, Output, EventEmitter, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/sample';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/interval';
@@ -235,7 +235,7 @@ export interface ICoordinate {
     '[class.dragging]': 'isDragged'
   }
 })
-export class WorldMapComponent implements OnInit {
+export class WorldMapComponent implements OnInit, OnDestroy {
   @Output() change: EventEmitter<any> = new EventEmitter();
   isDragged: boolean = false;
 
@@ -264,7 +264,7 @@ export class WorldMapComponent implements OnInit {
   private currentX;
   private currentY;
 
-  private dragOverEventEmitter: Subject<ICoordinate>;
+  private dragOverSubscription: Subscription;
 
   /**
    * Calculates vertical position from latitude in degrees
@@ -300,7 +300,6 @@ export class WorldMapComponent implements OnInit {
     this.zoom = 1;
 
     this.element = element.nativeElement;
-    this.dragOverEventEmitter = new Subject<ICoordinate>();
   }
 
   ngOnInit() {
@@ -319,13 +318,12 @@ export class WorldMapComponent implements OnInit {
 
     this.updateMap();
 
-    this.dragOverEventEmitter.sample(Observable.interval(30)).subscribe((dragCoordinate: ICoordinate) => {
-      this.x = dragCoordinate.x;
-      this.y = dragCoordinate.y;
+    this.dragOverSubscription = Observable.fromEvent(this.element, 'dragover').
+      sample(Observable.interval(30)).subscribe(this.onDragOver);
+  }
 
-      this.checkCoordinates();
-      this.setStyles();
-    });
+  ngOnDestroy() {
+    this.dragOverSubscription.unsubscribe();
   }
 
   /**
@@ -409,10 +407,11 @@ export class WorldMapComponent implements OnInit {
    * @param {DragEvent} event
    */
   onDragOver(event: DragEvent) {
-    this.dragOverEventEmitter.next({
-      x: this.currentX + (event.x - this.dragStartX),
-      y: this.currentY + (event.y - this.dragStartY)
-    });
+    this.x = this.currentX + (event.x - this.dragStartX);
+    this.y = this.currentY + (event.y - this.dragStartY);
+
+    this.checkCoordinates();
+    this.setStyles();
   }
 
   /**
