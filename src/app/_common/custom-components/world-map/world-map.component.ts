@@ -1,7 +1,9 @@
 import { Component, Output, EventEmitter, ElementRef, OnInit } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/sample';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/observable/interval';
 
 const MAP_CONFIG = {
   width: 1009.6727,
@@ -299,14 +301,6 @@ export class WorldMapComponent implements OnInit {
 
     this.element = element.nativeElement;
     this.dragOverEventEmitter = new Subject<ICoordinate>();
-
-    this.dragOverEventEmitter.debounceTime(10).subscribe((dragCoordinate: ICoordinate) => {
-      this.x = dragCoordinate.x;
-      this.y = dragCoordinate.y;
-
-      this.checkCoordinates();
-      this.setStyles();
-    });
   }
 
   ngOnInit() {
@@ -324,6 +318,14 @@ export class WorldMapComponent implements OnInit {
     this.minVerticalPos = WorldMapComponent.latitudeToPosition(MAP_CONFIG.bottomLatitude);
 
     this.updateMap();
+
+    this.dragOverEventEmitter.sample(Observable.interval(30)).subscribe((dragCoordinate: ICoordinate) => {
+      this.x = dragCoordinate.x;
+      this.y = dragCoordinate.y;
+
+      this.checkCoordinates();
+      this.setStyles();
+    });
   }
 
   /**
