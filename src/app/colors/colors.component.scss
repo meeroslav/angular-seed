@@ -1,0 +1,10 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/typography';
+
+.color-block {
+  height: 3rem;
+}
+
+.color-info {
+  @include fontBold();
+}

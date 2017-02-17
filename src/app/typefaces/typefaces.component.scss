@@ -1,0 +1,19 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/typography';
+
+.bold-text {
+  @include fontBold();
+}
+
+.regular-text {
+  @include fontRegular();
+}
+
+.light-text {
+  @include fontLight();
+}
+
+.icon {
+  font-size: 2rem;
+  text-align: center;
+}
