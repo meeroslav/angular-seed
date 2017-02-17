@@ -203,7 +203,7 @@
   </tab>
   <tab heading="Table Styles">
       <h4>Different table styles</h4>
-      <table class="table table-sm thead-default">
+      <table class="table table-sm table-bordered thead-default">
         <thead>
         <tr>
           <th></th>
@@ -227,7 +227,7 @@
         </tr>
         </tbody>
       </table>
-      <table class="table table-sm thead-inverse">
+      <table class="table table-sm table-bordered thead-inverse">
         <thead>
         <tr>
           <th></th>
@@ -251,7 +251,7 @@
         </tr>
         </tbody>
       </table>
-      <table class="table table-sm table-inverse">
+      <table class="table table-sm table-bordered table-inverse">
         <thead>
         <tr>
           <th></th>
@@ -277,23 +277,23 @@
       </table>
   </tab>
   <tab heading="With pagination">
-      <table class="table table-sm thead-default table-bordered">
+      <table class="table table-sm thead-inverse table-bordered table-striped">
         <thead>
         <tr class="row">
           <th class="col-sm-1"></th>
-          <th class="col-sm-7 text-center">Name</th>
+          <th class="col-sm-8 text-center">Name</th>
           <th class="col-sm-1 text-center">Height</th>
           <th class="col-sm-1 text-center">Mass</th>
-          <th class="col-sm-2"></th>
+          <th class="col-sm-1 col-auto"></th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let user of users; let i = index" class="row">
           <td class="col-sm-1 text-center">{{page * 10 + i - 9}}</td>
-          <td class="col-sm-7 text-left">{{user.name}}</td>
+          <td class="col-sm-8 text-left">{{user.name}}</td>
           <td class="col-sm-1 text-right">{{user.height}}</td>
           <td class="col-sm-1 text-right">{{user.mass}}</td>
-          <td class="col-sm-2 text-center">
+          <td class="col-sm-1 col-auto text-center">
             <button class="btn btn-secondary btn-sm theme-icon-edit" type="button"></button>
             <button class="btn btn-secondary btn-sm theme-icon-remove" type="button"></button>
           </td>
@@ -303,8 +303,9 @@
         <tr class="row">
           <th class="col-sm-12" colspan="5">
             <pagination [totalItems]="collectionSize" [(ngModel)]="page" [rotate]="true" [itemsPerPage]="10"
-                            [maxSize]="5" [boundaryLinks]="collectionSize > 50" (pageChange)="getData()"
-            class="float-right">
+                        [maxSize]="5" [boundaryLinks]="collectionSize > 50" (pageChange)="getData()" class="float-right"
+              previousText="<i class='theme-icon-chevron-left'></i>" nextText="<i class='theme-icon-chevron-right'></i>"
+              firstText="<i class='theme-icon-step-backward'></i>" lastText="<i class='theme-icon-step-forward'></i>">
             </pagination>
           </th>
         </tr>
