@@ -319,7 +319,7 @@ export class WorldMapComponent implements OnInit, OnDestroy {
     this.updateMap();
 
     this.dragOverSubscription = Observable.fromEvent(this.element, 'dragover').
-      sample(Observable.interval(30)).subscribe(this.onDragOver);
+      sample(Observable.interval(30)).subscribe(this.onDragOver());
   }
 
   ngOnDestroy() {
@@ -405,14 +405,17 @@ export class WorldMapComponent implements OnInit, OnDestroy {
 
   /**
    * Apply styles as user drags the map after {dragThrottle} milliseconds
-   * @param {DragEvent} event
    */
-  onDragOver(event: DragEvent) {
-    this.x = this.currentX + (event.x - this.dragStartX);
-    this.y = this.currentY + (event.y - this.dragStartY);
+  onDragOver(): (event: DragEvent) => void {
+    let self = this;
 
-    this.checkCoordinates();
-    this.setStyles();
+    return (event: DragEvent) => {
+      self.x = self.currentX + (event.x - self.dragStartX);
+      self.y = self.currentY + (event.y - self.dragStartY);
+
+      self.checkCoordinates();
+      self.setStyles();
+    };
   }
 
   /**
