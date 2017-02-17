@@ -21,7 +21,7 @@
 <div class="row">
   <div *ngIf="showList" [ngClass]="{'col-lg-6': showMap, 'col-lg-12': !showMap }">
     <div class="row">
-      <div [ngClass]="{'col-lg-6': showMap, 'col-lg-3': !showMap }">
+      <div [ngClass]="{'col-lg-6': showMap, 'col-lg-3': !showMap }" *ngFor="let i of looper">
         <div class="card card-with-toolbar">
           <div class="card-content">
             <div class="card-header">
@@ -42,111 +42,111 @@
           </div>
         </div>
       </div>
-      <div [ngClass]="{'col-lg-6': showMap, 'col-lg-3': !showMap }">
-        <div class="card card-with-toolbar">
-          <div class="card-content">
-            <div class="card-header">
-              <i class="theme-icon-data-center float-left"></i>
-              Card with header
-            </div>
-            <div class="card-block">
-              <p class="card-text">Lorem ipsum dolor sit amet.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-          <div class="card-toolbar">
-            <button class="btn btn-secondary theme-icon-add float-right" type="button"></button>
-            <button class="btn btn-secondary theme-icon-remove float-right" type="button"></button>
-            <button class="btn btn-secondary theme-icon-edit float-right" type="button"></button>
-          </div>
-        </div>
-        </div>
-      <div [ngClass]="{'col-lg-6': showMap, 'col-lg-3': !showMap }">
-        <div class="card card-with-toolbar">
-          <div class="card-content">
-            <div class="card-header">
-              <i class="theme-icon-data-center float-left"></i>
-              Card with header
-            </div>
-            <div class="card-block">
-              <p class="card-text">Lorem ipsum dolor sit amet.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-          <div class="card-toolbar">
-            <button class="btn btn-secondary theme-icon-add float-right" type="button"></button>
-            <button class="btn btn-secondary theme-icon-remove float-right" type="button"></button>
-            <button class="btn btn-secondary theme-icon-edit float-right" type="button"></button>
-          </div>
-        </div>
-        </div>
-      <div [ngClass]="{'col-lg-6': showMap, 'col-lg-3': !showMap }">
-        <div class="card card-with-toolbar">
-          <div class="card-content">
-            <div class="card-header">
-              <i class="theme-icon-data-center float-left"></i>
-              Card with header
-            </div>
-            <div class="card-block">
-              <p class="card-text">Lorem ipsum dolor sit amet.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-          <div class="card-toolbar">
-            <button class="btn btn-secondary theme-icon-add float-right" type="button"></button>
-            <button class="btn btn-secondary theme-icon-remove float-right" type="button"></button>
-            <button class="btn btn-secondary theme-icon-edit float-right" type="button"></button>
-          </div>
-        </div>
-        </div>
-      <div [ngClass]="{'col-lg-6': showMap, 'col-lg-3': !showMap }">
-        <div class="card card-with-toolbar">
-          <div class="card-content">
-            <div class="card-header">
-              <i class="theme-icon-data-center float-left"></i>
-              Card with header
-            </div>
-            <div class="card-block">
-              <p class="card-text">Lorem ipsum dolor sit amet.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-          <div class="card-toolbar">
-            <button class="btn btn-secondary theme-icon-add float-right" type="button"></button>
-            <button class="btn btn-secondary theme-icon-remove float-right" type="button"></button>
-            <button class="btn btn-secondary theme-icon-edit float-right" type="button"></button>
-          </div>
-        </div>
-        </div>
-      <div [ngClass]="{'col-lg-6': showMap, 'col-lg-3': !showMap }">
-        <div class="card card-with-toolbar">
-          <div class="card-content">
-            <div class="card-header">
-              <i class="theme-icon-data-center float-left"></i>
-              Card with header
-            </div>
-            <div class="card-block">
-              <p class="card-text">Lorem ipsum dolor sit amet.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-          <div class="card-toolbar">
-            <button class="btn btn-secondary theme-icon-add float-right" type="button"></button>
-            <button class="btn btn-secondary theme-icon-remove float-right" type="button"></button>
-            <button class="btn btn-secondary theme-icon-edit float-right" type="button"></button>
-          </div>
-        </div>
-      </div>
+      <!--<div [ngClass]="{'col-lg-6': showMap, 'col-lg-3': !showMap }">-->
+        <!--<div class="card card-with-toolbar">-->
+          <!--<div class="card-content">-->
+            <!--<div class="card-header">-->
+              <!--<i class="theme-icon-data-center float-left"></i>-->
+              <!--Card with header-->
+            <!--</div>-->
+            <!--<div class="card-block">-->
+              <!--<p class="card-text">Lorem ipsum dolor sit amet.</p>-->
+            <!--</div>-->
+            <!--<div class="card-footer">-->
+              <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="card-toolbar">-->
+            <!--<button class="btn btn-secondary theme-icon-add float-right" type="button"></button>-->
+            <!--<button class="btn btn-secondary theme-icon-remove float-right" type="button"></button>-->
+            <!--<button class="btn btn-secondary theme-icon-edit float-right" type="button"></button>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+      <!--<div [ngClass]="{'col-lg-6': showMap, 'col-lg-3': !showMap }">-->
+        <!--<div class="card card-with-toolbar">-->
+          <!--<div class="card-content">-->
+            <!--<div class="card-header">-->
+              <!--<i class="theme-icon-data-center float-left"></i>-->
+              <!--Card with header-->
+            <!--</div>-->
+            <!--<div class="card-block">-->
+              <!--<p class="card-text">Lorem ipsum dolor sit amet.</p>-->
+            <!--</div>-->
+            <!--<div class="card-footer">-->
+              <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="card-toolbar">-->
+            <!--<button class="btn btn-secondary theme-icon-add float-right" type="button"></button>-->
+            <!--<button class="btn btn-secondary theme-icon-remove float-right" type="button"></button>-->
+            <!--<button class="btn btn-secondary theme-icon-edit float-right" type="button"></button>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+      <!--<div [ngClass]="{'col-lg-6': showMap, 'col-lg-3': !showMap }">-->
+        <!--<div class="card card-with-toolbar">-->
+          <!--<div class="card-content">-->
+            <!--<div class="card-header">-->
+              <!--<i class="theme-icon-data-center float-left"></i>-->
+              <!--Card with header-->
+            <!--</div>-->
+            <!--<div class="card-block">-->
+              <!--<p class="card-text">Lorem ipsum dolor sit amet.</p>-->
+            <!--</div>-->
+            <!--<div class="card-footer">-->
+              <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="card-toolbar">-->
+            <!--<button class="btn btn-secondary theme-icon-add float-right" type="button"></button>-->
+            <!--<button class="btn btn-secondary theme-icon-remove float-right" type="button"></button>-->
+            <!--<button class="btn btn-secondary theme-icon-edit float-right" type="button"></button>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+      <!--<div [ngClass]="{'col-lg-6': showMap, 'col-lg-3': !showMap }">-->
+        <!--<div class="card card-with-toolbar">-->
+          <!--<div class="card-content">-->
+            <!--<div class="card-header">-->
+              <!--<i class="theme-icon-data-center float-left"></i>-->
+              <!--Card with header-->
+            <!--</div>-->
+            <!--<div class="card-block">-->
+              <!--<p class="card-text">Lorem ipsum dolor sit amet.</p>-->
+            <!--</div>-->
+            <!--<div class="card-footer">-->
+              <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="card-toolbar">-->
+            <!--<button class="btn btn-secondary theme-icon-add float-right" type="button"></button>-->
+            <!--<button class="btn btn-secondary theme-icon-remove float-right" type="button"></button>-->
+            <!--<button class="btn btn-secondary theme-icon-edit float-right" type="button"></button>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+      <!--<div [ngClass]="{'col-lg-6': showMap, 'col-lg-3': !showMap }">-->
+        <!--<div class="card card-with-toolbar">-->
+          <!--<div class="card-content">-->
+            <!--<div class="card-header">-->
+              <!--<i class="theme-icon-data-center float-left"></i>-->
+              <!--Card with header-->
+            <!--</div>-->
+            <!--<div class="card-block">-->
+              <!--<p class="card-text">Lorem ipsum dolor sit amet.</p>-->
+            <!--</div>-->
+            <!--<div class="card-footer">-->
+              <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="card-toolbar">-->
+            <!--<button class="btn btn-secondary theme-icon-add float-right" type="button"></button>-->
+            <!--<button class="btn btn-secondary theme-icon-remove float-right" type="button"></button>-->
+            <!--<button class="btn btn-secondary theme-icon-edit float-right" type="button"></button>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
   </div>
   <div *ngIf="showMap" [ngClass]="{'col-lg-6': showList, 'col-lg-12': !showList }">

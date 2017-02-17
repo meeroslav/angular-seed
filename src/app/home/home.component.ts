@@ -18,6 +18,7 @@ import { IMapChange, ICoordinate, WorldMapComponent } from '../_common/custom-co
 export class HomeComponent implements OnInit {
   showList: boolean;
   showMap: boolean;
+  looper: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   constructor(private element: ElementRef) {
     this.showList = true;
