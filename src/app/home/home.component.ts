@@ -16,9 +16,12 @@ import { IMapChange, ICoordinate, WorldMapComponent } from '../_common/custom-co
   }
 })
 export class HomeComponent implements OnInit {
+  showList: boolean;
+  showMap: boolean;
 
   constructor(private element: ElementRef) {
-    /** */
+    this.showList = true;
+    this.showMap = true;
   }
 
   ngOnInit() {
@@ -33,5 +36,14 @@ export class HomeComponent implements OnInit {
 
     dot.style.left = `${cords.x}%`;
     dot.style.top = `${cords.y}%`;
+  }
+
+  setView(type: 'LIST' | 'MAP') {
+    if (type === 'LIST') {
+      this.showList = !this.showList;
+    }
+    if (type === 'MAP') {
+      this.showMap = !this.showMap;
+    }
   }
 }
