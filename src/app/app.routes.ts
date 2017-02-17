@@ -11,6 +11,7 @@ export const appRoutes: Routes = [
   { path: 'table', loadChildren: './table/table.module#TablePageModule' },
   { path: 'misc', loadChildren: './miscellaneous/miscellaneous.module#MiscPageModule' },
   { path: 'colors', loadChildren: './colors/colors.module#ColorsPageModule' },
+  { path: 'typefaces', loadChildren: './typefaces/typefaces.module#TypefacesPageModule' }
 ];
 
 export const appRouting: ModuleWithProviders = RouterModule.forRoot(appRoutes);

@@ -56,9 +56,28 @@ export class MainNav {
       ]
     },
     {
-      text: 'Colors and typefaces',
+      text: 'Graphics',
       icon: 'theme-icon-list',
-      url: '/colors'
+      areaName: 'GRAPHICS',
+      children: [
+        {
+          text: 'Colors',
+          icon: 'theme-icon-list',
+          url: '/colors'
+        },
+        {
+          text: 'Typefaces and icons',
+          icon: 'theme-icon-list',
+          url: '/typefaces'
+        }
+      ]
+    },
+    {
+      text: 'Layouts',
+      icon: 'theme-icon-list',
+      areaName: 'LAYOUTS',
+      children: [
+      ]
     }
   ];
 }

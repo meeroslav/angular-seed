@@ -72,6 +72,10 @@ main {
   line-height: 1.3;
 }
 
+.btn-toolbar {
+  margin-bottom: $btn-toolbar-margin;
+}
+
 #main-nav {
   flex: 0 0 $theme-side-nav-width;
   width: $theme-side-nav-width;
