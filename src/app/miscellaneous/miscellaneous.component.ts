@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewContainerRef, ElementRef} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
-import {ModalDialogService} from '../_common/modal-dialog/modal-dialog.service';
-import {SimpleModalComponent} from '../_common/modal-dialog/simple-modal.component';
+import { ModalDialogService } from 'ngx-modal-dialog';
+import { SimpleModalComponent } from 'ngx-modal-dialog';
 import { IMapChange, WorldMapComponent, ICoordinate } from '../_common/custom-components/world-map/world-map.component';
 import { ITreeNode } from '../_common/custom-components/tree/tree-node.component';
 import { LoadingIndicatorService } from '../_common/locading-indicator/loading-indicator.service';
@@ -91,6 +91,9 @@ export class MiscComponent implements OnInit {
     this.modalDialogService.openDialog(this.viewContainer, {
       title: 'Simple',
       childComponent: SimpleModalComponent,
+      settings: {
+        closeButtonClass: 'close theme-icon-close'
+      },
       data: {
         text: 'Some text content'
       }
@@ -103,6 +106,9 @@ export class MiscComponent implements OnInit {
       childComponent: SimpleModalComponent,
       data: {
         text: 'Some text content. It will close after 1 sec.'
+      },
+      settings: {
+        closeButtonClass: 'close theme-icon-close'
       },
       onClose: () => new Promise((resolve: any) => {
         setTimeout(() => {
@@ -119,20 +125,27 @@ export class MiscComponent implements OnInit {
       data: {
         text: 'Not so simple modal dialog. Do you agree?\n(It will close on Fine but fail on close)'
       },
-      prompt: {
-        textOk: 'Im fine, thanks',
-        onPromptOk: () => new Promise((resolve: any) => {
-          setTimeout(() => {
-            resolve();
-          }, 20);
-        }),
-        textCancel: 'Brake, please',
-        onPromptCancel: () => new Promise((resolve: any, reject: any) => {
-          setTimeout(() => {
-            reject();
-          }, 20);
-        })
-      }
+      settings: {
+        closeButtonClass: 'close theme-icon-close'
+      },
+      actionButtons: [
+        {
+          text: 'Im fine, thanks',
+          onAction: () => new Promise((resolve: any) => {
+            setTimeout(() => {
+              resolve();
+            }, 20);
+          })
+        },
+        {
+          text: 'Brake, please',
+          onAction: () => new Promise((resolve: any, reject: any) => {
+            setTimeout(() => {
+              reject();
+            }, 20);
+          })
+        }
+      ]
     });
   }
 
@@ -161,7 +174,7 @@ export class MiscComponent implements OnInit {
    * is selected on the tree
    * @param node: The node selected
    */
-  nodeSelectCallback = (node: any) => {
+  nodeSelectCallback(node: any) {
     if (node) {
       this.selectedTreeNode = node;
     }

@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { MiscComponent } from './miscellaneous.component';
 import { TranslateModule } from 'ng2-translate';
 import { CommonModule } from '@angular/common';
-import { ModalDialogModule } from '../_common/modal-dialog/modal-dialog.module';
+import { ModalDialogModule } from 'ngx-modal-dialog';
 import { CustomComponentsModule } from '../_common/custom-components/custom-components.module';
 import { TabsModule } from 'ng2-bootstrap';
 import { DatepickerModule } from 'ng2-bootstrap';

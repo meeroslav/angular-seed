@@ -10,7 +10,7 @@ import { DispatcherModule } from './_common/dispatcher/dispatcher.module';
 import { FooterComponent } from './_layout/footer.component';
 import { MainNav } from './_layout/mainnav.service';
 import { CommonModule } from '@angular/common';
-import { ModalDialogModule } from './_common/modal-dialog/modal-dialog.module';
+import { ModalDialogModule } from 'ngx-modal-dialog';
 import { TabsModule, PaginationModule } from 'ng2-bootstrap';
 import { LoadingIndicatorModule } from './_common/locading-indicator/loading-indicator.module';
 import { FeedbackModule } from './_common/feedback/feedback.module';

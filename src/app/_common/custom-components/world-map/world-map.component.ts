@@ -330,7 +330,6 @@ export class WorldMapComponent implements OnInit, OnDestroy {
    * Emit changed event and update map
    */
   updateMap() {
-    console.log('Update triggered');
     this.setRatio();
     this.checkCoordinates();
     this.setStyles();

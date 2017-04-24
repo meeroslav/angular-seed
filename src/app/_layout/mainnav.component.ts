@@ -7,10 +7,10 @@ import { INavigationConfig, MainNav } from './mainnav.service';
   selector: 'main-nav',
   template: `
   <ul class="navbar-nav">
-    <li *ngFor="let item of navigation" 
+    <li *ngFor="let item of navigation"
       [ngClass]="{
-        'nav-divider': item.divider, 
-        'nav-item': !item.divider, 
+        'nav-divider': item.divider,
+        'nav-item': !item.divider,
         'nav-dropdown': item.children && item.children.length,
         'open': item.areaName && expandedArea == item.areaName }"
       routerLinkActive="active">
@@ -24,15 +24,15 @@ import { INavigationConfig, MainNav } from './mainnav.service';
       </a>
       <ul class="nav-dropdown-items" *ngIf="item.children && item.children.length">
         <li class="nav-item" routerLinkActive="active" *ngFor="let subItem of item.children">
-          <a [routerLink]="subItem.url" class="nav-link">            
+          <a [routerLink]="subItem.url" class="nav-link">
             <i *ngIf="subItem.icon" [class]="subItem.icon"></i>
             <span class="nav-link-text">{{subItem.text}}</span>
           </a>
-        </li>          
-      </ul>              
+        </li>
+      </ul>
     </li>
-  </ul>    
-      
+  </ul>
+
   `,
   host: {
     'id': 'main-nav',
