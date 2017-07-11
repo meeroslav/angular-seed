@@ -1,9 +1,9 @@
-# angular2-seed
+# angular seed
 
-> Angular 2 seed for future applications
+> Angular (2+) seed for future applications
 
 ## Included
-- Angular 2
+- Angular
 - Typescript
 - TSLint
 - Webpack
