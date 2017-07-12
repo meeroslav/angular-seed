@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { DispatcherService } from '../_common/dispatcher/dispatcher.service';
 import { MAIN_MENU_TOGGLE } from './layout.interface';
 
-@Component( {
+@Component({
   selector: 'header',
   template: `
     <ul class="nav navbar-nav hidden-md-up">
       <li class="nav-item">
         <button class="nav-link navbar-toggler" type="button" (click)="toggleMainMenu()">☰</button>
       </li>
-    </ul>    
+    </ul>
     <a class="navbar-brand" [routerLink]="['.']">
       <i class="logo"></i>
       <!--{{'APP_NAME' | translate}}-->
@@ -26,9 +26,13 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
       </form>
     </div>
     <ul class="nav hidden-sm-down">
-      <li class="nav-item float-right"><button class="theme-icon-notification"></button></li>
-      <li class="nav-item float-right"><button class="theme-icon-mail"></button></li>
-    </ul>    
+      <li class="nav-item float-right">
+        <button class="theme-icon-notification"></button>
+      </li>
+      <li class="nav-item float-right">
+        <button class="theme-icon-mail"></button>
+      </li>
+    </ul>
   `,
   host: {
     'class': 'navbar navbar-sticky-top navbar-inverse navbar-toggleable bg-inverse'

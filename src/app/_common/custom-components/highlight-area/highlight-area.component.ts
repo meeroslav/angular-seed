@@ -69,7 +69,7 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
    */
   get value(): string {
     return this._value;
-  };
+  }
 
   /**
    * Value setter

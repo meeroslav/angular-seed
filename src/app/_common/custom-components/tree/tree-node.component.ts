@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 export interface ITreeNode {
   id?: string;
@@ -11,19 +11,21 @@ export interface ITreeNode {
   selector: 'tree-node',
   styleUrls: ['./tree-node.component.scss'],
   template: `
-        <div class="tree-node-header" (click)="toggle()" [ngClass]="{'no-children': !content.children || !content.children.length}">
+    <div class="tree-node-header" (click)="toggle()"
+         [ngClass]="{'no-children': !content.children || !content.children.length}">
             <span *ngIf="content.children && content.children.length" class="tree-toggler"
-                [ngClass]="{'collapsed theme-icon-chevron-right': collapsed, 'expanded theme-icon-chevron-down': !collapsed}"></span>
-            <div>
-              {{content.text | translate}}
-            </div>
-            <span *ngIf="content.icon" [ngClass]="content.icon" class="tree-node-icon"></span>
-        </div>
-        <div *ngIf="content.children && content.children.length" class="tree-node-list" [ngClass]="{'collapsed': collapsed}">
-            <tree-node #t *ngFor="let node of content.children" [selected]="selected" 
-              [content]="node" (click)="onNodeSelect(t)"></tree-node>
-        </div>
-    `,
+                  [ngClass]="{'collapsed theme-icon-chevron-right': collapsed, 'expanded theme-icon-chevron-down': !collapsed}"></span>
+      <div>
+        {{content.text | translate}}
+      </div>
+      <span *ngIf="content.icon" [ngClass]="content.icon" class="tree-node-icon"></span>
+    </div>
+    <div *ngIf="content.children && content.children.length" class="tree-node-list"
+         [ngClass]="{'collapsed': collapsed}">
+      <tree-node #t *ngFor="let node of content.children" [selected]="selected"
+                 [content]="node" (click)="onNodeSelect(t)"></tree-node>
+    </div>
+  `,
   host: {
     'class': 'tree-node',
     '[class.selected]': 'markSelection()'
@@ -57,7 +59,7 @@ export class TreeNode {
    * @param treeNode
    */
   onNodeSelect(treeNode: TreeNode) {
-    this.nodeClick.emit({node: treeNode.content});
+    this.nodeClick.emit({ node: treeNode.content });
   }
 
   toggle() {

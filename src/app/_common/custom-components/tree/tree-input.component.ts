@@ -1,17 +1,17 @@
-import {Component, Input, forwardRef, Output, EventEmitter, ElementRef, Inject} from '@angular/core';
-import {ITreeNode} from './tree-node.component';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { Component, Input, forwardRef, Output, EventEmitter, ElementRef, Inject } from '@angular/core';
+import { ITreeNode } from './tree-node.component';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'tree',
   styleUrls: ['./tree-input.component.scss'],
   template: `
-      <tree-node *ngFor="let node of content" 
-      [content]="node" 
-      [collapsed]="collapsed" 
-      [selected]="selectedNode"      
-      (nodeClick)="onNodeClick($event)"></tree-node>
-      `,
+    <tree-node *ngFor="let node of content"
+               [content]="node"
+               [collapsed]="collapsed"
+               [selected]="selectedNode"
+               (nodeClick)="onNodeClick($event)"></tree-node>
+  `,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => TreeInputComponent),
@@ -74,9 +74,17 @@ export class TreeInputComponent implements ControlValueAccessor {
     }
   }
 
-  onChange = (_) => { /**/ };
-  onTouched = () => { /**/ };
-  registerOnChange(fn: (_: any) => void): void { this.onChange = fn; }
-  registerOnTouched(fn: () => void): void { this.onTouched = fn; }
+  onChange = (_) => { /**/
+  };
+  onTouched = () => { /**/
+  };
+
+  registerOnChange(fn: (_: any) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
 }
 

@@ -5,7 +5,8 @@ import '@angular/core';
 import '@angular/common';
 import '@angular/http';
 import '@angular/router';
-import 'ng2-translate';
+import '@ngx-translate/core';
+import 'ngx-bootstrap';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';

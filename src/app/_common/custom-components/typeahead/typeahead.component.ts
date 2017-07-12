@@ -18,20 +18,22 @@ const MAXIMAL_WAIT = 800;
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <button class="btn badge badge-primary align-icon-right" [class.theme-icon-remove]="!_isDisabled"
-      [attr.tabindex]="_isDisabled ? -1 : 0" [disabled]="_isDisabled || null" type="button" 
-      *ngFor="let tag of _arrayOfValues" (click)="removeTag($event, tag)">{{tag}}</button>
+            [attr.tabindex]="_isDisabled ? -1 : 0" [disabled]="_isDisabled || null" type="button"
+            *ngFor="let tag of _arrayOfValues" (click)="removeTag($event, tag)">{{tag}}
+    </button>
     <input *ngIf="!_isDisabled || !multiValue || !_arrayOfValues.length" type="text" autocomplete="off"
-      (keyup)="handleInput($event)" (keydown)="handleInput($event)" (paste)="handleInput($event)" 
-      (click)="toggleExpanded($event, true)" [disabled]="_isDisabled || null" />
+           (keyup)="handleInput($event)" (keydown)="handleInput($event)" (paste)="handleInput($event)"
+           (click)="toggleExpanded($event, true)" [disabled]="_isDisabled || null"/>
     <i class="dropdown-toggle" *ngIf="showSuggestions && !_isDisabled" (click)="toggleExpanded($event)"></i>
     <div role="menu" class="dropdown-menu" *ngIf="showSuggestions">
       <button role="menuitem" class="dropdown-item" type="button" *ngFor="let suggestion of suggestions"
-        (mousedown)="addTag($event, suggestion)" (keydown)="handleButton($event, suggestion)" (keyup)="handleButton($event, suggestion)">
+              (mousedown)="addTag($event, suggestion)" (keydown)="handleButton($event, suggestion)"
+              (keyup)="handleButton($event, suggestion)">
         {{suggestion}}
       </button>
       <button *ngIf="!suggestions.length" disabled="true" class="dropdown-item" type="button">
         {{'NO_RESULTS' | translate}}
-      </button>      
+      </button>
     </div>
   `,
   styleUrls: ['./typeahead.component.scss'],
@@ -41,7 +43,7 @@ const MAXIMAL_WAIT = 800;
     '[attr.disabled]': '_isDisabled || null'
   }
 })
-export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit , OnDestroy, OnInit {
+export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, OnDestroy, OnInit {
   /** suggestions list - array of strings, objects or Observable*/
   @Input() suggestions: string[] | Object[] | Observable<string[]> | Observable<Object[]> = [];
   /** template for items in drop down*/
@@ -58,7 +60,6 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
   @Input() public multiValue: boolean = false;
   /** display suggestions */
   @Input() public showSuggestions: boolean = true;
-
 
   @Output() valueChange = new EventEmitter();
 
@@ -308,11 +309,22 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit ,
     }
   }
 
-  setDisabledState(isDisabled: boolean): void { this._isDisabled = isDisabled; }
-  onChange = (_) => { /**/ };
-  onTouched = () => { /**/ };
-  registerOnChange(fn: (_: any) => void): void { this.onChange = fn; }
-  registerOnTouched(fn: () => void): void { this.onTouched = fn; }
+  setDisabledState(isDisabled: boolean): void {
+    this._isDisabled = isDisabled;
+  }
+
+  onChange = (_) => { /**/
+  };
+  onTouched = () => { /**/
+  };
+
+  registerOnChange(fn: (_: any) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
 
   /**
    * Emit value change event

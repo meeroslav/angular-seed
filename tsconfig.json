@@ -1,7 +1,8 @@
 {
+  "version": "2.0.10",
   "compilerOptions": {
     "target": "es5",
-    "module": "es6",
+    "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
@@ -11,6 +12,8 @@
     "noEmitHelpers": true,
     "lib": [
       "dom",
+      "es2015",
+      "es2015.promise",
       "es6"
     ],
     "typeRoots": [
@@ -19,6 +22,7 @@
     "types": [
       "hammerjs",
       "jasmine",
+      "jasmine-data_driven_tests",
       "node",
       "selenium-webdriver",
       "source-map",
@@ -26,11 +30,10 @@
       "webpack"
     ]
   },
-  "files": [
-    "src/**/*"
+  "include": [
+    "src/**/*.ts"
   ],
   "exclude": [
-    ".",
     "node_modules",
     "dist"
   ],

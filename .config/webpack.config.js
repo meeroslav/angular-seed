@@ -30,9 +30,6 @@ const GIT_COMMIT = isTeamCity ? 'Not available' : childProcess.execSync('git rev
 const GIT_BRANCH = isTeamCity ? 'Unknown' : childProcess.execSync('git rev-parse --abbrev-ref HEAD').toString();
 
 module.exports = (function makeWebpackConfig() {
-
-  'use strict';
-
   console.info('');
   console.info(chalk.cyan('               ______                       __  '));
   console.info(chalk.cyan(' .-----.-----.|__    |.-----.-----.-----.--|  | '));
@@ -47,7 +44,7 @@ module.exports = (function makeWebpackConfig() {
    * Reference: http://webpack.github.io/docs/configuration.html
    * This is the object where all configuration gets set
    */
-  let config = {};
+  var config = {};
 
   /**
    * Devtool
@@ -129,7 +126,7 @@ module.exports = (function makeWebpackConfig() {
       {
         test: /\.css$/,
         exclude: root('src', 'app'),
-        loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader']})
+        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader']})
       },
       // all css required in src/app files will be merged in js files
       {test: /\.css$/, include: root('src', 'app'), loader: 'raw-loader!postcss-loader'},
@@ -139,7 +136,7 @@ module.exports = (function makeWebpackConfig() {
       {
         test: /\.(scss|sass)$/,
         exclude: root('src', 'app'),
-        loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader', 'sass-loader']})
+        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader', 'sass-loader']})
       },
       // all css required in src/app files will be merged in js files
       {test: /\.(scss|sass)$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!sass-loader'},
@@ -149,7 +146,7 @@ module.exports = (function makeWebpackConfig() {
       {
         test: /\.less$/,
         exclude: root('src', 'app'),
-        loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader', 'less-loader']})
+        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader', 'less-loader']})
       },
       // all css required in src/app files will be merged in js files
       { test: /\.less$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!less-loader'},

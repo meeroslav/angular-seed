@@ -30,9 +30,10 @@ import { LoadingIndicatorService } from '../../locading-indicator/loading-indica
     <ul *ngIf="slides.length > 1" class="wizard-nav">
       <li class="wizard-nav-item" *ngFor="let slide of slides; let i = index">
         <button class="wizard-nav-link" type="button"
-          [class.active]="i <= _selectedIndex" [class.current]="i == _selectedIndex" 
-          (click)="selectSlide(slide, i)" [attr.disabled]="(!skipStep && i > _selectedIndex) || (!skipStep && !enabledBack && i < _selectedIndex)  ? true : null">
-          {{ slide.wizardTitle }}              
+                [class.active]="i <= _selectedIndex" [class.current]="i == _selectedIndex"
+                (click)="selectSlide(slide, i)"
+                [attr.disabled]="(!skipStep && i > _selectedIndex) || (!skipStep && !enabledBack && i < _selectedIndex)  ? true : null">
+          {{ slide.wizardTitle }}
         </button>
       </li>
     </ul>
@@ -40,19 +41,20 @@ import { LoadingIndicatorService } from '../../locading-indicator/loading-indica
       <ng-content></ng-content>
     </div>
     <div class="wizard-footer">
-      <button type="button" [ngClass]="previousButtonClass" 
-        *ngIf="_selectedIndex > 0 && enabledBack" (click)="previousSlide()">
+      <button type="button" [ngClass]="previousButtonClass"
+              *ngIf="_selectedIndex > 0 && enabledBack" (click)="previousSlide()">
         {{'PREVIOUS' | translate}}
       </button>
-      <button type="button" [ngClass]="[nextButtonClass, _nextIcon]" (click)="nextSlide()" 
-        [disabled]="_selectedSlide.nextEnabled && !_nextInProgress ? null : true">
+      <button type="button" [ngClass]="[nextButtonClass, _nextIcon]" (click)="nextSlide()"
+              [disabled]="_selectedSlide.nextEnabled && !_nextInProgress ? null : true">
         {{_selectedSlide.nextText | translate}}
       </button>
-      <button *ngFor="let customButton of _selectedSlide.customButtons" type="button" [ngClass]="customButton.className" (click)="customButton.callback()">
+      <button *ngFor="let customButton of _selectedSlide.customButtons" type="button" [ngClass]="customButton.className"
+              (click)="customButton.callback()">
         {{customButton.caption | translate}}
-      </button>          
-    </div>        
-    `,
+      </button>
+    </div>
+  `,
   styleUrls: ['./wizard.component.scss'],
   host: {
     '[class.vertical]': 'vertical'

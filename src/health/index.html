@@ -60,15 +60,18 @@
 <ul id="main"></ul>
 
 <script type="text/javascript">
+  /**
+   * @return {string}
+   */
   function Get(url) {
-    var Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET", url, false);
-    Httpreq.send(null);
-    return Httpreq.responseText;
+    var Http = new XMLHttpRequest(); // a new request
+    Http.open("GET", url, false);
+    Http.send(null);
+    return Http.responseText;
   }
 
   var input = JSON.parse(Get('assets/configs/config.#CONFIGHASH#.json'));
-  // populate gitinfo
+  // populate git info
   var node = document.createElement("div");
 
   if (input) {

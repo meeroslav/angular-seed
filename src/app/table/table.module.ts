@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { TranslateModule } from 'ng2-translate';
+import { TranslateModule } from '@ngx-translate/core';
 import { TableComponent } from './table.component';
 import { TableService } from './table.service';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-import { TabsModule, PaginationModule } from 'ng2-bootstrap';
+import { TabsModule, PaginationModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 let routes = [

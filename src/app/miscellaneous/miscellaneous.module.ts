@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MiscComponent } from './miscellaneous.component';
-import { TranslateModule } from 'ng2-translate';
+import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { CustomComponentsModule } from '../_common/custom-components/custom-components.module';
-import { TabsModule } from 'ng2-bootstrap';
-import { DatepickerModule } from 'ng2-bootstrap';
+import { TabsModule } from 'ngx-bootstrap';
+import { DatepickerModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FeedbackModule } from '../_common/feedback/feedback.module';
 

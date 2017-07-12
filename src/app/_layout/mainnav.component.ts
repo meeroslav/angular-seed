@@ -32,7 +32,6 @@ import { INavigationConfig, MainNav } from './mainnav.service';
       </ul>
     </li>
   </ul>
-
   `,
   host: {
     'id': 'main-nav',

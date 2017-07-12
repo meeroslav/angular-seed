@@ -3,7 +3,7 @@ import { provideRoutes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
 import { MockedTranslatePipe } from './_mocks/translate.mock.spec';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';

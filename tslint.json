@@ -5,11 +5,16 @@
             true,
             "check-space"
         ],
-        "curly": true,
         "eofline": true,
         "forin": true,
-        "indent": [ true, "spaces" ],
-        "interface-name": [ true, "always-prefix" ],
+        "indent": [
+            true,
+            "spaces"
+        ],
+        "interface-name": [
+            true,
+            "always-prefix"
+        ],
         "label-position": true,
         "member-ordering": [
             true,
@@ -46,10 +51,19 @@
             "check-else",
             "check-whitespace"
         ],
-        "quotemark": [ true, "single" ],
+        "quotemark": [
+            true,
+            "single"
+        ],
         "radix": false,
-        "semicolon": [ true, "always" ],
-        "triple-equals": [ true, "allow-null-check" ],
+        "semicolon": [
+            true,
+            "always"
+        ],
+        "triple-equals": [
+            true,
+            "allow-null-check"
+        ],
         "typedef": [
             true,
             "property-declaration"
@@ -64,7 +78,12 @@
                 "variable-declaration": "nospace"
             }
         ],
-        "variable-name": [ true, "ban-keywords", "check-format", "allow-leading-underscore" ],
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format",
+            "allow-leading-underscore"
+        ],
         "whitespace": [
             true,
             "check-branch",
