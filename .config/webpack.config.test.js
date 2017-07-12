@@ -7,7 +7,7 @@ const isTestWatch = ENV === 'test:watch';
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = (function makeWebpackConfig() {
-  var config = {};
+  let config = {};
 
   config.devtool = 'inline-source-map';
 
@@ -15,7 +15,7 @@ module.exports = (function makeWebpackConfig() {
     extensions: ['.ts', '.js', '.html']
   };
 
-  var atlOptions = 'inlineSourceMap=true&sourceMap=false';
+  let atlOptions = 'inlineSourceMap=true&sourceMap=false';
   if (isTestWatch) {
     atlOptions = '';
   }

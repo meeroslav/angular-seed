@@ -6,10 +6,10 @@ const chalk = require('chalk');
 
 // Webpack Plugins
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
-const autoprefixer = require('autoprefixer');
+const autoPrefix = require('autoPrefix');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('./loaders/index'); // temporary use custom version of copy-webpack-plugin
+const CopyWebpackPlugin = require('copy-webpack-plugin-advanced'); // temporary use custom version of copy-webpack-plugin
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
 /**
@@ -44,7 +44,7 @@ module.exports = (function makeWebpackConfig() {
    * Reference: http://webpack.github.io/docs/configuration.html
    * This is the object where all configuration gets set
    */
-  var config = {};
+  let config = {};
 
   /**
    * Devtool
@@ -251,7 +251,7 @@ module.exports = (function makeWebpackConfig() {
       }
     ], { copyUnmodified: true }),
 
-    // Tslint configuration for webpack 2
+    // Ts lint configuration for webpack 2
     new webpack.LoaderOptionsPlugin({
       debug: true,
       options: {
@@ -285,7 +285,7 @@ module.exports = (function makeWebpackConfig() {
          * Add vendor prefixes to your css
          */
         postcss: [
-          autoprefixer({
+          autoPrefix({
             browsers: ['last 2 version']
           })
         ]

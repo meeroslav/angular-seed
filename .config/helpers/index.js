@@ -14,7 +14,7 @@ function transformJsonFile(content, absolutePath, relativePath) {
   let data = JSON.parse(content.toString());
   let paths = path.dirname(relativePath).replace(/\\/g, '/').split('/');
   while(paths.length) {
-    let path = paths.pop();
+    const path = paths.pop();
     if (path !== '.') {
       let newData = {};
       newData[path] = data;
@@ -29,9 +29,9 @@ function transformJsonFile(content, absolutePath, relativePath) {
 function combineJsonFiles(source, destination) {
   'use strict';
 
-  let sourceData = JSON.parse(source.toString());
-  let destinationData = JSON.parse(destination.toString());
-  let result = _.merge(sourceData, destinationData);
+  const sourceData = JSON.parse(source.toString());
+  const destinationData = JSON.parse(destination.toString());
+  const result = _.merge(sourceData, destinationData);
 
   return new Buffer(JSON.stringify(result));
 }
@@ -96,7 +96,7 @@ function injectIntoHealth(config_hash) {
 function hashDate(prefix) {
   'use strict';
 
-  let hash = require("crypto").createHash('md5');
+  let hash = require('crypto').createHash('md5');
   let inputDate = new Date();
 
   hash.update(new Buffer(inputDate.toISOString()));
