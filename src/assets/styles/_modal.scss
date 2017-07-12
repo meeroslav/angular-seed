@@ -1,0 +1,20 @@
+@import 'animations';
+
+.modal {
+  display: block;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  backface-visibility: hidden;
+  overflow: visible;
+}
+.modal-content {
+  left: -50%;
+  transform: translateY(-50%);
+}
+
+.modal-content.shake {
+  @include animate(0.5s, both, infinite);
+  @include runAnimation(shakeCentral);
+}

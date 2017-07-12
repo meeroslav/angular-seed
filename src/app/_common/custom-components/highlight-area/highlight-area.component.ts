@@ -1,18 +1,18 @@
 import { Component, forwardRef, Input, ElementRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IHighlightMarker, IRangePosition, INodeIndex } from './highlight-area.interface';
 
 const ENTER_CHAR = '\n';
 
 @Component({
   selector: 'highlightarea',
-  styleUrls: ['./highlight-area.component.scss'],
+  styleUrls: [ './highlight-area.component.scss' ],
   template: '',
-  providers: [{
+  providers: [ {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => HighlightAreaComponent),
     multi: true
-  }],
+  } ],
   host: {
     'class': 'highlight-area',
     'contenteditable': 'true',
@@ -23,7 +23,7 @@ const ENTER_CHAR = '\n';
 export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
   @Input() markerCallback: (value: string) => Array<IHighlightMarker>;
   @Input() maxLength: number = 0;
-  @Input() tagClass: string = 'badge badge-primary';
+  @Input() tagClass: string = 'badge badge-success';
   @Input() tagDuplicateClass: string = 'badge badge-danger';
   _value: string;
 
@@ -108,8 +108,10 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  onChange = (_) => { /**/ };
-  onTouched = () => { /**/ };
+  onChange = (_) => { /**/
+  }
+  onTouched = () => { /**/
+  }
 
   registerOnChange(fn: (_: any) => void): void {
     this.onChange = fn;
@@ -176,18 +178,18 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
     let childNodes = this.textArea.childNodes;
     while (index < childNodes.length) {
       // match plain text
-      if (childNodes[index] === range.startContainer) {
-        if (childNodes[index].childNodes.length) { // has children -> it was enter
+      if (childNodes[ index ] === range.startContainer) {
+        if (childNodes[ index ].childNodes.length) { // has children -> it was enter
           return null;
         }
         return {
           index: index,
-          isMultiLinePaste: (childNodes[index] as Text).wholeText.indexOf(ENTER_CHAR) !== -1,
+          isMultiLinePaste: (childNodes[ index ] as Text).wholeText.indexOf(ENTER_CHAR) !== -1,
           previousLength: 0
         };
       }
-      if (childNodes[index].firstChild) {
-        let wholeText = (childNodes[index].firstChild as Text).wholeText;
+      if (childNodes[ index ].firstChild) {
+        let wholeText = (childNodes[ index ].firstChild as Text).wholeText;
         let doubleEnterMatch = wholeText.match(/\n\n/g);
         let enterMatch = wholeText.match(/\n/g);
         let enterCount = enterMatch && enterMatch.length;
@@ -208,11 +210,11 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
           };
         }
         // match child element
-        if (childNodes[index].firstChild === range.startContainer) {
+        if (childNodes[ index ].firstChild === range.startContainer) {
           return {
             index: index,
             isHighlight: true,
-            previousLength: index > 0 && childNodes[index - 1].nodeValue && childNodes[index - 1].nodeValue.length || 0
+            previousLength: index > 0 && childNodes[ index - 1 ].nodeValue && childNodes[ index - 1 ].nodeValue.length || 0
           };
         }
       }
@@ -254,19 +256,19 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
     let position = input.position;
 
     if (input.node.isMultiLinePaste) { // it's multiline paste, move to end of it
-      let delta = position - this.getNodeLength(this.textArea.childNodes[index]);
+      let delta = position - this.getNodeLength(this.textArea.childNodes[ index ]);
       while (delta > 0) {
         index += 1;
         position = delta;
-        delta = position - this.getNodeLength(this.textArea.childNodes[index]);
+        delta = position - this.getNodeLength(this.textArea.childNodes[ index ]);
       }
-      isChild = !this.textArea.childNodes[index].nodeValue;
+      isChild = !this.textArea.childNodes[ index ].nodeValue;
     } else if (input.node.isHighlight) {
-      if (this.textArea.childNodes.length <= index || !this.textArea.childNodes[index]) { // broken child, combine it with prev text
+      if (this.textArea.childNodes.length <= index || !this.textArea.childNodes[ index ]) { // broken child, combine it with prev text
         index -= 1;
         position += input.node.previousLength;
-      } else if (this.textArea.childNodes[index].firstChild) { // still is child
-        let delta = position - this.textArea.childNodes[index].firstChild.nodeValue.length;
+      } else if (this.textArea.childNodes[ index ].firstChild) { // still is child
+        let delta = position - this.textArea.childNodes[ index ].firstChild.nodeValue.length;
         if (delta > 0) { // position is longer than child, break out
           index += 1;
           position = delta;
@@ -274,12 +276,12 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
           isChild = true;
         }
       }
-    } else if (this.textArea.childNodes[index].nodeValue) { // has node value -> it's not child
-      let delta = position - this.textArea.childNodes[index].nodeValue.length;
+    } else if (this.textArea.childNodes[ index ].nodeValue) { // has node value -> it's not child
+      let delta = position - this.textArea.childNodes[ index ].nodeValue.length;
       if (delta > 0) { // position is longer than text -> has multiple elements
         index += 1;
         position = delta; // move position to next node
-        let newDelta = position - this.textArea.childNodes[index].firstChild.nodeValue.length;
+        let newDelta = position - this.textArea.childNodes[ index ].firstChild.nodeValue.length;
         if (newDelta > 0) { // position is longer than first child, select next child with new delta position
           index += 1;
           position = newDelta; // move position to next node
@@ -288,7 +290,7 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
         }
       }
     } else { // switch text to child
-      let newDelta = position - this.textArea.childNodes[index].firstChild.nodeValue.length;
+      let newDelta = position - this.textArea.childNodes[ index ].firstChild.nodeValue.length;
       if (newDelta > 0) { // position is longer than first child, select next child with new delta position
         index += 1;
         position = newDelta; // move position to next node
@@ -297,7 +299,8 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
       }
     }
     // return result
-    range.setStart(isChild ? this.textArea.childNodes[index].firstChild : this.textArea.childNodes[index], position);
+    range.setStart(isChild ? this.textArea.childNodes[ index ].firstChild : this.textArea.childNodes[ index ],
+      position);
     return range;
   }
 

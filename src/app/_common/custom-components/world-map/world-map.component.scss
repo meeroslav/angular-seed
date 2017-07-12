@@ -35,12 +35,10 @@
 
   #map-zooming {
     position: absolute;
-    top: $spacer-y;
-    left: $spacer-x;
+    bottom: $spacer-y;
+    right: $spacer-x;
   }
 }
-
-
 
 .map-country {
   fill: $theme-map-country-bg;

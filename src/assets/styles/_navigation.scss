@@ -8,12 +8,16 @@
   padding-top: $spacer-y;
 
   .active {
-    background: $gray-dark;
+    background-color: $gray-dark;
 
-    & > .nav-link {
-      border-left: $brand-primary $theme-accent-width solid;
-      padding-left: $spacer-x - $theme-accent-width;
+    &.nav-dropdown.open > .nav-link {
+      background-color: $brand-primary;
     }
+  }
+
+  .active > .nav-link {
+    border-left: $brand-primary $theme-accent-width solid;
+    padding-left: $spacer-x - $theme-accent-width;
   }
 
   .nav-link {
@@ -29,6 +33,8 @@
     text-decoration: none;
     padding: $spacer-y $spacer-x;
     display: block;
+    @include animateProperty(background-color);
+    background-color: transparent;
 
     .nav-link-text {
       @include ellipsis();

@@ -1,7 +1,7 @@
 @import 'variables';
 @import 'animations';
 
-.loading-indicator {
+#loading-indicator {
   position: fixed;
   top: 0;
   left: 0;
@@ -9,13 +9,10 @@
   height: 100%;
   z-index: $theme-spinner-z;
   background: $gray-dark;
-
-  &.overlay {
-    opacity: 0.5;
-  }
+  opacity: 0.5;
 }
 
-.loading-spinner {
+#loading-spinner {
   display: block;
   position: relative;
   left: 50%;

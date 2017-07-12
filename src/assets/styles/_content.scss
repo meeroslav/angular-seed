@@ -16,9 +16,14 @@
   box-shadow: $breadcrumb-shadow;
 
   h1 {
-    flex: 1;
-    margin: 0;
+    @include fontRegular();
   }
+}
+.page-header-info {
+  flex: 0 1 100%;
+}
+.page-header-content {
+  flex: 0 0 auto;
 }
 
 // Tag overrides
@@ -29,6 +34,7 @@
 
 .badge {
   line-height: 1.5;
+  margin-right: $theme-badge-spacing;
 }
 
 // Tabs
@@ -71,4 +77,7 @@
 }
 .thinner {
   @include fontLight();
+}
+.thicker {
+  @include fontBold();
 }

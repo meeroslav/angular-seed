@@ -1,11 +1,14 @@
 @import 'variables';
+@import '../../../node_modules/bootstrap/scss/mixins.scss';
 
 @mixin card-top-border($color) {
   border-top: $theme-accent-width solid $color;
 }
 
 // New styles
-
+.card-secondary {
+  @include card-variant($brand-secondary, $brand-secondary);
+}
 .card-accent-primary {
   @include card-top-border($btn-primary-bg);
 }
@@ -21,22 +24,44 @@
 .card-accent-danger {
   @include card-top-border($btn-danger-bg);
 }
+.card-header-primary .card-header{
+  background-color: $brand-primary;
+}
+.card-header-secondary .card-header{
+  background-color: $theme-card-header-secondary;
+}
+.card-header-info .card-header{
+  background-color: $brand-info;
+}
+.card-header-success .card-header{
+  background-color: $brand-success;
+}
+.card-header-warning .card-header{
+  background-color: $brand-warning;
+}
+.card-header-danger .card-header{
+  background-color: $brand-danger;
+}
 
 .card {
   margin-bottom: $grid-gutter-width-base;
+  box-shadow: $theme-card-shadow;
 }
 
 // Overrides
 
-.card-header > i {
-  margin-right: $grid-gutter-width-base;
-}
-.card-header > .btn {
-  margin-top: -$grid-gutter-width-base;
-  margin-right: -$grid-gutter-width-base;
+.card-header {
+
+
+  & > i {
+    margin-right: $grid-gutter-width-base;
+    vertical-align: middle;
+  }
 }
 .card-toolbar > .btn, .card-header > .btn {
-  padding: $grid-gutter-width-base;
+  padding: $grid-gutter-width-base / 2 $grid-gutter-width-base;
+
+  margin-left: $spacer-x / 4;
 }
 
 $toolbarWidth: 1rem + 5/1.5 * $grid-gutter-width-base;
@@ -44,6 +69,7 @@ $toolbarWidth: 1rem + 5/1.5 * $grid-gutter-width-base;
 .card-toolbar {
   flex: 0 0 $toolbarWidth;
   padding: $grid-gutter-width-base;
+  border-left: solid $card-border-width $card-border-color;
 
   .btn {
     padding: $grid-gutter-width-base / 1.5;
@@ -63,3 +89,4 @@ $toolbarWidth: 1rem + 5/1.5 * $grid-gutter-width-base;
     background-color: inherit;
   }
 }
+

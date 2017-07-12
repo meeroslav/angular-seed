@@ -25,6 +25,21 @@
   from  { opacity: 0; }
   to    { opacity: 1; }
 }
+@-moz-keyframes shakeCentral {
+  from, to                { transform: translate3d(0, -50%, 0); }
+  10%, 30%, 50%, 70%, 90% { transform: translate3d(-2rem, -50%, 0); }
+  20%, 40%, 60%, 80%      { transform: translate3d(2rem, -50%, 0); }
+}
+@-webkit-keyframes shakeCentral {
+  from, to                { transform: translate3d(0, -50%, 0); }
+  10%, 30%, 50%, 70%, 90% { transform: translate3d(-2rem, -50%, 0); }
+  20%, 40%, 60%, 80%      { transform: translate3d(2rem, -50%, 0); }
+}
+@keyframes shakeCentral {
+  from, to                { transform: translate3d(0, -50%, 0); }
+  10%, 30%, 50%, 70%, 90% { transform: translate3d(-2rem, -50%, 0); }
+  20%, 40%, 60%, 80%      { transform: translate3d(2rem, -50%, 0); }
+}
 
 $animation-duration: 350ms;
 
@@ -60,4 +75,10 @@ $animation-duration: 350ms;
   -webkit-transform: rotate($value);
   -moz-transform: rotate($value);
   transform: rotate($value);
+}
+
+@mixin scale($amount) {
+  -webkit-transform: scale($amount, $amount);
+  -moz-transform: scale($amount, $amount);
+  transform: scale($amount, $amount);
 }

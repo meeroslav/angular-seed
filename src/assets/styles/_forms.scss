@@ -7,6 +7,36 @@
 .form-control {
   font-size: $theme-input-font-size;
   margin-bottom: $spacer-y;
+
+  &.expandable-control {
+    width: 15rem;
+    display: inline-flex;
+    margin-bottom: 0;
+    transition: all $animation-duration ease-in-out;
+
+    &:focus {
+      width: 100%;
+    }
+  }
+}
+
+.filter-search {
+  background-repeat: no-repeat;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='80%' width='80%'><g transform='translate(8,8)' stroke-width='2' stroke='" + $input-color-placeholder + "' fill='none'><path d='M11.29 11.71l-4-4'/><circle cx='5' cy='5' r='4'/></g></svg>");
+  padding-left: $spacer-x * 3;
+}
+
+.table-control {
+  margin-bottom: 0;
+  box-shadow: none;
+
+  .custom-control-indicator {
+    box-shadow: none;
+  }
+}
+
+textarea, highlightarea {
+  min-height: 8rem;
 }
 
 .form-label {
@@ -16,6 +46,10 @@
   font-size: $theme-input-font-size * 0.8;
 }
 
+.custom-control-input ~ .custom-control-description {
+  padding-left: $spacer-x;
+}
+
 .custom-select {
   @include box-shadow($input-box-shadow);
   width: 100%;
@@ -23,6 +57,13 @@
 
 input[type=number] {
   text-align: right;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
 }
 
 input + .custom-control-indicator {
@@ -81,25 +122,40 @@ datepicker {
 
   .form-control {
     transition: all $animation-duration ease-in-out;
+    margin-bottom: 0;
   }
 }
-.infield-label {
+.infield-label, .infield-text {
   position: absolute;
   top: $spacer-y;
-  left: $spacer-x;
   font-size: $theme-input-font-size;
   color: $input-color-placeholder;
   pointer-events: none;
+}
+.infield-label {
+  left: $spacer-x;
   transition: all $animation-duration ease-in-out;
+}
+.infield-text {
+  right: $spacer-x;
+  line-height: $input-line-height;
 }
 .infield-label-active {
   .form-control {
     padding-top: $spacer-y * 1.5;
     padding-bottom: $spacer-y * 0.5;
   }
+  .infield-text {
+    top: $spacer-y * 1.5;
+  }
   .infield-label {
     top: $spacer-y * 0.5;
     font-size: $theme-input-font-size * 0.75;
+  }
+}
+.infield-label-masked {
+  .form-control {
+    padding-right: $spacer-x * 2.25;
   }
 }
 

@@ -10,9 +10,8 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
         <button class="nav-link navbar-toggler" type="button" (click)="toggleMainMenu()">☰</button>
       </li>
     </ul>
-    <a class="navbar-brand" [routerLink]="['.']">
-      <i class="logo"></i>
-      <!--{{'APP_NAME' | translate}}-->
+    <a class="navbar-brand" [routerLink]="['.']" title="{{'APP_NAME' | translate }}">
+      <img class="logo" src="../../assets/images/logotyp.png" alt="{{'APP_NAME' | translate }}"/>
     </a>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav hidden-sm-down">
@@ -20,18 +19,15 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
           <button class="nav-link navbar-toggler" type="button" (click)="toggleMainMenu()">☰</button>
         </li>
       </ul>
-      <form class="form-inline hidden-sm-down search-form">
-        <label for="search" class="theme-icon-search search-icon"></label>
-        <input id="search" class="search-control" type="text" placeholder="Search..."/>
-      </form>
+      <!--<form class="form-inline hidden-sm-down search-form">-->
+      <!--<label for="search" class="theme-icon-search search-icon"></label>-->
+      <!--<input id="search" class="search-control" type="text" placeholder="Search..."/>-->
+      <!--</form>-->
+      <!--<info-dev></info-dev>-->
     </div>
     <ul class="nav hidden-sm-down">
-      <li class="nav-item float-right">
-        <button class="theme-icon-notification"></button>
-      </li>
-      <li class="nav-item float-right">
-        <button class="theme-icon-mail"></button>
-      </li>
+      <!--<li class="nav-item float-right"><button class="theme-icon-notification"></button></li>-->
+      <!--<li class="nav-item float-right"><button class="theme-icon-mail"></button></li>-->
     </ul>
   `,
   host: {

@@ -6,10 +6,10 @@ const chalk = require('chalk');
 
 // Webpack Plugins
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
-const autoPrefix = require('autoPrefix');
+const autoPrefix = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin-advanced'); // temporary use custom version of copy-webpack-plugin
+const CopyWebpackPlugin = require('./loaders/index'); // temporary use custom version of copy-webpack-plugin
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
 /**
@@ -31,12 +31,12 @@ const GIT_BRANCH = isTeamCity ? 'Unknown' : childProcess.execSync('git rev-parse
 
 module.exports = (function makeWebpackConfig() {
   console.info('');
-  console.info(chalk.cyan('               ______                       __  '));
-  console.info(chalk.cyan(' .-----.-----.|__    |.-----.-----.-----.--|  | '));
-  console.info(chalk.cyan(' |     |  _  ||    __||__ --|  -__|  -__|  _  | '));
-  console.info(chalk.cyan(' |__|__|___  ||______||_____|_____|_____|_____| '));
-  console.info(chalk.cyan('       |_____|                                  '));
-  console.info(chalk.cyan('                                    ........    '));
+  console.info(chalk.cyan('                                      __  '));
+  console.info(chalk.cyan(' .‾‾\\--.-----.  .-----.-----.-----.--|  | '));
+  console.info(chalk.cyan(' |     |  _  |  |__ --|  -__|  -__|  _  | '));
+  console.info(chalk.cyan(' |__\\__|\\__  |  |_____|_____|_____|_____| '));
+  console.info(chalk.cyan('        |____/                            '));
+  console.info(chalk.magenta('                                 ........ '));
   console.info('');
 
   /**
@@ -193,7 +193,7 @@ module.exports = (function makeWebpackConfig() {
     // Inject script and link tags into html files
     // Reference: https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      template: './src/public/index.html',
+      template: root('src/public/index.html'),
       chunksSortMode: 'dependency'
     }),
 
@@ -253,8 +253,10 @@ module.exports = (function makeWebpackConfig() {
 
     // Ts lint configuration for webpack 2
     new webpack.LoaderOptionsPlugin({
-      debug: true,
+      debug: false,
       options: {
+        context: root(),
+        output: { path :  './' }, //This has to be './' and not your output folder.
         /**
          * Apply the tslint loader as pre/postLoader
          * Reference: https://github.com/wbuchwalter/tslint-loader

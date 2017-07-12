@@ -1,4 +1,7 @@
-﻿export class FeedbackService {
+﻿import { Injectable } from '@angular/core';
+
+@Injectable()
+export class FeedbackService {
   static delay = 5000;
 
   toasts: IFeedback[];

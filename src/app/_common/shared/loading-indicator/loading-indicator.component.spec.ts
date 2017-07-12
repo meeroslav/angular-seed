@@ -30,26 +30,31 @@ describe('LoadingIndicator.Component', () => {
     });
 
     it('should set loading indicator status', () => {
-        let component = new LoadingIndicatorComponent(service);
+
+        var component = new LoadingIndicatorComponent(service);
         expect(component.indicatorStatus.isInProgress).toEqual(false);
     });
 
     it('should update loading indicator status from service', () => {
-        let component = new LoadingIndicatorComponent(service);
+
+        var component = new LoadingIndicatorComponent(service);
         service.status.isInProgress = true;
         expect(component.indicatorStatus.isInProgress).toEqual(true);
     });
 
     it('should create the component', () => {
+
         expect(fixture.componentInstance instanceof LoadingIndicatorComponent).toBe(true, 'should create LoadingIndicatorComponent');
     });
 
     it('should not show indicator if service is not started', () => {
+
         let indicator = fixture.debugElement.query(By.css('#loading-indicator'));
         expect(indicator).toBeNull();
     });
 
     it('should show indicator if service is started', () => {
+
         service.status.isInProgress = true;
 
         fixture.detectChanges();

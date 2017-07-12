@@ -1,6 +1,6 @@
-import { Component, ContentChildren, AfterContentInit, Input } from '@angular/core';
-import { WizardSlide } from './wizard-slide';
-import { LoadingIndicatorService } from '../../locading-indicator/loading-indicator.service';
+import {Component, ContentChildren, AfterContentInit, Input, EventEmitter, Output} from '@angular/core';
+import {WizardSlide} from './wizard-slide';
+import {LoadingIndicatorService} from '../../shared/loading-indicator/loading-indicator.service';
 /**
  *  Wizard use case
  *  <wizard>
@@ -45,13 +45,13 @@ import { LoadingIndicatorService } from '../../locading-indicator/loading-indica
               *ngIf="_selectedIndex > 0 && enabledBack" (click)="previousSlide()">
         {{'PREVIOUS' | translate}}
       </button>
-      <button type="button" [ngClass]="[nextButtonClass, _nextIcon]" (click)="nextSlide()"
-              [disabled]="_selectedSlide.nextEnabled && !_nextInProgress ? null : true">
-        {{_selectedSlide.nextText | translate}}
-      </button>
       <button *ngFor="let customButton of _selectedSlide.customButtons" type="button" [ngClass]="customButton.className"
               (click)="customButton.callback()">
         {{customButton.caption | translate}}
+      </button>
+      <button type="button" [ngClass]="[nextButtonClass, _nextIcon]" (click)="nextSlide()"
+              [disabled]="_selectedSlide.nextEnabled && !_nextInProgress ? null : true">
+        {{_selectedSlide.nextText | translate}}
       </button>
     </div>
   `,
@@ -64,8 +64,9 @@ export class Wizard implements AfterContentInit {
   @Input('skipStep') skipStep: boolean = false;
   @Input('vertical') vertical: boolean = false;
   @Input('enabledBack') enabledBack: boolean = true;
-  @Input('previousButtonClass') previousButtonClass: string = 'btn btn-secondary theme-icon-chevron-left float-left';
-  @Input('nextButtonClass') nextButtonClass: string = 'btn btn-primary align-icon-right float-right';
+  @Input('previousButtonClass') previousButtonClass: string = 'btn btn-secondary theme-icon-chevron-left';
+  @Input('nextButtonClass') nextButtonClass: string = 'btn btn-primary align-icon-right';
+  @Output('finishWizard') finishWizard: EventEmitter<any> = new EventEmitter();
   @ContentChildren(WizardSlide) slides;
 
   _selectedIndex: number;
@@ -98,6 +99,9 @@ export class Wizard implements AfterContentInit {
       this._nextInProgress = false;
       this._loadingService.done();
       if (this._selectedIndex === slides.length - 1) {
+        if (this.finishWizard) {
+          this.finishWizard.emit(void 0);
+        }
         return;
       }
       this._selectedIndex = this._selectedIndex + 1;
@@ -140,14 +144,14 @@ export class Wizard implements AfterContentInit {
     slide.setSelection(true);
     this._selectedIndex = index;
     this._selectedSlide = slide;
-    this._setSlideContent(slide);
+    this._setSlideContent();
   }
 
   /**
    * Set text on next button
    * @private
    */
-  private _setSlideContent(slide: WizardSlide) {
+  private _setSlideContent() {
     if (this.slides.length - 1 === this._selectedIndex) {
       this._nextIcon = 'theme-icon-checkmark';
     } else {

@@ -5,35 +5,31 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-export interface ITypeaheadChange {
-  value: string;
-  existing: string | string[];
-}
-
 const MINIMAL_WAIT = 100;
 const MAXIMAL_WAIT = 800;
 
 @Component({
   selector: 'typeahead',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush, // fix this later
   template: `
-    <button class="btn badge badge-primary align-icon-right" [class.theme-icon-remove]="!_isDisabled"
-            [attr.tabindex]="_isDisabled ? -1 : 0" [disabled]="_isDisabled || null" type="button"
-            *ngFor="let tag of _arrayOfValues" (click)="removeTag($event, tag)">{{tag}}
-    </button>
+    <span class="btn badge badge-primary" *ngFor="let tag of _arrayOfValues">
+      {{tag}}
+      <i *ngIf="!_isDisabled" (click)="removeTag($event, tag)" class="theme-icon-remove"></i>
+    </span>
     <input *ngIf="!_isDisabled || !multiValue || !_arrayOfValues.length" type="text" autocomplete="off"
            (keyup)="handleInput($event)" (keydown)="handleInput($event)" (paste)="handleInput($event)"
            (click)="toggleExpanded($event, true)" [disabled]="_isDisabled || null"/>
     <i class="dropdown-toggle" *ngIf="showSuggestions && !_isDisabled" (click)="toggleExpanded($event)"></i>
-    <div role="menu" class="dropdown-menu" *ngIf="showSuggestions">
-      <button role="menuitem" class="dropdown-item" type="button" *ngFor="let suggestion of suggestions"
-              (mousedown)="addTag($event, suggestion)" (keydown)="handleButton($event, suggestion)"
+
+    <div role="menu" class="dropdown-menu" *ngIf="showSuggestions && _matches">
+      <button class="dropdown-item" type="button" *ngFor="let suggestion of _matches"
+              (mouseup)="addTag($event, suggestion)" (keydown)="handleButton($event, suggestion)"
               (keyup)="handleButton($event, suggestion)">
         {{suggestion}}
       </button>
-      <button *ngIf="!suggestions.length" disabled="true" class="dropdown-item" type="button">
+      <div *ngIf="_matches.length == 0" disabled="true" role="menuitem" class="dropdown-item">
         {{'NO_RESULTS' | translate}}
-      </button>
+      </div>
     </div>
   `,
   styleUrls: ['./typeahead.component.scss'],
@@ -49,11 +45,14 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, 
   /** template for items in drop down*/
   @Input() public suggestionTemplate: TemplateRef<any>;
   /** maximal number of visible items */
-  @Input() public suggestionLimit: TemplateRef<any>;
+  @Input() public suggestionLimit: number;
   /** field to use from objects as name */
   @Input() public nameField: string;
   /** field to use from objects as id */
   @Input() public idField: string;
+  /** delay of input type debounce */
+  @Input() public inputDelay: number = 0;
+
   /** allow custom values */
   @Input() public custom: boolean = true;
   /** allow multiple values */
@@ -67,9 +66,11 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, 
   _value: any;
   _arrayOfValues: any[] = [];
 
+  _matches: string[];
+  _inputModifiedEmitter: EventEmitter<any> = new EventEmitter();
+
   // ui state
   protected _expanded: boolean = false;
-  protected _keyUpEventEmitter: EventEmitter<any> = new EventEmitter();
 
   private _safeToRemove = false;
   private _input: HTMLInputElement;
@@ -88,10 +89,50 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, 
 
   ngOnInit() {
     if (this.suggestions instanceof Observable) {
-      // this.asyncActions();
+      this.asyncActions();
     } else {
-      // this.syncActions();
+      this.syncActions();
     }
+    this._inputModifiedEmitter.emit('');
+  }
+
+  syncActions() {
+    const stripDiacritics = (text: string) => text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    this._inputModifiedEmitter.debounceTime(this.inputDelay)
+      .mergeMap((value: string) => {
+        const normalizedQuery = stripDiacritics(value);
+
+        if (this.suggestions) {
+          // filtered by option and combined into array
+          return Observable.from(this.suggestions).filter((option: any) =>
+            option && stripDiacritics(option).indexOf(normalizedQuery) !== -1
+          ).filter((option: any) => !this.multiValue || this._arrayOfValues.indexOf(option) === -1
+          ).toArray();
+        } else {
+          return [];
+        }
+      }).subscribe(
+      (matches: any[]) => {
+        this._matches = matches;
+      },
+      (err: any) => {
+        // console.error(err);
+      }
+    );
+  }
+
+  asyncActions() {
+    this._inputModifiedEmitter.debounceTime(this.inputDelay)
+      .mergeMap(() => this.suggestions)
+      .subscribe(
+        (matches: any[]) => {
+          this._matches = matches;
+        },
+        (err: any) => {
+          // console.error(err);
+        }
+      );
   }
 
   /**
@@ -99,6 +140,9 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, 
    */
   ngAfterViewInit() {
     this._input = this.elementRef.nativeElement.querySelector('input');
+    if (!this.multiValue && this._value) {
+      this._input.value = this._value;
+    }
   }
 
   /**
@@ -126,22 +170,24 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, 
 
     this._expanded = false;
 
-    if (!this.custom && (this.suggestions as string[]).indexOf(this._input.value) === -1) {
+    if (!this.custom && this._matches.indexOf(this._input.value) === -1) {
       this._input.value = this.value = null;
-      this._emitChangedEvent('');
+      this._inputModifiedEmitter.emit('');
     } else if (this.multiValue) {
       this._input.value = null;
-      this._emitChangedEvent('');
+      this._inputModifiedEmitter.emit('');
     }
   }
 
   /**
    * Remove tag from input
+   * @param event
    * @param tag
    */
   removeTag(event: Event, tag) {
     event.stopImmediatePropagation();
     event.stopPropagation();
+    event.preventDefault();
 
     let index = this._value && this._value.indexOf(tag);
     if (index !== -1) {
@@ -150,18 +196,21 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, 
       } else {
         this.value = this._arrayOfValues = this._value.slice(0, index).concat(this._value.slice(index + 1));
       }
+      this.renderer.invokeElementMethod(this._input, 'focus', []);
+      this._inputModifiedEmitter.emit('');
     }
   }
 
   /**
    * Add new tag (on enter and data list selection)
+   * @param event
    * @param tag
    */
   addTag(event: Event, tag: string) {
     event.stopImmediatePropagation();
     event.stopPropagation();
 
-    if (!this.custom && (this.suggestions as string[]).indexOf(tag) === -1) {
+    if (!this.custom && this._matches.indexOf(tag) === -1) {
       return;
     }
     if (this.multiValue) {
@@ -169,17 +218,15 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, 
       if (notExists && tag.length) {
         this.value = this._arrayOfValues = (this._value || []).concat([tag]);
         this._input.value = '';
-        this.renderer.invokeElementMethod(this._input, 'focus', []);
-        this._expanded = false;
-        this._emitChangedEvent('');
+        this._inputModifiedEmitter.emit('');
       }
     } else {
       this.value = tag;
       this._input.value = tag;
-      this.renderer.invokeElementMethod(this._input, 'focus', []);
-      this._expanded = false;
-      this._emitChangedEvent(tag);
+      this._inputModifiedEmitter.emit(tag);
     }
+    this._expanded = false;
+    this.renderer.invokeElementMethod(this._input, 'focus', []);
   }
 
   /**
@@ -200,7 +247,7 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, 
    */
   get value(): string | string[] {
     return this._value;
-  };
+  }
 
   /**
    * Value setter
@@ -241,17 +288,18 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, 
       }
     }
     if (event.type === 'keydown' || event.type === 'keyup') {
-      if ((event as KeyboardEvent).keyCode === 40 && (this.suggestions as string[]).length > 0) { // arrow down
+      if ((event as KeyboardEvent).keyCode === 40 && this._matches.length > 0) { // arrow down
         let button = this.elementRef.nativeElement.querySelector('button.dropdown-item:first-child');
         this.renderer.invokeElementMethod(button, 'focus', []);
       }
     }
-    this._emitChangedEvent(target.value);
+    this._inputModifiedEmitter.emit(target.value);
   }
 
   /**
    * Move through collection on arrow commands
    * @param event
+   * @param tag
    */
   handleButton(event: KeyboardEvent, tag: string) {
     event.stopImmediatePropagation();
@@ -292,7 +340,7 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, 
       value = void 0;
     }
     this._value = value;
-    this._arrayOfValues = value || [];
+    this._arrayOfValues = this.multiValue ? (value || []) : [];
 
     this.elementRef.nativeElement.value = value;
     this.triggerOnChange(this.elementRef.nativeElement); // trigger on change event
@@ -313,10 +361,8 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, 
     this._isDisabled = isDisabled;
   }
 
-  onChange = (_) => { /**/
-  };
-  onTouched = () => { /**/
-  };
+  onChange = (_) => { /**/ };
+  onTouched = () => { /**/ };
 
   registerOnChange(fn: (_: any) => void): void {
     this.onChange = fn;
@@ -331,19 +377,19 @@ export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, 
    * @param value
    * @private
    */
-  private _emitChangedEvent(value: string) {
-    // only if wait is below threshold
-    if (this._accumulatedTimeout < MAXIMAL_WAIT) {
-      this.cleanUpTimeout();
-    }
-    // fire up new timeout
-    this._timeOut = window.setTimeout(() => {
-      let existingValues = this._arrayOfValues;
-      this.valueChange.emit({ value: value, existing: existingValues });
-      this._timeOut = null;
-      this._accumulatedTimeout = 0;
-    }, MINIMAL_WAIT);
-  }
+  // private _emitChangedEvent(value: string) {
+  //  // only if wait is below threshold
+  //  if (this._accumulatedTimeout < MAXIMAL_WAIT) {
+  //    this.cleanUpTimeout();
+  //  }
+  //  // fire up new timeout
+  //  this._timeOut = window.setTimeout(() => {
+  //    let existingValues = this._arrayOfValues;
+  //    this.valueChange.emit({ value: value, existing: existingValues });
+  //    this._timeOut = null;
+  //    this._accumulatedTimeout = 0;
+  //  }, MINIMAL_WAIT);
+  // }
 
   /**
    * Clear current timeout

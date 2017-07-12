@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'loading-indicator',
     template: `
-        <div class="loading-indicator overlay" *ngIf="indicatorStatus.isInProgress">
-            <div class="loading-spinner"></div>
+        <div id="loading-indicator" *ngIf="indicatorStatus.isInProgress">
+            <div id="loading-spinner"></div>
         </div>
     `
 })

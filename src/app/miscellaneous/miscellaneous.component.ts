@@ -5,8 +5,8 @@ import { ModalDialogService } from 'ngx-modal-dialog';
 import { SimpleModalComponent } from 'ngx-modal-dialog';
 import { IMapChange, WorldMapComponent, ICoordinate } from '../_common/custom-components/world-map/world-map.component';
 import { ITreeNode } from '../_common/custom-components/tree/tree-node.component';
-import { LoadingIndicatorService } from '../_common/locading-indicator/loading-indicator.service';
-import { FeedbackService } from '../_common/feedback/feedback.service';
+import { LoadingIndicatorService } from '../_common/shared/loading-indicator/loading-indicator.service';
+import { FeedbackService } from '../_common/shared/feedback/feedback.service';
 
 const tree = [
   {text: 'Category 1', children: [{id: '1', text: 'Sub-Category1'}, {id: '2', text: 'Sub-Category2'}]},

@@ -1,5 +1,5 @@
 @import 'typography';
-@import '../../../node_modules/bootstrap/scss/variables.scss';
+
 
 /********************************
     Custom theme values
@@ -20,14 +20,16 @@ $greentube_gray_02: #404041;
 $greentube_gray_03: #b1b3b5;
 $greentube_gray_04: #e3e3e3;
 
-//$red:    #d9534f !default;
-//$orange: #f0ad4e !default;
-//$yellow: #ffd500 !default;
-//$green:  #5cb85c !default;
+$black:  #000000;
+$white:  #ffffff;
+$red:    #d9534f;
+$orange: #f0ad4e;
+$yellow: #ffd500;
+$green:  $greentube_green_01;
 $blue:   #2196f3;
-//$teal:   #5bc0de !default;
-//$pink:   #ff5b77 !default;
-//$purple: #613d7c !default;
+$teal:   #5bc0de;
+$pink:   #ff5b77;
+$purple: #613d7c;
 
 // Colors
 $gray-dark:                 #263238;
@@ -42,25 +44,81 @@ $brand-info:                $teal;
 $brand-warning:             $orange;
 $brand-danger:              $red;
 $brand-inverse:             $gray-dark;
+$brand-secondary:           $gray-lighter;
 
 // Defined colors
 $theme-tab-content-bg: $white;
-$theme-wizard-bullet-bg: $white;
 $theme-datepicker-bg: $white;
-$theme-border-color: #dadada;
+$theme-border-color: rgba($black,.17);
 $theme-menu-bg: $gray;
 $theme-header-color: $gray-lightest;
+$theme-info-color: $gray-light;
+$theme-info-color-info: $gray-lightest;
+$theme-info-popup-background: $gray-dark;
+$theme-info-popup-border: $theme-border-color;
+$theme-card-header-secondary: $gray-lighter;
 
-$theme-map-bg: $gray-light;
-$theme-map-line-color: $gray-dark;
-$theme-map-country-bg: $gray-lightest;
+$theme-card-shadow: 1px 1px 5px 0 rgba($black,.2);
+
+// Overridden value
+$spacer:   0.625rem;
 
 // Values
 $theme-spinner-z: 1000;
+$theme-dev-info-z: 100;
 $theme-side-nav-width: 14rem;
 $theme-side-nav-collapsed-width: 3rem;
 $theme-accent-width: 0.2rem;
 $theme-input-font-size: 0.875rem;
+$spacer-sm: $spacer / 2;
+
+// MAP
+// $theme-map-bg: $gray-light;
+// $theme-map-line-color: $gray-dark;
+// $theme-map-country-bg: $gray-lightest;
+
+$theme-map-bg: transparent;
+$theme-map-line-color: $white;
+$theme-map-country-bg: $gray-light;
+
+// GRAPH
+$theme-graph-background: transparent;
+$theme-graph-color: $black;
+$theme-graph-up: $brand-success;
+$theme-graph-down: $brand-danger;
+
+// STATE
+$theme-state-background: white;
+$theme-state-empty-color: $gray-lighter;
+$theme-state-full-color: $green;
+$theme-state-half-color: $orange;
+$theme-state-block-height: 1rem;
+$theme-state-block-width: 0.8rem;
+
+// WIZARD
+$theme-wizard-border-color: $gray-lighter;
+$theme-wizard-background: $white;
+$theme-wizard-bullet-bg: $white;
+
+// ERROR
+$theme-error-page-color: $white;
+$theme-error-page-top-bg: $gray-dark;
+$theme-error-page-bottom-bg: $gray;
+$theme-error-page-glow: mix(transparent, $white, 30%);
+$theme-error-page-glow_light: mix(transparent, $white, 70%);
+
+// ACTION LOG
+$theme-action-log-background: $white;
+$theme-action-log-header-inverse: $white;
+$theme-action-log-shadow: 1px 0 3px 1px rgba($black, .2);
+
+// SCROLLBAR
+$theme-scrollbar-thumb: mix(transparent, $brand-primary, 60%);
+$theme-scrollbar-track: mix(transparent, $black, 90%);
+$theme-scrollbar-size: $spacer;
+
+// BADGE
+$theme-badge-spacing: $spacer / 4;
 
 /********************************************
 *********************************************
@@ -80,7 +138,6 @@ $enable-transitions:        true;
 $border-radius: 0.8rem;
 
 // Spacers
-$spacer:   0.625rem;
 $spacer-x: $spacer;
 $spacer-y: $spacer;
 
@@ -98,8 +155,8 @@ $grid-gutter-widths: (
 );
 
 // Font
-// TODO:
-$font-family-sans-serif: 'OpenSans-Regular', Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-sans-serif: "OpenSans-Regular", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-base: $font-family-sans-serif;
 
 $font-size-base: 0.875rem;
 $font-size-lg:   1.25 * $font-size-base;
@@ -117,8 +174,8 @@ $line-height-base: 1.2;
 $headings-font-family: 'OpenSans-Bold', Roboto, "Helvetica Neue", Arial, sans-serif;
 
 // Breadcrumbs
-$breadcrumb-padding-y: $spacer / 2;
-$breadcrumb-padding-x: $spacer;
+$breadcrumb-padding-y: 0;
+$breadcrumb-padding-x: 0;
 $breadcrumb-bg: $white;
 $breadcrumb-shadow: 0 2px 2px 0 rgba($black,.08), 0 3px 10px 2px rgba($black,.12);
 
@@ -133,12 +190,15 @@ $btn-block-spacing-y: $spacer-y;
 $btn-toolbar-margin: $spacer-x;
 $btn-box-shadow: 0 3px 1px -2px rgba($black,.2), 0 2px 2px 0 rgba($black,.14), 0 1px 5px 0 rgba($black,.12);
 $btn-focus-box-shadow: 0 3px 1px -2px rgba($black,.2), 0 2px 2px 0 rgba($black,.14), 0 1px 2px 0 rgba($black,.12);
-$btn-active-box-shadow: 0 5px 5px -3px rgba($black,.2), 0 8px 10px 1px rgba($black,.14), 0 3px 14px 2px rgba($black,.12);
+$btn-active-box-shadow: 0 2px 2px 0 rgba($black,.14), 0 1px 5px 0 rgba($black,.12);
 
 $nav-pills-border-radius: 1rem;
 
 // Modal
 $modal-header-padding: $spacer-x $spacer-y;
+$modal-inner-padding: $spacer-x $spacer-y;
+$modal-header-border-color: $theme-border-color;
+$modal-footer-border-color: $theme-border-color;
 $close-font-size: 1rem;
 
 // Cards
@@ -146,6 +206,9 @@ $card-spacer-x: $spacer;
 $card-spacer-y: $spacer;
 $card-deck-margin: $spacer / 2;
 $card-columns-gap: $spacer;
+$card-columns-count: 4;
+$card-border-color: $theme-border-color;
+$card-cap-bg: $white;
 
 // Forms
 $input-padding-x: $spacer-x;
@@ -158,7 +221,7 @@ $form-group-margin-bottom: $spacer-y;
 
 // $input-color-focus: $gray-dark;
 $input-border-focus: $brand-primary;
-$input-color-focus: $brand-primary;
+// $input-color-focus: $brand-primary;
 
 $input-color-placeholder: $gray-light;
 
@@ -167,6 +230,9 @@ $custom-control-indicator-box-shadow: $btn-box-shadow;
 $custom-control-active-indicator-bg: lighten($brand-success, 35%);
 $custom-control-focus-indicator-box-shadow: 0 0 0 1px $brand-success;
 $custom-control-checked-indicator-bg: $brand-success;
+$custom-control-gutter: 1rem;
+$custom-control-spacer-x: 0;
+
 $custom-checkbox-indeterminate-bg: $brand-success;
 
 $custom-select-focus-border-color: $brand-primary;
@@ -193,7 +259,9 @@ $line-height-sm: 1.5;
 // Table
 $table-cell-padding: $spacer;
 $table-sm-cell-padding: $spacer / 2;
-$table-inverse-bg: $brand-primary;
+$table-inverse-bg: $gray-light;
+$table-bg-accent: rgba($black,.03);
+$table-border-color: $gray-lighter;
 
 // Pagination
 $pagination-padding-x: $spacer-x;
@@ -207,3 +275,8 @@ $pagination-padding-y-lg: $spacer-y * 2;
 $alert-padding-x: $spacer-x;
 $alert-padding-y: $spacer-y;
 $alert-margin-bottom: $spacer-y;
+
+// Badge
+$badge-font-weight: normal;
+
+@import '../../../node_modules/bootstrap/scss/variables.scss';

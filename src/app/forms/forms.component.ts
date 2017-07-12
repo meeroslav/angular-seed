@@ -1,25 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import {User, Colors, Movie, ISWPlanet} from './form.interface';
-import {FormsService} from './forms.service';
-import {ICountable} from '../table/table.service';
-import {ITreeNode} from '../_common/custom-components/tree/tree-node.component';
+import { User, Colors, Movie, ISWPlanet } from './form.interface';
+import { FormsService } from './forms.service';
+import { ICountable } from '../table/table.service';
+import { ITreeNode } from '../_common/custom-components/tree/tree-node.component';
 import { IHighlightMarker } from '../_common/custom-components/highlight-area/highlight-area.interface';
-import { ITypeaheadChange } from '../_common/custom-components/typeahead/typeahead.component';
 
 @Component({
   // The selector is what angular internally uses
   // for `document.querySelectorAll(selector)` in our index.html
   // where, in this case, selector is the string 'home'
   selector: 'forms-page',  // <home></home>
-
-  // Our list of styles in our component. We may add more to compose many styles together
-  styleUrls: ['./forms.component.scss'],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
   templateUrl: './forms.component.html',
   host: {
@@ -62,9 +58,9 @@ export class FormsComponent implements OnInit {
       averageRating: 3
     };
     this.colors = [
-      {id: 1, color: 'Red'},
-      {id: 2, color: 'Blue'},
-      {id: 3, color: 'Green'}
+      { id: 1, color: 'Red' },
+      { id: 2, color: 'Blue' },
+      { id: 3, color: 'Green' }
     ];
 
     this.search = Observable.create((observer: any) => {
@@ -90,7 +86,7 @@ export class FormsComponent implements OnInit {
     });
   }
 
-  getFilteredPlanets(event: ITypeaheadChange) {
+  getFilteredPlanets(event: any) {
     function filterItem(item: string) {
       let itemUsed = event.existing.indexOf(item) !== -1;
       if (itemUsed) {
@@ -128,11 +124,11 @@ export class FormsComponent implements OnInit {
     this.basicControlsForm = this.formBuilder.group({
       name: [this.user.name, [Validators.required]],
       favoriteNumber: [this.user.favoriteNumber],
-      disabledNumber: [{value: 3, disabled: true}],
+      disabledNumber: [{ value: 3, disabled: true }],
       favoriteColor: [this.user.favoriteColor, [Validators.required]],
       observation: [this.user.observation, [Validators.required]],
       optin: [this.user.optin, [Validators.required]],
-      newsLetter: [this.user.newsLetter, [Validators.required]],
+      newsLetter: [this.user.newsLetter, [Validators.required]]
     });
   }
 
@@ -140,11 +136,11 @@ export class FormsComponent implements OnInit {
     this.advancedControlsForm = this.formBuilder.group({
       firstRate: [this.movie.firstRate, Validators.required],
       secondRate: [this.movie.secondRate, Validators.required],
-      averageRating: [{value: this.movie.averageRating, disabled: true}],
+      averageRating: [{ value: this.movie.averageRating, disabled: true }],
       planet: [null, Validators.required],
-      planet2: [{value: ['Orange', 'Apple', 'Kiwi'], disabled: true}],
+      planet2: [{ value: ['Orange', 'Apple', 'Kiwi'], disabled: true }],
       category: [null, Validators.required],
-      randomText: ['', Validators.required],
+      randomText: ['', Validators.required]
     });
   }
 

@@ -11,14 +11,14 @@ import { TreeInputComponent } from './tree/tree-input.component';
 import { DispatcherModule } from '../dispatcher/dispatcher.module';
 import { Wizard } from './wizard/wizard.component';
 import { SimpleWizardSlide } from './wizard/simple-wizard-slide.component';
-import { LoadingIndicatorModule } from '../locading-indicator/loading-indicator.module';
 import { WizardSlide } from './wizard/wizard-slide';
 import { HighlightAreaComponent } from './highlight-area/highlight-area.component';
 import { InfieldLabelDirective } from './infield-label/infield-label.directive';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  imports: [TranslateModule, CommonModule, DispatcherModule.forRoot(), LoadingIndicatorModule, FormsModule, BsDropdownModule],
+  imports: [TranslateModule, CommonModule, DispatcherModule.forRoot(), SharedModule, FormsModule, BsDropdownModule],
   declarations: [
     WorldMapComponent, TreeNode, TreeInputComponent, Wizard, WizardSlide, SimpleWizardSlide,
     HighlightAreaComponent, InfieldLabelDirective, TypeaheadComponent

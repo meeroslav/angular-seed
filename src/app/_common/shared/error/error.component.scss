@@ -1,0 +1,123 @@
+@import '../../../../assets/styles/typography';
+@import '../../../../assets/styles/animations';
+@import '../../../../assets/styles/variables';
+@import '../../../../../node_modules/bootstrap/scss/_mixins.scss';
+
+@-moz-keyframes scalezoom {
+  0% {
+    @include scale(1);
+  }
+  50% {
+    @include scale(1.5);
+  }
+  80% {
+    @include rotate(0.5);
+  }
+  100% {
+    @include rotate(1);
+  }
+}
+
+@-webkit-keyframes scalezoom {
+  0% {
+    @include scale(1);
+  }
+  50% {
+    @include scale(1.5);
+  }
+  80% {
+    @include rotate(0.5);
+  }
+  100% {
+    @include rotate(1);
+  }
+}
+
+@keyframes scalezoom {
+  0% {
+    @include scale(1);
+  }
+  50% {
+    @include scale(1.5);
+  }
+  80% {
+    @include rotate(0.5);
+  }
+  100% {
+    @include rotate(1);
+  }
+}
+
+:host {
+  display: block;
+  height: 100%;
+  text-align: center;
+  margin: (-$spacer-y) (-$spacer-x);
+  padding: $spacer-x $spacer-y;
+  @include boxSizing(content-box);
+  @include gradient-y($theme-error-page-top-bg, $theme-error-page-bottom-bg);
+
+  color: $theme-error-page-color;
+}
+
+#error-logo {
+  padding-top: 1rem;
+  font-size: 10rem;
+  height: 15rem;
+  color: $brand-danger;
+  position: relative;
+}
+
+.monster-retina, .monster-eye {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  @include fontBold();
+  margin-left: -2.55rem;
+  line-height: 2rem;
+
+  &:before {
+    content: '.';
+  }
+}
+
+.monster-layer {
+  position: absolute;
+  left: 50%;
+  margin-left: -5rem;
+  top: 50%;
+  margin-top: -5rem;
+  width: 10rem;
+  height: 11rem;
+
+  &:first-child { opacity: 0.05; animation: scalezoom 1s ease-in-out 250ms infinite; }
+  &:nth-child(2) { opacity: 0.1; animation: scalezoom 1s ease-in-out 500ms infinite; }
+  &:nth-child(3) { opacity: 0.15; animation: scalezoom 1s ease-in-out 750ms infinite; }
+  &:nth-child(4) { opacity: 0.2; animation: scalezoom 1s ease-in-out 1000ms infinite; }
+  &:nth-child(5) { text-shadow: 0 0 1em $theme-error-page-glow, 0 0 .2em $theme-error-page-glow_light; }
+}
+
+.monster {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.monster-retina {
+  color: $black;
+  font-size: 10rem;
+  margin-top: -4.5rem;
+  margin-left: -1.4rem;
+}
+.monster-eye {
+  color: $white;
+  font-size: 18rem;
+  margin-top: -7.6rem;
+  line-height: 3.6rem;
+}
+
+#error-heading {
+  font-size: 10rem;
+  @include fontBold();
+  line-height: 1;
+}

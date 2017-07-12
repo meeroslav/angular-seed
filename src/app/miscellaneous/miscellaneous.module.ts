@@ -8,7 +8,7 @@ import { CustomComponentsModule } from '../_common/custom-components/custom-comp
 import { TabsModule } from 'ngx-bootstrap';
 import { DatepickerModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FeedbackModule } from '../_common/feedback/feedback.module';
+import { SharedModule } from '../_common/shared/shared.module';
 
 let routes = [
   { path: '', component: MiscComponent }
@@ -24,7 +24,7 @@ let routes = [
     FormsModule,
     ReactiveFormsModule,
     CustomComponentsModule,
-    FeedbackModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [MiscComponent]

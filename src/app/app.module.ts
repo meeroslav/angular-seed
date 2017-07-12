@@ -5,16 +5,13 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { appRouting } from './app.routes';
 import { NgModule } from '@angular/core';
-import { HeaderComponent } from './_layout/header.component';
-import { MainNavComponent } from './_layout/mainnav.component';
 import { DispatcherModule } from './_common/dispatcher/dispatcher.module';
-import { FooterComponent } from './_layout/footer.component';
 import { MainNav } from './_layout/mainnav.service';
 import { CommonModule } from '@angular/common';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { TabsModule, PaginationModule, BsDropdownModule } from 'ngx-bootstrap';
-import { LoadingIndicatorModule } from './_common/locading-indicator/loading-indicator.module';
-import { FeedbackModule } from './_common/feedback/feedback.module';
+import { SharedModule } from './_common/shared/shared.module';
+import { LayoutModule } from './_layout/layout.module';
 
 @NgModule({
   imports: [
@@ -35,13 +32,12 @@ import { FeedbackModule } from './_common/feedback/feedback.module';
     BsDropdownModule.forRoot(),
     // custom stuff
     ModalDialogModule.forRoot(),
-    LoadingIndicatorModule.forRoot(),
-    FeedbackModule.forRoot(),
+    SharedModule.forRoot(),
+    LayoutModule,
     // routes
     appRouting
   ],
-  declarations: [AppComponent, HeaderComponent, MainNavComponent, FooterComponent],
-  providers: [MainNav],
+  declarations: [AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

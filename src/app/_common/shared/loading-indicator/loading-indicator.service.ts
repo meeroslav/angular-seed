@@ -1,7 +1,6 @@
-export interface IIndicatorStatus {
-  isInProgress: boolean;
-}
+﻿import { Injectable } from '@angular/core';
 
+@Injectable()
 export class LoadingIndicatorService {
   status: IIndicatorStatus = {
     isInProgress: false
@@ -9,28 +8,19 @@ export class LoadingIndicatorService {
   private counter: number;
   private timer: any;
 
-  /**
-   * CTOR
-   */
   constructor() {
     this.counter = 0;
   }
 
-  /**
-   * Add new loading indicator to queue
-   */
   start() {
     if (++this.counter === 1) {
       // show progress indicator with slight delay for page switching
       this.timer = window.setTimeout(() => {
-        this.status.isInProgress = true;
+        this.setIndicator();
       }, 250);
     }
   }
 
-  /**
-   * Remove loading indicator from queue
-   */
   done() {
     if (this.counter > 0) {
       if (--this.counter === 0) {
@@ -40,4 +30,12 @@ export class LoadingIndicatorService {
       }
     }
   }
+
+  private setIndicator() {
+    this.status.isInProgress = true;
+  }
+}
+
+export interface IIndicatorStatus {
+  isInProgress: boolean;
 }

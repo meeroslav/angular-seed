@@ -1,8 +1,9 @@
-export interface ITypeheadMatch {
+export interface ITypeaheadMatch {
   value: any;
-  item: any;
+  // item: any;
+  existing?: any[];
 }
 
-export interface ITypeheadValue extends ITypeheadMatch {
+export interface ITypeheadValue extends ITypeaheadMatch {
   text: string;
 }

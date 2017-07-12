@@ -1,6 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { LoadingIndicatorService } from '../../locading-indicator/loading-indicator.service';
+import { LoadingIndicatorService } from '../../shared/loading-indicator/loading-indicator.service';
 
 export interface ICustomSlideButton {
   caption?: string;
@@ -52,12 +52,12 @@ export class WizardSlide {
    */
   startLoading() {
     this.loadingIndictorService.start();
-  };
+  }
 
   /**
    * Remove subscription for loading spinner, un block the UI
    */
   doneLoading() {
     this.loadingIndictorService.done();
-  };
+  }
 }

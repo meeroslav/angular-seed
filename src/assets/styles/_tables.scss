@@ -9,11 +9,93 @@ th {
   margin: 0;
 }
 
-.table .btn {
+.table thead th {
+  vertical-align: middle;
+  text-align: left;
+  padding-top: $spacer-y;
+  padding-bottom: $spacer-y;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+tbody.ng-invalid {
+  background: mix($brand-danger, transparent);
+}
+
+.table-outer-bordered {
+  border: $table-border-width solid $table-border-color;
+
+  &.ng-invalid {
+    border-color: $brand-danger;
+  }
+
+  //td, th {
+  //  border: $table-border-width solid mix($table-border-color, transparent, 20%);
+  //}
+
+  thead {
+    th,
+    td {
+      border-bottom: (2 * $table-border-width) solid $table-border-color;
+    }
+  }
+}
+
+table td.has-badges {
+  padding-bottom: $table-cell-padding - $theme-badge-spacing;
+}
+table.table-sm td.has-badges {
+  padding-bottom: $table-sm-cell-padding - $theme-badge-spacing;
+}
+td .badge {
+  margin-bottom: $theme-badge-spacing;
+}
+
+.btn-table {
+  padding: $spacer-sm;
+  font-size: $font-size-sm;
+  line-height: 1;
   box-shadow: none;
-  border: none;
+  text-align: center;
 
   &:before {
-    font-size: 1.5em;
+    font-size: 0.9rem;
+  }
+}
+
+.th-info {
+  cursor: pointer;
+  position: relative;
+
+  &:after {
+    background: $brand-info;
+    color: $badge-color;
+    border-radius: $border-radius;
+    padding: 0 $badge-pill-padding-x;
+    content: 'i';
+    font-size: $font-size-xs;
+  }
+
+  .th-info-content {
+    position: absolute;
+    top: $spacer-y / 2;
+    left: 100%;
+    margin-left: -$spacer-x / 2;
+    display: none;
+    padding: $spacer-y / 2 $spacer-x / 2;
+    border: $table-border-color solid $table-border-width;
+    background: $brand-info;
+    color: $badge-color;
+    box-shadow: $theme-card-shadow;
+    white-space: nowrap;
+    z-index: $zindex-tooltip;
+  }
+
+  &:hover {
+    .th-info-content {
+      display: block;
+    }
   }
 }

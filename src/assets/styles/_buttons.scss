@@ -1,0 +1,34 @@
+@import 'variables';
+
+.btn, .list-group-item, .icon-container {
+  &[class^="theme-icon-"], &[class*=" theme-icon-"],
+  &[class^="app-icon-"], &[class*=" app-icon-"]{
+    &:before {
+      padding-right: $spacer-x / 2;
+      line-height: 0.9;
+    }
+    &:empty:before {
+      padding: 0;
+    }
+
+    &.align-icon-right:before {
+      padding-left: $spacer-x / 2;
+      padding-right: 0;
+      float: right;
+    }
+  }
+}
+
+.btn[class^="theme-icon-"]:before, .btn[class*=" theme-icon-"]:before,
+.btn[class^="app-icon-"]:before, .btn[class*=" app-icon-"]:before {
+  float: left;
+  line-height: 1.3;
+}
+
+.btn-toolbar {
+  margin-bottom: $btn-toolbar-margin;
+}
+
+.btn-group label.btn {
+  margin-bottom: 0;
+}

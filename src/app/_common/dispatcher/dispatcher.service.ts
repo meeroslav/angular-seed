@@ -7,7 +7,7 @@ export class DispatcherService {
     /**
      * Dispatch event to all listeners
      * @param  {string} eventName
-     * @param args
+     * @param  {any[]} ...args
      * @returns void
      */
     static dispatch(eventName: string, ...args: any[]): void {
@@ -15,10 +15,10 @@ export class DispatcherService {
             return;
         }
         // run every listener method
-        for (let i = 0; i < DispatcherService.subscriptions[eventName].length; i = i + 1) {
+        for (var i = 0; i < DispatcherService.subscriptions[eventName].length; i = i + 1) {
             DispatcherService.subscriptions[eventName][i].apply(this, args);
         }
-    };
+    }
 
     /**
      * Subscribe callback function to event
@@ -31,7 +31,7 @@ export class DispatcherService {
             DispatcherService.subscriptions[eventName] = [];
         }
         DispatcherService.subscriptions[eventName].push(func);
-    };
+    }
 
     /**
      * Unsubscribe callback function or remove entire eventName if callback not provided
@@ -52,5 +52,5 @@ export class DispatcherService {
                 DispatcherService.subscriptions[eventName] = null;
             }
         }
-    };
+    }
 }

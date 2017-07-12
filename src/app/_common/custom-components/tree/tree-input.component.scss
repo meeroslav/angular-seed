@@ -4,3 +4,9 @@
   display: block;
   height: auto;
 }
+
+.disabled:host{
+  background-color: #e3e3e3 ;
+  color: #545454 ;
+
+}

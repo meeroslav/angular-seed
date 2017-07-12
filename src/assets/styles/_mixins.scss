@@ -1,12 +1,3 @@
-@mixin vertical_gradient($start-color: Red, $start-percent: 0, $end-color: Lime, $end-percent: 100%) {
-	background-color: $end-color;
-	background-image: -webkit-gradient(linear, left $start-percent, left $end-percent, from($start-color), to($end-color)); // Safari 4+, Chrome 2+
-	background-image: -webkit-linear-gradient(top, $start-color, $start-percent, $end-color, $end-percent); // Safari 5.1+, Chrome 10+
-	background-image:  -moz-linear-gradient(top, $start-color $start-percent, $end-color $end-percent); // FF 3.6+
-	background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent); // Standard, IE10
-	background-repeat: repeat-x;
-}
-
 @mixin boxSizing($value: border-box) {
     -moz-box-sizing: $value;
     -webkit-box-sizing: $value;

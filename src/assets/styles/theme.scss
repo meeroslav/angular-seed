@@ -1,4 +1,5 @@
 @import 'reset';
+@import 'font';
 @import 'variables';
 
 @import '../../../node_modules/bootstrap/scss/bootstrap';
@@ -12,6 +13,8 @@
 @import 'forms';
 @import 'header';
 @import 'content';
+@import 'buttons';
 @import 'cards';
 @import 'tables';
+@import 'modal';
 @import 'grid';

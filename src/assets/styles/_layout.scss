@@ -8,6 +8,22 @@ app {
   flex-direction: column;
 }
 
+::-webkit-scrollbar {
+  width: $theme-scrollbar-size;
+  height: $theme-scrollbar-size;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: $theme-scrollbar-size / 2;
+  background: $theme-scrollbar-thumb;
+}
+::-webkit-scrollbar-track {
+  background: $theme-scrollbar-track;
+}
+:focus {
+  outline: none;
+}
+
+
 p {
   margin-bottom: $grid-gutter-width-base;
 }
@@ -47,33 +63,6 @@ main {
   display: flex;
   flex: 1;
   overflow: hidden;
-}
-
-.btn, .list-group-item, .icon-container {
-  &[class^="theme-icon-"], &[class*=" theme-icon-"] {
-    &:before {
-      padding-right: $spacer-x / 2;
-      line-height: 0.9;
-    }
-    &:empty:before {
-      padding: 0;
-    }
-
-    &.align-icon-right:before {
-      padding-left: $spacer-x / 2;
-      padding-right: 0;
-      float: right;
-    }
-  }
-}
-
-.btn[class^="theme-icon-"]:before, .btn[class*=" theme-icon-"]:before {
-  float: left;
-  line-height: 1.3;
-}
-
-.btn-toolbar {
-  margin-bottom: $btn-toolbar-margin;
 }
 
 #main-nav {
@@ -121,11 +110,13 @@ main {
 
 .main-content {
   flex: 1;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
 
   & > .container-fluid {
     padding: $grid-gutter-width-base $grid-gutter-width-base;
+    height: 100%;
   }
 }
 
@@ -158,4 +149,9 @@ aside.main-aside {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.link {
+  text-decoration: underline;
+  @include fontBold();
 }

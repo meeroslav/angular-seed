@@ -1,14 +1,15 @@
-import { Component, Input, forwardRef, Output, EventEmitter, ElementRef, Inject } from '@angular/core';
+import { Component, Input, forwardRef, Output, EventEmitter, ElementRef, Inject, HostBinding } from '@angular/core';
 import { ITreeNode } from './tree-node.component';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { findPathById, pathOnly } from './tree-util';
 
 @Component({
   selector: 'tree',
   styleUrls: ['./tree-input.component.scss'],
   template: `
-    <tree-node *ngFor="let node of content"
+    <tree-node *ngFor="let node of _displayedNodes"
                [content]="node"
-               [collapsed]="collapsed"
+               [collapsed]="collapsed && !_isDisabled"
                [selected]="selectedNode"
                (nodeClick)="onNodeClick($event)"></tree-node>
   `,
@@ -23,8 +24,25 @@ export class TreeInputComponent implements ControlValueAccessor {
   @Input() collapsed: boolean;
   @Output() nodeClick = new EventEmitter();
 
+  @HostBinding('class.disabled') get disabled() {
+    return this._isDisabled;
+  }
+
   _value: any;
   selectedNode: string;
+  _isDisabled = false;
+  _displayedNodes: ITreeNode[];
+
+  static getDisplayNodes(content: ITreeNode[], selectedNodeId: string, isDisabled: boolean): ITreeNode[] {
+    if (isDisabled) {
+      const selectedPath = pathOnly(findPathById(content, selectedNodeId));
+      if (selectedPath)
+        return [selectedPath];
+      else
+        return [];
+    }
+    return content;
+  }
 
   constructor(@Inject(ElementRef) private elementRef: ElementRef) {
     this.selectedNode = '';
@@ -62,6 +80,7 @@ export class TreeInputComponent implements ControlValueAccessor {
     if (!this.selectedNode && value) {
       this.selectedNode = value;
     }
+    this._displayedNodes = TreeInputComponent.getDisplayNodes(this.content, this.selectedNode, this._isDisabled);
   }
 
   triggerOnChange(element: any) {
@@ -74,10 +93,8 @@ export class TreeInputComponent implements ControlValueAccessor {
     }
   }
 
-  onChange = (_) => { /**/
-  };
-  onTouched = () => { /**/
-  };
+  onChange = (_) => { /**/ };
+  onTouched = () => { /**/ };
 
   registerOnChange(fn: (_: any) => void): void {
     this.onChange = fn;
@@ -86,5 +103,9 @@ export class TreeInputComponent implements ControlValueAccessor {
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
-}
 
+  setDisabledState(isDisabled: boolean): void {
+    this._isDisabled = isDisabled;
+    this._displayedNodes = TreeInputComponent.getDisplayNodes(this.content, this.selectedNode, this._isDisabled);
+  }
+}
