@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { DispatcherService } from '../_common/dispatcher/dispatcher.service';
 import { MAIN_MENU_TOGGLE } from './layout.interface';
-import { INavigationItemConfig, MainNav } from './mainnav.service';
-import { Router, NavigationStart } from '@angular/router';
+import { MainNav } from './mainnav.service';
+import { INavigationItemConfig } from './mainnav';
 
 @Component({
   selector: 'main-nav',
   template: `
     <ul class="navbar-nav">
-      <li *ngFor="let item of navigation | permission"
+      <li *ngFor="let item of navigation"
           [ngClass]="{
         'nav-divider': item.divider,
         'nav-item': !item.divider,
@@ -24,7 +24,7 @@ import { Router, NavigationStart } from '@angular/router';
           <span class="nav-link-text">{{item.text | translate}}</span>
         </a>
         <ul class="nav-dropdown-items" *ngIf="item.children && item.children.length">
-          <li class="nav-item" routerLinkActive="active" *ngFor="let subItem of item.children | permission">
+          <li class="nav-item" routerLinkActive="active" *ngFor="let subItem of item.children">
             <a [routerLink]="subItem.url" class="nav-link">
               <i *ngIf="subItem.icon" [class]="subItem.icon"></i>
               <span class="nav-link-text">{{subItem.text | translate}}</span>
@@ -49,12 +49,11 @@ export class MainNavComponent {
   /**
    * CTOR
    */
-  constructor(navService: MainNav, private router: Router) {
+  constructor(navService: MainNav) {
     DispatcherService.subscribe(MAIN_MENU_TOGGLE, () => {
       this.collapsed = !this.collapsed;
     });
     this.navigation = navService.navigation;
-    this.router.events.subscribe(this._routeChanged());
   }
 
   /**
@@ -67,23 +66,5 @@ export class MainNavComponent {
     } else {
       this.expandedArea = area;
     }
-  }
-
-  private _routeChanged() {
-    let self = this;
-
-    return (event: any) => {
-      if (event instanceof NavigationStart) { // TODO: Make this generic
-        if (event.url.indexOf('/games') === 0) {
-          self.expandedArea = 'GAMES';
-          return;
-        }
-        if (event.url.indexOf('/currencies') === 0 ||
-          event.url.indexOf('/permissions') === 0) {
-          self.expandedArea = 'CONFIGURATION';
-          return;
-        }
-      }
-    };
   }
 }

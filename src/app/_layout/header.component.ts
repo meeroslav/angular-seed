@@ -11,7 +11,7 @@ import { MAIN_MENU_TOGGLE } from './layout.interface';
       </li>
     </ul>
     <a class="navbar-brand" [routerLink]="['.']" title="{{'APP_NAME' | translate }}">
-      <img class="logo" src="../../assets/images/logotyp.png" alt="{{'APP_NAME' | translate }}"/>
+      <img class="logo" src="../../assets/images/logotype.svg" alt="{{'APP_NAME' | translate }}"/>
     </a>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav hidden-sm-down">
