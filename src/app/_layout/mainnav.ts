@@ -16,7 +16,7 @@ export let NAVIGATION_DATA: INavigationItemConfig[] = [
   },
   {
     text: 'Components',
-    icon: 'theme-icon-list',
+    icon: 'theme-icon-cards',
     areaName: 'PARK',
     children: [
       {
@@ -53,7 +53,7 @@ export let NAVIGATION_DATA: INavigationItemConfig[] = [
   },
   {
     text: 'Graphics',
-    icon: 'theme-icon-list',
+    icon: 'theme-icon-cards',
     areaName: 'GRAPHICS',
     children: [
       {
@@ -67,11 +67,5 @@ export let NAVIGATION_DATA: INavigationItemConfig[] = [
         url: '/typefaces'
       }
     ]
-  },
-  {
-    text: 'Layouts',
-    icon: 'theme-icon-list',
-    areaName: 'LAYOUTS',
-    children: []
   }
 ];
