@@ -28,9 +28,7 @@
       <div class="col-md-6 col-sm-12">
         <div class="card card-block">
           <h4>Flat tree</h4>
-          <tree
-                [content]="treeData"
-                [collapsed]="false"></tree>
+          <tree-node *ngFor="let node of treeData" [content]="node" [collapsed]="false"></tree-node>
         </div>
       </div>
     </div>
@@ -38,17 +36,13 @@
       <div class="col-md-6 col-sm-12">
         <div class="card card-block">
           <h4>Normal tree</h4>
-          <tree
-            [content]="treeDataMultiLevel"
-            [collapsed]="false"></tree>
+          <tree-node *ngFor="let node of treeDataMultiLevel" [content]="node" [collapsed]="false"></tree-node>
         </div>
       </div>
       <div class="col-md-6 col-sm-12">
         <div class="card card-block">
           <h4>Tree with icons</h4>
-          <tree
-            [content]="treeDataMultiLevelWithIcons"
-            [collapsed]="true"></tree>
+          <tree-node *ngFor="let node of treeDataMultiLevelWithIcons" [content]="node" [collapsed]="false"></tree-node>
         </div>
       </div>
     </div>

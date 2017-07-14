@@ -25,11 +25,11 @@ export class WizardSlide {
   /**
    * CTOR
    * @param elementRef
-   * @param loadingIndictorService
+   * @param loadingIndicatorService
    */
   constructor(
       private elementRef: ElementRef,
-      private loadingIndictorService: LoadingIndicatorService) { }
+      private loadingIndicatorService: LoadingIndicatorService) { }
 
   /**
    * Set slide visibility
@@ -51,13 +51,13 @@ export class WizardSlide {
    * Trigger loading spinner, block the UI
    */
   startLoading() {
-    this.loadingIndictorService.start();
+    this.loadingIndicatorService.start();
   }
 
   /**
    * Remove subscription for loading spinner, un block the UI
    */
   doneLoading() {
-    this.loadingIndictorService.done();
+    this.loadingIndicatorService.done();
   }
 }

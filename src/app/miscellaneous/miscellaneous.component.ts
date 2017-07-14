@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewContainerRef, ElementRef} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Component, OnInit, ViewContainerRef, ElementRef } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { ModalDialogService } from 'ngx-modal-dialog';
 import { SimpleModalComponent } from 'ngx-modal-dialog';
@@ -9,13 +9,13 @@ import { LoadingIndicatorService } from '../_common/shared/loading-indicator/loa
 import { FeedbackService } from '../_common/shared/feedback/feedback.service';
 
 const tree = [
-  {text: 'Category 1', children: [{id: '1', text: 'Sub-Category1'}, {id: '2', text: 'Sub-Category2'}]},
-  {text: 'Category 2', children: [{id: '1', text: 'Sub-Category1'}]},
+  { text: 'Category 1', children: [{ id: '1', text: 'Sub-Category1' }, { id: '2', text: 'Sub-Category2' }] },
+  { text: 'Category 2', children: [{ id: '1', text: 'Sub-Category1' }] },
   {
     text: 'Category 3', children: [
-    {id: '1', text: 'Sub-Category1'},
-    {id: '2', text: 'Sub-Category2'},
-    {id: '3', text: 'Sub-Category3'}
+    { id: '1', text: 'Sub-Category1' },
+    { id: '2', text: 'Sub-Category2' },
+    { id: '3', text: 'Sub-Category3' }
   ]
   }
 ];
@@ -40,22 +40,20 @@ export class MiscComponent implements OnInit {
 
   // date picker related
   tomorrow: Date;
-  dateDisabled: {date: Date, mode: string}[] = [];
+  dateDisabled: { date: Date, mode: string }[] = [];
   dt: Date = new Date();
 
   treeData: ITreeNode[];
   treeDataMultiLevel: ITreeNode[];
   treeDataMultiLevelWithIcons: ITreeNode[];
 
-  constructor(
-    private modalDialogService: ModalDialogService,
-    private loadingIndicator: LoadingIndicatorService,
-    private viewContainer: ViewContainerRef,
-    private element: ElementRef,
-    private feedbackService: FeedbackService
-  ) {
+  constructor(private modalDialogService: ModalDialogService,
+              private loadingIndicator: LoadingIndicatorService,
+              private viewContainer: ViewContainerRef,
+              private element: ElementRef,
+              private feedbackService: FeedbackService) {
     (this.tomorrow = new Date()).setDate(this.tomorrow.getDate() + 1);
-    this.dateDisabled = [{date: this.tomorrow, mode: 'day'}];
+    this.dateDisabled = [{ date: this.tomorrow, mode: 'day' }];
   }
 
 //   export interface ITreeNode {
@@ -70,20 +68,28 @@ export class MiscComponent implements OnInit {
     console.log('hello `Misc` component');
     // this.title.getData().subscribe(data => this.data = data);
 
-    this.treeData = [{text: 'Element One'}, {text: 'Element Two'}];
+    this.treeData = [{ text: 'Element One' }, { text: 'Element Two' }];
     this.treeDataMultiLevel = [{
       text: 'Element One',
-      children: [{text: 'child 11', children: [{text: 'child 111'}]}, {text: 'child 12'}]
+      children: [{ text: 'child 11', children: [{ text: 'child 111' }] }, { text: 'child 12' }]
     }, {
       text: 'Element Two',
-      children: [{text: 'child 21'}, {text: 'child 22', children: [{text: 'child 221'}]}]
+      children: [{ text: 'child 21' }, { text: 'child 22', children: [{ text: 'child 221' }] }]
     }];
     this.treeDataMultiLevelWithIcons = [{
       text: 'Element One', icon: 'theme-icon-star',
-      children: [{text: 'child 11', icon: 'theme-icon-list', children: [{text: 'child 111', icon: 'theme-icon-notification'}]}, {text: 'child 12'}]
+      children: [{
+        text: 'child 11',
+        icon: 'theme-icon-list',
+        children: [{ text: 'child 111', icon: 'theme-icon-notification' }]
+      }, { text: 'child 12' }]
     }, {
       text: 'Element Two', icon: 'theme-icon-question',
-      children: [{text: 'child 21', icon: 'theme-icon-cards'}, {text: 'child 22', icon: 'theme-icon-zoom-in', children: [{text: 'child 221'}]}]
+      children: [{ text: 'child 21', icon: 'theme-icon-cards' }, {
+        text: 'child 22',
+        icon: 'theme-icon-zoom-in',
+        children: [{ text: 'child 221' }]
+      }]
     }];
   }
 
@@ -193,13 +199,29 @@ export class MiscComponent implements OnInit {
       return;
     }
     if (type === 1) {
-      this.feedbackService.notify({heading: 'A random toaster with action', action: {text: 'My action', callback: () => { alert('this is action'); }}});
+      this.feedbackService.notify({
+        heading: 'A random toaster with action', action: {
+          text: 'My action', callback: () => {
+            alert('this is action');
+          }
+        }
+      });
     }
     if (type === 2) {
-      this.feedbackService.notify({heading: 'A random toaster with body', type: 'danger', body: 'This is some body text'});
+      this.feedbackService.notify(
+        { heading: 'A random toaster with body', type: 'danger', body: 'This is some body text' });
     }
     if (type === 3) {
-      this.feedbackService.notify({heading: 'A random toaster with action and body', type: 'warning', body: 'This is some body text', action: {text: 'My action', callback: () => { alert('this is action'); }}});
+      this.feedbackService.notify({
+        heading: 'A random toaster with action and body',
+        type: 'warning',
+        body: 'This is some body text',
+        action: {
+          text: 'My action', callback: () => {
+            alert('this is action');
+          }
+        }
+      });
     }
   }
 }
