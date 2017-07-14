@@ -99,3 +99,67 @@ td .badge {
     }
   }
 }
+
+/**
+NGX-data table styles
+ */
+.table {
+  .datatable-header-cell,
+  .datatable-body-cell  {
+    padding: $table-cell-padding;
+    vertical-align: middle; // custom
+    border-top: $table-border-width solid $table-border-color;
+  }
+
+  .datatable-header-cell {
+    padding-top: $spacer-y; // custom
+    padding-bottom: $spacer-y; // custom
+    border-bottom: (2 * $table-border-width) solid $table-border-color;
+  }
+}
+.table-sm {
+  .datatable-header-cell,
+  .datatable-body-cell {
+    padding: $table-sm-cell-padding;
+  }
+}
+.table-bordered {
+  .datatable-header-cell,
+  .datatable-body-cell {
+    border: $table-border-width solid $table-border-color;
+  }
+
+  .datatable-header-cell {
+    border-bottom-width: (2 * $table-border-width);
+  }
+}
+.table-striped {
+  .datatable-row-odd {
+    background-color: $table-bg-accent;
+  }
+}
+.thead-inverse {
+  .datatable-header-cell {
+    color: $table-inverse-color;
+    background-color: $table-inverse-bg;
+  }
+}
+
+.thead-default {
+  .datatable-header-cell {
+    color: $table-head-color;
+    background-color: $table-head-bg;
+  }
+}
+.table-outer-bordered {
+  &.ng-invalid {
+    border-color: $brand-danger;
+  }
+
+  .datatable-header-cell {
+    border-bottom: (2 * $table-border-width) solid $table-border-color;
+  }
+}
+.datatable-header-cell {
+  @include fontBold();
+}

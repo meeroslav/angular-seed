@@ -5,8 +5,9 @@ import { TableComponent } from './table.component';
 import { TableService } from './table.service';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-import { TabsModule, PaginationModule } from 'ngx-bootstrap';
+import { TabsModule, PaginationModule, RatingModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 let routes = [
   { path: '', component: TableComponent }
@@ -21,6 +22,8 @@ let routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    NgxDatatableModule,
+    RatingModule,
     RouterModule.forChild(routes)
   ],
   declarations: [TableComponent],

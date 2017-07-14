@@ -21,7 +21,7 @@ let routes = [
     TabsModule,
     TooltipModule.forRoot(),
     TypeaheadModule.forRoot(),
-    RatingModule.forRoot(),
+    RatingModule,
     CustomComponentsModule,
     RouterModule.forChild(routes)
   ],

@@ -21,6 +21,55 @@ export class TableComponent implements OnInit {
 
   users: ISWUser[];
 
+  /**
+   * Table relevant properties
+   */
+  tableCssClasses = {
+    sortAscending: 'theme-icon-chevron-down',
+    sortDescending: 'theme-icon-chevron-up',
+    pagerLeftArrow: 'theme-icon-step-backward',
+    pagerRightArrow: 'theme-icon-step-forward',
+    pagerPrevious: 'theme-icon-chevron-left',
+    pagerNext: 'theme-icon-chevron-right'
+  };
+  tableMessages = {
+    emptyMessage: 'No data to display',
+    totalMessage: ''
+  };
+  rows = [
+    { name: 'Austin', gender: 'Male', company: 'Swimlane', rating: 4 },
+    { name: 'Dany', gender: 'Male', company: 'KFC', rating: 5 },
+    { name: 'Molly', gender: 'Female', company: 'Burger King', rating: 3 },
+  ];
+  columns = [
+    { prop: 'name', name: 'Name' },
+    { prop: 'gender', name: 'Gender' },
+    { prop: 'company', name: 'Company' },
+    { prop: 'rating', name: 'Rating' }
+  ];
+  tableSort(data: any) {
+    console.log(data);
+    // data = {
+    //   sorts
+    //   column
+    //   prevValue
+    //   newValue
+    // }
+  }
+  tablePage(data: any) {
+    console.log(data);
+    // {
+    //   count
+    //   pageSize
+    //   limit
+    //   offset
+    // }
+  }
+
+  /**
+   * CTOR
+   * @param service
+   */
   constructor (private service: TableService) {
     this.collectionSize = 0;
     this.users = [];
