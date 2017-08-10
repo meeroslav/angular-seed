@@ -53,7 +53,7 @@
     "bootstrap": "4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "ngx-bootstrap": "1.7.1",
-    "ngx-modal-dialog": "^0.6.0",
+    "ngx-modal-dialog": "^1.0.0",
     "ramda": "^0.23.0",
     "reflect-metadata": "^0.1.9",
     "rxjs": "^5.1.0",
