@@ -1,23 +1,26 @@
 <div class="page-header">
   <div class="page-header-info">
-  <h1>Miscellaneous<span class="de-emphasize"> - Park</span></h1>
-  <ol class="breadcrumb mb-0">
-    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-    <li class="breadcrumb-item active">Miscellaneous</li>
-  </ol>
+    <h1>Miscellaneous<span class="de-emphasize"> - Park</span></h1>
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+      <li class="breadcrumb-item active">Miscellaneous</li>
+    </ol>
   </div>
 </div>
 
 <tabset>
   <tab heading="Modal Dialog">
-      <button class="btn btn-primary" type="button" (click)="openSimpleModal()">Open simple modal</button>
-      <button class="btn btn-warning" type="button" (click)="openSimpleModalWithCallback()">Open modal with close callback</button>
-      <button class="btn btn-danger" type="button" (click)="openPromptModal()">Open modal with prompt</button>
+    <button class="btn btn-primary" type="button" (click)="openSimpleModal()">Open simple modal</button>
+    <button class="btn btn-warning" type="button" (click)="openSimpleModalWithCallback()">Open modal with close
+      callback
+    </button>
+    <button class="btn btn-danger" type="button" (click)="openPromptModal()">Open modal with prompt</button>
+    <button class="btn btn-success" type="button" (click)="openCustomModal()">Open custom modal component</button>
   </tab>
   <tab heading="Map">
-      <div world-map id="world-map" (change)="repositionTheDot($event)">
-        <div class="badge badge-pill badge-primary" id="dot">Vienna</div>
-      </div>
+    <div world-map id="world-map" (change)="repositionTheDot($event)">
+      <div class="badge badge-pill badge-primary" id="dot">Vienna</div>
+    </div>
   </tab>
   <tab>
     <template tabHeading><span class="icon-container theme-icon-plus">Tab</span></template>
@@ -51,13 +54,16 @@
   <tab heading="Date picker">
     <div class="row">
       <div class="col-sm-4">
-        <datepicker [(ngModel)]="dt" [datepickerMode]="'day'" minMode="day" [showWeeks]="false" [dateDisabled]="dateDisabled"></datepicker>
+        <datepicker [(ngModel)]="dt" [datepickerMode]="'day'" minMode="day" [showWeeks]="false"
+                    [dateDisabled]="dateDisabled"></datepicker>
       </div>
       <div class="col-sm-4">
-        <datepicker [(ngModel)]="dt" [datepickerMode]="'month'" minMode="month" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
+        <datepicker [(ngModel)]="dt" [datepickerMode]="'month'" minMode="month" [showWeeks]="true"
+                    [dateDisabled]="dateDisabled"></datepicker>
       </div>
       <div class="col-sm-4">
-        <datepicker [(ngModel)]="dt" [datepickerMode]="'year'" minMode="year" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
+        <datepicker [(ngModel)]="dt" [datepickerMode]="'year'" minMode="year" [showWeeks]="true"
+                    [dateDisabled]="dateDisabled"></datepicker>
       </div>
     </div>
   </tab>
@@ -86,11 +92,25 @@
     <h4>Vertical wizard</h4>
     <wizard skipStep="true" vertical="true">
       <simple-wizard-slide wizardTitle="First slide">
-        <p>Lorem ipsum dolor sit amet, at usu oblique persequeris, vero eirmod officiis pri ne. Definiebas concludaturque an vix, populo insolens corrumpit ut eos, ei esse errem pertinax qui. Has at meis fuisset, mel eius impedit facilis te. Mazim dicam ut per, vix meis dolore ut, et suas praesent vel. Duo an stet necessitatibus, usu dicta laudem soluta ad. Mea epicurei probatus tacimates ut, nam ut stet libris possit, mel ex illum mazim.</p>
-        <p>Utinam noster ex mea. Munere tritani sed eu, mel et ludus viderer quaestio. Ne errem accusamus nam, sit homero partem placerat eu, stet illud eam in. Oratio tollit essent et vix, graece oporteat ne quo. Has et ipsum ullum scaevola. Qui ea autem summo latine, ex vel virtute commune, ne putant audire incorrupte vim. Aeterno aperiri usu ne.</p>
-        <p>Ei fugit liber disputationi usu, tamquam postulant torquatos ei sed. Elit vitae ad vis, id propriae indoctum referrentur vix. Vis nostrud probatus adolescens cu, eam te corpora commune, ea facete reprimique ius. Mea possit aliquip assentior ea, ceteros referrentur an per. Has an lobortis maiestatis, duo officiis voluptaria constituto ei, ex eum appareat volutpat. Has mollis nostrum posidonium ea, eu postea vidisse nam.</p>
-        <p>Ea sit facilis lobortis qualisque, sed purto cibo quodsi in. Est intellegat consetetur in. Nostrud dolorem salutandi sea in, sensibus assueverit ad ius. Vis cu ornatus efficiendi, odio causae incorrupte mel ex.</p>
-        <p>Pro an posse dicam evertitur, vix id semper legendos. Sea ex consequat dissentiet, ea liber verterem mandamus sea. Id mea nemore impedit conclusionemque, sonet noster aliquid an sed. Usu te agam probatus, cum regione labitur ne, et usu adipisci eloquentiam theophrastus. Per ne rebum nonumy persequeris, cu vis dicant tibique contentiones. At nec invenire adipiscing, ut per iudico voluptaria, vel te sanctus qualisque.</p>
+        <p>Lorem ipsum dolor sit amet, at usu oblique persequeris, vero eirmod officiis pri ne. Definiebas
+          concludaturque an vix, populo insolens corrumpit ut eos, ei esse errem pertinax qui. Has at meis fuisset, mel
+          eius impedit facilis te. Mazim dicam ut per, vix meis dolore ut, et suas praesent vel. Duo an stet
+          necessitatibus, usu dicta laudem soluta ad. Mea epicurei probatus tacimates ut, nam ut stet libris possit, mel
+          ex illum mazim.</p>
+        <p>Utinam noster ex mea. Munere tritani sed eu, mel et ludus viderer quaestio. Ne errem accusamus nam, sit
+          homero partem placerat eu, stet illud eam in. Oratio tollit essent et vix, graece oporteat ne quo. Has et
+          ipsum ullum scaevola. Qui ea autem summo latine, ex vel virtute commune, ne putant audire incorrupte vim.
+          Aeterno aperiri usu ne.</p>
+        <p>Ei fugit liber disputationi usu, tamquam postulant torquatos ei sed. Elit vitae ad vis, id propriae indoctum
+          referrentur vix. Vis nostrud probatus adolescens cu, eam te corpora commune, ea facete reprimique ius. Mea
+          possit aliquip assentior ea, ceteros referrentur an per. Has an lobortis maiestatis, duo officiis voluptaria
+          constituto ei, ex eum appareat volutpat. Has mollis nostrum posidonium ea, eu postea vidisse nam.</p>
+        <p>Ea sit facilis lobortis qualisque, sed purto cibo quodsi in. Est intellegat consetetur in. Nostrud dolorem
+          salutandi sea in, sensibus assueverit ad ius. Vis cu ornatus efficiendi, odio causae incorrupte mel ex.</p>
+        <p>Pro an posse dicam evertitur, vix id semper legendos. Sea ex consequat dissentiet, ea liber verterem mandamus
+          sea. Id mea nemore impedit conclusionemque, sonet noster aliquid an sed. Usu te agam probatus, cum regione
+          labitur ne, et usu adipisci eloquentiam theophrastus. Per ne rebum nonumy persequeris, cu vis dicant tibique
+          contentiones. At nec invenire adipiscing, ut per iudico voluptaria, vel te sanctus qualisque.</p>
       </simple-wizard-slide>
       <simple-wizard-slide wizardTitle="Second slide">Some content on second slide</simple-wizard-slide>
       <simple-wizard-slide wizardTitle="Third slide">Some content on third slide</simple-wizard-slide>
@@ -98,7 +118,8 @@
     </wizard>
   </tab>
   <tab heading="Loading indicator">
-    <button type="button" class="btn btn-primary" (click)="showLoadingIndicator()">Turn on loading indicator for 2 sec</button>
+    <button type="button" class="btn btn-primary" (click)="showLoadingIndicator()">Turn on loading indicator for 2 sec
+    </button>
   </tab>
   <tab heading="Toasters and Feedback">
     <button type="button" class="btn btn-primary" (click)="fireToast()">Fire toast</button>

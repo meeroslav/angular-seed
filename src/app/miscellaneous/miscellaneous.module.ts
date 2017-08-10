@@ -9,6 +9,7 @@ import { TabsModule } from 'ngx-bootstrap';
 import { DatepickerModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../_common/shared/shared.module';
+import { CustomModalComponent } from './custom-modal.component';
 
 let routes = [
   { path: '', component: MiscComponent }
@@ -27,6 +28,7 @@ let routes = [
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [MiscComponent]
+  declarations: [MiscComponent, CustomModalComponent],
+  entryComponents: [CustomModalComponent]
 })
 export class MiscPageModule { }

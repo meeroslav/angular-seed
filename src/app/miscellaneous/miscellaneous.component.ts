@@ -7,6 +7,7 @@ import { IMapChange, WorldMapComponent, ICoordinate } from '../_common/custom-co
 import { ITreeNode } from '../_common/custom-components/tree/tree-node.component';
 import { LoadingIndicatorService } from '../_common/shared/loading-indicator/loading-indicator.service';
 import { FeedbackService } from '../_common/shared/feedback/feedback.service';
+import { CustomModalComponent } from './custom-modal.component';
 
 const tree = [
   { text: 'Category 1', children: [{ id: '1', text: 'Sub-Category1' }, { id: '2', text: 'Sub-Category2' }] },
@@ -152,6 +153,16 @@ export class MiscComponent implements OnInit {
           })
         }
       ]
+    });
+  }
+
+  openCustomModal() {
+    this.modalDialogService.openDialog(this.viewContainer, {
+      title: 'Custom',
+      childComponent: CustomModalComponent,
+      settings: {
+        closeButtonClass: 'close theme-icon-close'
+      }
     });
   }
 
