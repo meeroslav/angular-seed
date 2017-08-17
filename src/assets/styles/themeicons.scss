@@ -23,6 +23,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.theme-icon-eye:before {
+  content: "\e9ce";
+}
 .theme-icon-stats:before {
   content: "\e903";
 }
@@ -62,10 +65,10 @@
 .theme-icon-step-forward:before {
   content: "\f051";
 }
-.theme-icon-chevron-left:before, .glyphicon-chevron-left:before {
+.theme-icon-chevron-left:before {
   content: "\f053";
 }
-.theme-icon-chevron-right:before, .glyphicon-chevron-right:before {
+.theme-icon-chevron-right:before {
   content: "\f054";
 }
 .theme-icon-chevron-up:before {
@@ -104,4 +107,3 @@
 .theme-icon-exclamation:before {
   content: "\f12a";
 }
-
