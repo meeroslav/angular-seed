@@ -1,96 +1,92 @@
 {
-    "rules": {
-        "class-name": true,
-        "comment-format": [
-            true,
-            "check-space"
-        ],
-        "eofline": true,
-        "forin": true,
-        "indent": [
-            true,
-            "spaces"
-        ],
-        "interface-name": [
-            true,
-            "always-prefix"
-        ],
-        "label-position": true,
-        "member-ordering": [
-            true,
-            "public-before-private",
-            "static-before-instance",
-            "variables-before-functions"
-        ],
-        "no-arg": false,
-        "no-bitwise": false,
-        "no-console": [
-            true,
-            "debug",
-            "info",
-            "time",
-            "timeEnd",
-            "trace"
-        ],
-        "no-construct": true,
-        "no-parameter-properties": false,
-        "no-debugger": true,
-        "no-duplicate-variable": true,
-        "no-empty": true,
-        "no-eval": true,
-        "no-string-literal": false,
-        "no-switch-case-fall-through": true,
-        "no-trailing-whitespace": true,
-        "no-unused-expression": false,
-        "no-var-requires": false,
-        "one-line": [
-            true,
-            "check-open-brace",
-            "check-catch",
-            "check-else",
-            "check-whitespace"
-        ],
-        "quotemark": [
-            true,
-            "single"
-        ],
-        "radix": false,
-        "semicolon": [
-            true,
-            "always"
-        ],
-        "triple-equals": [
-            true,
-            "allow-null-check"
-        ],
-        "typedef": [
-            true,
-            "property-declaration"
-        ],
-        "typedef-whitespace": [
-            true,
-            {
-                "call-signature": "nospace",
-                "index-signature": "nospace",
-                "parameter": "nospace",
-                "property-declaration": "nospace",
-                "variable-declaration": "nospace"
-            }
-        ],
-        "variable-name": [
-            true,
-            "ban-keywords",
-            "check-format",
-            "allow-leading-underscore"
-        ],
-        "whitespace": [
-            true,
-            "check-branch",
-            "check-decl",
-            "check-operator",
-            "check-separator",
-            "check-type",
-            "check-typecast"
-        ]
-    }
+  "rulesDirectory": [
+    "node_modules/codelyzer",
+    "node_modules/tslint-eslint-rules"
+  ],
+  "extends": [
+    "tslint-eslint-rules",
+    "codelyzer"
+  ],
+  "rules": {
+    "class-name": true,
+    "curly": true,
+    "forin": true,
+    "indent": [
+      true,
+      "spaces",
+      2
+    ],
+    "label-position": true,
+    "member-access": false,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-console": [
+      true,
+      "log"
+    ],
+    "no-construct": true,
+    "no-debugger": true,
+    "no-duplicate-variable": true,
+    "no-empty": false,
+    "no-eval": true,
+    "no-inferrable-types": false,
+    "no-shadowed-variable": true,
+    "no-string-literal": false,
+    "no-unused-expression": true,
+    "object-literal-sort-keys": false,
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-whitespace"
+    ],
+    "radix": true,
+    "semicolon": [
+      true,
+      "always"
+    ],
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+    "variable-name": false,
+    "use-input-property-decorator": true,
+    "use-output-property-decorator": true,
+    "use-host-property-decorator": false,
+    "use-life-cycle-interface": true,
+    "use-pipe-transform-interface": true,
+    "no-consecutive-blank-lines": [
+      true,
+      1
+    ],
+    "whitespace": [
+      true,
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-type"
+    ],
+    "trailing-comma": true,
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape"
+    ],
+    "object-curly-spacing": [
+      true,
+      "always"
+    ]
+  }
 }

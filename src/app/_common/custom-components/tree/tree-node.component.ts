@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 export interface ITreeNode {
   id?: string;
@@ -57,7 +57,7 @@ export class TreeNode {
    * @param treeNode
    */
   onNodeSelect(treeNode: TreeNode) {
-    this.nodeClick.emit({node: treeNode.content});
+    this.nodeClick.emit({ node: treeNode.content });
   }
 
   toggle() {

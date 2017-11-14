@@ -1,4 +1,3 @@
-// const path = require('path');
 const webpack = require('webpack');
 const helpers = require('./helpers/index');
 const root = helpers.root;
@@ -18,7 +17,7 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
  */
 const ENV = process.env.npm_lifecycle_event;
 const NODE_ENV = process.env.NODE_ENV;
-const isBuild = ENV === 'build' || ENV === 'watch';
+const isBuild = ENV === 'build';
 const isProduction = isBuild && NODE_ENV && NODE_ENV.indexOf('production') !== -1;
 const isTeamCity = process.env.TEAMCITY_VERSION;
 
@@ -26,8 +25,12 @@ const TRANSLATION_HASH = helpers.hashDate('');
 const CONFIG_HASH = helpers.hashDate('');
 
 const childProcess = require('child_process');
-const GIT_COMMIT = isTeamCity ? 'Not available' : childProcess.execSync('git rev-parse HEAD').toString();
-const GIT_BRANCH = isTeamCity ? 'Unknown' : childProcess.execSync('git rev-parse --abbrev-ref HEAD').toString();
+const GIT_COMMIT = isTeamCity ?
+  'Not available' :
+  childProcess.execSync('git rev-parse --short HEAD').toString().replace(/\n/, '');
+const GIT_BRANCH = isTeamCity ?
+  'Unknown' :
+  childProcess.execSync('git rev-parse --abbrev-ref HEAD').toString().replace(/\n/, '');
 
 module.exports = (function makeWebpackConfig() {
   console.info('');
@@ -39,11 +42,6 @@ module.exports = (function makeWebpackConfig() {
   console.info(chalk.magenta('                                 ........ '));
   console.info('');
 
-  /**
-   * Config
-   * Reference: http://webpack.github.io/docs/configuration.html
-   * This is the object where all configuration gets set
-   */
   let config = {};
 
   /**
@@ -64,7 +62,7 @@ module.exports = (function makeWebpackConfig() {
   config.entry = {
     polyfills: './src/polyfills.ts',
     vendor: './src/vendor.ts',
-    app: './src/main.ts' // our angular app
+    app: './src/main.ts'
   };
 
   /**
@@ -75,8 +73,8 @@ module.exports = (function makeWebpackConfig() {
     path: root('dist'),
     publicPath: isBuild ? '/' : 'http://localhost:51961/',
     filename: isBuild ? '[name].[hash].js' : '[name].js',
-    chunkFilename: isBuild ? 'app/[id].[hash].chunk.js' : 'app/[id].chunk.js'
-    // sourceMapFilename: isBuild ? 'app/[id].[hash].chunk.js.map' : 'app/[id].chunk.js.map',
+    chunkFilename: isBuild ? 'app/[id].[hash].chunk.js' : 'app/[id].chunk.js',
+    sourceMapFilename: isBuild ? 'app/[id].[hash].chunk.js.map' : 'app/[id].chunk.js.map'
   };
 
   /**
@@ -85,7 +83,7 @@ module.exports = (function makeWebpackConfig() {
    */
   config.resolve = {
     // only discover files that have those extensions
-    extensions: ['.ts', '.js', '.json', '.css', '.scss', '.less', '.html']
+    extensions: ['.ts', '.js', '.json', '.css', '.scss', '.html']
   };
 
   /**
@@ -99,16 +97,15 @@ module.exports = (function makeWebpackConfig() {
       // Support for .ts files.
       {
         test: /\.ts$/,
-        loaders: ['awesome-typescript-loader', 'angular2-template-loader', 'angular2-router-loader'],
-        exclude: [/\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
+        loaders: ['awesome-typescript-loader', 'angular2-template-loader', 'angular-router-loader'],
+        exclude: [/\.(spec|e2e|po)\.ts$/, /node_modules\/(?!(ng2-.+))/, /_e2e/]
       },
       {
         test: /\.ts$/,
         enforce: 'pre',
         loader: 'tslint-loader'
       },
-
-      // copy those assets to output
+      // copy assets to output
       {
         test: /\.(png|jpe?g|gif|svg|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader?name=assets/images/[name].[hash].[ext]'
@@ -117,10 +114,8 @@ module.exports = (function makeWebpackConfig() {
         test: /\.(woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader?name=assets/styles/fonts/[name].[hash].[ext]'
       },
-
       // Support for *.json files.
       {test: /\.json$/, loader: 'json-loader', include: root('src', 'app'), exclude: root('src', 'assets')},
-
       // Support for CSS as raw text
       // all css in src/style will be bundled in an external css file
       {
@@ -130,7 +125,6 @@ module.exports = (function makeWebpackConfig() {
       },
       // all css required in src/app files will be merged in js files
       {test: /\.css$/, include: root('src', 'app'), loader: 'raw-loader!postcss-loader'},
-
       // support for .scss/.sass files
       // all css in src/style will be bundled in an external css file
       {
@@ -140,17 +134,6 @@ module.exports = (function makeWebpackConfig() {
       },
       // all css required in src/app files will be merged in js files
       {test: /\.(scss|sass)$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!sass-loader'},
-
-      // support for .less files
-      // all css in src/style will be bundled in an external css file
-      {
-        test: /\.less$/,
-        exclude: root('src', 'app'),
-        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader', 'less-loader']})
-      },
-      // all css required in src/app files will be merged in js files
-      { test: /\.less$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!less-loader'},
-
       // support for .html as raw text
       // change the loader to something that adds a hash to images
       {test: /\.html$/, loader: 'raw-loader',  include: root('src', 'app')}
@@ -176,10 +159,8 @@ module.exports = (function makeWebpackConfig() {
       }
     }),
 
-    // Workaround needed for angular 2 angular/angular#11580
     new webpack.ContextReplacementPlugin(
-      // The (\\|\/) piece accounts for path separators in *nix and Windows
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      /@angular(\\|\/)core(\\|\/)esm5/,
       root('./src') // location of your src
     ),
 
@@ -255,8 +236,6 @@ module.exports = (function makeWebpackConfig() {
     new webpack.LoaderOptionsPlugin({
       debug: false,
       options: {
-        context: root(),
-        output: { path :  './' }, //This has to be './' and not your output folder.
         /**
          * Apply the tslint loader as pre/postLoader
          * Reference: https://github.com/wbuchwalter/tslint-loader
@@ -272,14 +251,6 @@ module.exports = (function makeWebpackConfig() {
          */
         sassLoader: {
           //includePaths: [path.resolve(__dirname, "node_modules/foundation-sites/scss")]
-        },
-        /**
-         * Less
-         * Reference: https://github.com/webpack/less-loader
-         * Transforms .less files to .css
-         */
-        lessLoader: {
-          //includePaths: [path.resolve(__dirname, "node_modules/foundation-sites/less")]
         },
         /**
          * PostCSS
@@ -299,7 +270,7 @@ module.exports = (function makeWebpackConfig() {
   if (isBuild) {
     if (isProduction) {
       config.plugins.push(
-        new webpack.NoErrorsPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
         new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: {keep_fnames: false}})
       );
     }

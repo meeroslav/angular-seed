@@ -1,6 +1,7 @@
-import {Component, ContentChildren, AfterContentInit, Input, EventEmitter, Output} from '@angular/core';
-import {WizardSlide} from './wizard-slide';
-import {LoadingIndicatorService} from '../../shared/loading-indicator/loading-indicator.service';
+import { Component, ContentChildren, AfterContentInit, Input, EventEmitter, Output } from '@angular/core';
+import { WizardSlide } from './wizard-slide';
+import { LoadingIndicatorService } from '../../shared/loading-indicator/loading-indicator.service';
+
 /**
  *  Wizard use case
  *  <wizard>
@@ -136,8 +137,8 @@ export class Wizard implements AfterContentInit {
       return;
     }
     // deactivate all tabs
-    this.slides.toArray().forEach((slide: WizardSlide) => {
-      slide.setSelection(false);
+    this.slides.toArray().forEach((wizardSlide: WizardSlide) => {
+      wizardSlide.setSelection(false);
     });
 
     // activate the slide the user has clicked on.

@@ -1,6 +1,6 @@
 import {
-  Component, forwardRef, Input, OnDestroy, ElementRef, Output, ChangeDetectionStrategy,
-  EventEmitter, Renderer, HostListener, AfterViewInit, Inject, TemplateRef, OnInit
+  Component, forwardRef, Input, OnDestroy, ElementRef, Output,
+  EventEmitter, Renderer, HostListener, AfterViewInit, Inject, OnInit
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -42,8 +42,6 @@ const MAXIMAL_WAIT = 800;
 export class TypeaheadComponent implements ControlValueAccessor, AfterViewInit, OnDestroy, OnInit {
   /** suggestions list - array of strings, objects or Observable*/
   @Input() suggestions: string[] | Object[] | Observable<string[]> | Observable<Object[]> = [];
-  /** template for items in drop down*/
-  @Input() public suggestionTemplate: TemplateRef<any>;
   /** maximal number of visible items */
   @Input() public suggestionLimit: number;
   /** field to use from objects as name */

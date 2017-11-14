@@ -117,18 +117,18 @@ export class FormsComponent implements OnInit {
    * @param node: The node selected
    */
   nodeSelectCallback(node: any) {
-    console.log(node);
+    console.debug(node);
   }
 
   private buildBasicControlsForm() {
     this.basicControlsForm = this.formBuilder.group({
-      name: [this.user.name, [Validators.required]],
+      name: [this.user.name, Validators.required],
       favoriteNumber: [this.user.favoriteNumber],
       disabledNumber: [{ value: 3, disabled: true }],
-      favoriteColor: [this.user.favoriteColor, [Validators.required]],
-      observation: [this.user.observation, [Validators.required]],
-      optin: [this.user.optin, [Validators.required]],
-      newsLetter: [this.user.newsLetter, [Validators.required]]
+      favoriteColor: [this.user.favoriteColor, Validators.required],
+      observation: [this.user.observation, Validators.required],
+      optin: [this.user.optin, Validators.required],
+      newsLetter: [{ value: this.user.newsLetter, disabled: true }]
     });
   }
 

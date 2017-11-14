@@ -16,7 +16,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardsComponent implements OnInit {
   ngOnInit() {
-    console.log('hello `Cards` component');
     // this.title.getData().subscribe(data => this.data = data);
   }
 }

@@ -4,13 +4,13 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { DispatcherService } from './dispatcher.service';
 
 @NgModule({
-    providers: [ DispatcherService ],
+  providers: [DispatcherService]
 })
 export class DispatcherModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: DispatcherModule,
-            providers: [ DispatcherService ]
-        };
-    }
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: DispatcherModule,
+      providers: [DispatcherService]
+    };
+  }
 }

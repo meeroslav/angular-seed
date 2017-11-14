@@ -85,8 +85,7 @@
             </div>
             <div class="row">
               <label class="col-sm-4 form-label">Receive news?</label>
-              <div class="col-sm-12" placement="bottom"
-                   [tooltip]="basicControlsForm.controls.newsLetter.errors && newsLetterTT">
+              <div class="col-sm-12">
                 <label class="custom-control custom-radio">
                   <input type="radio" formControlName="newsLetter" class="custom-control-input" value="Maybe">
                   <span class="custom-control-indicator"></span>
@@ -103,15 +102,10 @@
                   <span class="custom-control-description">Yeah</span>
                 </label>
                 <label class="custom-control custom-radio">
-                  <input type="radio" formControlName="newsLetter" disabled class="custom-control-input" value="WTH">
+                  <input type="radio" formControlName="newsLetter" class="custom-control-input" value="WTH">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">I'm disabled</span>
                 </label>
-                <template #newsLetterTT>
-                  <div *ngIf="basicControlsForm.controls.newsLetter.errors.required">
-                    This text will be super long text with lorem ipsum dolor sit amet.
-                  </div>
-                </template>
               </div>
             </div>
             <div class="row">

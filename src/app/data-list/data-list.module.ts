@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { DataListComponent } from './data-list.component';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
 let routes = [
@@ -13,7 +13,7 @@ let routes = [
   imports: [
     CommonModule,
     TranslateModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule.forChild(routes)
   ],
   declarations: [DataListComponent]

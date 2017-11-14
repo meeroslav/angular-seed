@@ -1,6 +1,6 @@
-import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 export interface ISWUser {
   name: string;
@@ -15,16 +15,9 @@ export interface ICountable<T> {
 
 @Injectable()
 export class TableService {
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
-  getAll(page?: number): Observable<ICountable<ISWUser>> {
-    return this.http.get(`http://swapi.co/api/people/?page=${page}`).map(this._extractData);
-  }
-
-  private _extractData(res: Response) {
-    if (res.text()) {
-      return res.json();
-    }
-    return {};
+  getAll(page?: number): Observable<any> {
+    return this.http.get(`https://swapi.co/api/people/?page=${page}`);
   }
 }

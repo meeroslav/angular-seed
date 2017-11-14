@@ -24,16 +24,14 @@ module.exports = (function makeWebpackConfig() {
     rules: [
       {
         test: /\.ts$/,
-        loaders: ['awesome-typescript-loader?' + atlOptions, 'angular2-template-loader', 'angular2-router-loader'],
-        exclude: [/\.(e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
+        loaders: ['awesome-typescript-loader?' + atlOptions, 'angular2-template-loader', 'angular-router-loader'],
+        exclude: [/\.(e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/, /_e2e/]
       },
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.css$/, exclude: root('src', 'app'), loader: 'null-loader' },
       { test: /\.css$/, include: root('src', 'app'), loader: 'raw-loader!postcss-loader' },
       { test: /\.(scss|sass)$/, exclude: root('src', 'app'), loader: 'null-loader' },
       { test: /\.(scss|sass)$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!sass-loader' },
-      { test: /\.less$/, exclude: root('src', 'app'), loader: 'null-loader' },
-      { test: /\.less$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!less-loader'},
       { test: /\.html$/, loader: 'raw-loader', exclude: [root('src/index.html')] }
     ]
   };
@@ -45,7 +43,7 @@ module.exports = (function makeWebpackConfig() {
       enforce: 'post',
       include: path.resolve('src'),
       loader: 'istanbul-instrumenter-loader',
-      exclude: [/\.spec\.ts$/, /\.e2e\.ts$/, /node_modules/]
+      exclude: [/\.spec\.ts$/, /\.e2e\.ts$/, /node_modules/, /_e2e/]
     });
   }
 
@@ -56,8 +54,7 @@ module.exports = (function makeWebpackConfig() {
       }
     }),
     new webpack.ContextReplacementPlugin(
-      // The (\\|\/) piece accounts for path separators in *nix and Windows
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      /@angular(\\|\/)core(\\|\/)esm5/,
       root('./src') // location of your src
     ),
     new webpack.LoaderOptionsPlugin({

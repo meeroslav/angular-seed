@@ -48,7 +48,6 @@ export class TableComponent implements OnInit {
     { prop: 'rating', name: 'Rating' }
   ];
   tableSort(data: any) {
-    console.log(data);
     // data = {
     //   sorts
     //   column
@@ -57,7 +56,6 @@ export class TableComponent implements OnInit {
     // }
   }
   tablePage(data: any) {
-    console.log(data);
     // {
     //   count
     //   pageSize

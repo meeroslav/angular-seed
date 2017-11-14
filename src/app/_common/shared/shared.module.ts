@@ -1,5 +1,4 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // components and directives
@@ -19,6 +18,7 @@ import {
   TabsModule, BsDropdownModule, PaginationModule, TooltipModule, RatingModule,
   TypeaheadModule, ButtonsModule, DatepickerModule, AlertModule
 } from 'ngx-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -27,7 +27,7 @@ import {
     ReactiveFormsModule,
     RouterModule,
     CommonModule,
-    HttpModule,
+    HttpClientModule,
     // ngx-bootstrap modules
     AlertModule.forRoot(),
     ButtonsModule.forRoot(),
@@ -58,4 +58,3 @@ export class SharedModule {
     };
   }
 }
-

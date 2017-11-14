@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule, Http } from '@angular/http';
 import { AppComponent } from './app.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -11,18 +10,23 @@ import { ModalDialogModule } from 'ngx-modal-dialog';
 import { TabsModule, PaginationModule, BsDropdownModule, RatingModule } from 'ngx-bootstrap';
 import { SharedModule } from './_common/shared/shared.module';
 import { LayoutModule } from './_layout/layout.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/locales/', `.${process.env.TRANSLATION_HASH}.json`);
+}
 
 @NgModule({
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     CommonModule,
     DispatcherModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: (http: Http) => new TranslateHttpLoader(http, 'assets/locales/', `.${process.env.TRANSLATION_HASH}.json`),
-        deps: [Http]
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
     }),
     // ngx-bootstrap stuff

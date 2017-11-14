@@ -1,12 +1,13 @@
 const webpackConfig = require('./webpack.config.test.js');
 const ENV = process.env.npm_lifecycle_event;
 const isTestWatch = ENV === 'test:watch';
+const isPureTest = ENV === 'test:pure';
 const isTeamCity = process.env.TEAMCITY_VERSION;
 
 module.exports = function (config) {
   'use strict';
 
-  var _config = {
+  let _config = {
     basePath: '../', // base path that will be used to resolve all patterns (eg. files, exclude)
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -84,13 +85,15 @@ module.exports = function (config) {
     _config.browsers.push('ChromeHeadless');
 
     // add coverage
-    _config.reporters.push('coverage');
-    _config.plugins.push(require('karma-coverage'));
+    if (!isPureTest) {
+      _config.reporters.push('coverage');
+      _config.plugins.push(require('karma-coverage'));
 
-    _config.coverageReporter = {
-      dir: 'coverage/',
-      reporters: [{ type: 'json', subdir: '.', file: 'report.json' }]
-    };
+      _config.coverageReporter = {
+        dir: 'coverage/',
+        reporters: [{ type: 'json', subdir: '.', file: 'report.json' }]
+      };
+    }
 
     if (isTeamCity) {
       _config.reporters.push('teamcity');

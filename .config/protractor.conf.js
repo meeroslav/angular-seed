@@ -1,11 +1,46 @@
+/**
+ * Constants
+ */
 require('ts-node/register');
-var root = require('./helpers/index').root;
+const fs = require('fs');
+const ext64 = fs.readFileSync('./.config/chrome-auth.crx', 'base64');
+const root = require('./helpers/index').root;
+const chalk = require('chalk');
+const HtmlScreenShotReporter = require('protractor-jasmine2-screenshot-reporter');
+
+const reporter = new HtmlScreenShotReporter({
+  dest: 'report/screenshots',
+  captureOnlyFailedSpecs: true
+});
+
+const LOCAL_URL = 'http://localhost:3000/';
+
+// only run with --start-fullscreen flag if OS is not windows
+let chromeArguments = ['start-maximized', '--disable-infobars'];
+if (process.platform.toString().indexOf('win') === -1) {
+  chromeArguments = ['start-maximized', '--start-fullscreen', '--disable-infobars'];
+}
+
+let user = 'svc_tester';
+// No override when running on teamcity
+if (!process.env.TEAMCITY_VERSION) {
+  if (process.env.USER) {
+    user = process.env.USER;
+  } else if (process.env.USERNAME) {
+    user = process.env.USERNAME;
+  }
+}
+
+console.log(chalk.cyan('*****************************************************'));
+console.log(chalk.cyan('Testing against: ' + LOCAL_URL));
+console.log(chalk.cyan('OS: ' + process.platform));
+console.log(chalk.cyan('With user: ' + user));
+console.log(chalk.cyan('*****************************************************'));
 
 exports.config = {
-  baseUrl: 'http://localhost:51961/',
+  baseUrl: LOCAL_URL,
 
   specs: [
-    root('src/**/**.e2e.ts'),
     root('src/**/*.e2e.ts')
   ],
   exclude: [],
@@ -17,27 +52,41 @@ exports.config = {
   jasmineNodeOpts: {
     showTiming: true,
     showColors: true,
-    isVerbose: false,
-    includeStackTrace: false,
+    isVerbose: true,
+    includeStackTrace: true,
     defaultTimeoutInterval: 400000
   },
   directConnect: true,
 
   capabilities: {
-    'browserName': 'chrome',
-    'chromeOptions': {
-      'args': ['show-fps-counter=true']
+    browserName: 'chrome',
+    maxInstances: 1,
+    chromeOptions: {
+      args: chromeArguments,
+      extensions: [ext64]
     }
   },
 
-  onPrepare: function () {
-    var SpecReporter = require('jasmine-spec-reporter');
-    // add jasmine spec reporter
-    jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: true}));
-
-    browser.ignoreSynchronization = true;
+  beforeLaunch: function () {
+    return new Promise(function (resolve) {
+      reporter.beforeLaunch(resolve);
+    });
   },
 
+  onPrepare: function () {
+    browser.ignoreSynchronization = true;
+    jasmine.getEnv().addReporter(reporter);
+    if (process.env.TEAMCITY_VERSION) {
+      const jasmineReporters = require('jasmine-reporters');
+      jasmine.getEnv().addReporter(new jasmineReporters.TeamCityReporter());
+    }
+  },
+
+  afterLaunch: function (exitCode) {
+    return new Promise(function (resolve) {
+      reporter.afterLaunch(resolve.bind(this, exitCode));
+    });
+  },
 
   /**
    * Angular 2 configuration

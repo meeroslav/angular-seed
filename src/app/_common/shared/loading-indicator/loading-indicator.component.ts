@@ -2,17 +2,17 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'loading-indicator',
-    template: `
-        <div id="loading-indicator" *ngIf="indicatorStatus.isInProgress">
-            <div id="loading-spinner"></div>
-        </div>
-    `
+  selector: 'loading-indicator',
+  template: `
+    <div id="loading-indicator" *ngIf="indicatorStatus.isInProgress">
+      <div id="loading-spinner"></div>
+    </div>
+  `
 })
 export class LoadingIndicatorComponent {
-    indicatorStatus: IIndicatorStatus;
+  indicatorStatus: IIndicatorStatus;
 
-    constructor(loadingIndictorService: LoadingIndicatorService) {
-        this.indicatorStatus = loadingIndictorService.status;
-    }
+  constructor(loadingIndictorService: LoadingIndicatorService) {
+    this.indicatorStatus = loadingIndictorService.status;
+  }
 }

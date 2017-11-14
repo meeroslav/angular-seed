@@ -128,21 +128,23 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
    */
   private renderContent(value: string, isTrimmed: boolean) {
     let selection = window.getSelection();
-    let carretPos = this.getCarretPosition(value ? selection : null);
+    let caretPos = this.getCaretPosition(value ? selection : null);
     this.textArea.innerHTML = this.injectTags(value).replace(this.newLineRegex, '<br>');
-    if (carretPos.position !== null) {
+    if (caretPos.position !== null) {
       selection.removeAllRanges();
-      isTrimmed && carretPos.position--; // reduce position if trimmed
-      this.setCarretPosition(selection, carretPos);
+      if (isTrimmed) {  // reduce position if trimmed
+        caretPos.position--;
+      }
+      this.setCaretPosition(selection, caretPos);
     }
   }
 
   /**
-   * Get current carret position and node information at the carret's position
+   * Get current caret position and node information at the caret's position
    * @param  {Selection} selection?
    * @returns IRangePosition
    */
-  private getCarretPosition(selection?: Selection): IRangePosition {
+  private getCaretPosition(selection?: Selection): IRangePosition {
     let result = { position: null, node: null };
 
     if (selection && selection.rangeCount > 0) {
@@ -155,7 +157,7 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
         result.position = range.startOffset;
         // if it's same as parent = it was enter
         if (range.startContainer !== this.textArea) {
-          result.node = this.getCarretsNodeInfo(range);
+          result.node = this.getCaretsNodeInfo(range);
         }
       }
       // enter on typing area, move to next position
@@ -169,11 +171,11 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
   }
 
   /**
-   * Get carret's node index, previous node's length and whether its highlighted area
+   * Get caret's node index, previous node's length and whether its highlighted area
    * @param  {Range} range
    * @returns INodeIndex
    */
-  private getCarretsNodeInfo(range: Range): INodeIndex {
+  private getCaretsNodeInfo(range: Range): INodeIndex {
     let index = 0;
     let childNodes = this.textArea.childNodes;
     while (index < childNodes.length) {
@@ -225,18 +227,18 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
   }
 
   /**
-   * Move carret to the new position
+   * Move caret to the new position
    * @param  {Selection} selection
    * @param  {IRangePosition} input
    */
-  private setCarretPosition(selection: Selection, input: IRangePosition) {
+  private setCaretPosition(selection: Selection, input: IRangePosition) {
     let range = this.getRange(input);
     selection.addRange(range);
     range.collapse(true);
   }
 
   /**
-   * Generate range based on previous position, carret's node information and state of nodes
+   * Generate range based on previous position, caret's node information and state of nodes
    * @param  {IRangePosition} input
    * @returns Range
    */
@@ -255,7 +257,7 @@ export class HighlightAreaComponent implements ControlValueAccessor, OnInit {
     let isChild = false;
     let position = input.position;
 
-    if (input.node.isMultiLinePaste) { // it's multiline paste, move to end of it
+    if (input.node.isMultiLinePaste) { // it's multi-line paste, move to end of it
       let delta = position - this.getNodeLength(this.textArea.childNodes[ index ]);
       while (delta > 0) {
         index += 1;

@@ -1,4 +1,4 @@
-import {ITreeNode} from './tree-node.component';
+import { ITreeNode } from './tree-node.component';
 import * as R from 'ramda';
 
 /**
@@ -8,17 +8,19 @@ import * as R from 'ramda';
  * @returns {any}
  */
 export function findPathById(root: ITreeNode[] | null, id: string | null): ITreeNode[] {
-  if (root === null)
+  if (root === null) {
     return [];
+  }
 
   // Create a artificial root (so we don't have to deal with multiple roots)
-  const singleRoot: ITreeNode = {text: 'unused', children: root};
+  const singleRoot: ITreeNode = { text: 'unused', children: root };
 
   const retVal = nodeFindPathById(singleRoot, id);
 
-  if (retVal.length > 0)
-  // drop the artificial root created previously
+  if (retVal.length > 0) {
+    // drop the artificial root created previously
     return R.drop(1, retVal);
+  }
 
   return []; // nothing found
 }
@@ -31,14 +33,17 @@ export function findPathById(root: ITreeNode[] | null, id: string | null): ITree
  */
 function nodeFindPathById(root: ITreeNode | null, id: string | null): ITreeNode[] {
 
-  if (id === null || root === null)
+  if (id === null || root === null) {
     return [];
+  }
 
-  if (root.id === id)
+  if (root.id === id) {
     return [root];
+  }
 
-  if (!root.children)
+  if (!root.children) {
     return [];
+  }
 
   let retVal: ITreeNode[] = [];
 
@@ -48,8 +53,9 @@ function nodeFindPathById(root: ITreeNode | null, id: string | null): ITreeNode[
     return retVal.length > 0;
   }, root.children);
 
-  if (retVal.length > 0)
+  if (retVal.length > 0) {
     return R.prepend(root, retVal);
+  }
 
   return retVal;
 }
@@ -61,8 +67,9 @@ function nodeFindPathById(root: ITreeNode | null, id: string | null): ITreeNode[
  */
 export function pathOnly(path: ITreeNode[]): ITreeNode | null {
 
-  if (path.length === 0)
+  if (path.length === 0) {
     return null;
+  }
 
   return R.reduceRight((elm: ITreeNode, child: ITreeNode | null) => {
     const children: ITreeNode[] = child !== null ? [child] : [];

@@ -1,12 +1,12 @@
 import { Component, Directive, Input } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
-import * as R from 'ramda';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 export class MockedFeedbackService {
   notify() { /**/
   }
 }
+
 export class MockedLoadingIndicatorService {
   done() { /**/
   }
@@ -14,6 +14,7 @@ export class MockedLoadingIndicatorService {
   start() { /**/
   }
 }
+
 export class MockedPageService {
   events: Subject<any> = new Subject();
 
@@ -40,6 +41,7 @@ export class MockedModalDialogService {
   openDialog() { /**/
   }
 }
+
 export class MockedRouter {
   events: Subject<any> = new Subject();
 
@@ -49,8 +51,10 @@ export class MockedRouter {
   navigate() { /**/
   }
 }
+
 export class MockedViewContainerRef {
 }
+
 export class MockedApi {
   get(): Observable<any> {
     return Observable.of(null);
@@ -68,16 +72,17 @@ export class MockedApi {
     return Observable.of(null);
   }
 }
+
 export class MockedActivatedRoute {
   params: Observable<any> = Observable.of({});
-  url: Observable<any[]> = Observable.of({});
+  url: Observable<any[]> = Observable.of([]);
   snapshot = {
     params: null,
     url: null
   };
 }
 
-@Directive({selector: '[infield-label]'})
+@Directive({ selector: '[infield-label]' })
 export class MockedInfieldLabel {
   @Input('infield-label') placeholder: string;
   @Input('infield-static-text') staticText: string;
@@ -96,12 +101,12 @@ export class MockedErrorService {
   }
 }
 
-@Directive({selector: '[tooltip]'})
+@Directive({ selector: '[tooltip]' })
 export class MockedTooltip {
   @Input('tooltip') tooltip: string;
 }
 
-@Component({selector: 'breadcrumb', template: '<ng-content></ng-content>'})
+@Component({ selector: 'breadcrumb', template: '<ng-content></ng-content>' })
 export class MockedBreadcrumb {
   @Input() pageTitle: string;
 }

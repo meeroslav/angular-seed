@@ -16,7 +16,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TypefacesComponent implements OnInit {
   ngOnInit() {
-    console.log('hello `Typefaces` component');
     // this.title.getData().subscribe(data => this.data = data);
   }
 }

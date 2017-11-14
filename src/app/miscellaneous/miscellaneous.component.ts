@@ -66,8 +66,6 @@ export class MiscComponent implements OnInit {
 
   ngOnInit() {
     this.selectedTreeNode = {};
-    console.log('hello `Misc` component');
-    // this.title.getData().subscribe(data => this.data = data);
 
     this.treeData = [{ text: 'Element One' }, { text: 'Element Two' }];
     this.treeDataMultiLevel = [{

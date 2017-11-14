@@ -36,10 +36,10 @@ export class TreeInputComponent implements ControlValueAccessor {
   static getDisplayNodes(content: ITreeNode[], selectedNodeId: string, isDisabled: boolean): ITreeNode[] {
     if (isDisabled) {
       const selectedPath = pathOnly(findPathById(content, selectedNodeId));
-      if (selectedPath)
+      if (selectedPath) {
         return [selectedPath];
-      else
-        return [];
+      }
+      return [];
     }
     return content;
   }

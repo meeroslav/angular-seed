@@ -19,6 +19,7 @@ Thumbs.db
 
 # Project generated
 coverage/
+report/
 dist/
 doc/
 src/**/*.js
