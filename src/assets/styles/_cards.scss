@@ -90,3 +90,11 @@ $toolbarWidth: 1rem + 5/1.5 * $grid-gutter-width-base;
   }
 }
 
+.btn-link-footer,
+.btn-link-footer:hover,
+.btn-link-footer:focus
+{
+  font-weight: $card-footer-font-weight;
+  text-decoration: none;
+  padding: 0 $btn-padding-x-sm;
+}

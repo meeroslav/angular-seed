@@ -40,6 +40,21 @@
   10%, 30%, 50%, 70%, 90% { transform: translate3d(-2rem, -50%, 0); }
   20%, 40%, 60%, 80%      { transform: translate3d(2rem, -50%, 0); }
 }
+@-webkit-keyframes scaleNotify {
+  from, to { transform: scale(1,1); }
+  20%, 60% { transform: scale(0.8,0.8); }
+  40%, 80% { transform: scale(1.25,1.25); }
+}
+@-moz-keyframes scaleNotify {
+  from, to { transform: scale(1,1); }
+  20%, 60% { transform: scale(0.8,0.8); }
+  40%, 80% { transform: scale(1.25,1.25); }
+}
+@keyframes scaleNotify {
+  from, to { transform: scale(1,1); }
+  20%, 60% { transform: scale(0.8,0.8); }
+  40%, 80% { transform: scale(1.25,1.25); }
+}
 
 $animation-duration: 350ms;
 

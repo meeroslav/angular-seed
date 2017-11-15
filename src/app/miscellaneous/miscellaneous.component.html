@@ -54,16 +54,24 @@
   <tab heading="Date picker">
     <div class="row">
       <div class="col-sm-4">
-        <datepicker [(ngModel)]="dt" [datepickerMode]="'day'" minMode="day" [showWeeks]="false"
-                    [dateDisabled]="dateDisabled"></datepicker>
+        <input type="text"
+             class="form-control"
+             [minDate]="minDate"
+             [maxDate]="maxDate"
+             #dp="bsDatepicker"
+             [bsConfig]="{ showWeekNumbers: false, containerClass: 'theme-blue' }"
+             bsDatepicker [(bsValue)]="dt">
       </div>
       <div class="col-sm-4">
-        <datepicker [(ngModel)]="dt" [datepickerMode]="'month'" minMode="month" [showWeeks]="true"
-                    [dateDisabled]="dateDisabled"></datepicker>
+        <input type="text"
+               class="form-control"
+               [minDate]="minDate"
+               [maxDate]="maxDate"
+               #dp="bsDatepicker"
+               bsDatepicker [(bsValue)]="dt">
       </div>
       <div class="col-sm-4">
-        <datepicker [(ngModel)]="dt" [datepickerMode]="'year'" minMode="year" [showWeeks]="true"
-                    [dateDisabled]="dateDisabled"></datepicker>
+        <!--<bs-datepicker [(ngModel)]="dt"></bs-datepicker>-->
       </div>
     </div>
   </tab>

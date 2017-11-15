@@ -7,10 +7,20 @@
   </ol>
   </div>
 </div>
+
+<ng-template #editButtonTemplate let-value="value" ngx-datatable-cell-template>
+  <button type="button" class="btn btn-table theme-icon-edit btn-secondary"
+          (click)="reportClick(value)">
+  </button>
+</ng-template>
+<ng-template #ratingTemplate let-value="value" ngx-datatable-cell-template>
+  - {{value}} -
+</ng-template>
+
 <tabset>
   <tab heading="Dynamic">
-    <h4 class="mb-3">Dynamic declarative datatable</h4>
-    <ngx-datatable class="table table-sm table-outer-bordered table-striped"
+    <h4 class="mb-3">Dynamic declarative data table</h4>
+    <ngx-datatable class="bootstrap table table-sm table-outer-bordered table-striped"
       [rows]="rows"
       [columns]="columns"
       [columnMode]="'force'"
@@ -28,7 +38,6 @@
                    [externalSorting]="false"
                    [rowHeight]="'auto'"
                    [messages]="tableMessages"
-                   (sort)="tableSort($event)"
                    reorderable="true">
       <ngx-datatable-column prop="name" [width]="200"></ngx-datatable-column>
       <ngx-datatable-column prop="gender" [width]="20"></ngx-datatable-column>
@@ -42,349 +51,232 @@
       </ngx-datatable-column>
     </ngx-datatable>
   </tab>
+  <tab heading="With pagination">
+    <ngx-datatable *ngIf="users"
+                   class="bootstrap table table-sm table-outer-bordered table-striped"
+                   [sortType]="'single'"
+                   [headerHeight]="'auto'"
+                   [messages]="{ emptyMessage: 'NO_RESULTS' | translate, totalMessage: 'RESULTS' | translate }"
+                   [columnMode]="'force'"
+                   [footerHeight]="50"
+                   [rowHeight]="'auto'"
+                   [sorts]="sorting"
+                   [offset]="page"
+                   [limit]="pageSize"
+                   [trackByProp]="id"
+                   [columns]="swColumns"
+                   [cssClasses]="tableCssClasses"
+                   [externalPaging]="true"
+                   [count]="collectionSize"
+                   [rows]="users"
+                   (page)='setPage($event)'>
+    </ngx-datatable>
+  </tab>
   <tab heading="Simple">
-      <h4>Simple table</h4>
-      <table class="table">
-        <thead>
-        <tr>
-          <th></th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Bruno</td>
-          <td>Garcia</td>
-          <td>@ayrtonsenna</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>James</td>
-          <td>Crosswell</td>
-          <td>@kiwi</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Srdjan</td>
-          <td>Pajic</td>
-          <td>@paja.i.jare</td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td>Joao</td>
-          <td>Grassi</td>
-          <td>@callmepaulo</td>
-        </tr>
-        </tbody>
-      </table>
-  </tab>
-  <tab heading="Simple & small">
-      <h4>Compressed table</h4>
-      <table class="table table-sm">
-        <thead>
-        <tr>
-          <th></th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Bruno</td>
-          <td>Garcia</td>
-          <td>@ayrtonsenna</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>James</td>
-          <td>Crosswell</td>
-          <td>@kiwi</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Srdjan</td>
-          <td>Pajic</td>
-          <td>@paja.i.jare</td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td>Joao</td>
-          <td>Grassi</td>
-          <td>@callmepaulo</td>
-        </tr>
-        </tbody>
-      </table>
-  </tab>
-  <tab heading="Bordered">
-      <h4>Bordered table</h4>
-      <table class="table table-bordered">
-        <thead>
-        <tr>
-          <th></th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Bruno</td>
-          <td>Garcia</td>
-          <td>@ayrtonsenna</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>James</td>
-          <td>Crosswell</td>
-          <td>@kiwi</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Srdjan</td>
-          <td>Pajic</td>
-          <td>@paja.i.jare</td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td>Joao</td>
-          <td>Grassi</td>
-          <td>@callmepaulo</td>
-        </tr>
-        </tbody>
-      </table>
-  </tab>
-  <tab heading="Striped">
-      <h4>Striped table</h4>
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th></th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Bruno</td>
-          <td>Garcia</td>
-          <td>@ayrtonsenna</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>James</td>
-          <td>Crosswell</td>
-          <td>@kiwi</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Srdjan</td>
-          <td>Pajic</td>
-          <td>@paja.i.jare</td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td>Joao</td>
-          <td>Grassi</td>
-          <td>@callmepaulo</td>
-        </tr>
-        </tbody>
-      </table>
-  </tab>
-  <tab heading="Small, striped, outer border">
-    <h4>Small, striped with outer border only</h4>
-    <table class="table table-sm table-outer-bordered table-striped">
+    <h4>Simple table</h4>
+    <table class="table">
       <thead>
       <tr>
-        <th></th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Username</th>
+        <th></th><th>First Name</th><th>Last Name</th><th>Username</th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <th scope="row">1</th>
-        <td>Bruno</td>
-        <td>Garcia</td>
-        <td>@ayrtonsenna</td>
+        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
       </tr>
       <tr>
-        <th scope="row">2</th>
-        <td>James</td>
-        <td>Crosswell</td>
-        <td>@kiwi</td>
+        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@kiwi</td>
       </tr>
       <tr>
-        <th scope="row">3</th>
-        <td>Srdjan</td>
-        <td>Pajic</td>
-        <td>@paja.i.jare</td>
+        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
       </tr>
       <tr>
-        <th scope="row">4</th>
-        <td>Joao</td>
-        <td>Grassi</td>
-        <td>@callmepaulo</td>
+        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+      </tr>
+      </tbody>
+    </table>
+    <h4>Compressed table</h4>
+    <table class="table table-sm">
+      <thead>
+      <tr>
+        <th></th><th>First Name</th><th>Last Name</th><th>Username</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@kiwi</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
       </tr>
       </tbody>
     </table>
   </tab>
-  <tab heading="Small, striped, full border">
-      <h4>Small, striped with full border</h4>
-      <table class="table table-sm table-bordered table-striped">
+  <tab heading="Bordered">
+    <h4>Bordered table</h4>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th></th><th>First Name</th><th>Last Name</th><th>Username</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@kiwi</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+      </tr>
+      </tbody>
+    </table>
+    <h4>Striped table</h4>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th></th><th>First Name</th><th>Last Name</th><th>Username</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@kiwi</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+      </tr>
+      </tbody>
+    </table>
+  </tab>
+  <tab heading="Small, striped">
+    <h4>Small, striped with outer border only</h4>
+    <table class="table table-sm table-outer-bordered table-striped">
+      <table class="table table-striped">
         <thead>
         <tr>
-          <th></th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th></th><th>First Name</th><th>Last Name</th><th>Username</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-          <th scope="row">1</th>
-          <td>Bruno</td>
-          <td>Garcia</td>
-          <td>@ayrtonsenna</td>
+          <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
         </tr>
         <tr>
-          <th scope="row">2</th>
-          <td>James</td>
-          <td>Crosswell</td>
-          <td>@kiwi</td>
+          <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@kiwi</td>
         </tr>
         <tr>
-          <th scope="row">3</th>
-          <td>Srdjan</td>
-          <td>Pajic</td>
-          <td>@paja.i.jare</td>
+          <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
         </tr>
         <tr>
-          <th scope="row">4</th>
-          <td>Joao</td>
-          <td>Grassi</td>
-          <td>@callmepaulo</td>
+          <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
         </tr>
         </tbody>
       </table>
+    </table>
+    <h4>Small, striped with full border</h4>
+    <table class="table table-sm table-bordered table-striped">
+      <thead>
+      <tr>
+        <th></th><th>First Name</th><th>Last Name</th><th>Username</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@kiwi</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+      </tr>
+      </tbody>
+    </table>
   </tab>
   <tab heading="Table Styles">
-      <h4>Different table styles</h4>
-      <table class="table table-sm table-bordered thead-default">
-        <thead>
-        <tr>
-          <th></th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Bruno</td>
-          <td>Garcia</td>
-          <td>@ayrtonsenna</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>James</td>
-          <td>Crosswell</td>
-          <td>@kiwi</td>
-        </tr>
-        </tbody>
-      </table>
-      <table class="table table-sm table-bordered thead-inverse">
-        <thead>
-        <tr>
-          <th></th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Bruno</td>
-          <td>Garcia</td>
-          <td>@ayrtonsenna</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>James</td>
-          <td>Crosswell</td>
-          <td>@kiwi</td>
-        </tr>
-        </tbody>
-      </table>
-      <table class="table table-sm table-bordered table-inverse">
-        <thead>
-        <tr>
-          <th></th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Bruno</td>
-          <td>Garcia</td>
-          <td>@ayrtonsenna</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>James</td>
-          <td>Crosswell</td>
-          <td>@kiwi</td>
-        </tr>
-        </tbody>
-      </table>
+    <h4>Different table styles</h4>
+    <table class="table table-sm table-bordered thead-default">
+      <thead>
+      <tr>
+        <th></th><th>First Name</th><th>Last Name</th><th>Username</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@kiwi</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+      </tr>
+      </tbody>
+    </table>
+    <table class="table table-sm table-bordered thead-inverse">
+      <thead>
+      <tr>
+        <th></th><th>First Name</th><th>Last Name</th><th>Username</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@kiwi</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+      </tr>
+      </tbody>
+    </table>
+    <table class="table table-sm table-bordered table-inverse">
+      <thead>
+      <tr>
+        <th></th><th>First Name</th><th>Last Name</th><th>Username</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@kiwi</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+      </tr>
+      </tbody>
+    </table>
   </tab>
-  <tab heading="With pagination">
-      <table class="table table-sm thead-inverse table-bordered table-striped">
-        <thead>
-        <tr class="row">
-          <th class="col-sm-1"></th>
-          <th class="col-sm-8 text-center">Name</th>
-          <th class="col-sm-1 text-center">Height</th>
-          <th class="col-sm-1 text-center">Mass</th>
-          <th class="col-sm-1 col-auto"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let user of users; let i = index" class="row">
-          <td class="col-sm-1 text-center">{{page * 10 + i - 9}}</td>
-          <td class="col-sm-8 text-left">{{user.name}}</td>
-          <td class="col-sm-1 text-right">{{user.height}}</td>
-          <td class="col-sm-1 text-right">{{user.mass}}</td>
-          <td class="col-sm-1 col-auto text-center">
-            <button class="btn btn-secondary btn-sm theme-icon-edit" type="button"></button>
-            <button class="btn btn-secondary btn-sm theme-icon-remove" type="button"></button>
-          </td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr class="row thead-default">
-          <th class="col-sm-12" colspan="5">
-            <pagination [totalItems]="collectionSize" [(ngModel)]="page" [rotate]="true" [itemsPerPage]="10"
-                        [maxSize]="5" [boundaryLinks]="collectionSize > 50" (pageChange)="getData()" class="float-right"
-              previousText="<i class='theme-icon-chevron-left'></i>" nextText="<i class='theme-icon-chevron-right'></i>"
-              firstText="<i class='theme-icon-step-backward'></i>" lastText="<i class='theme-icon-step-forward'></i>">
-            </pagination>
-          </th>
-        </tr>
-        </tfoot>
-      </table>
-  </tab>
+
  </tabset>

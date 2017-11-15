@@ -5,8 +5,22 @@ th {
   @include fontBold();
 }
 
+$table-border-mixin: $table-border-width solid $table-border-color;
+
 .table .row {
   margin: 0;
+}
+
+.table caption {
+  caption-side: top;
+  border-top: $table-border-mixin;
+  border-left: $table-border-mixin;
+  border-right: $table-border-mixin;
+  vertical-align: middle;
+
+  h6 {
+    line-height: $theme-table-caption-line-height;
+  }
 }
 
 .table thead th {
@@ -25,15 +39,11 @@ tbody.ng-invalid {
 }
 
 .table-outer-bordered {
-  border: $table-border-width solid $table-border-color;
+  border: $table-border-mixin;
 
   &.ng-invalid {
     border-color: $brand-danger;
   }
-
-  //td, th {
-  //  border: $table-border-width solid mix($table-border-color, transparent, 20%);
-  //}
 
   thead {
     th,
@@ -49,8 +59,15 @@ table td.has-badges {
 table.table-sm td.has-badges {
   padding-bottom: $table-sm-cell-padding - $theme-badge-spacing;
 }
-td .badge {
+td .badge, label + div > .badge {
   margin-bottom: $theme-badge-spacing;
+}
+
+$min_text_size: $font-size-base * $input-line-height + 2 * $spacer-y;
+
+table textarea {
+  min-height: $min_text_size;
+  height: $min_text_size;
 }
 
 .btn-table {
@@ -162,4 +179,12 @@ NGX-data table styles
 }
 .datatable-header-cell {
   @include fontBold();
+}
+/*
+Sortable rows need an default icon so that user is aware which columns are sortable
+Using icon from the same set as the rest of the table (@swimlane/ngx-datatable/release/assets/icons.css)
+*/
+ngx-datatable datatable-header datatable-header-cell.sortable .sort-btn:not(.sort-asc):not(.sort-desc):before {
+  content: "\f079";
+  font-family: 'themeicons';
 }

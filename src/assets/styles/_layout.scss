@@ -23,40 +23,8 @@ app {
   outline: none;
 }
 
-
 p {
   margin-bottom: $grid-gutter-width-base;
-}
-
-header {
-  padding: 0 !important;
-  flex-direction: row !important;
-
-  .container-fluid {
-    padding: 0;
-  }
-
-  .navbar-brand {
-    width: $theme-side-nav-width;
-    flex: 0 0 $theme-side-nav-width;
-    padding-left: 0;
-    padding-right: 0;
-    margin-right: 0;
-  }
-
-  @include media-breakpoint-down(sm) {
-    .navbar-brand {
-      flex: auto;
-    }
-  }
-
-  .navbar-toggler {
-    float: left;
-  }
-}
-
-footer {
-  border-top: 1px solid $gray-dark;
 }
 
 main {
@@ -123,10 +91,8 @@ main {
 aside.main-aside {
   flex: 0 0 $theme-side-nav-width;
   display: none;
-
-  @include media-breakpoint-up(sm) {
-    display: block;
-  }
+  box-shadow: $theme-aside-shadow;
+  z-index: $theme-standard-z;
 }
 
 .tab-content {

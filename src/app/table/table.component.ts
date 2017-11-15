@@ -1,25 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { TableService, ISWUser, ICountable } from './table.service';
 
 @Component({
-  // The selector is what angular internally uses
-  // for `document.querySelectorAll(selector)` in our index.html
-  // where, in this case, selector is the string 'home'
-  selector: 'table-page',  // <home></home>
-
-  // Our list of styles in our component. We may add more to compose many styles together
+  selector: 'table-page',
   styleUrls: [ './table.component.scss' ],
-  // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  templateUrl: './table.component.html',
-  host: {
-    'class': 'page'
-  }
+  templateUrl: './table.component.html'
 })
 export class TableComponent implements OnInit {
-  collectionSize: number;
-  page: number;
+  @ViewChild('editButtonTemplate') editButtonTemplate: TemplateRef<any>;
+  @ViewChild('ratingTemplate') ratingTemplate: TemplateRef<any>;
 
-  users: ISWUser[];
+  collectionSize: number;
+
+  users: ISWUser[] = [];
+  sorting = [];
+  pageSize = 10;
+  page = 0;
 
   /**
    * Table relevant properties
@@ -36,33 +32,9 @@ export class TableComponent implements OnInit {
     emptyMessage: 'No data to display',
     totalMessage: ''
   };
-  rows = [
-    { name: 'Austin', gender: 'Male', company: 'Swimlane', rating: 4 },
-    { name: 'Dany', gender: 'Male', company: 'KFC', rating: 5 },
-    { name: 'Molly', gender: 'Female', company: 'Burger King', rating: 3 },
-  ];
-  columns = [
-    { prop: 'name', name: 'Name' },
-    { prop: 'gender', name: 'Gender' },
-    { prop: 'company', name: 'Company' },
-    { prop: 'rating', name: 'Rating' }
-  ];
-  tableSort(data: any) {
-    // data = {
-    //   sorts
-    //   column
-    //   prevValue
-    //   newValue
-    // }
-  }
-  tablePage(data: any) {
-    // {
-    //   count
-    //   pageSize
-    //   limit
-    //   offset
-    // }
-  }
+  rows = [];
+  columns = [];
+  swColumns = [];
 
   /**
    * CTOR
@@ -76,11 +48,38 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     this.page = 1;
     this.getData();
+
+    this.columns = [
+      { prop: 'name', name: 'Name', sortable: false, resizeable: false },
+      { prop: 'gender', name: 'Gender', sortable: false, resizeable: false },
+      { prop: 'company', name: 'Company', sortable: false, resizeable: false },
+      { prop: 'rating', name: 'Rating', sortable: false, resizeable: false, cellTemplate: this.ratingTemplate }
+    ];
+    this.rows = [
+      { name: 'Austin', gender: 'Male', company: 'Swimlane', rating: 4 },
+      { name: 'Dany', gender: 'Male', company: 'KFC', rating: 5 },
+      { name: 'Molly', gender: 'Female', company: 'Burger King', rating: 3 },
+    ];
+    this.swColumns = [
+      { prop: 'name', name: 'Name', resizeable: false },
+      { prop: 'height', name: 'Height', resizeable: false, width: 50 },
+      { prop: 'mass', name: 'Mass', resizeable: false, width: 50 },
+      { prop: 'gender', name: 'Gender', resizeable: false, width: 70 },
+      { prop: 'birth_year', name: 'Birth year', resizeable: false, width: 70 },
+      { prop: 'url', name: 'dzend', cellTemplate: this.editButtonTemplate, sortable: false, width: 50, resizeable: false }
+    ];
+  }
+
+  reportClick(value: any) {
+    alert(value);
   }
 
   getData() {
+    this.setPage({ offset: 0 });
+  }
 
-    this.service.getAll(this.page).subscribe((response: ICountable<ISWUser>) => {
+  setPage(pageEvent: any) {
+    this.service.getAll(pageEvent.offset + 1).subscribe((response: ICountable<ISWUser>) => {
       this.collectionSize = response.count;
       this.users = response.results;
     });

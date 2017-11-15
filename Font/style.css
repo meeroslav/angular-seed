@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'themeicons';
   src:
-    url('fonts/themeicons.ttf?jsbsnm') format('truetype'),
-    url('fonts/themeicons.woff?jsbsnm') format('woff'),
-    url('fonts/themeicons.svg?jsbsnm#themeicons') format('svg');
+    url('fonts/themeicons.ttf?jrdfqa') format('truetype'),
+    url('fonts/themeicons.woff?jrdfqa') format('woff'),
+    url('fonts/themeicons.svg?jrdfqa#themeicons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -73,6 +73,9 @@
 }
 .theme-icon-chevron-up:before {
   content: "\f077";
+}
+.theme-icon-chevron-up-down:before {
+  content: "\f079";
 }
 .theme-icon-chevron-down:before {
   content: "\f078";

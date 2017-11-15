@@ -59,6 +59,7 @@ $theme-info-popup-border: $theme-border-color;
 $theme-card-header-secondary: $gray-lighter;
 
 $theme-card-shadow: 1px 1px 5px 0 rgba($black,.2);
+$theme-disabled-opacity: 0.5;
 
 // Overridden value
 $spacer:   0.625rem;
@@ -66,6 +67,7 @@ $spacer:   0.625rem;
 // Values
 $theme-spinner-z: 1000;
 $theme-dev-info-z: 100;
+$theme-standard-z: 10;
 $theme-side-nav-width: 14rem;
 $theme-side-nav-collapsed-width: 3rem;
 $theme-accent-width: 0.2rem;
@@ -95,6 +97,9 @@ $theme-state-half-color: $orange;
 $theme-state-block-height: 1rem;
 $theme-state-block-width: 0.8rem;
 
+// TABLE
+$theme-table-caption-line-height: 1.6;
+
 // WIZARD
 $theme-wizard-border-color: $gray-lighter;
 $theme-wizard-background: $white;
@@ -110,7 +115,7 @@ $theme-error-page-glow_light: mix(transparent, $white, 70%);
 // ACTION LOG
 $theme-action-log-background: $white;
 $theme-action-log-header-inverse: $white;
-$theme-action-log-shadow: 1px 0 3px 1px rgba($black, .2);
+$theme-aside-shadow: -2px 0 2px 0 rgba($black,.08), 0 3px 10px 2px rgba($black,.12);
 
 // SCROLLBAR
 $theme-scrollbar-thumb: mix(transparent, $brand-primary, 60%);
@@ -119,6 +124,11 @@ $theme-scrollbar-size: $spacer;
 
 // BADGE
 $theme-badge-spacing: $spacer / 4;
+
+// HEADER
+$theme-logo-size: 2rem;
+$theme-icon-size: 1rem;
+$theme-header-pronounced-shadow: 0 0 13px rgba($white,.7), 0 0 3px rgba($white,.2);
 
 /********************************************
 *********************************************
@@ -278,5 +288,8 @@ $alert-margin-bottom: $spacer-y;
 
 // Badge
 $badge-font-weight: normal;
+
+// Cards link buttons
+$card-footer-font-weight: 600;
 
 @import '../../../node_modules/bootstrap/scss/variables.scss';

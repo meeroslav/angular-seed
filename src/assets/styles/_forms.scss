@@ -20,6 +20,33 @@
   }
 }
 
+.form-footer {
+  padding-top: $spacer-y;
+  border-top: $table-border-color solid $table-border-width;
+}
+
+fieldset {
+  border: $table-border-color solid $table-border-width;
+  padding: $spacer-y $spacer-x;
+  margin: $spacer-y 0;
+}
+
+fieldset.form-fieldset {
+  margin: ($spacer-y / 2) 0 0;
+
+  legend {
+    padding-left: 0;
+    margin-left: -$spacer-x;
+  }
+}
+
+legend {
+  font-size: $font-size-h6;
+  width: auto;
+  padding: 0 $spacer-x / 2;
+  margin-bottom: 0;
+}
+
 .filter-search {
   background-repeat: no-repeat;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='80%' width='80%'><g transform='translate(8,8)' stroke-width='2' stroke='" + $input-color-placeholder + "' fill='none'><path d='M11.29 11.71l-4-4'/><circle cx='5' cy='5' r='4'/></g></svg>");
@@ -115,6 +142,7 @@ datepicker {
   }
 }
 
+/** Infield */
 .infield-label-wrapper {
   display: block;
   width: 100%;

@@ -1,5 +1,34 @@
 @import 'variables';
 @import 'animations';
+@import 'typography';
+@import '../../../node_modules/bootstrap/scss/mixins/breakpoints.scss';
+
+header {
+  padding: 0 !important;
+  flex-direction: row !important;
+
+  .container-fluid {
+    padding: 0;
+  }
+
+  .navbar-brand {
+    width: $theme-side-nav-width;
+    flex: 0 0 $theme-side-nav-width;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  @include media-breakpoint-down(sm) {
+    .navbar-brand {
+      flex: auto;
+    }
+  }
+
+  .navbar-toggler {
+    float: left;
+  }
+}
 
 header.navbar {
   color: $theme-header-color;
@@ -36,13 +65,49 @@ header.navbar {
   }
 
   .logo {
-    height: 2rem;
+    height: $theme-logo-size;
     display: inline-block;
   }
 
   .nav-item > button {
-    font-size: 1rem;
+    font-size: $theme-icon-size;
     padding: $spacer-x $spacer-y;
+
+    &[disabled] {
+      opacity: $theme-disabled-opacity;
+      cursor: not-allowed;
+    }
+
+    &.active {
+      text-shadow: $theme-header-pronounced-shadow;
+    }
+
+    &.error:after {
+      color:white;
+      background: red;
+    }
+  }
+
+  .header-badge:after {
+    color: $white;
+    background: $brand-info;
+    border-radius: $nav-pills-border-radius;
+    font-size: $font-size-xs;
+    @include fontLight();
+    position: absolute;
+    top: $spacer-y / 2;
+    right: $spacer-x / 2;
+    padding: 0 $spacer-x / 2;
+
+    content: attr(data-content);
+  }
+
+  .header-badge-error:after {
+    background: $brand-danger;
+  }
+
+  .header-badge-success:after {
+    background: $brand-success;
   }
 }
 

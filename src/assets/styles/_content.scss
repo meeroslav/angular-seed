@@ -1,29 +1,14 @@
 @import 'typography';
 @import 'variables';
+@import 'animations';
 @import '../../../node_modules/bootstrap/scss/variables.scss';
+@import '../../../node_modules/bootstrap/scss/_mixins.scss';
 
 // Content colors
 
 .main-content {
   background-color: $gray-lightest;
-}
-
-.page-header {
-  display: flex;
-  margin: (-$spacer-y) (-$spacer-x) $spacer-y;
-  padding: $spacer-y;
-  background: $breadcrumb-bg;
-  box-shadow: $breadcrumb-shadow;
-
-  h1 {
-    @include fontRegular();
-  }
-}
-.page-header-info {
-  flex: 0 1 100%;
-}
-.page-header-content {
-  flex: 0 0 auto;
+  @include gradient-y($gray-lighter, $gray-lightest);
 }
 
 // Tag overrides
@@ -71,13 +56,15 @@
 }
 
 // Special text styles
-
-.de-emphasize {
-  @include fontRegular();
-}
 .thinner {
   @include fontLight();
 }
 .thicker {
   @include fontBold();
+}
+
+// Header buttons notifications
+.scalable:not([disabled]) {
+  @include animate($animation-duration * 3, both);
+  @include runAnimation(scaleNotify);
 }
