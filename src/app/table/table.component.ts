@@ -9,6 +9,7 @@ import { TableService, ISWUser, ICountable } from './table.service';
 export class TableComponent implements OnInit {
   @ViewChild('editButtonTemplate') editButtonTemplate: TemplateRef<any>;
   @ViewChild('ratingTemplate') ratingTemplate: TemplateRef<any>;
+  @ViewChild('hobbiesTemplate') hobbiesTemplate: TemplateRef<any>;
 
   collectionSize: number;
 
@@ -53,12 +54,13 @@ export class TableComponent implements OnInit {
       { prop: 'name', name: 'Name', sortable: false, resizeable: false },
       { prop: 'gender', name: 'Gender', sortable: false, resizeable: false },
       { prop: 'company', name: 'Company', sortable: false, resizeable: false },
+      { prop: 'hobbies', name: 'Hobbies', sortable: false, resizeable: false, cellTemplate: this.hobbiesTemplate },
       { prop: 'rating', name: 'Rating', sortable: false, resizeable: false, cellTemplate: this.ratingTemplate }
     ];
     this.rows = [
-      { name: 'Austin', gender: 'Male', company: 'Swimlane', rating: 4 },
-      { name: 'Dany', gender: 'Male', company: 'KFC', rating: 5 },
-      { name: 'Molly', gender: 'Female', company: 'Burger King', rating: 3 },
+      { name: 'Austin', gender: 'Male', company: 'Swimlane', rating: 4, hobbies: ['Reading', 'Swimming'] },
+      { name: 'Dany', gender: 'Male', company: 'KFC', rating: 5, hobbies: ['Coding', 'Playing guitar'] },
+      { name: 'Molly', gender: 'Female', company: 'Burger King', rating: 3, hobbies: ['Skiing', 'Snowboarding', 'Running', 'Climbing', 'Paragliding', 'Freeclimbing' ] },
     ];
     this.swColumns = [
       { prop: 'name', name: 'Name', resizeable: false },

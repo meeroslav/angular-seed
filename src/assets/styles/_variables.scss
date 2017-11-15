@@ -144,15 +144,11 @@ $enable-gradients:          true;
 $enable-transitions:        true;
 
 // Body
-// TODO:
 $border-radius: 0.8rem;
 
 // Spacers
 $spacer-x: $spacer;
 $spacer-y: $spacer;
-
-// Links
-// TODO:
 
 // Grid columns
 $grid-gutter-width-base: $spacer;
@@ -229,10 +225,7 @@ $input-box-shadow: $btn-box-shadow;
 
 $form-group-margin-bottom: $spacer-y;
 
-// $input-color-focus: $gray-dark;
 $input-border-focus: $brand-primary;
-// $input-color-focus: $brand-primary;
-
 $input-color-placeholder: $gray-light;
 
 $custom-control-indicator-bg: $input-bg;
@@ -269,9 +262,12 @@ $line-height-sm: 1.5;
 // Table
 $table-cell-padding: $spacer;
 $table-sm-cell-padding: $spacer / 2;
-$table-inverse-bg: $gray-light;
+$table-inverse-bg: $brand-primary;
 $table-bg-accent: rgba($black,.03);
 $table-border-color: $gray-lighter;
+
+$table-head-bg: $gray-lightest;
+$table-head-color: $gray-light;
 
 // Pagination
 $pagination-padding-x: $spacer-x;

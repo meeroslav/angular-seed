@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewContainerRef, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewContainerRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { ModalDialogService } from 'ngx-modal-dialog';
-import { SimpleModalComponent } from 'ngx-modal-dialog';
-import { IMapChange, WorldMapComponent, ICoordinate } from '../_common/custom-components/world-map/world-map.component';
+import { ModalDialogService, SimpleModalComponent } from 'ngx-modal-dialog';
+import { ICoordinate, IMapChange, WorldMapComponent } from '../_common/custom-components/world-map/world-map.component';
 import { ITreeNode } from '../_common/custom-components/tree/tree-node.component';
 import { LoadingIndicatorService } from '../_common/shared/loading-indicator/loading-indicator.service';
 import { FeedbackService } from '../_common/shared/feedback/feedback.service';
