@@ -1,0 +1,34 @@
+@import '../typography';
+@import '../variables';
+@import '../../../../node_modules/bootstrap/scss/variables.scss';
+
+.page-header {
+  display: flex;
+  margin: (-$spacer-y) (-$spacer-x) $spacer-y;
+  padding: $spacer-y;
+  background: $breadcrumb-bg;
+  box-shadow: $breadcrumb-shadow;
+  z-index: $theme-standard-z + 1;
+  position: relative;
+
+  h1 {
+    @include fontRegular();
+    margin: 0;
+    line-height: 1;
+    display: flex;
+  }
+}
+.page-header-info {
+  flex: 0 1 100%;
+  align-self: center;
+}
+.page-header-content {
+  flex: 0 0 auto;
+  align-self: center;
+}
+.page-subtitle {
+  font-size: $font-size-sm;
+  padding: $badge-padding-y / 2 $badge-padding-x / 2;
+  line-height: 1;
+  align-self: center;
+}

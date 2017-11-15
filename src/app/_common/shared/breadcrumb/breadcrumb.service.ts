@@ -1,23 +1,10 @@
 ﻿import { Injectable } from '@angular/core';
-// import { ActivatedRouteSnapshot, git rebase --cRouterState } from '@angular/router';
-// import * as R from 'ramda';
 
 export interface IBreadcrumb {
   url?: string;
   icon: string;
   text: string;
 }
-
-// function extractBreadcrumbs(snapshot: ActivatedRouteSnapshot) {
-//
-//   let children = snapshot.children.length ? R.flatten(snapshot.children.map(extractBreadcrumbs)) : [];
-//
-//   if (snapshot.data.breadcrumb) {
-//     // extend it by url
-//     return [snapshot.data.breadcrumb, ...children];
-//   }
-//   return children;
-// }
 
 @Injectable()
 export class BreadcrumbService {
@@ -29,13 +16,6 @@ export class BreadcrumbService {
   constructor() {
     this.breadcrumbs = [];
   }
-
-  // extractFromRoute(state: RouterState) {
-  //   console.log(extractBreadcrumbs(state.root.snapshot));
-  //   extractBreadcrumbs(state.root.snapshot);
-  //   console.log(state);
-  //   console.log(serializeNodes(state['_root']));
-  // }
 
   /**
    * Set breadcrumbs

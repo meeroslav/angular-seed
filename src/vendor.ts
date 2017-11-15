@@ -3,18 +3,25 @@ import '@angular/platform-browser';
 import '@angular/platform-browser-dynamic';
 import '@angular/core';
 import '@angular/common';
-import '@angular/http';
 import '@angular/router';
 import '@ngx-translate/core';
-import 'ngx-bootstrap';
-
+// Translate
+import '@ngx-translate/core';
+import '@ngx-translate/http-loader';
+// NGX-Bootstrap
+import 'ngx-bootstrap/tabs';
+import 'ngx-bootstrap/tooltip';
+import 'ngx-bootstrap/rating';
+import 'ngx-bootstrap/dropdown';
+import 'ngx-bootstrap/datepicker';
+import 'ngx-bootstrap/alert';
+// RxJS
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/filter';
-
-// Other vendors for example jQuery, Lodash or Bootstrap
-// You can import js, ts, css, sass, ...
-
+// Styles
 import './assets/styles/theme.scss';
 import './assets/styles/themeicons.scss';
+import './assets/styles/components/breadcrumbs.scss';
+import 'ngx-bootstrap/datepicker/bs-datepicker.css';

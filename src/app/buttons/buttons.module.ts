@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ButtonsComponent } from './buttons.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../_common/shared/shared.module';
 
 let routes = [
   { path: '', component: ButtonsComponent }
@@ -10,6 +11,7 @@ let routes = [
 @NgModule({
   imports: [
     TranslateModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ButtonsComponent]

@@ -3,11 +3,12 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { TableComponent } from './table.component';
 import { TableService } from './table.service';
-import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { TabsModule, PaginationModule, RatingModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../_common/shared/shared.module';
 
 let routes = [
   { path: '', component: TableComponent }
@@ -21,9 +22,10 @@ let routes = [
     PaginationModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     NgxDatatableModule,
     RatingModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [TableComponent],

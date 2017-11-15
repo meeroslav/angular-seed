@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TabsModule, TooltipModule, TypeaheadModule, RatingModule } from 'ngx-bootstrap';
 import { FormsService } from './forms.service';
 import { CustomComponentsModule } from '../_common/custom-components/custom-components.module';
+import { SharedModule } from '../_common/shared/shared.module';
 
 let routes = [
   { path: '', component: FormsComponent }
@@ -15,6 +16,7 @@ let routes = [
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     TranslateModule,
     FormsModule,
     ReactiveFormsModule,
