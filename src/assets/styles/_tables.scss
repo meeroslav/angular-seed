@@ -15,6 +15,17 @@ $table-border-mixin: $table-border-width solid $table-border-color;
     font-size: $font-size-sm;
   }
 
+  &.ngx-datatable {
+    .datatable-header,
+    .datatable-footer {
+      overflow: visible;
+    }
+
+    .datatable-header-cell {
+      overflow: visible;
+    }
+  }
+
   .datatable-header-cell, .datatable-body-cell, .datatable-footer-cell {
     padding: $spacer-y $spacer-x;
     border-top: $table-border-mixin;

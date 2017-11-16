@@ -53,11 +53,11 @@ export class TableComponent implements OnInit {
     this.getData();
 
     this.columns = [
-      { prop: 'name', name: 'Name', sortable: false, resizeable: false },
-      { prop: 'gender', name: 'Gender', sortable: false, resizeable: false },
-      { prop: 'company', name: 'Company', sortable: false, resizeable: false },
-      { prop: 'hobbies', name: 'Hobbies', sortable: false, resizeable: false, cellTemplate: this.hobbiesTemplate },
-      { prop: 'rating', name: 'Rating', sortable: false, resizeable: false, cellTemplate: this.ratingTemplate }
+      { prop: 'name', name: 'Name', sortable: false, resizeable: false, flexGrow: 2 },
+      { prop: 'gender', name: 'Gender', sortable: false, resizeable: false, flexGrow: 1 },
+      { prop: 'company', name: 'Company', sortable: false, resizeable: false, flexGrow: 2 },
+      { prop: 'hobbies', name: 'Hobbies', sortable: false, resizeable: false, cellTemplate: this.hobbiesTemplate, flexGrow: 2 },
+      { prop: 'rating', name: 'Rating', sortable: false, resizeable: false, cellTemplate: this.ratingTemplate, flexGrow: 0.5 }
     ];
     this.rows = [
       { name: 'Austin', gender: 'Male', company: 'Swimlane', rating: 4, hobbies: ['Reading', 'Swimming'] },

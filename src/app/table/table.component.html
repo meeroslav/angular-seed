@@ -95,34 +95,35 @@
     <ngx-datatable class="bootstrap table table-sm theme-table table-striped"
                    [rows]="rows"
                    [columns]="columns"
-                   [columnMode]="'force'"
-                   [count]="3"
+                   [columnMode]="'flex'"
+                   [cssClasses]="tableCssClasses"
+                   [rowHeight]="'auto'"
+                   [headerHeight]="'auto'"
+                   [footerHeight]="'auto'"
                    [messages]="tableMessages"
-                   [rowHeight]="rowHeight"
                    [reorderable]="false">
     </ngx-datatable>
     <h4 class="mb-3">Dynamic sortable datatable</h4>
     <ngx-datatable class="table table-sm theme-table table-striped"
                    [rows]="rows"
-                   [count]="3"
-                   [columnMode]="'force'"
+                   [columnMode]="'flex'"
                    [cssClasses]="tableCssClasses"
-                   [externalPaging]="true"
-                   [externalSorting]="false"
                    [rowHeight]="'auto'"
+                   [headerHeight]="'auto'"
+                   [footerHeight]="'auto'"
                    [messages]="tableMessages"
                    reorderable="true">
-      <ngx-datatable-column prop="name" [width]="200"></ngx-datatable-column>
-      <ngx-datatable-column prop="gender" [width]="20"></ngx-datatable-column>
-      <ngx-datatable-column prop="company" [width]="60">
+      <ngx-datatable-column prop="name" [flexGrow]="2"></ngx-datatable-column>
+      <ngx-datatable-column prop="gender" [flexGrow]="1"></ngx-datatable-column>
+      <ngx-datatable-column prop="company" [flexGrow]="2">
         <ng-template ngx-datatable-header-template let-value="value">
           <span class="th-info">
             Gender
-            <span class="th-info-content">Gender info</span>
+            <span class="th-info-content">Gender info and whole bunch of<br/> text that would have to be broken</span>
           </span>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Rating" prop="rating" [width]="60">
+      <ngx-datatable-column name="Rating" prop="rating" [flexGrow]="1">
         <ng-template ngx-datatable-cell-template let-value="value">
           <rating [ngModel]="value" max="5" readonly="true" [ngModelOptions]="{ standalone: true }"
                   stateOn="theme-icon-star" stateOff="theme-icon-star-o">
