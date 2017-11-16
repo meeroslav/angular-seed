@@ -1,16 +1,19 @@
 <breadcrumb pageTitle="Data grid" pageSubtitle="Park"></breadcrumb>
 
-<ng-template #editButtonTemplate let-value="value" ngx-datatable-cell-template>
+<ng-template #editButtonTemplate let-value="value">
   <button type="button" class="btn btn-table theme-icon-edit btn-secondary"
           (click)="reportClick(value)"></button>
 </ng-template>
-<ng-template #ratingTemplate let-value="value" ngx-datatable-cell-template>
+<ng-template #ratingTemplate let-value="value">
   - {{value}} -
 </ng-template>
-<ng-template #hobbiesTemplate let-value="value" ngx-datatable-cell-template>
+<ng-template #hobbiesTemplate let-value="value">
   <span *ngFor="let hobby of value" class="badge badge-primary">
     {{hobby}}
   </span>
+</ng-template>
+<ng-template #genderHeaderTemplate let-value="value">
+  - {{value}} -
 </ng-template>
 
 <tabset>
@@ -90,12 +93,13 @@
     </table>
     <h4 class="mb-3">Dynamic declarative data table</h4>
     <ngx-datatable class="bootstrap table table-sm theme-table table-striped"
-      [rows]="rows"
-      [columns]="columns"
-      [columnMode]="'force'"
-      [count]="3"
-      [messages]="tableMessages"
-      [reorderable]="false">
+                   [rows]="rows"
+                   [columns]="columns"
+                   [columnMode]="'force'"
+                   [count]="3"
+                   [messages]="tableMessages"
+                   [rowHeight]="rowHeight"
+                   [reorderable]="false">
     </ngx-datatable>
     <h4 class="mb-3">Dynamic sortable datatable</h4>
     <ngx-datatable class="table table-sm theme-table table-striped"
@@ -110,7 +114,14 @@
                    reorderable="true">
       <ngx-datatable-column prop="name" [width]="200"></ngx-datatable-column>
       <ngx-datatable-column prop="gender" [width]="20"></ngx-datatable-column>
-      <ngx-datatable-column prop="company" [width]="60"></ngx-datatable-column>
+      <ngx-datatable-column prop="company" [width]="60">
+        <ng-template ngx-datatable-header-template let-value="value">
+          <span class="th-info">
+            Gender
+            <span class="th-info-content">Gender info</span>
+          </span>
+        </ng-template>
+      </ngx-datatable-column>
       <ngx-datatable-column name="Rating" prop="rating" [width]="60">
         <ng-template ngx-datatable-cell-template let-value="value">
           <rating [ngModel]="value" max="5" readonly="true" [ngModelOptions]="{ standalone: true }"

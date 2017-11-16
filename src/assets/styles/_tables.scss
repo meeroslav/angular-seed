@@ -144,7 +144,7 @@ $table-border-mixin: $table-border-width solid $table-border-color;
 }
 
 /***************************************
- Table sorting
+ Table sorting & resizing
 ****************************************/
 
 //ngx-datatable datatable-header
@@ -156,9 +156,34 @@ $table-border-mixin: $table-border-width solid $table-border-color;
     font-family: 'themeicons';
   }
 }
+// override stupid style
+.ngx-datatable .datatable-header .datatable-header-cell:not(.sortable) .sort-btn {
+  display: none;
+}
 
 .datatable-header-cell .sort-btn {
   float: right;
+}
+
+.datatable-header-cell .resize-handle {
+  padding: 0 $spacer-x / 2;
+
+  &:hover {
+    visibility: visible;
+  }
+
+  visibility: visible;
+
+  &:before {
+    content: "\e5d4";
+    font-family: 'themeicons';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -$spacer-y;
+    margin-left: -$spacer-x / 3;
+    text-align: center;
+  }
 }
 
 /***************************************
@@ -199,17 +224,10 @@ $table-border-mixin: $table-border-width solid $table-border-color;
   }
 }
 
-
-/*
-Sortable rows need an default icon so that user is aware which columns are sortable
-Using icon from the same set as the rest of the table (@swimlane/ngx-datatable/release/assets/icons.css)
-*/
-
-
-
 /*** Maybe needed */
 
 .table .row {
   margin: 0;
 }
+
 

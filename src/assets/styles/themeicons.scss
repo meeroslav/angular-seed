@@ -23,6 +23,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.theme-icon-more-vertical:before {
+  content: "\e5d4";
+}
 .theme-icon-eye:before {
   content: "\e9ce";
 }

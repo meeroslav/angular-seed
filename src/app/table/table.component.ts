@@ -10,6 +10,7 @@ export class TableComponent implements OnInit {
   @ViewChild('editButtonTemplate') editButtonTemplate: TemplateRef<any>;
   @ViewChild('ratingTemplate') ratingTemplate: TemplateRef<any>;
   @ViewChild('hobbiesTemplate') hobbiesTemplate: TemplateRef<any>;
+  @ViewChild('genderHeaderTemplate') genderHeaderTemplate: TemplateRef<any>;
 
   collectionSize: number;
 
@@ -17,6 +18,7 @@ export class TableComponent implements OnInit {
   sorting = [];
   pageSize = 10;
   page = 0;
+  rowHeight = undefined;
 
   /**
    * Table relevant properties
@@ -66,9 +68,9 @@ export class TableComponent implements OnInit {
       { prop: 'name', name: 'Name', resizeable: false },
       { prop: 'height', name: 'Height', resizeable: false, width: 50 },
       { prop: 'mass', name: 'Mass', resizeable: false, width: 50 },
-      { prop: 'gender', name: 'Gender', resizeable: false, width: 70 },
+      { prop: 'gender', name: 'Gender', resizeable: false, width: 70, headerTemplate: this.genderHeaderTemplate },
       { prop: 'birth_year', name: 'Birth year', resizeable: false, width: 70 },
-      { prop: 'url', name: 'dzend', cellTemplate: this.editButtonTemplate, sortable: false, width: 50, resizeable: false }
+      { prop: 'url', cellTemplate: this.editButtonTemplate, sortable: false, width: 50, resizeable: false }
     ];
   }
 
