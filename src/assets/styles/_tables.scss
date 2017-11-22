@@ -13,6 +13,23 @@ $table-border-mixin: $table-border-width solid $table-border-color;
   .datatable-footer {
     color: $table-head-color;
     font-size: $font-size-sm;
+    height: unset !important;
+  }
+
+  .datatable-body .datatable-scroll {
+    display: unset !important;
+  }
+
+  .datatable-body-row:hover {
+    background: $table-bg-hover;
+  }
+
+  .datatable-row-center {
+    transform: unset !important; // header breaking transform
+  }
+
+  .datatable-footer-inner {
+    height: unset !important;
   }
 
   &.ngx-datatable {
@@ -26,7 +43,7 @@ $table-border-mixin: $table-border-width solid $table-border-color;
     }
   }
 
-  .datatable-header-cell, .datatable-body-cell, .datatable-footer-cell {
+  .datatable-body-cell, .datatable-footer {
     padding: $spacer-y $spacer-x;
     border-top: $table-border-mixin;
     vertical-align: top;
@@ -34,6 +51,7 @@ $table-border-mixin: $table-border-width solid $table-border-color;
 
   .datatable-header-cell .sort-btn {
     padding: $spacer-y $spacer-x;
+
     color: $brand-primary;
   }
 
@@ -68,6 +86,51 @@ $table-border-mixin: $table-border-width solid $table-border-color;
 
     min-height: $min_text_size;
     height: $min_text_size;
+  }
+
+  .pager a {
+    padding: $spacer-y $spacer-x;
+  }
+
+  .datatable-pager {
+    ul li {
+      &:not(.disabled) {
+        color: $table-head-color;
+
+        &:hover a {
+          background-color: darken($btn-secondary-bg, 10%);
+          color: $btn-secondary-color;
+        }
+        &.active a {
+          background-color: $btn-primary-bg;
+          color: $btn-primary-color;
+          @include fontBold();
+        }
+      }
+      &.disabled {
+        opacity: 0.5;
+
+        a:hover {
+          color: unset;
+        }
+      }
+
+      a {
+        min-width: 1.5rem;
+        text-decoration: none;
+        vertical-align: bottom;
+      }
+    }
+  }
+
+  rating {
+    font-size: 1.2rem;
+    @include fontBold();
+    color: $input-color-placeholder;
+
+    .bs-rating-star.active {
+      color: $brand-warning;
+    }
   }
 }
 
@@ -105,7 +168,7 @@ $table-border-mixin: $table-border-width solid $table-border-color;
 ***************************************/
 
 .table-sm {
-  .datatable-header-cell, .datatable-body-cell, .datatable-footer-cell, .datatable-header-cell .sort-btn {
+  .datatable-header-cell, .datatable-body-cell, .datatable-footer, .datatable-header-cell .sort-btn {
     padding: $table-sm-cell-padding;
   }
 }
@@ -115,8 +178,8 @@ $table-border-mixin: $table-border-width solid $table-border-color;
 ***************************************/
 
 .table-bordered {
-  .datatable-header-cell, .datatable-body-cell, .datatable-footer-cell {
-    padding: $table-border-mixin;
+  .datatable-header-cell, .datatable-body-cell, .datatable-footer {
+    border: $table-border-mixin;
   }
 }
 
@@ -160,13 +223,18 @@ $table-border-mixin: $table-border-width solid $table-border-color;
 
 //ngx-datatable datatable-header
 .datatable-header-cell.sortable .sort-btn:not(.sort-asc):not(.sort-desc) {
-  color: inherit;
+  color: $inverse-color;
 
   &:before {
     content: "\f079";
     font-family: 'themeicons';
   }
 }
+
+.datatable-header-cell.sortable:hover .sort-btn:not(.sort-asc):not(.sort-desc) {
+  color: inherit;
+}
+
 // override stupid style
 .ngx-datatable .datatable-header .datatable-header-cell:not(.sortable) .sort-btn {
   display: none;
@@ -206,12 +274,13 @@ $table-border-mixin: $table-border-width solid $table-border-color;
   position: relative;
 
   &:after {
-    color: $brand-info;
+    color: $badge-color;
+    background: $badge-primary-bg;
     border-radius: $border-radius;
-    padding: $badge-pill-padding-x;
+    padding: $badge-pill-padding-x / 2 $badge-pill-padding-x;
     content: '\f129';
     font-family: 'themeicons';
-    font-size: $font-size-xs;
+    font-size: $font-size-xs / 2;
   }
 
   .th-info-content {

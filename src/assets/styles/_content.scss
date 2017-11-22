@@ -68,3 +68,12 @@
   @include animate($animation-duration * 3, both);
   @include runAnimation(scaleNotify);
 }
+
+// ngx-bootstrap overrides
+rating > span {
+  display: flex;
+}
+
+.bs-rating-star {
+  line-height: 1;
+}

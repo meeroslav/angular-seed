@@ -69,8 +69,8 @@ textarea, highlightarea {
 .form-label {
   @include fontBold();
   margin-bottom: $spacer-y / 2;
-  text-transform: uppercase;
   font-size: $theme-input-font-size * 0.8;
+  color: $input-color;
 }
 
 .custom-control-input ~ .custom-control-description {

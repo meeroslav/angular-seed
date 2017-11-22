@@ -33,7 +33,7 @@
     "e2e:lserver": "npm-run-all -p -r server:run e2e:local",
     "server:run": "lite-server",
     "docs": "typedoc --options typedoc.json src/",
-    "start": "webpack-dashboard -- webpack-dev-server --historyApiFallback --port 51961",
+    "start": "webpack-dashboard -- webpack-dev-server --watch-poll --port 51961",
     "postinstall": "node ./node_modules/protractor/bin/webdriver-manager update"
   },
   "dependencies": {

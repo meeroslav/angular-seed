@@ -49,7 +49,7 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.page = 1;
+    this.page = 0;
     this.getData();
 
     this.columns = [
@@ -79,7 +79,7 @@ export class TableComponent implements OnInit {
   }
 
   getData() {
-    this.setPage({ offset: 0 });
+    this.setPage({ offset: this.page });
   }
 
   setPage(pageEvent: any) {

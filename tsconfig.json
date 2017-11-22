@@ -13,7 +13,8 @@
       "dom",
       "es2015",
       "es2015.promise",
-      "es6"
+      "es6",
+      "es7"
     ],
     "typeRoots": [
       "node_modules/@types"
@@ -36,8 +37,8 @@
     "node_modules",
     "dist"
   ],
-  "compileOnSave": false,
-  "buildOnSave": false,
+  "compileOnSave": true,
+  "buildOnSave": true,
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
     "useWebpackText": true

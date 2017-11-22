@@ -8,7 +8,7 @@ const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const autoPrefix = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin-advanced'); // temporary use custom version of copy-webpack-plugin
+const CopyWebpackPlugin = require('./loaders/index'); // temporary use custom version of copy-webpack-plugin
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
 /**
@@ -19,6 +19,7 @@ const ENV = process.env.npm_lifecycle_event;
 const NODE_ENV = process.env.NODE_ENV;
 const isBuild = ENV === 'build';
 const isProduction = isBuild && NODE_ENV && NODE_ENV.indexOf('production') !== -1;
+const isLocalE2E = isBuild && NODE_ENV && NODE_ENV.indexOf('e2e') !== -1;
 const isTeamCity = process.env.TEAMCITY_VERSION;
 
 const TRANSLATION_HASH = helpers.hashDate('');
@@ -49,7 +50,7 @@ module.exports = (function makeWebpackConfig() {
    * Reference: http://webpack.github.io/docs/configuration.html#devtool
    * Type of sourcemap to use per build type
    */
-  if (isProduction) {
+  if (isProduction || isLocalE2E) {
     config.devtool = '#source-map';
   } else {
     config.devtool = '#cheap-module-source-map';
@@ -134,6 +135,17 @@ module.exports = (function makeWebpackConfig() {
       },
       // all css required in src/app files will be merged in js files
       {test: /\.(scss|sass)$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!sass-loader'},
+
+      // support for .less files
+      // all css in src/style will be bundled in an external css file
+      {
+        test: /\.less$/,
+        exclude: root('src', 'app'),
+        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader', 'less-loader']})
+      },
+      // all css required in src/app files will be merged in js files
+      { test: /\.less$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!less-loader'},
+
       // support for .html as raw text
       // change the loader to something that adds a hash to images
       {test: /\.html$/, loader: 'raw-loader',  include: root('src', 'app')}
@@ -151,7 +163,7 @@ module.exports = (function makeWebpackConfig() {
     new webpack.DefinePlugin({
       // Environment helpers
       'process.env': {
-        ENV: JSON.stringify(isProduction ? 'production' : 'development'),
+        ENV: JSON.stringify(isProduction || isLocalE2E ? 'production' : 'development'),
         TRANSLATION_HASH: JSON.stringify(TRANSLATION_HASH),
         CONFIG_HASH: JSON.stringify(CONFIG_HASH),
         BRANCH: JSON.stringify(GIT_BRANCH),
@@ -174,7 +186,7 @@ module.exports = (function makeWebpackConfig() {
     // Inject script and link tags into html files
     // Reference: https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      template: root('src/public/index.html'),
+      template: './src/public/index.html',
       chunksSortMode: 'dependency'
     }),
 
@@ -197,9 +209,7 @@ module.exports = (function makeWebpackConfig() {
         to: 'assets/locales/[name].' + TRANSLATION_HASH + '.json',
         transform: helpers.transformJsonFile,
         merge: helpers.combineJsonFiles
-      }
-    ]),
-    new CopyWebpackPlugin([
+      },
       {
         from: root('src/assets/configs'), to: 'assets/configs/config.production.' +  CONFIG_HASH + '.json',
         transform: helpers.transformJsonFileFlat(['prod']),
@@ -234,7 +244,7 @@ module.exports = (function makeWebpackConfig() {
 
     // Ts lint configuration for webpack 2
     new webpack.LoaderOptionsPlugin({
-      debug: false,
+      debug: true,
       options: {
         /**
          * Apply the tslint loader as pre/postLoader
@@ -268,15 +278,15 @@ module.exports = (function makeWebpackConfig() {
 
   // Add build specific plugins
   if (isBuild) {
-    if (isProduction) {
+    if (isProduction || isLocalE2E) {
       config.plugins.push(
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: {keep_fnames: false}})
       );
     }
   } else {
-    config.plugins.push(new webpack.HotModuleReplacementPlugin());
     config.plugins.push(new DashboardPlugin());
+    config.plugins.push(new webpack.HotModuleReplacementPlugin());
   }
 
   /**
