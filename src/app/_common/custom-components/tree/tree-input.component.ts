@@ -1,4 +1,7 @@
-import { Component, Input, forwardRef, Output, EventEmitter, ElementRef, Inject, HostBinding } from '@angular/core';
+import {
+  Component, Input, forwardRef, Output, EventEmitter, ElementRef, Inject, HostBinding,
+  OnChanges
+} from '@angular/core';
 import { ITreeNode } from './tree-node.component';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { findPathById, pathOnly } from './tree-util';
@@ -19,7 +22,7 @@ import { findPathById, pathOnly } from './tree-util';
     multi: true
   }]
 })
-export class TreeInputComponent implements ControlValueAccessor {
+export class TreeInputComponent implements ControlValueAccessor, OnChanges {
   @Input() content: ITreeNode[];
   @Input() collapsed: boolean;
   @Output() nodeClick = new EventEmitter();
@@ -48,6 +51,12 @@ export class TreeInputComponent implements ControlValueAccessor {
 
   constructor(@Inject(ElementRef) private elementRef: ElementRef) {
     this.selectedNode = '';
+  }
+
+  ngOnChanges(change) {
+    if (change.content && !change.content.firstChange) {
+      this._displayedNodes = TreeInputComponent.getDisplayNodes(this.content, this.selectedNode, this._isDisabled);
+    }
   }
 
   /**
