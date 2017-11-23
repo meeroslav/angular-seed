@@ -109,6 +109,25 @@ input + .custom-control-indicator {
   opacity: 1;
 }
 
+.infoTooltip {
+  .tooltip-inner {
+    background: $theme-tooltip-info-color;
+  }
+
+  &.bs-tooltip-bottom .tooltip-inner::before {
+    border-bottom-color: $theme-tooltip-info-color;
+  }
+  &.bs-tooltip-top .tooltip-inner::before {
+    border-top-color: $theme-tooltip-info-color;
+  }
+  &.bs-tooltip-left .tooltip-inner::before {
+    border-left-color: $theme-tooltip-info-color;
+  }
+  &.bs-tooltip-right .tooltip-inner::before {
+    border-right-color: $theme-tooltip-info-color;
+  }
+}
+
 rating {
   font-size: 1.5rem;
   cursor: pointer;

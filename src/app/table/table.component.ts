@@ -10,7 +10,6 @@ export class TableComponent implements OnInit {
   @ViewChild('editButtonTemplate') editButtonTemplate: TemplateRef<any>;
   @ViewChild('ratingTemplate') ratingTemplate: TemplateRef<any>;
   @ViewChild('hobbiesTemplate') hobbiesTemplate: TemplateRef<any>;
-  @ViewChild('genderHeaderTemplate') genderHeaderTemplate: TemplateRef<any>;
 
   collectionSize: number;
 
@@ -56,8 +55,8 @@ export class TableComponent implements OnInit {
       { prop: 'name', name: 'Name', sortable: false, resizeable: false, flexGrow: 2 },
       { prop: 'gender', name: 'Gender', sortable: false, resizeable: false, flexGrow: 1 },
       { prop: 'company', name: 'Company', sortable: false, resizeable: false, flexGrow: 2 },
-      { prop: 'hobbies', name: 'Hobbies', sortable: false, resizeable: false, cellTemplate: this.hobbiesTemplate, flexGrow: 2 },
-      { prop: 'rating', name: 'Rating', sortable: false, resizeable: false, cellTemplate: this.ratingTemplate, flexGrow: 0.5 }
+      { prop: 'rating', name: 'Rating', sortable: false, resizeable: false, cellTemplate: this.ratingTemplate, flexGrow: 0.5 },
+      { prop: 'hobbies', name: 'Hobbies', sortable: false, resizeable: false, cellTemplate: this.hobbiesTemplate, flexGrow: 2 }
     ];
     this.rows = [
       { name: 'Austin', gender: 'Male', company: 'Swimlane', rating: 4, hobbies: ['Reading', 'Swimming'] },
@@ -68,7 +67,7 @@ export class TableComponent implements OnInit {
       { prop: 'name', name: 'Name', resizeable: false },
       { prop: 'height', name: 'Height', resizeable: false, width: 50 },
       { prop: 'mass', name: 'Mass', resizeable: false, width: 50 },
-      { prop: 'gender', name: 'Gender', resizeable: false, width: 70, headerTemplate: this.genderHeaderTemplate },
+      { prop: 'gender', name: 'Gender', resizeable: false, width: 70 },
       { prop: 'birth_year', name: 'Birth year', resizeable: false, width: 70 },
       { prop: 'url', cellTemplate: this.editButtonTemplate, sortable: false, width: 50, resizeable: false }
     ];

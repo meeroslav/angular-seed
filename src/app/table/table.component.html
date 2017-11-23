@@ -5,15 +5,17 @@
           (click)="reportClick(value)"></button>
 </ng-template>
 <ng-template #ratingTemplate let-value="value">
-  - {{value}} -
+  <span placement="bottom" [tooltip]="rtpInfo" containerClass="infoTooltip" container="body">
+    {{ value * 1.25685568789 / 100 | percent:'1.3-3' }}
+  </span>
+  <ng-template #rtpInfo>
+    <div>{{ value * 1.25685568789 / 100 | percent:'1.1-19' }}</div>
+  </ng-template>
 </ng-template>
 <ng-template #hobbiesTemplate let-value="value">
   <span *ngFor="let hobby of value" class="badge badge-primary">
     {{hobby}}
   </span>
-</ng-template>
-<ng-template #genderHeaderTemplate let-value="value">
-  - {{value}} -
 </ng-template>
 
 <tabset>
@@ -26,10 +28,12 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>
-          <span class="th-info">
+          <span class="th-info" placement="right" [tooltip]="usernameInfo" containerClass="infoTooltip">
             Username
-            <span class="th-info-content">Domain username</span>
           </span>
+          <ng-template #usernameInfo>
+            Default username
+          </ng-template>
         </th>
         <th>Roles</th>
         <th width="50"></th>
@@ -117,10 +121,12 @@
       <ngx-datatable-column prop="gender" [flexGrow]="1"></ngx-datatable-column>
       <ngx-datatable-column prop="company" [flexGrow]="2">
         <ng-template ngx-datatable-header-template let-value="value">
-          <span class="th-info">
+          <span class="th-info" placement="right" [tooltip]="genderInfo" containerClass="infoTooltip" container="body">
             Gender
-            <span class="th-info-content">Gender info and whole bunch of<br/> text that would have to be broken</span>
           </span>
+          <ng-template #genderInfo>
+            Gender info and whole bunch of text that would have to be broken
+          </ng-template>
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Rating" prop="rating" [flexGrow]="1">

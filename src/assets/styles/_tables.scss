@@ -282,26 +282,6 @@ $table-border-mixin: $table-border-width solid $table-border-color;
     font-family: 'themeicons';
     font-size: $font-size-xs / 2;
   }
-
-  .th-info-content {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    display: none;
-    padding: $spacer-y / 2 $spacer-x / 2;
-    border: $table-border-mixin;
-    background: $badge-default-bg;
-    color: $badge-color;
-    box-shadow: $theme-card-shadow;
-    white-space: nowrap;
-    z-index: $zindex-tooltip;
-  }
-
-  &:hover {
-    .th-info-content {
-      display: block;
-    }
-  }
 }
 
 /*** Maybe needed */
