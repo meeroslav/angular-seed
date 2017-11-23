@@ -20,7 +20,349 @@
 
 <tabset>
   <tab heading="Overview">
-    <h4>Static data table</h4>
+    <h5 class="mb-3">ngx-datatable with flex</h5>
+    <div class="theme-table table table-sm table-striped">
+      <ngx-datatable class="bootstrap"
+                     [rows]="rows"
+                     [columns]="columns"
+                     [columnMode]="'flex'"
+                     [cssClasses]="tableCssClasses"
+                     [rowHeight]="'auto'"
+                     [headerHeight]="'auto'"
+                     [footerHeight]="'auto'"
+                     [messages]="tableMessages"
+                     [reorderable]="false">
+      </ngx-datatable>
+    </div>
+    <h5 class="mb-3">ngx-datatable with force</h5>
+    <div class="theme-table table table-sm table-striped">
+      <ngx-datatable class="bootstrap"
+                   [rows]="rows"
+                   [columns]="forceColumns"
+                   columnMode="force"
+                   [cssClasses]="tableCssClasses"
+                   rowHeight="auto"
+                   headerHeight="auto"
+                   footerHeight="auto"
+                   [messages]="tableMessages"
+                   [reorderable]="false">
+      </ngx-datatable>
+    </div>
+    <h5 class="mb-3">ngx-datatable with sorting and reordering</h5>
+    <div class="theme-table table table-sm table-striped">
+      <ngx-datatable class="bootstrap"
+                   [rows]="rows"
+                   [columnMode]="'flex'"
+                   [cssClasses]="tableCssClasses"
+                   [rowHeight]="'auto'"
+                   [headerHeight]="'auto'"
+                   [footerHeight]="'auto'"
+                   [messages]="tableMessages"
+                   reorderable="true">
+        <ngx-datatable-column prop="name" [flexGrow]="2"></ngx-datatable-column>
+        <ngx-datatable-column prop="gender" [flexGrow]="1"></ngx-datatable-column>
+        <ngx-datatable-column prop="company" [flexGrow]="2">
+          <ng-template ngx-datatable-header-template let-value="value">
+            <span class="th-info" placement="right" [tooltip]="companyInfo" containerClass="infoTooltip" container="body">
+              Company
+            </span>
+            <ng-template #companyInfo>
+              Company info and whole bunch of text that would have to be broken
+            </ng-template>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Rating (fixed)" [frozenRight]="true" prop="rating" [flexGrow]="1">
+          <ng-template ngx-datatable-cell-template let-value="value">
+            <rating [ngModel]="value" max="5" readonly="true" [ngModelOptions]="{ standalone: true }"
+                    [customTemplate]="starTemplate">
+            </rating>
+            <ng-template #starTemplate let-index="index" let-value="value">
+              <i *ngIf="index < value" class="theme-icon-star"></i>
+              <i *ngIf="index >= value" class="theme-icon-star-o"></i>
+            </ng-template>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </tab>
+  <tab heading="With pagination">
+    <div class="theme-table table table-sm table-striped">
+      <ngx-datatable class="bootstrap" *ngIf="users"
+                   [sortType]="'single'"
+                   [headerHeight]="'auto'"
+                   [messages]="{ emptyMessage: 'NO_RESULTS' | translate, totalMessage: 'RESULTS' | translate }"
+                   [columnMode]="'force'"
+                   [footerHeight]="50"
+                   [rowHeight]="'auto'"
+                   [sorts]="sorting"
+                   [offset]="page"
+                   [limit]="pageSize"
+                   [trackByProp]="id"
+                   [columns]="swColumns"
+                   [cssClasses]="tableCssClasses"
+                   [externalPaging]="true"
+                   [count]="collectionSize"
+                   [rows]="users"
+                   (page)='setPage($event)'>
+      </ngx-datatable>
+    </div>
+  </tab>
+  <tab heading="Simple">
+    <h5>Simple table</h5>
+    <table class="table">
+      <thead>
+      <tr>
+        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <td>
+          <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <td>
+          <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <td>
+          <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <td>
+          <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="6">Count: 4</td>
+      </tr>
+      </tfoot>
+    </table>
+    <h5>Compressed table</h5>
+    <table class="table table-sm">
+      <thead>
+      <tr>
+        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <td>
+          <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <td>
+          <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <td>
+          <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <td>
+          <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="6">Count: 4</td>
+      </tr>
+      </tfoot>
+    </table>
+  </tab>
+  <tab heading="Bordered">
+    <h5>Bordered table</h5>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <td>
+          <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <td>
+          <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <td>
+          <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <td>
+          <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="6">Count: 4</td>
+      </tr>
+      </tfoot>
+    </table>
+    <h5>Striped table</h5>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <td>
+          <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <td>
+          <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <td>
+          <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <td>
+          <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
+            {{role}}
+          </span>
+        </td>
+        <td>
+          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
+                  (click)="reportClick('table button')"></button>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="6">Count: 4</td>
+      </tr>
+      </tfoot>
+    </table>
+    <h5>Theme small striped table</h5>
     <table class="table table-striped theme-table table-sm">
       <thead>
       <tr>
@@ -95,328 +437,9 @@
       </tr>
       </tfoot>
     </table>
-    <h4 class="mb-3">Dynamic declarative data table</h4>
-    <ngx-datatable class="bootstrap table table-sm theme-table table-striped"
-                   [rows]="rows"
-                   [columns]="columns"
-                   [columnMode]="'flex'"
-                   [cssClasses]="tableCssClasses"
-                   [rowHeight]="'auto'"
-                   [headerHeight]="'auto'"
-                   [footerHeight]="'auto'"
-                   [messages]="tableMessages"
-                   [reorderable]="false">
-    </ngx-datatable>
-    <h4 class="mb-3">Dynamic sortable datatable</h4>
-    <ngx-datatable class="table table-sm theme-table table-striped"
-                   [rows]="rows"
-                   [columnMode]="'flex'"
-                   [cssClasses]="tableCssClasses"
-                   [rowHeight]="'auto'"
-                   [headerHeight]="'auto'"
-                   [footerHeight]="'auto'"
-                   [messages]="tableMessages"
-                   reorderable="true">
-      <ngx-datatable-column prop="name" [flexGrow]="2"></ngx-datatable-column>
-      <ngx-datatable-column prop="gender" [flexGrow]="1"></ngx-datatable-column>
-      <ngx-datatable-column prop="company" [flexGrow]="2">
-        <ng-template ngx-datatable-header-template let-value="value">
-          <span class="th-info" placement="right" [tooltip]="genderInfo" containerClass="infoTooltip" container="body">
-            Gender
-          </span>
-          <ng-template #genderInfo>
-            Gender info and whole bunch of text that would have to be broken
-          </ng-template>
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="Rating" prop="rating" [flexGrow]="1">
-        <ng-template ngx-datatable-cell-template let-value="value">
-          <rating [ngModel]="value" max="5" readonly="true" [ngModelOptions]="{ standalone: true }"
-                  stateOn="theme-icon-star" stateOff="theme-icon-star-o">
-          </rating>
-        </ng-template>
-      </ngx-datatable-column>
-    </ngx-datatable>
-  </tab>
-  <tab heading="With pagination">
-    <ngx-datatable *ngIf="users"
-                   class="bootstrap table table-sm theme-table table-striped"
-                   [sortType]="'single'"
-                   [headerHeight]="'auto'"
-                   [messages]="{ emptyMessage: 'NO_RESULTS' | translate, totalMessage: 'RESULTS' | translate }"
-                   [columnMode]="'force'"
-                   [footerHeight]="50"
-                   [rowHeight]="'auto'"
-                   [sorts]="sorting"
-                   [offset]="page"
-                   [limit]="pageSize"
-                   [trackByProp]="id"
-                   [columns]="swColumns"
-                   [cssClasses]="tableCssClasses"
-                   [externalPaging]="true"
-                   [count]="collectionSize"
-                   [rows]="users"
-                   (page)='setPage($event)'>
-    </ngx-datatable>
-  </tab>
-  <tab heading="Simple">
-    <h4>Simple table</h4>
-    <table class="table">
-      <thead>
-      <tr>
-        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
-        <td>
-          <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
-        <td>
-          <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
-        <td>
-          <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
-        <td>
-          <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      </tbody>
-      <tfoot>
-      <tr>
-        <td colspan="6">Count: 4</td>
-      </tr>
-      </tfoot>
-    </table>
-    <h4>Compressed table</h4>
-    <table class="table table-sm">
-      <thead>
-      <tr>
-        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
-        <td>
-          <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
-        <td>
-          <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
-        <td>
-          <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
-        <td>
-          <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      </tbody>
-      <tfoot>
-      <tr>
-        <td colspan="6">Count: 4</td>
-      </tr>
-      </tfoot>
-    </table>
-  </tab>
-  <tab heading="Bordered">
-    <h4>Bordered table</h4>
-    <table class="table table-bordered">
-      <thead>
-      <tr>
-        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
-        <td>
-          <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
-        <td>
-          <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
-        <td>
-          <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
-        <td>
-          <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      </tbody>
-      <tfoot>
-      <tr>
-        <td colspan="6">Count: 4</td>
-      </tr>
-      </tfoot>
-    </table>
-    <h4>Striped table</h4>
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
-        <td>
-          <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
-        <td>
-          <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
-        <td>
-          <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
-        <td>
-          <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
-            {{role}}
-          </span>
-        </td>
-        <td>
-          <button title="Button text goes here" type="button" class="btn btn-table theme-icon-mail btn-secondary"
-                  (click)="reportClick('table button')"></button>
-        </td>
-      </tr>
-      </tbody>
-      <tfoot>
-      <tr>
-        <td colspan="6">Count: 4</td>
-      </tr>
-      </tfoot>
-    </table>
   </tab>
   <tab heading="Mixed styles">
-    <h4>Theme, Compressed and Striped</h4>
+    <h5>Theme, Compressed and Striped</h5>
     <table class="table table-sm theme-table table-striped">
       <thead>
       <tr>
@@ -479,7 +502,7 @@
       </tr>
       </tfoot>
     </table>
-    <h4>Theme, Compressed, Striped with full border</h4>
+    <h5>Theme, Compressed, Striped with full border</h5>
     <table class="table table-sm theme-table table-bordered table-striped">
       <thead>
       <tr>
@@ -544,7 +567,7 @@
     </table>
   </tab>
   <tab heading="Table Styles">
-    <h4>Different table styles</h4>
+    <h5>Different table styles</h5>
     <table class="table table-sm table-bordered thead-default">
       <thead>
       <tr>
@@ -732,5 +755,4 @@
       </tfoot>
     </table>
   </tab>
-
  </tabset>

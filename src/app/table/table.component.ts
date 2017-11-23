@@ -3,7 +3,7 @@ import { TableService, ISWUser, ICountable } from './table.service';
 
 @Component({
   selector: 'table-page',
-  styleUrls: [ './table.component.scss' ],
+  styleUrls: ['./table.component.scss'],
   templateUrl: './table.component.html'
 })
 export class TableComponent implements OnInit {
@@ -36,13 +36,14 @@ export class TableComponent implements OnInit {
   };
   rows = [];
   columns = [];
+  forceColumns = [];
   swColumns = [];
 
   /**
    * CTOR
    * @param service
    */
-  constructor (private service: TableService) {
+  constructor(private service: TableService) {
     this.collectionSize = 0;
     this.users = [];
   }
@@ -55,13 +56,72 @@ export class TableComponent implements OnInit {
       { prop: 'name', name: 'Name', sortable: false, resizeable: false, flexGrow: 2 },
       { prop: 'gender', name: 'Gender', sortable: false, resizeable: false, flexGrow: 1 },
       { prop: 'company', name: 'Company', sortable: false, resizeable: false, flexGrow: 2 },
-      { prop: 'rating', name: 'Rating', sortable: false, resizeable: false, cellTemplate: this.ratingTemplate, flexGrow: 0.5 },
-      { prop: 'hobbies', name: 'Hobbies', sortable: false, resizeable: false, cellTemplate: this.hobbiesTemplate, flexGrow: 2 }
+      {
+        prop: 'rating',
+        name: 'Rating',
+        sortable: false,
+        resizeable: false,
+        cellTemplate: this.ratingTemplate,
+        flexGrow: 0.5
+      },
+      {
+        prop: 'hobbies',
+        name: 'Hobbies',
+        sortable: false,
+        resizeable: false,
+        cellTemplate: this.hobbiesTemplate,
+        flexGrow: 2
+      },
+      {
+        prop: 'name',
+        name: '',
+        sortable: false,
+        resizeable: false,
+        cellTemplate: this.editButtonTemplate,
+        flexGrow: 0.5
+      }
+    ];
+    this.forceColumns = [
+      { prop: 'name', name: 'Name', sortable: false, resizeable: false, minWidth: 50 },
+      { prop: 'gender', name: 'Gender', sortable: false, resizeable: false, minWidth: 70, maxWidth: 70 },
+      { prop: 'company', name: 'Company', sortable: false, resizeable: false, minWidth: 70 },
+      {
+        prop: 'rating',
+        name: 'Rating',
+        sortable: false,
+        resizeable: false,
+        cellTemplate: this.ratingTemplate,
+        minWidth: 70,
+        maxWidth: 70
+      },
+      {
+        prop: 'hobbies',
+        name: 'Hobbies',
+        sortable: false,
+        resizeable: false,
+        cellTemplate: this.hobbiesTemplate,
+        minWidth: 150
+      },
+      {
+        prop: 'name',
+        name: '',
+        sortable: false,
+        resizeable: false,
+        cellTemplate: this.editButtonTemplate,
+        minWidth: 40,
+        maxWidth: 40
+      }
     ];
     this.rows = [
       { name: 'Austin', gender: 'Male', company: 'Swimlane', rating: 4, hobbies: ['Reading', 'Swimming'] },
       { name: 'Dany', gender: 'Male', company: 'KFC', rating: 5, hobbies: ['Coding', 'Playing guitar'] },
-      { name: 'Molly', gender: 'Female', company: 'Burger King', rating: 3, hobbies: ['Skiing', 'Snowboarding', 'Running', 'Climbing', 'Paragliding', 'Freeclimbing' ] },
+      {
+        name: 'Molly',
+        gender: 'Female',
+        company: 'Burger King',
+        rating: 3,
+        hobbies: ['Skiing', 'Snowboarding', 'Running', 'Climbing', 'Paragliding', 'Freeclimbing']
+      }
     ];
     this.swColumns = [
       { prop: 'name', name: 'Name', resizeable: false },

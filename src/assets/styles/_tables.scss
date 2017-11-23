@@ -125,12 +125,6 @@ $table-border-mixin: $table-border-width solid $table-border-color;
 
   rating {
     font-size: 1.2rem;
-    @include fontBold();
-    color: $input-color-placeholder;
-
-    .bs-rating-star.active {
-      color: $brand-warning;
-    }
   }
 }
 
@@ -151,6 +145,11 @@ $table-border-mixin: $table-border-width solid $table-border-color;
 
 .theme-table {
   border: $table-border-mixin;
+
+  .ngx-datatable {
+    overflow-x: auto !important;
+    box-sizing: border-box;
+  }
 
   &.ng-invalid {
     border-color: $brand-danger;
