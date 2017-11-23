@@ -6,7 +6,6 @@
 
 .form-control {
   font-size: $theme-input-font-size;
-  margin-bottom: $spacer-y;
 
   &.expandable-control {
     width: 15rem;
@@ -18,6 +17,10 @@
       width: 100%;
     }
   }
+}
+
+.form-control, form .bs-rating-star {
+  margin-bottom: $spacer-y;
 }
 
 .form-footer {
@@ -71,6 +74,11 @@ textarea, highlightarea {
   margin-bottom: $spacer-y / 2;
   font-size: $theme-input-font-size * 0.8;
   color: $input-color;
+  align-self: center;
+}
+
+.form-label-inline {
+  margin-bottom: $spacer-y;
 }
 
 .custom-control-input ~ .custom-control-description {
@@ -97,7 +105,7 @@ input + .custom-control-indicator {
   border: $input-btn-border-width solid $input-border-color;
 }
 
-.ng-invalid {
+.ng-invalid, .form-control.ng-invalid {
   border-color: $brand-danger;
 
   &:not([disabled]) + .custom-control-indicator {

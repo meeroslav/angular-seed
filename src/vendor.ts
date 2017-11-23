@@ -24,4 +24,5 @@ import 'rxjs/add/operator/filter';
 import './assets/styles/theme.scss';
 import './assets/styles/themeicons.scss';
 import './assets/styles/components/breadcrumbs.scss';
+import './assets/styles/components/typeahead.scss';
 import 'ngx-bootstrap/datepicker/bs-datepicker.css';

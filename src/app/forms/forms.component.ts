@@ -27,7 +27,7 @@ export class FormsComponent implements OnInit {
   movie: Movie;
   colors: Array<Colors>;
   planets: ISWPlanet[];
-  planetNames: string[];
+  planetNames: string[] = [];
   search: Observable<string>;
   treeData: ITreeNode[];
 
@@ -41,9 +41,6 @@ export class FormsComponent implements OnInit {
    * @param service
    */
   constructor(private formBuilder: FormBuilder, private service: FormsService) {
-    this.planets = [];
-    this.planetNames = [];
-
     this.user = {
       name: '',
       favoriteNumber: null,
@@ -128,7 +125,7 @@ export class FormsComponent implements OnInit {
       favoriteColor: [this.user.favoriteColor, Validators.required],
       observation: [this.user.observation, Validators.required],
       optin: [this.user.optin, Validators.required],
-      newsLetter: [{ value: this.user.newsLetter, disabled: true }]
+      newsLetter: [{ value: this.user.newsLetter }]
     });
   }
 
@@ -174,21 +171,16 @@ export class FormsComponent implements OnInit {
    * @returns {ITreeNode[]}
    */
   private extendTree(planets: any): ITreeNode[] {
-    let tree: ITreeNode[] = [];
-    planets.forEach((planet: ISWPlanet) => {
-
-      let node: ITreeNode = {
+    return planets.map((planet: ISWPlanet) => {
+      return {
         text: planet.name,
-        children: []
+        children: planet.residents.map((resident: string) => {
+          return {
+            text: resident,
+            id: resident
+          };
+        })
       };
-      for (let i = 0; i < planet.residents.length; i++) {
-        node.children.push({
-          id: planet.residents[i],
-          text: planet.residents[i]
-        });
-      }
-      tree.push(node);
     });
-    return tree;
   }
 }

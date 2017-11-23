@@ -5,58 +5,54 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="card card-block">
-          <h2>Basic form controls</h2>
+          <h5>Basic form controls</h5>
           <form [formGroup]="basicControlsForm" novalidate>
             <div class="row">
               <label class="col-sm-12 form-label" for="name">Name</label>
               <div class="col-sm-10">
-                <input type="text" formControlName="name" class="form-control" id="name" placeholder="Enter your name"
+                <input type="text" formControlName="name" class="form-control" id="name" placeholder="Enter your name..."
                        placement="bottom"
-                       [tooltip]="basicControlsForm.controls.favoriteNumber.errors && nameTT" >
-                <template #nameTT>
-                  <div *ngIf="basicControlsForm.controls.name.errors.required">
-                    {{'form.NAME_REQUIRED' | translate}}
-                  </div>
-                </template>
+                       [tooltip]="basicControlsForm.controls.name.errors && nameTT" >
+                <ng-template #nameTT>
+                  {{'form.NAME_REQUIRED' | translate}}
+                </ng-template>
               </div>
             </div>
             <div class="row">
-              <label class="col-sm-2 form-label" for="favoriteNumber">Favorite number</label>
+              <label class="col-sm-3 form-label form-label-inline" for="favoriteNumber">Favorite number</label>
               <div class="col-sm-4 col-lg-2">
                 <input type="number" formControlName="favoriteNumber" class="form-control" id="favoriteNumber">
               </div>
-            </div>
-            <div class="row">
-              <label class="col-sm-2 form-label" for="disabledNumber">Disabled number</label>
+              <label class="col-sm-3 form-label form-label-inline" for="disabledNumber">Disabled number</label>
               <div class="col-sm-4 col-lg-2">
                 <input type="number" formControlName="disabledNumber" class="form-control" id="disabledNumber">
               </div>
             </div>
             <div class="row">
-              <label class="col-sm-2 form-label" for="favoriteColor">Favorite color</label>
+              <label class="col-sm-12 form-label" for="favoriteColor">Favorite color</label>
               <div class="col-sm-6 col-lg-4">
                 <select class="custom-select form-control" formControlName="favoriteColor" id="favoriteColor" placement="right"
-                        [tooltip]="basicControlsForm.controls.favoriteColor.errors && favoriteColorTT" infield-label="Enter value">
+                        [tooltip]="basicControlsForm.controls.favoriteColor.errors && favoriteColorTT" placeholder="Your color">
                   <option *ngFor="let color of colors" [value]="color.id">{{color.color}}</option>
                 </select>
-                <template #favoriteColorTT>
+                <ng-template #favoriteColorTT>
                   <div *ngIf="basicControlsForm.controls.favoriteColor.errors.required">
                     {{'form.FAVORITE_COLOR_REQUIRED' | translate}}
                   </div>
-                </template>
+                </ng-template>
               </div>
             </div>
             <div class="row">
               <label class="col-sm-12 form-label" for="observation">Observation</label>
               <div class="col-sm-8">
                 <textarea class="form-control" formControlName="observation" id="observation" rows="4"
-                          placeholder="Observation" placement="bottom"
+                          placeholder="Enter your observation..." placement="bottom"
                           [tooltip]="basicControlsForm.controls.observation.errors && observationTT"></textarea>
-                <template #observationTT>
+                <ng-template #observationTT>
                   <div *ngIf="basicControlsForm.controls.observation.errors.required">
                     This text will be super long text with lorem ipsum dolor sit amet.
                   </div>
-                </template>
+                </ng-template>
               </div>
             </div>
             <div class="row">
@@ -68,11 +64,11 @@
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">Remember my preference</span>
                 </label>
-                <template #optinTT class="bollocks">
+                <ng-template #optinTT class="bollocks">
                   <div *ngIf="basicControlsForm.controls.optin.errors.required">
                     This text will be super long text with lorem ipsum dolor sit amet.
                   </div>
-                </template>
+                </ng-template>
               </div>
             </div>
             <div class="row">
@@ -93,24 +89,118 @@
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">Yeah</span>
                 </label>
-                <label class="custom-control custom-radio">
-                  <input type="radio" formControlName="newsLetter" class="custom-control-input" value="WTH">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">I'm disabled</span>
-                </label>
               </div>
             </div>
+            <button class="btn btn-primary" [disabled]="!basicControlsForm.valid">Save data</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card card-block">
+          <h5>Form information</h5>
+          <p>Form Values</p>
+          <code>
+            {{basicControlsForm.value | json}}
+          </code>
+          <p>Form Status: {{basicControlsForm.status}}</p>
+        </div>
+      </div>
+    </div>
+  </tab>
+  <tab heading="Inline controls">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card card-block">
+          <h5>Inline form controls</h5>
+          <form [formGroup]="basicControlsForm" novalidate>
             <div class="row">
-              <label class="col-sm-10 form-label">Inline label example</label>
               <div class="col-sm-10">
-                <input type="text" formControlName="name" class="form-control" id="name2"
-                       placement="bottom" infield-label="Enter name"
+                <input type="text" formControlName="name" class="form-control" id="name" infield-label="Name"
+                       placement="bottom"
                        [tooltip]="basicControlsForm.controls.favoriteNumber.errors && nameTT" >
-                <template #nameTT>
+                <ng-template #nameTT>
                   <div *ngIf="basicControlsForm.controls.name.errors.required">
                     {{'form.NAME_REQUIRED' | translate}}
                   </div>
-                </template>
+                </ng-template>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <input type="number" formControlName="favoriteNumber" class="form-control" id="favoriteNumber" infield-label="Favorite number">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <input type="number" formControlName="disabledNumber" class="form-control" id="disabledNumber" infield-label="Disabled number">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <select class="custom-select form-control" formControlName="favoriteColor" id="favoriteColor" placement="right"
+                        [tooltip]="basicControlsForm.controls.favoriteColor.errors && favoriteColorTT" infield-label="Favourite color">
+                  <option *ngFor="let color of colors" [value]="color.id">{{color.color}}</option>
+                </select>
+                <ng-template #favoriteColorTT>
+                  <div *ngIf="basicControlsForm.controls.favoriteColor.errors.required">
+                    {{'form.FAVORITE_COLOR_REQUIRED' | translate}}
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-10">
+                <textarea class="form-control" formControlName="observation" id="observation" rows="4"
+                          infield-label="Observation" placement="bottom"
+                          [tooltip]="basicControlsForm.controls.observation.errors && observationTT"></textarea>
+                <ng-template #observationTT>
+                  <div *ngIf="basicControlsForm.controls.observation.errors.required">
+                    This text will be super long text with lorem ipsum dolor sit amet.
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="custom-control custom-checkbox" placement="bottom"
+                       [tooltip]="basicControlsForm.controls.optin.errors && optinTT">
+                  <input type="checkbox" formControlName="optin" class="custom-control-input" value="">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Remember my preference</span>
+                </label>
+                <ng-template #optinTT class="bollocks">
+                  <div *ngIf="basicControlsForm.controls.optin.errors.required">
+                    This text will be super long text with lorem ipsum dolor sit amet.
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-sm-4 form-label">Receive news?</label>
+              <div class="col-sm-6">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label class="custom-control custom-radio">
+                      <input type="radio" formControlName="newsLetter" class="custom-control-input" value="Maybe">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Maybe</span>
+                    </label>
+                  </div>
+                  <div class="col-sm-12">
+                    <label class="custom-control custom-radio">
+                      <input type="radio" formControlName="newsLetter" class="custom-control-input" value="No">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Hell, no</span>
+                    </label>
+                  </div>
+                  <div class="col-sm-12">
+                    <label class="custom-control custom-radio">
+                      <input type="radio" formControlName="newsLetter" class="custom-control-input" value="Yes">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Yeah</span>
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -120,7 +210,7 @@
       </div>
       <div class="col-lg-6">
         <div class="card card-block">
-          <h2>Form information</h2>
+          <h5>Form information</h5>
           <p>Form Values</p>
           <code>
             {{basicControlsForm.value | json}}
@@ -134,29 +224,34 @@
     <div class="row">
         <div class="col-lg-6">
           <div class="card card-block">
+            <h5>Advanced form controls</h5>
             <form [formGroup]="advancedControlsForm" novalidate>
               <div class="row">
                 <!-- Basic ratings component -->
                 <div class="col-sm-8">
                   <label for="firstRate" class="form-label">Ratings</label><br/>
                   <rating formControlName="firstRate" placement="right" max="5" id="firstRate" tabindex="0"
-                          stateOn="theme-icon-star" stateOff="theme-icon-star-o"
-                          [tooltip]="advancedControlsForm.controls.firstRate.errors && firstRateTT">
+                          [tooltip]="advancedControlsForm.controls.firstRate.errors && firstRateTT"
+                          [customTemplate]="starTemplate">
                   </rating>
-                  <template #firstRateTT>
+                  <ng-template #starTemplate let-index="index" let-value="value">
+                    <i *ngIf="index < value" class="theme-icon-star"></i>
+                    <i *ngIf="index >= value" class="theme-icon-star-o"></i>
+                  </ng-template>
+                  <ng-template #firstRateTT>
                     <div *ngIf="advancedControlsForm.controls.firstRate.errors.required">
                       This text will be super long text with lorem ipsum dolor sit amet.
                     </div>
-                  </template>
+                  </ng-template>
                 </div>
                 <div class="col-sm-8">
                   <rating formControlName="secondRate" max="5" tabindex="1"
-                          stateOn="theme-icon-star" stateOff="theme-icon-star-o">
+                          [customTemplate]="starTemplate">
                   </rating>
                 </div>
                 <div class="col-sm-8">
                   <rating formControlName="averageRating" max="5" readonly="true" tabindex="2"
-                          stateOn="theme-icon-star" stateOff="theme-icon-star-o">
+                          [customTemplate]="starTemplate">
                   </rating>
                 </div>
 
@@ -165,19 +260,19 @@
                   <label class="form-label">Static typeahead non editable - Star wars planets </label>
                 </div>
                 <div class="col-sm-8">
-                  <typeahead class="form-control" formControlName="planet" (valueChange)="getFilteredPlanets($event)"
-                             infield-label="Get planet" custom="true" multiValue="true" [suggestions]="planetNames"
+                  <type-ahead class="form-control" formControlName="planet"
+                             infield-label="Get planet" custom="true" multi="true" [suggestions]="planetNames"
                              tabindex="3">
-                  </typeahead>
+                  </type-ahead>
                 </div>
                 <div class="col-sm-12">
                   <label class="form-label">Disabled typeahead</label>
                 </div>
                 <div class="col-sm-8">
-                  <typeahead class="form-control" formControlName="planet2" (valueChange)="getFilteredPlanets($event)"
-                             infield-label="Get planet" custom="true" multiValue="true" [suggestions]="planetNames"
+                  <type-ahead class="form-control" formControlName="planet2"
+                             infield-label="Get planet" custom="true" multi="true" [suggestions]="planetNames"
                              tabindex="4">
-                  </typeahead>
+                  </type-ahead>
                 </div>
 
                 <!-- Tree component -->
@@ -204,7 +299,7 @@
         <div class="col-lg-6">
           <div class="card">
             <div class="card-block">
-              <h2>Form information</h2>
+              <h5>Form information</h5>
               <p>Form Values</p>
               <code>
                 {{advancedControlsForm.value | json}}
@@ -216,7 +311,7 @@
       </div>
   </tab>
   <tab heading="Control Sizing">
-    <h2>Inputs - Column sizing</h2>
+    <h5>Inputs - Column sizing</h5>
     <div class="row">
       <div class="col-sm-6">
         <div class="card card-block">
@@ -257,25 +352,29 @@
         </div>
       </div>
     </div>
-    <h2>Inline form</h2>
-    <div class="card card-block">
-      <form class="form-inline">
-        <label class="col-sm-4">Label for input</label>
-        <input type="text" class="col-sm-2 form-control" placeholder="Short input">
-      </form>
-    </div>
-    <h2>Half form</h2>
+    <h5>Half form</h5>
     <div class="row">
       <div class="col-sm-6">
         <div class="card card-block">
           <div class="row">
-            <label class="col-sm-8">Label for input</label>
-            <input type="text" class="col-sm-4 form-control" placeholder="Short input">
+            <label class="col-sm-6 form-label form-label-inline">Label for input</label>
+            <input type="text" class="col-sm-6 form-control" placeholder="Short input">
           </div>
         </div>
       </div>
     </div>
-    <h2>Floating elements</h2>
+    <h5>Flex label form</h5>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card card-block">
+          <div class="row">
+            <label class="col col-auto form-label form-label-inline">Label for input</label>
+            <input type="text" class="col form-control" placeholder="Short input">
+          </div>
+        </div>
+      </div>
+    </div>
+    <h5>Floating elements</h5>
     <div class="card card-block">
       <div class="row">
         <div class="col-sm-1">

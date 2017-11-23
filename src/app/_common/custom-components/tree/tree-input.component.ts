@@ -24,7 +24,8 @@ export class TreeInputComponent implements ControlValueAccessor {
   @Input() collapsed: boolean;
   @Output() nodeClick = new EventEmitter();
 
-  @HostBinding('class.disabled') get disabled() {
+  @HostBinding('class.disabled')
+  get disabled() {
     return this._isDisabled;
   }
 
@@ -38,8 +39,9 @@ export class TreeInputComponent implements ControlValueAccessor {
       const selectedPath = pathOnly(findPathById(content, selectedNodeId));
       if (selectedPath) {
         return [selectedPath];
+      } else {
+        return [];
       }
-      return [];
     }
     return content;
   }
@@ -93,8 +95,10 @@ export class TreeInputComponent implements ControlValueAccessor {
     }
   }
 
-  onChange = (_) => { /**/ };
-  onTouched = () => { /**/ };
+  onChange = (_) => { /**/
+  }
+  onTouched = () => { /**/
+  }
 
   registerOnChange(fn: (_: any) => void): void {
     this.onChange = fn;
