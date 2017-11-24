@@ -104,7 +104,7 @@ $theme-state-block-width: 0.8rem;
 $theme-table-caption-line-height: 1.6;
 
 // WIZARD
-$theme-wizard-border-color: $gray-lighter;
+$theme-wizard-border-color: $theme-border-color;
 $theme-wizard-background: $white;
 $theme-wizard-bullet-bg: $white;
 
@@ -270,7 +270,7 @@ $table-cell-padding: $spacer;
 $table-sm-cell-padding: $spacer / 2;
 $table-inverse-bg: $brand-primary;
 $table-bg-accent: rgba($black,.03);
-$table-border-color: $gray-lighter;
+$table-border-color: $theme-border-color;
 
 $table-head-bg: $gray-lightest;
 $table-head-color: $gray-light;

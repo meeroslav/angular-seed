@@ -4,12 +4,13 @@
 
 :host {
   display: block;
-  margin-bottom: 1px;
 
   &.selected > .tree-node-header {
     @include fontBold();
   }
 }
+
+$tree-border: $border-width dotted $theme-border-color;
 
 .tree-node-header {
   display: flex;
@@ -35,23 +36,22 @@
 
   .tree-node {
     position: relative;
-    border-left: 1px dotted $input-color;
+    border-left: $tree-border;
 
     &:last-child {
       border-left: 0;
 
       .tree-node-header:before {
-        border-left: 1px dotted $input-color;
+        border-left: $tree-border;
       }
     }
   }
 
   .tree-node-header {
-
     &:before {
       content: '';
       position: absolute;
-      border-bottom: 1px dotted $input-color;
+      border-bottom: $tree-border;
       width: $spacer-x / 3;
       height: $spacer-y * 1.1;
       top: 0;
@@ -70,7 +70,12 @@
 
 .tree-toggler {
   padding: $spacer-y / 4 $spacer-x / 2;
-  font-size: .7rem;
-  border-radius: $border-radius;
+  font-size: $font-size-sm;
   width: $spacer-x * 2;
+
+  &.expanded {
+    font-size: 1rem;
+    padding: 0 $spacer-x / 4;
+    text-align: center;
+  }
 }

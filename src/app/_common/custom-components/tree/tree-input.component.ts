@@ -64,8 +64,7 @@ export class TreeInputComponent implements ControlValueAccessor, OnChanges {
    * @param event
    */
   onNodeClick(event: any) {
-    this.selectedNode = event.node.id;
-    this.value = event.node;
+    this.value = this.selectedNode = event.node.id;
 
     // Emmit click to the parent component as well
     this.nodeClick.emit(event.node);
@@ -88,7 +87,7 @@ export class TreeInputComponent implements ControlValueAccessor, OnChanges {
     this.triggerOnChange(this.elementRef.nativeElement); // trigger on change event
 
     // set the selectedNode in edit mode
-    if (!this.selectedNode && value) {
+    if (value && this.selectedNode !== value) {
       this.selectedNode = value;
     }
     this._displayedNodes = TreeInputComponent.getDisplayNodes(this.content, this.selectedNode, this._isDisabled);
@@ -104,10 +103,8 @@ export class TreeInputComponent implements ControlValueAccessor, OnChanges {
     }
   }
 
-  onChange = (_) => { /**/
-  }
-  onTouched = () => { /**/
-  }
+  onChange = (_) => { /**/ };
+  onTouched = () => { /**/ };
 
   registerOnChange(fn: (_: any) => void): void {
     this.onChange = fn;
