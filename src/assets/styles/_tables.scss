@@ -275,7 +275,7 @@ $table-border-mixin: $table-border-width solid $table-border-color;
   &:after {
     color: $badge-color;
     background: $badge-primary-bg;
-    border-radius: $border-radius;
+    border-radius: 50%;
     padding: $badge-pill-padding-x / 2 $badge-pill-padding-x;
     content: '\f129';
     font-family: 'themeicons';
