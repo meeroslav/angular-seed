@@ -25,10 +25,10 @@ export class TableComponent implements OnInit {
   tableCssClasses = {
     sortAscending: 'theme-icon-chevron-down',
     sortDescending: 'theme-icon-chevron-up',
-    pagerLeftArrow: 'theme-icon-step-backward',
-    pagerRightArrow: 'theme-icon-step-forward',
-    pagerPrevious: 'theme-icon-chevron-left',
-    pagerNext: 'theme-icon-chevron-right'
+    pagerPrevious: 'theme-icon-step-backward',
+    pagerNext: 'theme-icon-step-forward',
+    pagerLeftArrow: 'theme-icon-chevron-left',
+    pagerRightArrow: 'theme-icon-chevron-right'
   };
   tableMessages = {
     emptyMessage: 'No data to display',
