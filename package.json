@@ -1,10 +1,10 @@
 {
-  "name": "angular2-seed",
+  "name": "angular-seed",
   "version": "1.0.0",
-  "description": "Angular seed",
+  "description": "Custom angular seed for Greentube projects ",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/meeroslav/angular2-seed.git"
+    "url": "git+https://github.com/meeroslav/angular-seed.git"
   },
   "keywords": [
     "angular",
@@ -18,9 +18,9 @@
   "author": "Miroslav Jonas",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/meeroslav/angular2-seed/issues"
+    "url": "https://github.com/meeroslav/angular-seed/issues"
   },
-  "homepage": "https://github.com/meeroslav/angular2-seed#readme",
+  "homepage": "https://github.com/meeroslav/angular-seed#readme",
   "scripts": {
     "build": "rimraf dist && webpack --progress --profile --bail",
     "build:prod": "set NODE_ENV=production && npm run build",

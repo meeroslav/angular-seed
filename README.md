@@ -1,5 +1,5 @@
 # angular seed
-[![Build Status](https://travis-ci.org/meeroslav/angular2-seed.svg?branch=master)](https://travis-ci.org/meeroslav/angular2-seed)
+[![Build Status](https://travis-ci.org/meeroslav/angular-seed.svg?branch=master)](https://travis-ci.org/meeroslav/angular-seed)
 
 > Angular (2+) seed for future applications
 
