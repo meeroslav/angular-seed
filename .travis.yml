@@ -3,7 +3,9 @@ language: node_js
 cache:
   directories:
     - node_modules
-
+script:
+  - npm run build
+  - ngh --no-silent --repo=https://GH_TOKEN@github.com/meeroslav/angular-seed.git --name="meeroslav" --email=meeroslav@yahoo.com
 
 notifications:
   email: false

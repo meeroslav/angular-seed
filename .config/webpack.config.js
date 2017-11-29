@@ -72,7 +72,7 @@ module.exports = (function makeWebpackConfig() {
    */
   config.output = {
     path: root('dist'),
-    publicPath: isBuild ? '/' : 'http://localhost:51961/',
+    publicPath: isBuild ? 'https://meeroslav.github.io/angular-seed/' : 'http://localhost:51961/',
     filename: isBuild ? '[name].[hash].js' : '[name].js',
     chunkFilename: isBuild ? 'app/[id].[hash].chunk.js' : 'app/[id].chunk.js',
     sourceMapFilename: isBuild ? 'app/[id].[hash].chunk.js.map' : 'app/[id].chunk.js.map'
