@@ -8143,9 +8143,6 @@ rating > span {
 .ngx-datatable .datatable-header .datatable-header-cell:not(.sortable) .sort-btn {
   display: none; }
 
-.datatable-header-cell .sort-btn {
-  float: right; }
-
 .datatable-header-cell .resize-handle {
   padding: 0 0.3125rem;
   visibility: visible; }
@@ -8886,4 +8883,4 @@ bs-daterangepicker-container {
 
 .theme-orange .bs-datepicker-body table td.week span {
   color: #f0ad4e; }
-/*# sourceMappingURL=app/10.5b89d5a5dd6701b985ad.chunk.js.map*/
+/*# sourceMappingURL=app/10.b5242f0c6f1fb5c89afb.chunk.js.map*/

@@ -78,4 +78,4 @@ module.exports = "<breadcrumb pageTitle=\"Colors\" pageSubtitle=\"Park\"></bread
 /***/ })
 
 });
-//# sourceMappingURL=6.5b89d5a5dd6701b985ad.chunk.js.map
+//# sourceMappingURL=6.b5242f0c6f1fb5c89afb.chunk.js.map
