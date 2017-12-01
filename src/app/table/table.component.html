@@ -37,33 +37,35 @@
     <h5 class="mb-3">ngx-datatable with force</h5>
     <div class="theme-table table table-sm table-striped">
       <ngx-datatable class="bootstrap"
-                   [rows]="rows"
-                   [columns]="forceColumns"
-                   columnMode="force"
-                   [cssClasses]="tableCssClasses"
-                   rowHeight="auto"
-                   headerHeight="auto"
-                   footerHeight="auto"
-                   [messages]="tableMessages"
-                   [reorderable]="false">
+                     [rows]="rows"
+                     [columns]="forceColumns"
+                     columnMode="force"
+                     [cssClasses]="tableCssClasses"
+                     rowHeight="auto"
+                     headerHeight="auto"
+                     footerHeight="auto"
+                     [messages]="tableMessages"
+                     sortType="single"
+                     [reorderable]="false">
       </ngx-datatable>
     </div>
     <h5 class="mb-3">ngx-datatable with sorting and reordering</h5>
     <div class="theme-table table table-sm table-striped">
       <ngx-datatable class="bootstrap"
-                   [rows]="rows"
-                   [columnMode]="'flex'"
-                   [cssClasses]="tableCssClasses"
-                   [rowHeight]="'auto'"
-                   [headerHeight]="'auto'"
-                   [footerHeight]="'auto'"
-                   [messages]="tableMessages"
-                   reorderable="true">
+                     [rows]="rows"
+                     [columnMode]="'flex'"
+                     [cssClasses]="tableCssClasses"
+                     [rowHeight]="'auto'"
+                     [headerHeight]="'auto'"
+                     [footerHeight]="'auto'"
+                     [messages]="tableMessages"
+                     reorderable="true">
         <ngx-datatable-column prop="name" [flexGrow]="2"></ngx-datatable-column>
         <ngx-datatable-column prop="gender" [flexGrow]="1"></ngx-datatable-column>
         <ngx-datatable-column prop="company" [flexGrow]="2">
           <ng-template ngx-datatable-header-template let-value="value">
-            <span class="th-info" placement="right" [tooltip]="companyInfo" containerClass="infoTooltip" container="body">
+            <span class="th-info" placement="right" [tooltip]="companyInfo" containerClass="infoTooltip"
+                  container="body">
               Company
             </span>
             <ng-template #companyInfo>
@@ -71,7 +73,7 @@
             </ng-template>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Rating (fixed)" [frozenRight]="true" prop="rating" [flexGrow]="1">
+        <ngx-datatable-column name="Rating (fixed)" prop="rating" [flexGrow]="1">
           <ng-template ngx-datatable-cell-template let-value="value">
             <rating [ngModel]="value" max="5" readonly="true" [ngModelOptions]="{ standalone: true }"
                     [customTemplate]="starTemplate">
@@ -88,22 +90,23 @@
   <tab heading="With pagination">
     <div class="theme-table table table-sm table-striped">
       <ngx-datatable class="bootstrap" *ngIf="users"
-                   [sortType]="'single'"
-                   [headerHeight]="'auto'"
-                   [messages]="{ emptyMessage: 'NO_RESULTS' | translate, totalMessage: 'RESULTS' | translate }"
-                   [columnMode]="'force'"
-                   [footerHeight]="50"
-                   [rowHeight]="'auto'"
-                   [sorts]="sorting"
-                   [offset]="page"
-                   [limit]="pageSize"
-                   [trackByProp]="id"
-                   [columns]="swColumns"
-                   [cssClasses]="tableCssClasses"
-                   [externalPaging]="true"
-                   [count]="collectionSize"
-                   [rows]="users"
-                   (page)='setPage($event)'>
+                     sortType="single"
+                     headerHeight]="auto"
+                     footerHeight="auto"
+                     rowHeight="auto"
+
+                     [messages]="{ emptyMessage: 'NO_RESULTS' | translate, totalMessage: 'RESULTS' | translate }"
+                     [columnMode]="'force'"
+                     [sorts]="sorting"
+                     [offset]="page"
+                     [limit]="pageSize"
+                     [trackByProp]="id"
+                     [columns]="swColumns"
+                     [cssClasses]="tableCssClasses"
+                     [externalPaging]="true"
+                     [count]="collectionSize"
+                     [rows]="users"
+                     (page)="setPage($event)">
       </ngx-datatable>
     </div>
   </tab>
@@ -112,12 +115,20 @@
     <table class="table">
       <thead>
       <tr>
-        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
+        <th width="50"></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Roles</th>
+        <th width="50"></th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <th scope="row">1</th>
+        <td>Bruno</td>
+        <td>Garcia</td>
+        <td>@ayrtonsenna</td>
         <td>
           <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
             {{role}}
@@ -129,7 +140,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <th scope="row">2</th>
+        <td>James</td>
+        <td>Crosswell</td>
+        <td>@freeclimber</td>
         <td>
           <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
             {{role}}
@@ -141,7 +155,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <th scope="row">3</th>
+        <td>Srdjan</td>
+        <td>Pajic</td>
+        <td>@paja.i.jare</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
             {{role}}
@@ -153,7 +170,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <th scope="row">4</th>
+        <td>Joao</td>
+        <td>Grassi</td>
+        <td>@callmepaulo</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
             {{role}}
@@ -175,12 +195,20 @@
     <table class="table table-sm">
       <thead>
       <tr>
-        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
+        <th width="50"></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Roles</th>
+        <th width="50"></th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <th scope="row">1</th>
+        <td>Bruno</td>
+        <td>Garcia</td>
+        <td>@ayrtonsenna</td>
         <td>
           <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
             {{role}}
@@ -192,7 +220,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <th scope="row">2</th>
+        <td>James</td>
+        <td>Crosswell</td>
+        <td>@freeclimber</td>
         <td>
           <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
             {{role}}
@@ -204,7 +235,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <th scope="row">3</th>
+        <td>Srdjan</td>
+        <td>Pajic</td>
+        <td>@paja.i.jare</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
             {{role}}
@@ -216,7 +250,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <th scope="row">4</th>
+        <td>Joao</td>
+        <td>Grassi</td>
+        <td>@callmepaulo</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
             {{role}}
@@ -240,12 +277,20 @@
     <table class="table table-bordered">
       <thead>
       <tr>
-        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
+        <th width="50"></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Roles</th>
+        <th width="50"></th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <th scope="row">1</th>
+        <td>Bruno</td>
+        <td>Garcia</td>
+        <td>@ayrtonsenna</td>
         <td>
           <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
             {{role}}
@@ -257,7 +302,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <th scope="row">2</th>
+        <td>James</td>
+        <td>Crosswell</td>
+        <td>@freeclimber</td>
         <td>
           <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
             {{role}}
@@ -269,7 +317,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <th scope="row">3</th>
+        <td>Srdjan</td>
+        <td>Pajic</td>
+        <td>@paja.i.jare</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
             {{role}}
@@ -281,7 +332,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <th scope="row">4</th>
+        <td>Joao</td>
+        <td>Grassi</td>
+        <td>@callmepaulo</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
             {{role}}
@@ -303,12 +357,20 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
+        <th width="50"></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Roles</th>
+        <th width="50"></th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <th scope="row">1</th>
+        <td>Bruno</td>
+        <td>Garcia</td>
+        <td>@ayrtonsenna</td>
         <td>
           <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
             {{role}}
@@ -320,7 +382,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <th scope="row">2</th>
+        <td>James</td>
+        <td>Crosswell</td>
+        <td>@freeclimber</td>
         <td>
           <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
             {{role}}
@@ -332,7 +397,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <th scope="row">3</th>
+        <td>Srdjan</td>
+        <td>Pajic</td>
+        <td>@paja.i.jare</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
             {{role}}
@@ -344,7 +412,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <th scope="row">4</th>
+        <td>Joao</td>
+        <td>Grassi</td>
+        <td>@callmepaulo</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
             {{role}}
@@ -383,7 +454,10 @@
       </thead>
       <tbody>
       <tr>
-        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <th scope="row">1</th>
+        <td>Bruno</td>
+        <td>Garcia</td>
+        <td>@ayrtonsenna</td>
         <td>
           <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
             {{role}}
@@ -395,7 +469,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <th scope="row">2</th>
+        <td>James</td>
+        <td>Crosswell</td>
+        <td>@freeclimber</td>
         <td>
           <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
             {{role}}
@@ -407,7 +484,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <th scope="row">3</th>
+        <td>Srdjan</td>
+        <td>Pajic</td>
+        <td>@paja.i.jare</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
             {{role}}
@@ -419,7 +499,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <th scope="row">4</th>
+        <td>Joao</td>
+        <td>Grassi</td>
+        <td>@callmepaulo</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
             {{role}}
@@ -443,12 +526,20 @@
     <table class="table table-sm theme-table table-striped">
       <thead>
       <tr>
-        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
+        <th width="50"></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Roles</th>
+        <th width="50"></th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <th scope="row">1</th>
+        <td>Bruno</td>
+        <td>Garcia</td>
+        <td>@ayrtonsenna</td>
         <td>
           <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
             {{role}}
@@ -460,7 +551,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <th scope="row">2</th>
+        <td>James</td>
+        <td>Crosswell</td>
+        <td>@freeclimber</td>
         <td>
           <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
             {{role}}
@@ -472,7 +566,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <th scope="row">3</th>
+        <td>Srdjan</td>
+        <td>Pajic</td>
+        <td>@paja.i.jare</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
             {{role}}
@@ -484,7 +581,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <th scope="row">4</th>
+        <td>Joao</td>
+        <td>Grassi</td>
+        <td>@callmepaulo</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
             {{role}}
@@ -506,12 +606,20 @@
     <table class="table table-sm theme-table table-bordered table-striped">
       <thead>
       <tr>
-        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
+        <th width="50"></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Roles</th>
+        <th width="50"></th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <th scope="row">1</th>
+        <td>Bruno</td>
+        <td>Garcia</td>
+        <td>@ayrtonsenna</td>
         <td>
           <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
             {{role}}
@@ -523,7 +631,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <th scope="row">2</th>
+        <td>James</td>
+        <td>Crosswell</td>
+        <td>@freeclimber</td>
         <td>
           <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
             {{role}}
@@ -535,7 +646,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <th scope="row">3</th>
+        <td>Srdjan</td>
+        <td>Pajic</td>
+        <td>@paja.i.jare</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
             {{role}}
@@ -547,7 +661,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <th scope="row">4</th>
+        <td>Joao</td>
+        <td>Grassi</td>
+        <td>@callmepaulo</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
             {{role}}
@@ -571,12 +688,20 @@
     <table class="table table-sm table-bordered thead-default">
       <thead>
       <tr>
-        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
+        <th width="50"></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Roles</th>
+        <th width="50"></th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <th scope="row">1</th>
+        <td>Bruno</td>
+        <td>Garcia</td>
+        <td>@ayrtonsenna</td>
         <td>
           <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
             {{role}}
@@ -588,7 +713,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <th scope="row">2</th>
+        <td>James</td>
+        <td>Crosswell</td>
+        <td>@freeclimber</td>
         <td>
           <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
             {{role}}
@@ -600,7 +728,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <th scope="row">3</th>
+        <td>Srdjan</td>
+        <td>Pajic</td>
+        <td>@paja.i.jare</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
             {{role}}
@@ -612,7 +743,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <th scope="row">4</th>
+        <td>Joao</td>
+        <td>Grassi</td>
+        <td>@callmepaulo</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
             {{role}}
@@ -633,12 +767,20 @@
     <table class="table table-sm table-bordered thead-inverse">
       <thead>
       <tr>
-        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
+        <th width="50"></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Roles</th>
+        <th width="50"></th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <td scope="row">1</td><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <td scope="row">1</td>
+        <td>Bruno</td>
+        <td>Garcia</td>
+        <td>@ayrtonsenna</td>
         <td>
           <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
             {{role}}
@@ -650,7 +792,10 @@
         </td>
       </tr>
       <tr>
-        <td scope="row">2</td><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <td scope="row">2</td>
+        <td>James</td>
+        <td>Crosswell</td>
+        <td>@freeclimber</td>
         <td>
           <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
             {{role}}
@@ -662,7 +807,10 @@
         </td>
       </tr>
       <tr>
-        <td scope="row">3</td><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <td scope="row">3</td>
+        <td>Srdjan</td>
+        <td>Pajic</td>
+        <td>@paja.i.jare</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
             {{role}}
@@ -674,7 +822,10 @@
         </td>
       </tr>
       <tr>
-        <td scope="row">4</td><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <td scope="row">4</td>
+        <td>Joao</td>
+        <td>Grassi</td>
+        <td>@callmepaulo</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
             {{role}}
@@ -695,12 +846,20 @@
     <table class="table table-sm table-inverse thead-inverse">
       <thead>
       <tr>
-        <th width="50"></th><th>First Name</th><th>Last Name</th><th>Username</th><th>Roles</th><th width="50"></th>
+        <th width="50"></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Roles</th>
+        <th width="50"></th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <th scope="row">1</th><td>Bruno</td><td>Garcia</td><td>@ayrtonsenna</td>
+        <th scope="row">1</th>
+        <td>Bruno</td>
+        <td>Garcia</td>
+        <td>@ayrtonsenna</td>
         <td>
           <span *ngFor="let role of ['Driver', 'Architect']" class="badge badge-primary">
             {{role}}
@@ -712,7 +871,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">2</th><td>James</td><td>Crosswell</td><td>@freeclimber</td>
+        <th scope="row">2</th>
+        <td>James</td>
+        <td>Crosswell</td>
+        <td>@freeclimber</td>
         <td>
           <span *ngFor="let role of ['Leader', 'Skier']" class="badge badge-primary">
             {{role}}
@@ -724,7 +886,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">3</th><td>Srdjan</td><td>Pajic</td><td>@paja.i.jare</td>
+        <th scope="row">3</th>
+        <td>Srdjan</td>
+        <td>Pajic</td>
+        <td>@paja.i.jare</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Buyer']" class="badge badge-primary">
             {{role}}
@@ -736,7 +901,10 @@
         </td>
       </tr>
       <tr>
-        <th scope="row">4</th><td>Joao</td><td>Grassi</td><td>@callmepaulo</td>
+        <th scope="row">4</th>
+        <td>Joao</td>
+        <td>Grassi</td>
+        <td>@callmepaulo</td>
         <td>
           <span *ngFor="let role of ['Developer', 'Swimmer']" class="badge badge-primary">
             {{role}}
@@ -755,4 +923,4 @@
       </tfoot>
     </table>
   </tab>
- </tabset>
+</tabset>

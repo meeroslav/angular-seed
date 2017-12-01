@@ -239,10 +239,6 @@ $table-border-mixin: $table-border-width solid $table-border-color;
   display: none;
 }
 
-.datatable-header-cell .sort-btn {
-  float: right;
-}
-
 .datatable-header-cell .resize-handle {
   padding: 0 $spacer-x / 2;
 
