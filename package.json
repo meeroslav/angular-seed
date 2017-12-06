@@ -54,7 +54,7 @@
     "angular2-virtual-scroll": "~0.3.1",
     "bootstrap": "4.0.0-alpha.6",
     "core-js": "~2.5.1",
-    "ngx-bootstrap": "2.0.0-beta.8",
+    "ngx-bootstrap": "2.0.0-beta.10",
     "ngx-modal-dialog": "~1.0.0",
     "ramda": "~0.25.0",
     "reflect-metadata": "^0.1.9",
