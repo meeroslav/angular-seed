@@ -1,39 +1,49 @@
-webpackJsonp([2],{
+webpackJsonp([1],{
 
-/***/ 807:
+/***/ 810:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(77);
-var home_component_1 = __webpack_require__(845);
-var core_2 = __webpack_require__(44);
-var custom_components_module_1 = __webpack_require__(829);
 var common_1 = __webpack_require__(6);
+var router_1 = __webpack_require__(77);
+var forms_1 = __webpack_require__(16);
+var forms_component_1 = __webpack_require__(854);
+var core_2 = __webpack_require__(44);
+var ngx_bootstrap_1 = __webpack_require__(206);
+var forms_service_1 = __webpack_require__(842);
+var custom_components_module_1 = __webpack_require__(829);
 var shared_module_1 = __webpack_require__(205);
 var routes = [
-    { path: '', component: home_component_1.HomeComponent }
+    { path: '', component: forms_component_1.FormsComponent }
 ];
-var HomeModule = (function () {
-    function HomeModule() {
+var FormsPageModule = (function () {
+    function FormsPageModule() {
     }
-    HomeModule = __decorate([
+    FormsPageModule = __decorate([
         core_1.NgModule({
             imports: [
-                core_2.TranslateModule,
-                shared_module_1.SharedModule,
                 common_1.CommonModule,
-                router_1.RouterModule.forChild(routes),
-                custom_components_module_1.CustomComponentsModule
+                shared_module_1.SharedModule,
+                core_2.TranslateModule,
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
+                ngx_bootstrap_1.TabsModule,
+                ngx_bootstrap_1.TooltipModule.forRoot(),
+                ngx_bootstrap_1.TypeaheadModule.forRoot(),
+                ngx_bootstrap_1.RatingModule,
+                custom_components_module_1.CustomComponentsModule,
+                router_1.RouterModule.forChild(routes)
             ],
-            declarations: [home_component_1.HomeComponent]
+            providers: [forms_service_1.FormsService],
+            declarations: [forms_component_1.FormsComponent]
         })
-    ], HomeModule);
-    return HomeModule;
+    ], FormsPageModule);
+    return FormsPageModule;
 }());
-exports.HomeModule = HomeModule;
+exports.FormsPageModule = FormsPageModule;
 
 
 /***/ }),
@@ -2111,68 +2121,197 @@ exports.TypeaheadComponent = TypeaheadComponent;
 
 /***/ }),
 
-/***/ 845:
+/***/ 842:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var world_map_component_1 = __webpack_require__(817);
-var HomeComponent = (function () {
-    function HomeComponent(element) {
-        this.element = element;
-        this.looper = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-        this.showList = true;
-        this.showMap = true;
+var http_1 = __webpack_require__(207);
+var FormsService = (function () {
+    function FormsService(http) {
+        this.http = http;
     }
-    HomeComponent.prototype.ngOnInit = function () {
+    FormsService.prototype.getAllStarships = function (page) {
+        return this.http.get("https://swapi.co/api/planets/?page=" + page);
     };
-    HomeComponent.prototype.repositionTheDot = function (data) {
-        var dot = this.element.nativeElement.querySelector('#dot');
-        var cords = world_map_component_1.WorldMapComponent.GetPercentagePosition(data, 16.363553, 48.186928);
-        dot.style.left = cords.x + "%";
-        dot.style.top = cords.y + "%";
+    FormsService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.HttpClient])
+    ], FormsService);
+    return FormsService;
+}());
+exports.FormsService = FormsService;
+
+
+/***/ }),
+
+/***/ 854:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var forms_1 = __webpack_require__(16);
+var Observable_1 = __webpack_require__(4);
+__webpack_require__(57);
+__webpack_require__(373);
+__webpack_require__(855);
+var forms_service_1 = __webpack_require__(842);
+var FormsComponent = (function () {
+    function FormsComponent(formBuilder, service) {
+        var _this = this;
+        this.formBuilder = formBuilder;
+        this.service = service;
+        this.planetNames = [];
+        this.user = {
+            name: '',
+            favoriteNumber: null,
+            favoriteColor: '',
+            observation: '',
+            optin: null,
+            newsLetter: null
+        };
+        this.movie = {
+            firstRate: null,
+            secondRate: 2,
+            averageRating: 3
+        };
+        this.colors = [
+            { id: 1, color: 'Red' },
+            { id: 2, color: 'Blue' },
+            { id: 3, color: 'Green' }
+        ];
+        this.search = Observable_1.Observable.create(function (observer) {
+            observer.next(_this.advancedControlsForm.controls['planet'].value);
+        }).mergeMap(function (token) { return _this.getPlanetsAsObservable(token); });
+    }
+    FormsComponent.prototype.ngOnInit = function () {
+        this.page = 1;
+        this.getPlanets();
+        this.buildBasicControlsForm();
+        this.buildAdvancedControlsForm();
     };
-    HomeComponent.prototype.setView = function (type) {
-        if (type === 'LIST') {
-            this.showList = !this.showList;
+    FormsComponent.prototype.getPlanets = function () {
+        var _this = this;
+        this.service.getAllStarships(this.page).subscribe(function (response) {
+            _this.planets = response.results;
+            _this.planetNames = _this.planets.map(function (planet) { return planet.name; });
+            _this.treeData = _this.extendTree(_this.planets);
+        });
+    };
+    FormsComponent.prototype.getFilteredPlanets = function (event) {
+        function filterItem(item) {
+            var itemUsed = event.existing.indexOf(item) !== -1;
+            if (itemUsed) {
+                return false;
+            }
+            return item.toLowerCase().indexOf(event.value.toLowerCase()) !== -1;
         }
-        if (type === 'MAP') {
-            this.showMap = !this.showMap;
-        }
+        this.planetNames = this.planets.map(function (planet) { return planet.name; }).filter(filterItem);
     };
-    HomeComponent = __decorate([
+    FormsComponent.prototype.getPlanetsAsObservable = function (text$) {
+        var _this = this;
+        return text$
+            .debounceTime(200)
+            .distinctUntilChanged()
+            .map(function (term) { return term.length < 2 ? []
+            : _this.planets.filter(function (p) { return new RegExp(term, 'gi').test(p.name); }).splice(0, 10); });
+    };
+    FormsComponent.prototype.nodeSelectCallback = function (node) {
+        console.debug(node);
+    };
+    FormsComponent.prototype.buildBasicControlsForm = function () {
+        this.basicControlsForm = this.formBuilder.group({
+            name: [this.user.name, forms_1.Validators.required],
+            favoriteNumber: [this.user.favoriteNumber],
+            disabledNumber: [{ value: 3, disabled: true }],
+            favoriteColor: [this.user.favoriteColor, forms_1.Validators.required],
+            observation: [this.user.observation, forms_1.Validators.required],
+            optin: [this.user.optin, forms_1.Validators.required],
+            newsLetter: [{ value: this.user.newsLetter }]
+        });
+    };
+    FormsComponent.prototype.buildAdvancedControlsForm = function () {
+        this.advancedControlsForm = this.formBuilder.group({
+            firstRate: [this.movie.firstRate, forms_1.Validators.required],
+            secondRate: [this.movie.secondRate, forms_1.Validators.required],
+            averageRating: [{ value: this.movie.averageRating, disabled: true }],
+            planet: [null, forms_1.Validators.required],
+            planet2: [{ value: ['Orange', 'Apple', 'Kiwi'], disabled: true }],
+            category: [null, forms_1.Validators.required],
+            randomText: ['', forms_1.Validators.required]
+        });
+    };
+    FormsComponent.prototype.markerCallback = function () {
+        return function (value) {
+            var regex = new RegExp('angular-\\w*', 'g');
+            var found = regex.exec(value);
+            var results = [];
+            while (found) {
+                var result = {
+                    value: found[0],
+                    index: found.index,
+                    duplicate: results.some(function (r) { return r.value === found[0]; })
+                };
+                results.push(result);
+                found = regex.exec(value);
+            }
+            return results.map(function (res) {
+                return { start: res.index, end: res.index + res.value.length, special: res.duplicate };
+            });
+        };
+    };
+    FormsComponent.prototype.extendTree = function (planets) {
+        return planets.map(function (planet) {
+            return {
+                text: planet.name,
+                children: planet.residents.map(function (resident) {
+                    return {
+                        text: resident,
+                        id: resident
+                    };
+                })
+            };
+        });
+    };
+    FormsComponent = __decorate([
         core_1.Component({
-            selector: 'home',
-            styles: [__webpack_require__(846)],
-            template: __webpack_require__(847),
+            selector: 'forms-page',
+            template: __webpack_require__(856),
             host: {
                 'class': 'page'
             }
         }),
-        __metadata("design:paramtypes", [core_1.ElementRef])
-    ], HomeComponent);
-    return HomeComponent;
+        __metadata("design:paramtypes", [forms_1.FormBuilder, forms_service_1.FormsService])
+    ], FormsComponent);
+    return FormsComponent;
 }());
-exports.HomeComponent = HomeComponent;
+exports.FormsComponent = FormsComponent;
 
 
 /***/ }),
 
-/***/ 846:
-/***/ (function(module, exports) {
+/***/ 855:
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "#world-map {\n  width: 100%;\n  height: 100%; }\n\n#dot {\n  position: absolute; }\n"
+"use strict";
+
+var Observable_1 = __webpack_require__(4);
+var distinctUntilChanged_1 = __webpack_require__(380);
+Observable_1.Observable.prototype.distinctUntilChanged = distinctUntilChanged_1.distinctUntilChanged;
+//# sourceMappingURL=distinctUntilChanged.js.map
 
 /***/ }),
 
-/***/ 847:
+/***/ 856:
 /***/ (function(module, exports) {
 
-module.exports = "<breadcrumb pageTitle=\"Home\"></breadcrumb>\n\n<div class=\"row btn-toolbar\">\n  <div class=\"col\">\n    <div class=\"btn-group\">\n      <button type=\"button\" class=\"btn theme-icon-list\" (click)=\"setView('LIST')\"\n              [ngClass]=\"{'btn-primary': showList, 'btn-secondary': !showList }\" ></button>\n      <button type=\"button\" class=\"btn theme-icon-search\" (click)=\"setView('MAP')\"\n              [ngClass]=\"{'btn-primary': showMap, 'btn-secondary': !showMap }\" ></button>\n    </div>\n  </div>\n  <div class=\"col col-auto\">\n    <button type=\"button\" class=\"btn btn-secondary theme-icon-plus\"></button>\n  </div>\n</div>\n<div class=\"row\">\n  <div *ngIf=\"showList\" [ngClass]=\"{'col-lg-6': showMap, 'col-lg-12': !showMap }\">\n    <div class=\"row\">\n      <div [ngClass]=\"{'col-lg-6': showMap, 'col-lg-3': !showMap }\" *ngFor=\"let i of looper\">\n        <div class=\"card card-with-toolbar\">\n          <div class=\"card-content\">\n            <div class=\"card-header\">\n              <i class=\"theme-icon-data-center float-left\"></i>\n              Card with header\n            </div>\n            <div class=\"card-block\">\n              <p class=\"card-text\">Lorem ipsum dolor sit amet.</p>\n            </div>\n            <div class=\"card-footer\">\n              <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\n            </div>\n          </div>\n          <div class=\"card-toolbar\">\n            <button class=\"btn btn-secondary theme-icon-add float-right\" type=\"button\"></button>\n            <button class=\"btn btn-secondary theme-icon-remove float-right\" type=\"button\"></button>\n            <button class=\"btn btn-secondary theme-icon-edit float-right\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n      <!--<div [ngClass]=\"{'col-lg-6': showMap, 'col-lg-3': !showMap }\">-->\n        <!--<div class=\"card card-with-toolbar\">-->\n          <!--<div class=\"card-content\">-->\n            <!--<div class=\"card-header\">-->\n              <!--<i class=\"theme-icon-data-center float-left\"></i>-->\n              <!--Card with header-->\n            <!--</div>-->\n            <!--<div class=\"card-block\">-->\n              <!--<p class=\"card-text\">Lorem ipsum dolor sit amet.</p>-->\n            <!--</div>-->\n            <!--<div class=\"card-footer\">-->\n              <!--<a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>-->\n            <!--</div>-->\n          <!--</div>-->\n          <!--<div class=\"card-toolbar\">-->\n            <!--<button class=\"btn btn-secondary theme-icon-add float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-remove float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-edit float-right\" type=\"button\"></button>-->\n          <!--</div>-->\n        <!--</div>-->\n        <!--</div>-->\n      <!--<div [ngClass]=\"{'col-lg-6': showMap, 'col-lg-3': !showMap }\">-->\n        <!--<div class=\"card card-with-toolbar\">-->\n          <!--<div class=\"card-content\">-->\n            <!--<div class=\"card-header\">-->\n              <!--<i class=\"theme-icon-data-center float-left\"></i>-->\n              <!--Card with header-->\n            <!--</div>-->\n            <!--<div class=\"card-block\">-->\n              <!--<p class=\"card-text\">Lorem ipsum dolor sit amet.</p>-->\n            <!--</div>-->\n            <!--<div class=\"card-footer\">-->\n              <!--<a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>-->\n            <!--</div>-->\n          <!--</div>-->\n          <!--<div class=\"card-toolbar\">-->\n            <!--<button class=\"btn btn-secondary theme-icon-add float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-remove float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-edit float-right\" type=\"button\"></button>-->\n          <!--</div>-->\n        <!--</div>-->\n        <!--</div>-->\n      <!--<div [ngClass]=\"{'col-lg-6': showMap, 'col-lg-3': !showMap }\">-->\n        <!--<div class=\"card card-with-toolbar\">-->\n          <!--<div class=\"card-content\">-->\n            <!--<div class=\"card-header\">-->\n              <!--<i class=\"theme-icon-data-center float-left\"></i>-->\n              <!--Card with header-->\n            <!--</div>-->\n            <!--<div class=\"card-block\">-->\n              <!--<p class=\"card-text\">Lorem ipsum dolor sit amet.</p>-->\n            <!--</div>-->\n            <!--<div class=\"card-footer\">-->\n              <!--<a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>-->\n            <!--</div>-->\n          <!--</div>-->\n          <!--<div class=\"card-toolbar\">-->\n            <!--<button class=\"btn btn-secondary theme-icon-add float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-remove float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-edit float-right\" type=\"button\"></button>-->\n          <!--</div>-->\n        <!--</div>-->\n        <!--</div>-->\n      <!--<div [ngClass]=\"{'col-lg-6': showMap, 'col-lg-3': !showMap }\">-->\n        <!--<div class=\"card card-with-toolbar\">-->\n          <!--<div class=\"card-content\">-->\n            <!--<div class=\"card-header\">-->\n              <!--<i class=\"theme-icon-data-center float-left\"></i>-->\n              <!--Card with header-->\n            <!--</div>-->\n            <!--<div class=\"card-block\">-->\n              <!--<p class=\"card-text\">Lorem ipsum dolor sit amet.</p>-->\n            <!--</div>-->\n            <!--<div class=\"card-footer\">-->\n              <!--<a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>-->\n            <!--</div>-->\n          <!--</div>-->\n          <!--<div class=\"card-toolbar\">-->\n            <!--<button class=\"btn btn-secondary theme-icon-add float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-remove float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-edit float-right\" type=\"button\"></button>-->\n          <!--</div>-->\n        <!--</div>-->\n        <!--</div>-->\n      <!--<div [ngClass]=\"{'col-lg-6': showMap, 'col-lg-3': !showMap }\">-->\n        <!--<div class=\"card card-with-toolbar\">-->\n          <!--<div class=\"card-content\">-->\n            <!--<div class=\"card-header\">-->\n              <!--<i class=\"theme-icon-data-center float-left\"></i>-->\n              <!--Card with header-->\n            <!--</div>-->\n            <!--<div class=\"card-block\">-->\n              <!--<p class=\"card-text\">Lorem ipsum dolor sit amet.</p>-->\n            <!--</div>-->\n            <!--<div class=\"card-footer\">-->\n              <!--<a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>-->\n            <!--</div>-->\n          <!--</div>-->\n          <!--<div class=\"card-toolbar\">-->\n            <!--<button class=\"btn btn-secondary theme-icon-add float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-remove float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-edit float-right\" type=\"button\"></button>-->\n          <!--</div>-->\n        <!--</div>-->\n      <!--</div>-->\n    </div>\n  </div>\n  <div *ngIf=\"showMap\" [ngClass]=\"{'col-lg-6': showList, 'col-lg-12': !showList }\">\n    <div world-map id=\"world-map\" (change)=\"repositionTheDot($event)\">\n      <div class=\"badge badge-pill badge-primary\" id=\"dot\">Vienna</div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<breadcrumb pageTitle=\"Forms\" pageSubtitle=\"Park\"></breadcrumb>\n\n<tabset>\n  <tab heading=\"Basic controls\">\n    <div class=\"row\">\n      <div class=\"col-lg-6\">\n        <div class=\"card card-block\">\n          <h5>Basic form controls</h5>\n          <form [formGroup]=\"basicControlsForm\" novalidate>\n            <div class=\"row\">\n              <label class=\"col-sm-12 form-label\" for=\"name\">Name</label>\n              <div class=\"col-sm-10\">\n                <input type=\"text\" formControlName=\"name\" class=\"form-control\" id=\"name\" placeholder=\"Enter your name...\"\n                       placement=\"bottom\"\n                       [tooltip]=\"basicControlsForm.controls.name.errors && nameTT\" >\n                <ng-template #nameTT>\n                  {{'form.NAME_REQUIRED' | translate}}\n                </ng-template>\n              </div>\n            </div>\n            <div class=\"row\">\n              <label class=\"col-sm-3 form-label form-label-inline\" for=\"favoriteNumber\">Favorite number</label>\n              <div class=\"col-sm-4 col-lg-2\">\n                <input type=\"number\" formControlName=\"favoriteNumber\" class=\"form-control\" id=\"favoriteNumber\">\n              </div>\n              <label class=\"col-sm-3 form-label form-label-inline\" for=\"disabledNumber\">Disabled number</label>\n              <div class=\"col-sm-4 col-lg-2\">\n                <input type=\"number\" formControlName=\"disabledNumber\" class=\"form-control\" id=\"disabledNumber\">\n              </div>\n            </div>\n            <div class=\"row\">\n              <label class=\"col-sm-12 form-label\" for=\"favoriteColor\">Favorite color</label>\n              <div class=\"col-sm-6 col-lg-4\">\n                <select class=\"custom-select form-control\" formControlName=\"favoriteColor\" id=\"favoriteColor\" placement=\"right\"\n                        [tooltip]=\"basicControlsForm.controls.favoriteColor.errors && favoriteColorTT\" placeholder=\"Your color\">\n                  <option *ngFor=\"let color of colors\" [value]=\"color.id\">{{color.color}}</option>\n                </select>\n                <ng-template #favoriteColorTT>\n                  <div *ngIf=\"basicControlsForm.controls.favoriteColor.errors.required\">\n                    {{'form.FAVORITE_COLOR_REQUIRED' | translate}}\n                  </div>\n                </ng-template>\n              </div>\n            </div>\n            <div class=\"row\">\n              <label class=\"col-sm-12 form-label\" for=\"observation\">Observation</label>\n              <div class=\"col-sm-8\">\n                <textarea class=\"form-control\" formControlName=\"observation\" id=\"observation\" rows=\"4\"\n                          placeholder=\"Enter your observation...\" placement=\"bottom\"\n                          [tooltip]=\"basicControlsForm.controls.observation.errors && observationTT\"></textarea>\n                <ng-template #observationTT>\n                  <div *ngIf=\"basicControlsForm.controls.observation.errors.required\">\n                    This text will be super long text with lorem ipsum dolor sit amet.\n                  </div>\n                </ng-template>\n              </div>\n            </div>\n            <div class=\"row\">\n              <label class=\"col-sm-4 form-label\">Opt-in for goodies</label>\n              <div class=\"col-sm-12\">\n                <label class=\"custom-control custom-checkbox\" placement=\"bottom\"\n                       [tooltip]=\"basicControlsForm.controls.optin.errors && optinTT\">\n                  <input type=\"checkbox\" formControlName=\"optin\" class=\"custom-control-input\" value=\"\">\n                  <span class=\"custom-control-indicator\"></span>\n                  <span class=\"custom-control-description\">Remember my preference</span>\n                </label>\n                <ng-template #optinTT class=\"bollocks\">\n                  <div *ngIf=\"basicControlsForm.controls.optin.errors.required\">\n                    This text will be super long text with lorem ipsum dolor sit amet.\n                  </div>\n                </ng-template>\n              </div>\n            </div>\n            <div class=\"row\">\n              <label class=\"col-sm-4 form-label\">Receive news?</label>\n              <div class=\"col-sm-12\">\n                <label class=\"custom-control custom-radio\">\n                  <input type=\"radio\" formControlName=\"newsLetter\" class=\"custom-control-input\" value=\"Maybe\">\n                  <span class=\"custom-control-indicator\"></span>\n                  <span class=\"custom-control-description\">Maybe</span>\n                </label>\n                <label class=\"custom-control custom-radio\">\n                  <input type=\"radio\" formControlName=\"newsLetter\" class=\"custom-control-input\" value=\"No\">\n                  <span class=\"custom-control-indicator\"></span>\n                  <span class=\"custom-control-description\">Hell, no</span>\n                </label>\n                <label class=\"custom-control custom-radio\">\n                  <input type=\"radio\" formControlName=\"newsLetter\" class=\"custom-control-input\" value=\"Yes\">\n                  <span class=\"custom-control-indicator\"></span>\n                  <span class=\"custom-control-description\">Yeah</span>\n                </label>\n              </div>\n            </div>\n            <button class=\"btn btn-primary\" [disabled]=\"!basicControlsForm.valid\">Save data</button>\n          </form>\n        </div>\n      </div>\n      <div class=\"col-lg-6\">\n        <div class=\"card card-block\">\n          <h5>Form information</h5>\n          <p>Form Values</p>\n          <code>\n            {{basicControlsForm.value | json}}\n          </code>\n          <p>Form Status: {{basicControlsForm.status}}</p>\n        </div>\n      </div>\n    </div>\n  </tab>\n  <tab heading=\"Inline controls\">\n    <div class=\"row\">\n      <div class=\"col-lg-6\">\n        <div class=\"card card-block\">\n          <h5>Inline form controls</h5>\n          <form [formGroup]=\"basicControlsForm\" novalidate>\n            <div class=\"row\">\n              <div class=\"col-sm-10\">\n                <input type=\"text\" formControlName=\"name\" class=\"form-control\" id=\"name\" infield-label=\"Name\"\n                       placement=\"bottom\"\n                       [tooltip]=\"basicControlsForm.controls.favoriteNumber.errors && nameTT\" >\n                <ng-template #nameTT>\n                  <div *ngIf=\"basicControlsForm.controls.name.errors.required\">\n                    {{'form.NAME_REQUIRED' | translate}}\n                  </div>\n                </ng-template>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-sm-6 col-lg-4\">\n                <input type=\"number\" formControlName=\"favoriteNumber\" class=\"form-control\" id=\"favoriteNumber\" infield-label=\"Favorite number\">\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-sm-6 col-lg-4\">\n                <input type=\"number\" formControlName=\"disabledNumber\" class=\"form-control\" id=\"disabledNumber\" infield-label=\"Disabled number\">\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-sm-6 col-lg-6\">\n                <select class=\"custom-select form-control\" formControlName=\"favoriteColor\" id=\"favoriteColor\" placement=\"right\"\n                        [tooltip]=\"basicControlsForm.controls.favoriteColor.errors && favoriteColorTT\" infield-label=\"Favourite color\">\n                  <option *ngFor=\"let color of colors\" [value]=\"color.id\">{{color.color}}</option>\n                </select>\n                <ng-template #favoriteColorTT>\n                  <div *ngIf=\"basicControlsForm.controls.favoriteColor.errors.required\">\n                    {{'form.FAVORITE_COLOR_REQUIRED' | translate}}\n                  </div>\n                </ng-template>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-sm-10\">\n                <textarea class=\"form-control\" formControlName=\"observation\" id=\"observation\" rows=\"4\"\n                          infield-label=\"Observation\" placement=\"bottom\"\n                          [tooltip]=\"basicControlsForm.controls.observation.errors && observationTT\"></textarea>\n                <ng-template #observationTT>\n                  <div *ngIf=\"basicControlsForm.controls.observation.errors.required\">\n                    This text will be super long text with lorem ipsum dolor sit amet.\n                  </div>\n                </ng-template>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-sm-12\">\n                <label class=\"custom-control custom-checkbox\" placement=\"bottom\"\n                       [tooltip]=\"basicControlsForm.controls.optin.errors && optinTT\">\n                  <input type=\"checkbox\" formControlName=\"optin\" class=\"custom-control-input\" value=\"\">\n                  <span class=\"custom-control-indicator\"></span>\n                  <span class=\"custom-control-description\">Remember my preference</span>\n                </label>\n                <ng-template #optinTT class=\"bollocks\">\n                  <div *ngIf=\"basicControlsForm.controls.optin.errors.required\">\n                    This text will be super long text with lorem ipsum dolor sit amet.\n                  </div>\n                </ng-template>\n              </div>\n            </div>\n            <div class=\"row\">\n              <label class=\"col-sm-4 form-label\">Receive news?</label>\n              <div class=\"col-sm-6\">\n                <div class=\"row\">\n                  <div class=\"col-sm-12\">\n                    <label class=\"custom-control custom-radio\">\n                      <input type=\"radio\" formControlName=\"newsLetter\" class=\"custom-control-input\" value=\"Maybe\">\n                      <span class=\"custom-control-indicator\"></span>\n                      <span class=\"custom-control-description\">Maybe</span>\n                    </label>\n                  </div>\n                  <div class=\"col-sm-12\">\n                    <label class=\"custom-control custom-radio\">\n                      <input type=\"radio\" formControlName=\"newsLetter\" class=\"custom-control-input\" value=\"No\">\n                      <span class=\"custom-control-indicator\"></span>\n                      <span class=\"custom-control-description\">Hell, no</span>\n                    </label>\n                  </div>\n                  <div class=\"col-sm-12\">\n                    <label class=\"custom-control custom-radio\">\n                      <input type=\"radio\" formControlName=\"newsLetter\" class=\"custom-control-input\" value=\"Yes\">\n                      <span class=\"custom-control-indicator\"></span>\n                      <span class=\"custom-control-description\">Yeah</span>\n                    </label>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <button class=\"btn btn-primary\" [disabled]=\"!basicControlsForm.valid\">Save data</button>\n          </form>\n        </div>\n      </div>\n      <div class=\"col-lg-6\">\n        <div class=\"card card-block\">\n          <h5>Form information</h5>\n          <p>Form Values</p>\n          <code>\n            {{basicControlsForm.value | json}}\n          </code>\n          <p>Form Status: {{basicControlsForm.status}}</p>\n        </div>\n      </div>\n    </div>\n  </tab>\n  <tab heading=\"Advanced controls\">\n    <div class=\"row\">\n        <div class=\"col-lg-6\">\n          <div class=\"card card-block\">\n            <h5>Advanced form controls</h5>\n            <form [formGroup]=\"advancedControlsForm\" novalidate>\n              <div class=\"row\">\n                <!-- Basic ratings component -->\n                <div class=\"col-sm-8\">\n                  <label for=\"firstRate\" class=\"form-label\">Ratings</label><br/>\n                  <rating formControlName=\"firstRate\" placement=\"right\" max=\"5\" id=\"firstRate\" tabindex=\"0\"\n                          [tooltip]=\"advancedControlsForm.controls.firstRate.errors && firstRateTT\"\n                          [customTemplate]=\"starTemplate\">\n                  </rating>\n                  <ng-template #starTemplate let-index=\"index\" let-value=\"value\">\n                    <i *ngIf=\"index < value\" class=\"theme-icon-star\"></i>\n                    <i *ngIf=\"index >= value\" class=\"theme-icon-star-o\"></i>\n                  </ng-template>\n                  <ng-template #firstRateTT>\n                    <div *ngIf=\"advancedControlsForm.controls.firstRate.errors.required\">\n                      This text will be super long text with lorem ipsum dolor sit amet.\n                    </div>\n                  </ng-template>\n                </div>\n                <div class=\"col-sm-8\">\n                  <rating formControlName=\"secondRate\" max=\"5\" tabindex=\"1\"\n                          [customTemplate]=\"starTemplate\">\n                  </rating>\n                </div>\n                <div class=\"col-sm-8\">\n                  <rating formControlName=\"averageRating\" max=\"5\" readonly=\"true\" tabindex=\"2\"\n                          [customTemplate]=\"starTemplate\">\n                  </rating>\n                </div>\n\n                <!-- static typeahed not editable field -->\n                <div class=\"col-sm-12\">\n                  <label class=\"form-label\">Static typeahead non editable - Star wars planets </label>\n                </div>\n                <div class=\"col-sm-8\">\n                  <type-ahead class=\"form-control\" formControlName=\"planet\"\n                             infield-label=\"Get planet\" custom=\"true\" multi=\"true\" [suggestions]=\"planetNames\"\n                             tabindex=\"3\">\n                  </type-ahead>\n                </div>\n                <div class=\"col-sm-12\">\n                  <label class=\"form-label\">Disabled typeahead</label>\n                </div>\n                <div class=\"col-sm-8\">\n                  <type-ahead class=\"form-control\" formControlName=\"planet2\"\n                             infield-label=\"Get planet\" custom=\"true\" multi=\"true\" [suggestions]=\"planetNames\"\n                             tabindex=\"4\">\n                  </type-ahead>\n                </div>\n\n                <!-- Tree component -->\n                <div class=\"col-sm-8\">\n                  <label for=\"category\" class=\"form-label\">Tree component</label>\n                  <tree formControlName=\"category\" class=\"form-control\" id=\"category\" tabindex=\"5\"\n                        [content]=\"treeData\"\n                        [collapsed]=\"true\"\n                        (nodeClick)=\"nodeSelectCallback($event)\"></tree>\n                </div>\n\n                <!-- Highlight area -->\n                <div class=\"col-sm-8\">\n                  <label for=\"randomText\" class=\"form-label\">Highlight area - marks: angular-*</label>\n                  <highlightarea formControlName=\"randomText\" [markerCallback]=\"markerCallback()\" tabindex=\"6\"\n                    infield-label=\"Highlights\"\n                    class=\"form-control\" id=\"randomText\"></highlightarea>\n                </div>\n              </div>\n              <button class=\"btn btn-primary\" [disabled]=\"!advancedControlsForm.valid\" tabindex=\"7\">Save data</button>\n            </form>\n          </div>\n        </div>\n        <div class=\"col-lg-6\">\n          <div class=\"card\">\n            <div class=\"card-block\">\n              <h5>Form information</h5>\n              <p>Form Values</p>\n              <code>\n                {{advancedControlsForm.value | json}}\n              </code>\n              <p>Form Status: {{basicControlsForm.status}}</p>\n            </div>\n          </div>\n        </div>\n      </div>\n  </tab>\n  <tab heading=\"Control Sizing\">\n    <h5>Inputs - Column sizing</h5>\n    <div class=\"row\">\n      <div class=\"col-sm-6\">\n        <div class=\"card card-block\">\n          <div class=\"row\">\n            <div class=\"col-sm-2\">\n              <input type=\"email\" class=\"form-control\" placeholder=\"2x\">\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-sm-4\">\n              <input type=\"email\" class=\"form-control\" placeholder=\"4x\">\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-sm-6\">\n              <input type=\"email\" class=\"form-control\" placeholder=\"6x\">\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-sm-6\">\n        <div class=\"card card-block\">\n          <div class=\"row\">\n            <div class=\"col-sm-8\">\n              <input type=\"email\" class=\"form-control\" placeholder=\"8x\">\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-sm-10\">\n              <input type=\"email\" class=\"form-control\" placeholder=\"10x\">\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-sm-12\">\n              <input type=\"email\" class=\"form-control\" placeholder=\"12x\">\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <h5>Half form</h5>\n    <div class=\"row\">\n      <div class=\"col-sm-6\">\n        <div class=\"card card-block\">\n          <div class=\"row\">\n            <label class=\"col-sm-6 form-label form-label-inline\">Label for input</label>\n            <input type=\"text\" class=\"col-sm-6 form-control\" placeholder=\"Short input\">\n          </div>\n        </div>\n      </div>\n    </div>\n    <h5>Flex label form</h5>\n    <div class=\"row\">\n      <div class=\"col-sm-6\">\n        <div class=\"card card-block\">\n          <div class=\"row\">\n            <label class=\"col col-auto form-label form-label-inline\">Label for input</label>\n            <input type=\"text\" class=\"col form-control\" placeholder=\"Short input\">\n          </div>\n        </div>\n      </div>\n    </div>\n    <h5>Floating elements</h5>\n    <div class=\"card card-block\">\n      <div class=\"row\">\n        <div class=\"col-sm-1\">\n          <input type=\"email\" class=\"form-control\" placeholder=\"Short\">\n        </div>\n        <div class=\"col-sm-2\">\n          <input type=\"email\" class=\"form-control\" placeholder=\"Small\">\n        </div>\n        <div class=\"col-sm-3\">\n          <input type=\"email\" class=\"form-control\" placeholder=\"Normal\">\n        </div>\n        <div class=\"col-sm-6\">\n          <input type=\"email\" class=\"form-control\" placeholder=\"Long input\">\n        </div>\n        <div class=\"col-sm-4\">\n          <input type=\"email\" class=\"form-control\" placeholder=\"Medium input\">\n        </div>\n        <div class=\"col-sm-8\">\n          <input type=\"email\" class=\"form-control\" placeholder=\"Extra long input\">\n        </div>\n        <div class=\"col-sm-12\">\n          <input type=\"email\" class=\"form-control\" placeholder=\"Crazy long input\">\n        </div>\n      </div>\n    </div>\n  </tab>\n</tabset>\n"
 
 /***/ })
 
 });
-//# sourceMappingURL=2.98fe818f982848bab278.chunk.js.map
+//# sourceMappingURL=1.c7836ec769197f4c1e99.chunk.js.map

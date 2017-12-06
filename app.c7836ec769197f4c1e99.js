@@ -14928,7 +14928,7 @@ var shared_module_1 = __webpack_require__(205);
 var layout_module_1 = __webpack_require__(803);
 var http_1 = __webpack_require__(207);
 function HttpLoaderFactory(http) {
-    return new http_loader_1.TranslateHttpLoader(http, 'assets/locales/', "." + "bc2e93ca2752c22d3eb0947e2cee3fbc" + ".json");
+    return new http_loader_1.TranslateHttpLoader(http, 'assets/locales/', "." + "969e13673952c62c4ada0ba021ce6272" + ".json");
 }
 exports.HttpLoaderFactory = HttpLoaderFactory;
 var AppModule = (function () {
@@ -26456,4 +26456,4 @@ exports.NAVIGATION_DATA = [
 
 /***/ })
 ],[540]);
-//# sourceMappingURL=app/9.98fe818f982848bab278.chunk.js.map
+//# sourceMappingURL=app/9.c7836ec769197f4c1e99.chunk.js.map
