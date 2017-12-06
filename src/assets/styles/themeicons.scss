@@ -1,4 +1,4 @@
-﻿@font-face {
+@font-face {
     font-family: 'themeicons';
     src:
         url('./fonts/themeicons.ttf') format('truetype'),
@@ -23,6 +23,12 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.theme-icon-calendar:before {
+  content: "\e953";
+}
+.theme-icon-trash:before {
+  content: "\e9ac";
+}
 .theme-icon-more-vertical:before {
   content: "\e5d4";
 }

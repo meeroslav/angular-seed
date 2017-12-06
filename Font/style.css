@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'themeicons';
   src:
-    url('fonts/themeicons.ttf?vqmsv1') format('truetype'),
-    url('fonts/themeicons.woff?vqmsv1') format('woff'),
-    url('fonts/themeicons.svg?vqmsv1#themeicons') format('svg');
+    url('fonts/themeicons.ttf?xcn0z') format('truetype'),
+    url('fonts/themeicons.woff?xcn0z') format('woff'),
+    url('fonts/themeicons.svg?xcn0z#themeicons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,6 +23,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.theme-icon-calendar:before {
+  content: "\e953";
+}
+.theme-icon-trash:before {
+  content: "\e9ac";
+}
 .theme-icon-more-vertical:before {
   content: "\e5d4";
 }
