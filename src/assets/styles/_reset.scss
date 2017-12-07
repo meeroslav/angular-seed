@@ -27,6 +27,10 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
 body {
   line-height: 1;
 }
