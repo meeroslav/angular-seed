@@ -1,6 +1,6 @@
-webpackJsonp([2],{
+webpackJsonp([0],{
 
-/***/ 807:
+/***/ 813:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8,32 +8,43 @@ webpackJsonp([2],{
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(77);
-var home_component_1 = __webpack_require__(845);
+var miscellaneous_component_1 = __webpack_require__(864);
 var core_2 = __webpack_require__(44);
-var custom_components_module_1 = __webpack_require__(829);
 var common_1 = __webpack_require__(6);
+var ngx_modal_dialog_1 = __webpack_require__(379);
+var custom_components_module_1 = __webpack_require__(829);
+var ngx_bootstrap_1 = __webpack_require__(206);
+var forms_1 = __webpack_require__(16);
 var shared_module_1 = __webpack_require__(205);
+var custom_modal_component_1 = __webpack_require__(844);
+__webpack_require__(381);
 var routes = [
-    { path: '', component: home_component_1.HomeComponent }
+    { path: '', component: miscellaneous_component_1.MiscComponent }
 ];
-var HomeModule = (function () {
-    function HomeModule() {
+var MiscPageModule = (function () {
+    function MiscPageModule() {
     }
-    HomeModule = __decorate([
+    MiscPageModule = __decorate([
         core_1.NgModule({
             imports: [
-                core_2.TranslateModule,
-                shared_module_1.SharedModule,
                 common_1.CommonModule,
-                router_1.RouterModule.forChild(routes),
-                custom_components_module_1.CustomComponentsModule
+                core_2.TranslateModule,
+                ngx_bootstrap_1.TabsModule,
+                ngx_bootstrap_1.BsDatepickerModule.forRoot(),
+                ngx_modal_dialog_1.ModalDialogModule,
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
+                custom_components_module_1.CustomComponentsModule,
+                shared_module_1.SharedModule,
+                router_1.RouterModule.forChild(routes)
             ],
-            declarations: [home_component_1.HomeComponent]
+            declarations: [miscellaneous_component_1.MiscComponent, custom_modal_component_1.CustomModalComponent],
+            entryComponents: [custom_modal_component_1.CustomModalComponent]
         })
-    ], HomeModule);
-    return HomeModule;
+    ], MiscPageModule);
+    return MiscPageModule;
 }());
-exports.HomeModule = HomeModule;
+exports.MiscPageModule = MiscPageModule;
 
 
 /***/ }),
@@ -2111,68 +2122,249 @@ exports.TypeaheadComponent = TypeaheadComponent;
 
 /***/ }),
 
-/***/ 845:
+/***/ 844:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var world_map_component_1 = __webpack_require__(817);
-var HomeComponent = (function () {
-    function HomeComponent(element) {
-        this.element = element;
-        this.looper = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-        this.showList = true;
-        this.showMap = true;
+var CustomModalComponent = (function () {
+    function CustomModalComponent() {
     }
-    HomeComponent.prototype.ngOnInit = function () {
+    CustomModalComponent.prototype.dialogInit = function (reference, options) {
     };
-    HomeComponent.prototype.repositionTheDot = function (data) {
+    CustomModalComponent = __decorate([
+        core_1.Component({
+            selector: 'custom-modal',
+            template: "\n    This component is custom\n  "
+        })
+    ], CustomModalComponent);
+    return CustomModalComponent;
+}());
+exports.CustomModalComponent = CustomModalComponent;
+
+
+/***/ }),
+
+/***/ 864:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var Observable_1 = __webpack_require__(4);
+var ngx_modal_dialog_1 = __webpack_require__(379);
+var world_map_component_1 = __webpack_require__(817);
+var loading_indicator_service_1 = __webpack_require__(114);
+var feedback_service_1 = __webpack_require__(117);
+var custom_modal_component_1 = __webpack_require__(844);
+var tree = [
+    { text: 'Category 1', children: [{ id: '1', text: 'Sub-Category1' }, { id: '2', text: 'Sub-Category2' }] },
+    { text: 'Category 2', children: [{ id: '1', text: 'Sub-Category1' }] },
+    {
+        text: 'Category 3', children: [
+            { id: '1', text: 'Sub-Category1' },
+            { id: '2', text: 'Sub-Category2' },
+            { id: '3', text: 'Sub-Category3' }
+        ]
+    }
+];
+var MiscComponent = (function () {
+    function MiscComponent(modalDialogService, loadingIndicator, viewContainer, element, feedbackService) {
+        this.modalDialogService = modalDialogService;
+        this.loadingIndicator = loadingIndicator;
+        this.viewContainer = viewContainer;
+        this.element = element;
+        this.feedbackService = feedbackService;
+        this.dateDisabled = [];
+        this.dt = new Date();
+        (this.tomorrow = new Date()).setDate(this.tomorrow.getDate() + 1);
+        this.dateDisabled = [{ date: this.tomorrow, mode: 'day' }];
+    }
+    MiscComponent.prototype.ngOnInit = function () {
+        this.selectedTreeNode = {};
+        this.treeData = [{ text: 'Element One' }, { text: 'Element Two' }];
+        this.treeDataMultiLevel = [{
+                text: 'Element One',
+                children: [{ text: 'child 11', children: [{ text: 'child 111' }] }, { text: 'child 12' }]
+            }, {
+                text: 'Element Two',
+                children: [{ text: 'child 21' }, { text: 'child 22', children: [{ text: 'child 221' }] }]
+            }];
+        this.treeDataMultiLevelWithIcons = [{
+                text: 'Element One', icon: 'theme-icon-star',
+                children: [{
+                        text: 'child 11',
+                        icon: 'theme-icon-list',
+                        children: [{ text: 'child 111', icon: 'theme-icon-notification' }]
+                    }, { text: 'child 12' }]
+            }, {
+                text: 'Element Two', icon: 'theme-icon-question',
+                children: [{ text: 'child 21', icon: 'theme-icon-cards' }, {
+                        text: 'child 22',
+                        icon: 'theme-icon-zoom-in',
+                        children: [{ text: 'child 221' }]
+                    }]
+            }];
+    };
+    MiscComponent.prototype.openSimpleModal = function () {
+        this.modalDialogService.openDialog(this.viewContainer, {
+            title: 'Simple',
+            childComponent: ngx_modal_dialog_1.SimpleModalComponent,
+            settings: {
+                closeButtonClass: 'close theme-icon-close'
+            },
+            data: {
+                text: 'Some text content'
+            }
+        });
+    };
+    MiscComponent.prototype.openSimpleModalWithCallback = function () {
+        this.modalDialogService.openDialog(this.viewContainer, {
+            title: 'Simple',
+            childComponent: ngx_modal_dialog_1.SimpleModalComponent,
+            data: {
+                text: 'Some text content. It will close after 1 sec.'
+            },
+            settings: {
+                closeButtonClass: 'close theme-icon-close'
+            },
+            onClose: function () { return new Promise(function (resolve) {
+                setTimeout(function () {
+                    resolve();
+                }, 1000);
+            }); }
+        });
+    };
+    MiscComponent.prototype.openPromptModal = function () {
+        this.modalDialogService.openDialog(this.viewContainer, {
+            title: 'Simple',
+            childComponent: ngx_modal_dialog_1.SimpleModalComponent,
+            data: {
+                text: 'Not so simple modal dialog. Do you agree?\n(It will close on Fine but fail on close)'
+            },
+            settings: {
+                closeButtonClass: 'close theme-icon-close'
+            },
+            actionButtons: [
+                {
+                    text: 'Im fine, thanks',
+                    onAction: function () { return new Promise(function (resolve) {
+                        setTimeout(function () {
+                            resolve();
+                        }, 20);
+                    }); }
+                },
+                {
+                    text: 'Brake, please',
+                    onAction: function () { return new Promise(function (resolve, reject) {
+                        setTimeout(function () {
+                            reject();
+                        }, 20);
+                    }); }
+                }
+            ]
+        });
+    };
+    MiscComponent.prototype.openCustomModal = function () {
+        this.modalDialogService.openDialog(this.viewContainer, {
+            title: 'Custom',
+            childComponent: custom_modal_component_1.CustomModalComponent,
+            settings: {
+                closeButtonClass: 'close theme-icon-close'
+            }
+        });
+    };
+    MiscComponent.prototype.repositionTheDot = function (data) {
         var dot = this.element.nativeElement.querySelector('#dot');
         var cords = world_map_component_1.WorldMapComponent.GetPercentagePosition(data, 16.363553, 48.186928);
         dot.style.left = cords.x + "%";
         dot.style.top = cords.y + "%";
     };
-    HomeComponent.prototype.setView = function (type) {
-        if (type === 'LIST') {
-            this.showList = !this.showList;
-        }
-        if (type === 'MAP') {
-            this.showMap = !this.showMap;
+    MiscComponent.prototype.getTreeData = function () {
+        return function () {
+            return Observable_1.Observable.of(tree);
+        };
+    };
+    MiscComponent.prototype.nodeSelectCallback = function (node) {
+        if (node) {
+            this.selectedTreeNode = node;
         }
     };
-    HomeComponent = __decorate([
+    MiscComponent.prototype.showLoadingIndicator = function () {
+        var _this = this;
+        this.loadingIndicator.start();
+        setTimeout(function () {
+            _this.loadingIndicator.done();
+        }, 2000);
+    };
+    MiscComponent.prototype.fireToast = function (type) {
+        if (!type) {
+            this.feedbackService.notify({ heading: 'A random toaster', type: 'success' });
+            return;
+        }
+        if (type === 1) {
+            this.feedbackService.notify({
+                heading: 'A random toaster with action', action: {
+                    text: 'My action', callback: function () {
+                        alert('this is action');
+                    }
+                }
+            });
+        }
+        if (type === 2) {
+            this.feedbackService.notify({ heading: 'A random toaster with body', type: 'danger', body: 'This is some body text' });
+        }
+        if (type === 3) {
+            this.feedbackService.notify({
+                heading: 'A random toaster with action and body',
+                type: 'warning',
+                body: 'This is some body text',
+                action: {
+                    text: 'My action', callback: function () {
+                        alert('this is action');
+                    }
+                }
+            });
+        }
+    };
+    MiscComponent = __decorate([
         core_1.Component({
-            selector: 'home',
-            styles: [__webpack_require__(846)],
-            template: __webpack_require__(847),
+            selector: 'misc-page',
+            styles: [__webpack_require__(865)],
+            template: __webpack_require__(866),
             host: {
                 'class': 'page'
             }
         }),
-        __metadata("design:paramtypes", [core_1.ElementRef])
-    ], HomeComponent);
-    return HomeComponent;
+        __metadata("design:paramtypes", [ngx_modal_dialog_1.ModalDialogService,
+            loading_indicator_service_1.LoadingIndicatorService,
+            core_1.ViewContainerRef,
+            core_1.ElementRef,
+            feedback_service_1.FeedbackService])
+    ], MiscComponent);
+    return MiscComponent;
 }());
-exports.HomeComponent = HomeComponent;
+exports.MiscComponent = MiscComponent;
 
 
 /***/ }),
 
-/***/ 846:
+/***/ 865:
 /***/ (function(module, exports) {
 
 module.exports = "#world-map {\n  width: 100%;\n  height: 100%; }\n\n#dot {\n  position: absolute; }\n"
 
 /***/ }),
 
-/***/ 847:
+/***/ 866:
 /***/ (function(module, exports) {
 
-module.exports = "<breadcrumb pageTitle=\"Home\"></breadcrumb>\n\n<div class=\"row btn-toolbar\">\n  <div class=\"col\">\n    <div class=\"btn-group\">\n      <button type=\"button\" class=\"btn theme-icon-list\" (click)=\"setView('LIST')\"\n              [ngClass]=\"{'btn-primary': showList, 'btn-secondary': !showList }\" ></button>\n      <button type=\"button\" class=\"btn theme-icon-search\" (click)=\"setView('MAP')\"\n              [ngClass]=\"{'btn-primary': showMap, 'btn-secondary': !showMap }\" ></button>\n    </div>\n  </div>\n  <div class=\"col col-auto\">\n    <button type=\"button\" class=\"btn btn-secondary theme-icon-plus\"></button>\n  </div>\n</div>\n<div class=\"row\">\n  <div *ngIf=\"showList\" [ngClass]=\"{'col-lg-6': showMap, 'col-lg-12': !showMap }\">\n    <div class=\"row\">\n      <div [ngClass]=\"{'col-lg-6': showMap, 'col-lg-3': !showMap }\" *ngFor=\"let i of looper\">\n        <div class=\"card card-with-toolbar\">\n          <div class=\"card-content\">\n            <div class=\"card-header\">\n              <i class=\"theme-icon-data-center float-left\"></i>\n              Card with header\n            </div>\n            <div class=\"card-block\">\n              <p class=\"card-text\">Lorem ipsum dolor sit amet.</p>\n            </div>\n            <div class=\"card-footer\">\n              <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\n            </div>\n          </div>\n          <div class=\"card-toolbar\">\n            <button class=\"btn btn-secondary theme-icon-add float-right\" type=\"button\"></button>\n            <button class=\"btn btn-secondary theme-icon-remove float-right\" type=\"button\"></button>\n            <button class=\"btn btn-secondary theme-icon-edit float-right\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n      <!--<div [ngClass]=\"{'col-lg-6': showMap, 'col-lg-3': !showMap }\">-->\n        <!--<div class=\"card card-with-toolbar\">-->\n          <!--<div class=\"card-content\">-->\n            <!--<div class=\"card-header\">-->\n              <!--<i class=\"theme-icon-data-center float-left\"></i>-->\n              <!--Card with header-->\n            <!--</div>-->\n            <!--<div class=\"card-block\">-->\n              <!--<p class=\"card-text\">Lorem ipsum dolor sit amet.</p>-->\n            <!--</div>-->\n            <!--<div class=\"card-footer\">-->\n              <!--<a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>-->\n            <!--</div>-->\n          <!--</div>-->\n          <!--<div class=\"card-toolbar\">-->\n            <!--<button class=\"btn btn-secondary theme-icon-add float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-remove float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-edit float-right\" type=\"button\"></button>-->\n          <!--</div>-->\n        <!--</div>-->\n        <!--</div>-->\n      <!--<div [ngClass]=\"{'col-lg-6': showMap, 'col-lg-3': !showMap }\">-->\n        <!--<div class=\"card card-with-toolbar\">-->\n          <!--<div class=\"card-content\">-->\n            <!--<div class=\"card-header\">-->\n              <!--<i class=\"theme-icon-data-center float-left\"></i>-->\n              <!--Card with header-->\n            <!--</div>-->\n            <!--<div class=\"card-block\">-->\n              <!--<p class=\"card-text\">Lorem ipsum dolor sit amet.</p>-->\n            <!--</div>-->\n            <!--<div class=\"card-footer\">-->\n              <!--<a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>-->\n            <!--</div>-->\n          <!--</div>-->\n          <!--<div class=\"card-toolbar\">-->\n            <!--<button class=\"btn btn-secondary theme-icon-add float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-remove float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-edit float-right\" type=\"button\"></button>-->\n          <!--</div>-->\n        <!--</div>-->\n        <!--</div>-->\n      <!--<div [ngClass]=\"{'col-lg-6': showMap, 'col-lg-3': !showMap }\">-->\n        <!--<div class=\"card card-with-toolbar\">-->\n          <!--<div class=\"card-content\">-->\n            <!--<div class=\"card-header\">-->\n              <!--<i class=\"theme-icon-data-center float-left\"></i>-->\n              <!--Card with header-->\n            <!--</div>-->\n            <!--<div class=\"card-block\">-->\n              <!--<p class=\"card-text\">Lorem ipsum dolor sit amet.</p>-->\n            <!--</div>-->\n            <!--<div class=\"card-footer\">-->\n              <!--<a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>-->\n            <!--</div>-->\n          <!--</div>-->\n          <!--<div class=\"card-toolbar\">-->\n            <!--<button class=\"btn btn-secondary theme-icon-add float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-remove float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-edit float-right\" type=\"button\"></button>-->\n          <!--</div>-->\n        <!--</div>-->\n        <!--</div>-->\n      <!--<div [ngClass]=\"{'col-lg-6': showMap, 'col-lg-3': !showMap }\">-->\n        <!--<div class=\"card card-with-toolbar\">-->\n          <!--<div class=\"card-content\">-->\n            <!--<div class=\"card-header\">-->\n              <!--<i class=\"theme-icon-data-center float-left\"></i>-->\n              <!--Card with header-->\n            <!--</div>-->\n            <!--<div class=\"card-block\">-->\n              <!--<p class=\"card-text\">Lorem ipsum dolor sit amet.</p>-->\n            <!--</div>-->\n            <!--<div class=\"card-footer\">-->\n              <!--<a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>-->\n            <!--</div>-->\n          <!--</div>-->\n          <!--<div class=\"card-toolbar\">-->\n            <!--<button class=\"btn btn-secondary theme-icon-add float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-remove float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-edit float-right\" type=\"button\"></button>-->\n          <!--</div>-->\n        <!--</div>-->\n        <!--</div>-->\n      <!--<div [ngClass]=\"{'col-lg-6': showMap, 'col-lg-3': !showMap }\">-->\n        <!--<div class=\"card card-with-toolbar\">-->\n          <!--<div class=\"card-content\">-->\n            <!--<div class=\"card-header\">-->\n              <!--<i class=\"theme-icon-data-center float-left\"></i>-->\n              <!--Card with header-->\n            <!--</div>-->\n            <!--<div class=\"card-block\">-->\n              <!--<p class=\"card-text\">Lorem ipsum dolor sit amet.</p>-->\n            <!--</div>-->\n            <!--<div class=\"card-footer\">-->\n              <!--<a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>-->\n            <!--</div>-->\n          <!--</div>-->\n          <!--<div class=\"card-toolbar\">-->\n            <!--<button class=\"btn btn-secondary theme-icon-add float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-remove float-right\" type=\"button\"></button>-->\n            <!--<button class=\"btn btn-secondary theme-icon-edit float-right\" type=\"button\"></button>-->\n          <!--</div>-->\n        <!--</div>-->\n      <!--</div>-->\n    </div>\n  </div>\n  <div *ngIf=\"showMap\" [ngClass]=\"{'col-lg-6': showList, 'col-lg-12': !showList }\">\n    <div world-map id=\"world-map\" (change)=\"repositionTheDot($event)\">\n      <div class=\"badge badge-pill badge-primary\" id=\"dot\">Vienna</div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<breadcrumb pageTitle=\"Miscellaneous\" pageSubtitle=\"Park\"></breadcrumb>\n\n<tabset>\n  <tab heading=\"Modal Dialog\">\n    <button class=\"btn btn-primary\" type=\"button\" (click)=\"openSimpleModal()\">Open simple modal</button>\n    <button class=\"btn btn-warning\" type=\"button\" (click)=\"openSimpleModalWithCallback()\">Open modal with close\n      callback\n    </button>\n    <button class=\"btn btn-danger\" type=\"button\" (click)=\"openPromptModal()\">Open modal with prompt</button>\n    <button class=\"btn btn-success\" type=\"button\" (click)=\"openCustomModal()\">Open custom modal component</button>\n  </tab>\n  <tab heading=\"Map\">\n    <div world-map id=\"world-map\" (change)=\"repositionTheDot($event)\">\n      <div class=\"badge badge-pill badge-primary\" id=\"dot\">Vienna</div>\n    </div>\n  </tab>\n  <tab>\n    <ng-template tabHeading><span class=\"icon-container theme-icon-plus\">Tab</span></ng-template>\n    This tab control\n  </tab>\n  <tab heading=\"Tree\">\n    <div class=\"row\">\n      <div class=\"col-md-6 col-sm-12\">\n        <div class=\"card card-block\">\n          <h4>Flat tree</h4>\n          <tree-node *ngFor=\"let node of treeData\" [content]=\"node\" [collapsed]=\"false\"></tree-node>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-6 col-sm-12\">\n        <div class=\"card card-block\">\n          <h4>Normal tree</h4>\n          <tree-node *ngFor=\"let node of treeDataMultiLevel\" [content]=\"node\" [collapsed]=\"false\"></tree-node>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-sm-12\">\n        <div class=\"card card-block\">\n          <h4>Tree with icons</h4>\n          <tree-node *ngFor=\"let node of treeDataMultiLevelWithIcons\" [content]=\"node\" [collapsed]=\"false\"></tree-node>\n        </div>\n      </div>\n    </div>\n\n  </tab>\n  <tab heading=\"Date picker\">\n    <div class=\"row\">\n      <div class=\"col-sm-4\">\n        <div class=\"form-group has-feedback\">\n          <input type=\"text\"\n                 class=\"form-control\"\n                 [minDate]=\"minDate\"\n                 [maxDate]=\"maxDate\"\n                 #dp=\"bsDatepicker\"\n                 [bsConfig]=\"{ showWeekNumbers: false, containerClass: 'theme-blue' }\"\n                 bsDatepicker [(bsValue)]=\"dt\">\n          <i class=\"form-control-feedback theme-icon-calendar\" (click)=\"dp.show()\"></i>\n        </div>\n      </div>\n      <div class=\"col-sm-4\">\n        <div class=\"form-group has-feedback\">\n          <input type=\"text\"\n                 class=\"form-control\"\n                 [minDate]=\"minDate\"\n                 [maxDate]=\"maxDate\"\n                 #dp2=\"bsDatepicker\"\n                 bsDatepicker [(bsValue)]=\"dt\">\n          <i class=\"form-control-feedback theme-icon-calendar\" (click)=\"dp2.show()\"></i>\n        </div>\n      </div>\n      <div class=\"col-sm-4\">\n        <!--<bs-datepicker [(ngModel)]=\"dt\"></bs-datepicker>-->\n      </div>\n    </div>\n  </tab>\n  <tab heading=\"Wizard\">\n    <h4>With disabled skip forward</h4>\n    <wizard>\n      <simple-wizard-slide wizardTitle=\"First slide\">Some content on first slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Second slide\">Some content on second slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Third slide\">Some content on third slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Fourth slide\">Some content on fourth slide</simple-wizard-slide>\n    </wizard>\n    <h4>With disabled back</h4>\n    <wizard disableBack=\"true\">\n      <simple-wizard-slide wizardTitle=\"First slide\">Some content on first slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Second slide\">Some content on second slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Third slide\">Some content on third slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Fourth slide\">Some content on fourth slide</simple-wizard-slide>\n    </wizard>\n    <h4>With enabled skip forward</h4>\n    <wizard skipStep=\"true\">\n      <simple-wizard-slide wizardTitle=\"First slide\">Some content on first slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Second slide\">Some content on second slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Third slide\">Some content on third slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Fourth slide\">Some content on fourth slide</simple-wizard-slide>\n    </wizard>\n    <h4>Vertical wizard</h4>\n    <wizard skipStep=\"true\" vertical=\"true\">\n      <simple-wizard-slide wizardTitle=\"First slide\">\n        <p>Lorem ipsum dolor sit amet, at usu oblique persequeris, vero eirmod officiis pri ne. Definiebas\n          concludaturque an vix, populo insolens corrumpit ut eos, ei esse errem pertinax qui. Has at meis fuisset, mel\n          eius impedit facilis te. Mazim dicam ut per, vix meis dolore ut, et suas praesent vel. Duo an stet\n          necessitatibus, usu dicta laudem soluta ad. Mea epicurei probatus tacimates ut, nam ut stet libris possit, mel\n          ex illum mazim.</p>\n        <p>Utinam noster ex mea. Munere tritani sed eu, mel et ludus viderer quaestio. Ne errem accusamus nam, sit\n          homero partem placerat eu, stet illud eam in. Oratio tollit essent et vix, graece oporteat ne quo. Has et\n          ipsum ullum scaevola. Qui ea autem summo latine, ex vel virtute commune, ne putant audire incorrupte vim.\n          Aeterno aperiri usu ne.</p>\n        <p>Ei fugit liber disputationi usu, tamquam postulant torquatos ei sed. Elit vitae ad vis, id propriae indoctum\n          referrentur vix. Vis nostrud probatus adolescens cu, eam te corpora commune, ea facete reprimique ius. Mea\n          possit aliquip assentior ea, ceteros referrentur an per. Has an lobortis maiestatis, duo officiis voluptaria\n          constituto ei, ex eum appareat volutpat. Has mollis nostrum posidonium ea, eu postea vidisse nam.</p>\n        <p>Ea sit facilis lobortis qualisque, sed purto cibo quodsi in. Est intellegat consetetur in. Nostrud dolorem\n          salutandi sea in, sensibus assueverit ad ius. Vis cu ornatus efficiendi, odio causae incorrupte mel ex.</p>\n        <p>Pro an posse dicam evertitur, vix id semper legendos. Sea ex consequat dissentiet, ea liber verterem mandamus\n          sea. Id mea nemore impedit conclusionemque, sonet noster aliquid an sed. Usu te agam probatus, cum regione\n          labitur ne, et usu adipisci eloquentiam theophrastus. Per ne rebum nonumy persequeris, cu vis dicant tibique\n          contentiones. At nec invenire adipiscing, ut per iudico voluptaria, vel te sanctus qualisque.</p>\n      </simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Second slide\">Some content on second slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Third slide\">Some content on third slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Fourth slide\">Some content on fourth slide</simple-wizard-slide>\n    </wizard>\n  </tab>\n  <tab heading=\"Loading indicator\">\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"showLoadingIndicator()\">Turn on loading indicator for 2 sec\n    </button>\n  </tab>\n  <tab heading=\"Toasters and Feedback\">\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"fireToast()\">Fire toast</button>\n    <button type=\"button\" class=\"btn btn-success\" (click)=\"fireToast(1)\">Fire toast with action</button>\n    <button type=\"button\" class=\"btn btn-danger\" (click)=\"fireToast(2)\">Fire toast with body</button>\n    <button type=\"button\" class=\"btn btn-info\" (click)=\"fireToast(3)\">Fire toast with body and action</button>\n  </tab>\n</tabset>\n"
 
 /***/ })
 
 });
-//# sourceMappingURL=2.8c23e6780e0b45aefd1a.chunk.js.map
+//# sourceMappingURL=0.a92595216ffca1194878.chunk.js.map
