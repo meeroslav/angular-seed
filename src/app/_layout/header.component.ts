@@ -38,5 +38,9 @@ export class HeaderComponent {
 
   toggleMainMenu() {
     DispatcherService.dispatch(MAIN_MENU_TOGGLE);
+    // fire event once the animation is done
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 350);
   }
 }
