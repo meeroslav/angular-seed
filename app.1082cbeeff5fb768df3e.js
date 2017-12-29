@@ -14928,7 +14928,7 @@ var shared_module_1 = __webpack_require__(205);
 var layout_module_1 = __webpack_require__(803);
 var http_1 = __webpack_require__(207);
 function HttpLoaderFactory(http) {
-    return new http_loader_1.TranslateHttpLoader(http, 'assets/locales/', "." + "62ac8d70c2f74cdba1600030bac21b72" + ".json");
+    return new http_loader_1.TranslateHttpLoader(http, 'assets/locales/', "." + "070654e8462ef98590665f1d6342d37b" + ".json");
 }
 exports.HttpLoaderFactory = HttpLoaderFactory;
 var AppModule = (function () {
@@ -26324,6 +26324,9 @@ var HeaderComponent = (function () {
     }
     HeaderComponent.prototype.toggleMainMenu = function () {
         dispatcher_service_1.DispatcherService.dispatch(layout_interface_1.MAIN_MENU_TOGGLE);
+        setTimeout(function () {
+            window.dispatchEvent(new Event('resize'));
+        }, 350);
     };
     HeaderComponent = __decorate([
         core_1.Component({
@@ -26456,4 +26459,4 @@ exports.NAVIGATION_DATA = [
 
 /***/ })
 ],[540]);
-//# sourceMappingURL=app/9.a92595216ffca1194878.chunk.js.map
+//# sourceMappingURL=app/9.1082cbeeff5fb768df3e.chunk.js.map
