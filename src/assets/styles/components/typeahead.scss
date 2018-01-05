@@ -1,3 +1,17 @@
+@import '../variables';
+
 .dropdown-menu.show {
   display: block;
+}
+type-ahead:disabled, type-ahead[disabled=true] {
+  background-color: $input-bg-disabled;
+}
+
+type-ahead input {
+  padding: $badge-padding-y 0;
+}
+
+type-ahead.form-control {
+  padding-top: $input-padding-y - $badge-padding-y;
+  padding-bottom: $input-padding-y - $badge-padding-y;
 }

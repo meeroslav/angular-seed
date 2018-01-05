@@ -120,4 +120,6 @@ aside.main-aside {
 .link {
   text-decoration: underline;
   @include fontBold();
+  color: $brand-primary;
+  padding: 0;
 }

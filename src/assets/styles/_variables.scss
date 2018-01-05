@@ -71,7 +71,6 @@ $theme-standard-z: 10;
 $theme-side-nav-width: 14rem;
 $theme-side-nav-collapsed-width: 3rem;
 $theme-accent-width: 0.2rem;
-$theme-input-font-size: 0.875rem;
 $spacer-sm: $spacer / 2;
 
 // Rating
@@ -290,6 +289,8 @@ $alert-margin-bottom: $spacer-y;
 
 // Badge
 $badge-font-weight: normal;
+$badge-padding-x: $spacer-x / 2;
+$badge-padding-y: $spacer-y / 3;
 
 // Cards link buttons
 $card-footer-font-weight: 600;

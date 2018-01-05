@@ -32,7 +32,7 @@ $table-border-mixin: $table-border-width solid $table-border-color;
     height: unset !important;
   }
 
-  &.ngx-datatable {
+  .ngx-datatable {
     .datatable-header,
     .datatable-footer {
       overflow: visible;
@@ -40,18 +40,28 @@ $table-border-mixin: $table-border-width solid $table-border-color;
 
     .datatable-header-cell {
       overflow: visible;
+
+      & > div {
+        display: flex;
+      }
     }
   }
 
-  .datatable-body-cell, .datatable-footer {
+  .datatable-header-cell, .datatable-body-cell, .datatable-footer {
     padding: $spacer-y $spacer-x;
+  }
+
+  .datatable-body-cell {
     border-top: $table-border-mixin;
     vertical-align: top;
   }
 
-  .datatable-header-cell .sort-btn {
-    padding: $spacer-y $spacer-x;
+  .datatable-row-wrapper:last-child .datatable-body-cell {
+    border-bottom: $table-border-mixin;
+  }
 
+  .datatable-header-cell .sort-btn {
+    padding: $spacer-y $spacer-x / 2;
     color: $brand-primary;
   }
 
@@ -62,6 +72,11 @@ $table-border-mixin: $table-border-width solid $table-border-color;
     padding-bottom: $spacer-y;
     border-top: none;
     border-bottom: none;
+
+    .form-control {
+      box-shadow: none;
+      margin-bottom: 0;
+    }
   }
 
   th, td {
@@ -167,7 +182,11 @@ $table-border-mixin: $table-border-width solid $table-border-color;
 ***************************************/
 
 .table-sm {
-  .datatable-header-cell, .datatable-body-cell, .datatable-footer, .datatable-header-cell .sort-btn {
+  .datatable-header-cell, .datatable-body-cell, .datatable-footer {
+    padding: $table-sm-cell-padding;
+  }
+
+  .datatable-header-cell .sort-btn {
     padding: $table-sm-cell-padding;
   }
 }
@@ -285,4 +304,6 @@ $table-border-mixin: $table-border-width solid $table-border-color;
   margin: 0;
 }
 
-
+.card > .table {
+  margin: 0;
+}
