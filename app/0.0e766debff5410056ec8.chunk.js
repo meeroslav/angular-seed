@@ -8,16 +8,16 @@ webpackJsonp([0],{
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(77);
-var miscellaneous_component_1 = __webpack_require__(864);
+var miscellaneous_component_1 = __webpack_require__(869);
 var core_2 = __webpack_require__(44);
 var common_1 = __webpack_require__(6);
-var ngx_modal_dialog_1 = __webpack_require__(379);
+var ngx_modal_dialog_1 = __webpack_require__(375);
 var custom_components_module_1 = __webpack_require__(829);
 var ngx_bootstrap_1 = __webpack_require__(206);
 var forms_1 = __webpack_require__(16);
 var shared_module_1 = __webpack_require__(205);
-var custom_modal_component_1 = __webpack_require__(844);
-__webpack_require__(381);
+var custom_modal_component_1 = __webpack_require__(849);
+__webpack_require__(377);
 var routes = [
     { path: '', component: miscellaneous_component_1.MiscComponent }
 ];
@@ -733,7 +733,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var isNumeric_1 = __webpack_require__(827);
 var Observable_1 = __webpack_require__(4);
-var async_1 = __webpack_require__(211);
+var async_1 = __webpack_require__(210);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -853,30 +853,26 @@ var core_2 = __webpack_require__(44);
 var common_1 = __webpack_require__(6);
 var forms_1 = __webpack_require__(16);
 var ngx_bootstrap_1 = __webpack_require__(206);
-var world_map_component_1 = __webpack_require__(817);
-var tree_node_component_1 = __webpack_require__(830);
-var tree_input_component_1 = __webpack_require__(832);
-var dispatcher_module_1 = __webpack_require__(378);
-var wizard_component_1 = __webpack_require__(835);
-var simple_wizard_slide_component_1 = __webpack_require__(837);
-var wizard_slide_1 = __webpack_require__(816);
-var highlight_area_component_1 = __webpack_require__(838);
-var infield_label_directive_1 = __webpack_require__(840);
-var typeahead_component_1 = __webpack_require__(841);
+var world_map_1 = __webpack_require__(830);
+var tree_1 = __webpack_require__(831);
+var dispatcher_1 = __webpack_require__(837);
+var wizard_1 = __webpack_require__(838);
+var highlight_area_1 = __webpack_require__(842);
+var infield_label_1 = __webpack_require__(845);
 var shared_module_1 = __webpack_require__(205);
 var CustomComponentsModule = (function () {
     function CustomComponentsModule() {
     }
     CustomComponentsModule = __decorate([
         core_1.NgModule({
-            imports: [core_2.TranslateModule, common_1.CommonModule, dispatcher_module_1.DispatcherModule.forRoot(), shared_module_1.SharedModule, forms_1.FormsModule, ngx_bootstrap_1.BsDropdownModule],
+            imports: [core_2.TranslateModule, common_1.CommonModule, dispatcher_1.DispatcherModule.forRoot(), shared_module_1.SharedModule, forms_1.FormsModule, ngx_bootstrap_1.BsDropdownModule],
             declarations: [
-                world_map_component_1.WorldMapComponent, tree_node_component_1.TreeNode, tree_input_component_1.TreeInputComponent, wizard_component_1.Wizard, wizard_slide_1.WizardSlide, simple_wizard_slide_component_1.SimpleWizardSlide,
-                highlight_area_component_1.HighlightAreaComponent, infield_label_directive_1.InfieldLabelDirective, typeahead_component_1.TypeaheadComponent
+                world_map_1.WorldMapComponent, tree_1.TreeNode, tree_1.TreeInputComponent, wizard_1.Wizard, wizard_1.WizardSlide, wizard_1.SimpleWizardSlide,
+                highlight_area_1.HighlightAreaComponent, infield_label_1.InfieldLabelDirective
             ],
             exports: [
-                world_map_component_1.WorldMapComponent, tree_node_component_1.TreeNode, tree_input_component_1.TreeInputComponent, wizard_component_1.Wizard, wizard_slide_1.WizardSlide, simple_wizard_slide_component_1.SimpleWizardSlide,
-                highlight_area_component_1.HighlightAreaComponent, infield_label_directive_1.InfieldLabelDirective, typeahead_component_1.TypeaheadComponent
+                world_map_1.WorldMapComponent, tree_1.TreeNode, tree_1.TreeInputComponent, wizard_1.Wizard, wizard_1.WizardSlide, wizard_1.SimpleWizardSlide,
+                highlight_area_1.HighlightAreaComponent, infield_label_1.InfieldLabelDirective
             ]
         })
     ], CustomComponentsModule);
@@ -888,6 +884,35 @@ exports.CustomComponentsModule = CustomComponentsModule;
 /***/ }),
 
 /***/ 830:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(817));
+
+
+/***/ }),
+
+/***/ 831:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(832));
+__export(__webpack_require__(834));
+
+
+/***/ }),
+
+/***/ 832:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -933,7 +958,7 @@ var TreeNode = (function () {
     TreeNode = __decorate([
         core_1.Component({
             selector: 'tree-node',
-            styles: [__webpack_require__(831)],
+            styles: [__webpack_require__(833)],
             template: "\n    <div class=\"tree-node-header\" (click)=\"toggle()\"\n         [ngClass]=\"{'no-children': !content.children || !content.children.length}\">\n            <span *ngIf=\"content.children && content.children.length\" class=\"tree-toggler\"\n                  [ngClass]=\"{'collapsed theme-icon-chevron-right': collapsed, 'expanded theme-icon-chevron-down': !collapsed}\"></span>\n      <div>\n        {{content.text | translate}}\n      </div>\n      <span *ngIf=\"content.icon\" [ngClass]=\"content.icon\" class=\"tree-node-icon\"></span>\n    </div>\n    <div *ngIf=\"content.children && content.children.length\" class=\"tree-node-list\"\n         [ngClass]=\"{'collapsed': collapsed}\">\n      <tree-node #t *ngFor=\"let node of content.children\" [selected]=\"selected\"\n                 [content]=\"node\" (click)=\"onNodeSelect(t)\"></tree-node>\n    </div>\n  ",
             host: {
                 'class': 'tree-node',
@@ -949,14 +974,14 @@ exports.TreeNode = TreeNode;
 
 /***/ }),
 
-/***/ 831:
+/***/ 833:
 /***/ (function(module, exports) {
 
 module.exports = "@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@-webkit-keyframes fadeIn {\n  from {\n    opacity: 0; }\n  to {\n    opacity: 1; } }\n\n@keyframes fadeIn {\n  from {\n    opacity: 0; }\n  to {\n    opacity: 1; } }\n\n@-webkit-keyframes shakeCentral {\n  from, to {\n    -webkit-transform: translate3d(0, -50%, 0);\n            transform: translate3d(0, -50%, 0); }\n  10%, 30%, 50%, 70%, 90% {\n    -webkit-transform: translate3d(-2rem, -50%, 0);\n            transform: translate3d(-2rem, -50%, 0); }\n  20%, 40%, 60%, 80% {\n    -webkit-transform: translate3d(2rem, -50%, 0);\n            transform: translate3d(2rem, -50%, 0); } }\n\n@keyframes shakeCentral {\n  from, to {\n    -webkit-transform: translate3d(0, -50%, 0);\n            transform: translate3d(0, -50%, 0); }\n  10%, 30%, 50%, 70%, 90% {\n    -webkit-transform: translate3d(-2rem, -50%, 0);\n            transform: translate3d(-2rem, -50%, 0); }\n  20%, 40%, 60%, 80% {\n    -webkit-transform: translate3d(2rem, -50%, 0);\n            transform: translate3d(2rem, -50%, 0); } }\n\n@-webkit-keyframes scaleNotify {\n  from, to {\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1); }\n  20%, 60% {\n    -webkit-transform: scale(0.8, 0.8);\n            transform: scale(0.8, 0.8); }\n  40%, 80% {\n    -webkit-transform: scale(1.25, 1.25);\n            transform: scale(1.25, 1.25); } }\n\n@keyframes scaleNotify {\n  from, to {\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1); }\n  20%, 60% {\n    -webkit-transform: scale(0.8, 0.8);\n            transform: scale(0.8, 0.8); }\n  40%, 80% {\n    -webkit-transform: scale(1.25, 1.25);\n            transform: scale(1.25, 1.25); } }\n\n/********************************\n    Custom theme values\n*********************************/\n/********************************************\n*********************************************\n          Override bootstrap values\n*********************************************\n*********************************************/\n:host {\n  display: block; }\n  :host.selected > .tree-node-header {\n    font-family: 'OpenSans-Bold', sans-serif; }\n\n.tree-node-header {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  cursor: pointer; }\n  .tree-node-header div {\n    -webkit-box-flex: 1;\n        -ms-flex: auto;\n            flex: auto;\n    line-height: 1.3; }\n  .tree-node-header.no-children > div {\n    padding-left: 1.25rem; }\n\n.tree-node-list {\n  overflow: hidden;\n  padding-left: 0.625rem;\n  height: auto; }\n  .tree-node-list .tree-node {\n    position: relative;\n    border-left: 1px dotted rgba(0, 0, 0, 0.17); }\n    .tree-node-list .tree-node:last-child {\n      border-left: 0; }\n      .tree-node-list .tree-node:last-child .tree-node-header:before {\n        border-left: 1px dotted rgba(0, 0, 0, 0.17); }\n  .tree-node-list .tree-node-header:before {\n    content: '';\n    position: absolute;\n    border-bottom: 1px dotted rgba(0, 0, 0, 0.17);\n    width: 0.20833rem;\n    height: 0.6875rem;\n    top: 0;\n    left: 0; }\n  .tree-node-list .tree-node-header.no-children:before {\n    width: 0.9375rem; }\n\n.tree-node-list.collapsed {\n  height: 0; }\n\n.tree-toggler {\n  padding: 0.15625rem 0.3125rem;\n  font-size: 0.76562rem;\n  width: 1.25rem; }\n  .tree-toggler.expanded {\n    font-size: 1rem;\n    padding: 0 0.15625rem;\n    text-align: center; }\n"
 
 /***/ }),
 
-/***/ 832:
+/***/ 834:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -964,7 +989,7 @@ module.exports = "@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rota
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(16);
-var tree_util_1 = __webpack_require__(833);
+var tree_util_1 = __webpack_require__(835);
 var TreeInputComponent = (function () {
     function TreeInputComponent(elementRef) {
         this.elementRef = elementRef;
@@ -1065,7 +1090,7 @@ var TreeInputComponent = (function () {
     TreeInputComponent = TreeInputComponent_1 = __decorate([
         core_1.Component({
             selector: 'tree',
-            styles: [__webpack_require__(834)],
+            styles: [__webpack_require__(836)],
             template: "\n    <tree-node *ngFor=\"let node of _displayedNodes\"\n               [content]=\"node\"\n               [collapsed]=\"collapsed && !_isDisabled\"\n               [selected]=\"selectedNode\"\n               (nodeClick)=\"onNodeClick($event)\"></tree-node>\n  ",
             providers: [{
                     provide: forms_1.NG_VALUE_ACCESSOR,
@@ -1084,13 +1109,13 @@ exports.TreeInputComponent = TreeInputComponent;
 
 /***/ }),
 
-/***/ 833:
+/***/ 835:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var R = __webpack_require__(377);
+var R = __webpack_require__(373);
 function findPathById(root, id) {
     if (root === null) {
         return [];
@@ -1137,14 +1162,45 @@ exports.pathOnly = pathOnly;
 
 /***/ }),
 
-/***/ 834:
+/***/ 836:
 /***/ (function(module, exports) {
 
 module.exports = "/********************************\n    Custom theme values\n*********************************/\n/********************************************\n*********************************************\n          Override bootstrap values\n*********************************************\n*********************************************/\n:host {\n  display: block;\n  height: auto; }\n\n.disabled:host {\n  background-color: #e3e3e3; }\n"
 
 /***/ }),
 
-/***/ 835:
+/***/ 837:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(374));
+__export(__webpack_require__(117));
+
+
+/***/ }),
+
+/***/ 838:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(839));
+__export(__webpack_require__(841));
+__export(__webpack_require__(816));
+
+
+/***/ }),
+
+/***/ 839:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1250,7 +1306,7 @@ var Wizard = (function () {
         core_1.Component({
             selector: 'wizard',
             template: "\n    <ul *ngIf=\"slides.length > 1\" class=\"wizard-nav\">\n      <li class=\"wizard-nav-item\" *ngFor=\"let slide of slides; let i = index\">\n        <button class=\"wizard-nav-link\" type=\"button\"\n                [class.active]=\"i <= _selectedIndex\" [class.current]=\"i == _selectedIndex\"\n                (click)=\"selectSlide(slide, i)\"\n                [attr.disabled]=\"(!skipStep && i > _selectedIndex) || (!skipStep && !enabledBack && i < _selectedIndex)  ? true : null\">\n          {{ slide.wizardTitle }}\n        </button>\n      </li>\n    </ul>\n    <div class=\"wizard-content\">\n      <ng-content></ng-content>\n    </div>\n    <div class=\"wizard-footer\">\n      <button type=\"button\" [ngClass]=\"previousButtonClass\"\n              *ngIf=\"_selectedIndex > 0 && enabledBack\" (click)=\"previousSlide()\">\n        {{'PREVIOUS' | translate}}\n      </button>\n      <button *ngFor=\"let customButton of _selectedSlide.customButtons\" type=\"button\" [ngClass]=\"customButton.className\"\n              (click)=\"customButton.callback()\">\n        {{customButton.caption | translate}}\n      </button>\n      <button type=\"button\" [ngClass]=\"[nextButtonClass, _nextIcon]\" (click)=\"nextSlide()\"\n              [disabled]=\"_selectedSlide.nextEnabled && !_nextInProgress ? null : true\">\n        {{_selectedSlide.nextText | translate}}\n      </button>\n    </div>\n  ",
-            styles: [__webpack_require__(836)],
+            styles: [__webpack_require__(840)],
             host: {
                 '[class.vertical]': 'vertical'
             }
@@ -1264,14 +1320,14 @@ exports.Wizard = Wizard;
 
 /***/ }),
 
-/***/ 836:
+/***/ 840:
 /***/ (function(module, exports) {
 
 module.exports = "/********************************\n    Custom theme values\n*********************************/\n/********************************************\n*********************************************\n          Override bootstrap values\n*********************************************\n*********************************************/\n:host {\n  display: block; }\n  :host:not(.integrated) {\n    margin-bottom: 0.625rem;\n    background: #ffffff;\n    -webkit-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);\n            box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }\n    :host:not(.integrated) .wizard-content, :host:not(.integrated) .wizard-footer {\n      padding-left: 0.625rem;\n      padding-right: 0.625rem; }\n    :host:not(.integrated) .wizard-footer {\n      padding-top: 0.625rem;\n      padding-bottom: 0.625rem;\n      border-width: 0.2rem 0 0 0;\n      border-style: solid;\n      border-color: rgba(0, 0, 0, 0.17); }\n  :host .wizard-content {\n    padding: 0.625rem 0; }\n  :host .wizard-nav {\n    display: block;\n    border-width: 0 0 0.2rem 0;\n    border-style: solid;\n    margin-bottom: 0;\n    border-color: rgba(0, 0, 0, 0.17);\n    background: #efefef; }\n    :host .wizard-nav:after {\n      display: block;\n      content: \"\";\n      clear: both; }\n  :host .wizard-footer {\n    clear: both; }\n    :host .wizard-footer:after {\n      display: block;\n      content: \"\";\n      clear: both; }\n  :host .wizard-nav-item {\n    float: left; }\n  :host.vertical {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n        flex-wrap: wrap; }\n    :host.vertical .wizard-content {\n      -webkit-box-flex: 1;\n          -ms-flex: 1 0;\n              flex: 1 0; }\n    :host.vertical .wizard-footer {\n      -webkit-box-flex: 1;\n          -ms-flex: 1 0 100%;\n              flex: 1 0 100%; }\n    :host.vertical .wizard-nav {\n      -webkit-box-flex: 0;\n          -ms-flex: 0 1 10rem;\n              flex: 0 1 10rem;\n      border-width: 0 0.2rem 0 0;\n      margin-right: 0.625rem;\n      margin-bottom: 0; }\n    :host.vertical .wizard-nav-item {\n      float: none;\n      margin-right: -0.2rem;\n      min-width: 10rem; }\n    :host.vertical .wizard-nav-link {\n      border-width: 0 0.2rem 0 0;\n      margin-bottom: 0;\n      width: 100%;\n      text-align: right;\n      padding: 0.9375rem 1.25rem; }\n      :host.vertical .wizard-nav-link:before {\n        left: auto;\n        right: -0.425rem;\n        top: 50%;\n        bottom: auto;\n        margin-top: -0.425rem;\n        margin-left: 0; }\n      :host.vertical .wizard-nav-link.current:after {\n        border-width: 0 0.2rem 0 0;\n        top: 0;\n        bottom: auto;\n        left: auto;\n        right: -0.2rem;\n        width: 0.2rem;\n        height: 50%; }\n  :host .wizard-nav-link {\n    padding: 0.625rem 1.25rem;\n    border-width: 0 0 0.2rem 0;\n    border-style: solid;\n    border-color: rgba(0, 0, 0, 0.17);\n    position: relative;\n    margin-bottom: -0.2rem;\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box; }\n    :host .wizard-nav-link:before {\n      bottom: -0.425rem;\n      margin-left: -0.3125rem;\n      left: 50%;\n      width: 0.825rem;\n      height: 0.825rem;\n      border-width: 0.2rem;\n      border-style: solid;\n      border-color: inherit;\n      -webkit-box-shadow: inset 0 0 0 0.4rem #ffffff;\n              box-shadow: inset 0 0 0 0.4rem #ffffff;\n      border-radius: 50%;\n      position: absolute;\n      content: \"\"; }\n    :host .wizard-nav-link.active:not(.current) {\n      border-color: #2196f3; }\n    :host .wizard-nav-link.active::before {\n      border-color: #2196f3; }\n    :host .wizard-nav-link.current {\n      color: #2196f3; }\n      :host .wizard-nav-link.current:after {\n        position: absolute;\n        content: \"\";\n        left: 0;\n        bottom: -0.2rem;\n        width: 50%;\n        height: 0.2rem;\n        border-width: 0 0 0.2rem 0;\n        border-style: solid;\n        border-color: #2196f3; }\n      :host .wizard-nav-link.current:before {\n        border-width: 0.4rem;\n        width: 0;\n        height: 0; }\n    :host .wizard-nav-link[disabled] {\n      color: #cccccc;\n      background: none; }\n"
 
 /***/ }),
 
-/***/ 837:
+/***/ 841:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1302,7 +1358,21 @@ exports.SimpleWizardSlide = SimpleWizardSlide;
 
 /***/ }),
 
-/***/ 838:
+/***/ 842:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(843));
+
+
+/***/ }),
+
+/***/ 843:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1570,7 +1640,7 @@ var HighlightAreaComponent = (function () {
     HighlightAreaComponent = HighlightAreaComponent_1 = __decorate([
         core_1.Component({
             selector: 'highlightarea',
-            styles: [__webpack_require__(839)],
+            styles: [__webpack_require__(844)],
             template: '',
             providers: [{
                     provide: forms_1.NG_VALUE_ACCESSOR,
@@ -1594,14 +1664,28 @@ exports.HighlightAreaComponent = HighlightAreaComponent;
 
 /***/ }),
 
-/***/ 839:
+/***/ 844:
 /***/ (function(module, exports) {
 
 module.exports = ":host {\n  resize: vertical;\n  overflow: auto;\n  height: 4rem; }\n"
 
 /***/ }),
 
-/***/ 840:
+/***/ 845:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(846));
+
+
+/***/ }),
+
+/***/ 846:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1673,456 +1757,7 @@ exports.InfieldLabelDirective = InfieldLabelDirective;
 
 /***/ }),
 
-/***/ 841:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(0);
-var Observable_1 = __webpack_require__(4);
-__webpack_require__(375);
-__webpack_require__(373);
-__webpack_require__(376);
-__webpack_require__(374);
-__webpack_require__(210);
-__webpack_require__(56);
-var forms_1 = __webpack_require__(16);
-var KEY_UP = 'keyup';
-var KEY_DOWN = 'keydown';
-var ARROW_DOWN = 'ArrowDown';
-var ARROW_UP = 'ArrowUp';
-var ESCAPE = 'Escape';
-var ENTER = 'Enter';
-var BACKSPACE = 'Backspace';
-var sanitizeString = function (text) {
-    return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
-};
-var TypeaheadComponent = (function () {
-    function TypeaheadComponent(elementRef, renderer) {
-        this.elementRef = elementRef;
-        this.renderer = renderer;
-        this.suggestions = [];
-        this.nameField = 'name';
-        this.idField = 'id';
-        this.custom = true;
-        this.multi = false;
-        this.complex = false;
-        this.valueChange = new core_1.EventEmitter();
-        this.isDisabled = false;
-        this.isExpanded = false;
-        this.dropDownClass = '';
-        this.matches = [];
-        this.allMatches = [];
-        this.values = [];
-        this._settings = {
-            suggestionsLimit: 10,
-            typeDelay: 50,
-            noMatchesText: 'No matches found',
-            tagClass: 'btn badge badge-primary',
-            tagRemoveIconClass: 'close',
-            dropdownMenuClass: 'dropdown-menu',
-            dropdownMenuExpandedClass: 'dropdown-menu show',
-            dropdownMenuItemClass: 'dropdown-item',
-            dropdownToggleClass: 'dropdown-toggle'
-        };
-        this._inputChangeEvent = new core_1.EventEmitter();
-        this._removeInProgress = false;
-        this.onChange = function (_) { };
-        this.onTouched = function () { };
-    }
-    TypeaheadComponent_1 = TypeaheadComponent;
-    Object.defineProperty(TypeaheadComponent.prototype, "settings", {
-        get: function () {
-            return this._settings;
-        },
-        set: function (value) {
-            Object.assign(this._settings, value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TypeaheadComponent.prototype, "multiBinding", {
-        get: function () { return this.multi; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TypeaheadComponent.prototype, "disabledBinding", {
-        get: function () { return this.isDisabled || null; },
-        enumerable: true,
-        configurable: true
-    });
-    TypeaheadComponent.prototype.focusOutHandler = function (event) {
-        if (this.isDisabled) {
-            return;
-        }
-        if (event.relatedTarget) {
-            if (event.relatedTarget === this.elementRef.nativeElement ||
-                event.relatedTarget.parentElement === this.elementRef.nativeElement ||
-                event.relatedTarget.parentElement.parentElement === this.elementRef.nativeElement) {
-                if (event.target === this._input && event.relatedTarget === this.elementRef.nativeElement) {
-                    this._input.focus();
-                }
-                return;
-            }
-        }
-        this.toggleDropdown(false);
-        if (this.multi) {
-            this._input.value = null;
-            this._inputChangeEvent.emit('');
-            return;
-        }
-        if (!this.custom || this.complex) {
-            this._input.value = this._input.value.trim();
-            if (!this.hasMatch(this._input.value)) {
-                this._input.value = this.value = null;
-                this._inputChangeEvent.emit('');
-            }
-        }
-    };
-    TypeaheadComponent.prototype.ngOnInit = function () {
-        this.suggestionsInit(this.suggestions instanceof Observable_1.Observable ?
-            this.suggestions.mergeMap(function (value) {
-                return Observable_1.Observable.from(value);
-            }) :
-            Observable_1.Observable.from(this.suggestions));
-        this.toggleDropdown(false);
-        this._inputChangeEvent.emit('');
-    };
-    TypeaheadComponent.prototype.ngOnChanges = function (changes) {
-        if (changes.suggestions && !changes.suggestions.firstChange) {
-            this.allMatchesSubscription.unsubscribe();
-            this.matchesSubscription.unsubscribe();
-            this.ngOnInit();
-        }
-    };
-    TypeaheadComponent.prototype.suggestionsInit = function (suggestion$) {
-        var _this = this;
-        this.matchesSubscription = this._inputChangeEvent
-            .debounceTime(this.settings.typeDelay)
-            .mergeMap(function (value) {
-            var normalizedValue = sanitizeString(value);
-            var filteredSuggestions$ = suggestion$.filter(_this.filterSuggestion(normalizedValue));
-            return _this.settings.suggestionsLimit ?
-                filteredSuggestions$.take(_this.settings.suggestionsLimit).toArray() :
-                filteredSuggestions$.toArray();
-        })
-            .subscribe(function (matches) {
-            _this.matches = matches;
-        });
-        this.allMatchesSubscription = suggestion$.toArray().subscribe(function (suggestions) {
-            _this.allMatches = suggestions;
-        });
-    };
-    TypeaheadComponent.prototype.ngAfterViewInit = function () {
-        this._input = this.elementRef.nativeElement.querySelector('input');
-        if (!this.multi && this._value) {
-            this._input.value = this.complex ?
-                this.extractNameFromMatches(this._value) :
-                this._value;
-        }
-    };
-    TypeaheadComponent.prototype.ngOnDestroy = function () {
-        this.allMatchesSubscription.unsubscribe();
-        this.matchesSubscription.unsubscribe();
-    };
-    Object.defineProperty(TypeaheadComponent.prototype, "value", {
-        get: function () {
-            return this._value;
-        },
-        set: function (value) {
-            if (value === this._value) {
-                return;
-            }
-            this.writeValue(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    TypeaheadComponent.prototype.handleInput = function (event) {
-        var target = event.target;
-        if ([KEY_DOWN, KEY_UP].includes(event.type) && event.key === ESCAPE) {
-            this.toggleDropdown(false);
-            return;
-        }
-        if (event.type === KEY_DOWN && event.key === ARROW_DOWN && this.matches.length > 0) {
-            var button = this.elementRef.nativeElement.querySelector('button[role="menuitem"]:first-child');
-            button.focus();
-            return;
-        }
-        this.toggleDropdown(true);
-        if (this.multi || this.complex) {
-            if (event.type === KEY_UP && event.key === ENTER && target.value !== '') {
-                this.setValue(target.value);
-                this.toggleDropdown(false);
-            }
-            if ([KEY_DOWN, KEY_UP].includes(event.type) && event.key === BACKSPACE) {
-                if (target.value === '') {
-                    if (event.type === KEY_DOWN) {
-                        this._removeInProgress = true;
-                    }
-                    else if (this._removeInProgress) {
-                        if (this.multi && this.values.length) {
-                            this._removeInProgress = false;
-                            this.removeValue(this.values[this.values.length - 1]);
-                        }
-                    }
-                }
-                else if (this.complex && !this.multi && event.type === KEY_DOWN) {
-                    this.value = null;
-                }
-            }
-        }
-        else if (event.type === KEY_UP) {
-            this.setValue(target.value);
-        }
-        this._inputChangeEvent.emit(target.value);
-    };
-    TypeaheadComponent.prototype.handleButton = function (event, value) {
-        var target = event.target;
-        if (event instanceof MouseEvent) {
-            this.setValue(value, true);
-            this._inputChangeEvent.emit(this._input.value);
-            return;
-        }
-        if (event.type === KEY_UP) {
-            if (event.key === ENTER) {
-                this.setValue(value);
-                this._inputChangeEvent.emit(this._input.value);
-                this.toggleDropdown(false);
-            }
-            if (event.key === ESCAPE) {
-                this._input.focus();
-                this.toggleDropdown(false);
-            }
-        }
-        else {
-            if (event.key === ARROW_DOWN && target.nextElementSibling) {
-                target.nextElementSibling.focus();
-            }
-            if (event.key === ARROW_UP && target.previousElementSibling) {
-                target.previousElementSibling.focus();
-            }
-            target.parentNode.scrollTop = target.offsetTop;
-        }
-    };
-    TypeaheadComponent.prototype.setValue = function (value, collapseMenu) {
-        if ((!this.custom || this.complex) && !this.hasMatch(value)) {
-            return;
-        }
-        if (this.multi) {
-            if (!this.values.includes(value)) {
-                this.value = this.values.concat(value).map(this.extractIdentifier.bind(this));
-                this._input.value = '';
-            }
-        }
-        else {
-            this.value = this.extractIdentifier(value);
-            this._input.value = this.extractName(value);
-        }
-        if (collapseMenu) {
-            this.toggleDropdown(false);
-        }
-        this._input.focus();
-    };
-    TypeaheadComponent.prototype.removeValue = function (value) {
-        var index = this.values.indexOf(value);
-        if (index !== -1) {
-            if (index === this.values.length - 1) {
-                this.value = this.values.slice(0, -1).map(this.extractIdentifier.bind(this));
-            }
-            else {
-                this.value = this.values.slice(0, index).concat(this.values.slice(index + 1)).map(this.extractIdentifier.bind(this));
-            }
-            this._input.focus();
-        }
-    };
-    TypeaheadComponent.prototype.toggleDropdown = function (value) {
-        if (value === undefined) {
-            this._input.focus();
-            this.isExpanded = !this.isExpanded;
-        }
-        else {
-            this.isExpanded = value;
-        }
-        this.dropDownClass = this.isExpanded ? this.settings.dropdownMenuExpandedClass : this.settings.dropdownMenuClass;
-    };
-    TypeaheadComponent.prototype.writeValue = function (value) {
-        this._value = value;
-        this.elementRef.nativeElement.value = value;
-        if (this.multi) {
-            if (this.complex) {
-                this.values = value ? value.map(this.extractObjectFromId.bind(this)) : [];
-            }
-            else {
-                this.values = value || [];
-            }
-        }
-        if ('createEvent' in document) {
-            var event_1 = document.createEvent('HTMLEvents');
-            event_1.initEvent('change', false, true);
-            this.elementRef.nativeElement.dispatchEvent(event_1);
-        }
-        else {
-            this.elementRef.nativeElement.fireEvent('onchange');
-        }
-        this.onChange(value);
-    };
-    TypeaheadComponent.prototype.setDisabledState = function (value) {
-        this.isDisabled = value;
-        this.renderer.setProperty(this.elementRef.nativeElement, 'disabled', value);
-    };
-    TypeaheadComponent.prototype.registerOnChange = function (fn) {
-        this.onChange = fn;
-    };
-    TypeaheadComponent.prototype.registerOnTouched = function (fn) {
-        this.onTouched = fn;
-    };
-    TypeaheadComponent.prototype.filterSuggestion = function (filter) {
-        var _this = this;
-        return function (value) {
-            if (_this.values.includes(value)) {
-                return false;
-            }
-            if (typeof value === 'string') {
-                return sanitizeString(value).includes(filter);
-            }
-            else {
-                return sanitizeString(value[_this.nameField]).includes(filter) && !_this.values.includes(value);
-            }
-        };
-    };
-    TypeaheadComponent.prototype.hasMatch = function (value) {
-        var sanitizedValue = typeof value === 'string' ? sanitizeString(value) : null;
-        for (var key in this.matches) {
-            if (typeof this.matches[key] === 'string') {
-                var sanitizedMatch = sanitizeString(this.matches[key]);
-                if (sanitizedMatch === sanitizedValue) {
-                    return true;
-                }
-            }
-            else {
-                if (typeof value === 'string') {
-                    var sanitizedMatch = sanitizeString(this.matches[key][this.nameField]);
-                    if (sanitizedMatch === sanitizedValue) {
-                        return true;
-                    }
-                }
-                else {
-                    if (this.matches[key] === value) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    };
-    TypeaheadComponent.prototype.extractNameFromMatches = function (id) {
-        var match = this.extractObjectFromId(id);
-        if (match) {
-            return match[this.nameField];
-        }
-        else {
-            return '';
-        }
-    };
-    TypeaheadComponent.prototype.extractObjectFromId = function (id) {
-        for (var key in this.allMatches) {
-            if (this.allMatches[key][this.idField] === id) {
-                return this.allMatches[key];
-            }
-        }
-        return null;
-    };
-    TypeaheadComponent.prototype.extractIdentifier = function (value) {
-        var _this = this;
-        if (this.complex) {
-            if (typeof value === 'string') {
-                var sanitizedValue_1 = sanitizeString(value);
-                var match = this.allMatches.find(function (item) { return sanitizeString(item[_this.nameField]) === sanitizedValue_1; });
-                if (match) {
-                    return match[this.idField];
-                }
-                throw Error('Critical error: Match ID could not be extracted.');
-            }
-            return value[this.idField];
-        }
-        return value;
-    };
-    TypeaheadComponent.prototype.extractName = function (value) {
-        if (this.complex && typeof value !== 'string') {
-            return value[this.nameField];
-        }
-        return value;
-    };
-    __decorate([
-        core_1.Input(),
-        __metadata("design:type", Object)
-    ], TypeaheadComponent.prototype, "suggestions", void 0);
-    __decorate([
-        core_1.Input(),
-        __metadata("design:type", Object)
-    ], TypeaheadComponent.prototype, "nameField", void 0);
-    __decorate([
-        core_1.Input(),
-        __metadata("design:type", Object)
-    ], TypeaheadComponent.prototype, "idField", void 0);
-    __decorate([
-        core_1.Input(),
-        __metadata("design:type", Object)
-    ], TypeaheadComponent.prototype, "custom", void 0);
-    __decorate([
-        core_1.Input(),
-        __metadata("design:type", Object)
-    ], TypeaheadComponent.prototype, "multi", void 0);
-    __decorate([
-        core_1.Input(),
-        __metadata("design:type", Object)
-    ], TypeaheadComponent.prototype, "complex", void 0);
-    __decorate([
-        core_1.Input(),
-        __metadata("design:type", Object),
-        __metadata("design:paramtypes", [Object])
-    ], TypeaheadComponent.prototype, "settings", null);
-    __decorate([
-        core_1.HostBinding('class.multi'),
-        __metadata("design:type", Object),
-        __metadata("design:paramtypes", [])
-    ], TypeaheadComponent.prototype, "multiBinding", null);
-    __decorate([
-        core_1.HostBinding('attr.disabled'),
-        __metadata("design:type", Object),
-        __metadata("design:paramtypes", [])
-    ], TypeaheadComponent.prototype, "disabledBinding", null);
-    __decorate([
-        core_1.Output(),
-        __metadata("design:type", Object)
-    ], TypeaheadComponent.prototype, "valueChange", void 0);
-    __decorate([
-        core_1.HostListener('focusout', ['$event']),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [Object]),
-        __metadata("design:returntype", void 0)
-    ], TypeaheadComponent.prototype, "focusOutHandler", null);
-    TypeaheadComponent = TypeaheadComponent_1 = __decorate([
-        core_1.Component({
-            selector: 'type-ahead',
-            styles: ["\n    :host {\n      height: auto;\n      min-height: 1em;\n      -webkit-appearance: textfield;\n      -webkit-rtl-ordering: logical;\n      user-select: text;\n      cursor: auto;\n      position: relative;\n      display: flex;\n      flex-wrap: wrap;\n    }\n    :host[disabled] {\n      cursor: not-allowed;\n    }\n    :host[disabled] input {\n      background-color: inherit;\n    }\n    :host .typeahead-badge {\n      white-space: nowrap;\n      cursor: pointer;\n    }\n    :host input {\n      border: none;\n      outline: 0;\n      line-height: 1;\n      flex: 1;\n    }\n    :host [role=\"menuitem\"] {\n      cursor: pointer;\n    }\n    :host [role=\"menuitem\"][disabled] {\n      cursor: not-allowed;\n    }\n  "],
-            template: "\n    <span [ngClass]=\"settings.tagClass\" class=\"typeahead-badge\" *ngFor=\"let value of values\">\n      {{ complex ? value[nameField] : value }}\n      <span *ngIf=\"!isDisabled\" aria-hidden=\"true\" (click)=\"removeValue(value)\"\n            [ngClass]=\"settings.tagRemoveIconClass\">\u00D7</span>\n    </span>\n    <input *ngIf=\"!isDisabled || !multi || !values.length\" [disabled]=\"isDisabled || null\"\n           type=\"text\" autocomplete=\"off\"\n           (keyup)=\"handleInput($event)\"\n           (keydown)=\"handleInput($event)\"\n           (paste)=\"handleInput($event)\"\n           (click)=\"toggleDropdown(true)\"/>\n    <i *ngIf=\"!isDisabled\" (click)=\"toggleDropdown()\" tabindex=\"-1\"\n       [ngClass]=\"settings.dropdownToggleClass\"></i>\n    <div role=\"menu\" [attr.class]=\"dropDownClass\">\n      <button *ngFor=\"let match of matches\" type=\"button\" role=\"menuitem\" tabindex=\"-1\"\n              [ngClass]=\"settings.dropdownMenuItemClass\"\n              (mouseup)=\"handleButton($event, match)\"\n              (keydown)=\"handleButton($event, match)\"\n              (keyup)=\"handleButton($event, match)\">\n        {{ complex ? match[nameField] : match }}\n      </button>\n      <div role=\"menuitem\" *ngIf=\"!matches.length\" tabindex=\"-1\" aria-disabled=\"true\" disabled=\"true\"\n           [ngClass]=\"settings.dropdownMenuItemClass\">\n        {{ settings.noMatchesText }}\n      </div>\n    </div>\n  ",
-            providers: [{ provide: forms_1.NG_VALUE_ACCESSOR, useExisting: core_1.forwardRef(function () { return TypeaheadComponent_1; }), multi: true }]
-        }),
-        __param(0, core_1.Inject(core_1.ElementRef)), __param(1, core_1.Inject(core_1.Renderer2)),
-        __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer2])
-    ], TypeaheadComponent);
-    return TypeaheadComponent;
-    var TypeaheadComponent_1;
-}());
-exports.TypeaheadComponent = TypeaheadComponent;
-
-
-/***/ }),
-
-/***/ 844:
+/***/ 849:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2147,7 +1782,7 @@ exports.CustomModalComponent = CustomModalComponent;
 
 /***/ }),
 
-/***/ 864:
+/***/ 869:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2155,11 +1790,11 @@ exports.CustomModalComponent = CustomModalComponent;
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var Observable_1 = __webpack_require__(4);
-var ngx_modal_dialog_1 = __webpack_require__(379);
+var ngx_modal_dialog_1 = __webpack_require__(375);
 var world_map_component_1 = __webpack_require__(817);
 var loading_indicator_service_1 = __webpack_require__(114);
-var feedback_service_1 = __webpack_require__(117);
-var custom_modal_component_1 = __webpack_require__(844);
+var feedback_service_1 = __webpack_require__(118);
+var custom_modal_component_1 = __webpack_require__(849);
 var tree = [
     { text: 'Category 1', children: [{ id: '1', text: 'Sub-Category1' }, { id: '2', text: 'Sub-Category2' }] },
     { text: 'Category 2', children: [{ id: '1', text: 'Sub-Category1' }] },
@@ -2333,8 +1968,8 @@ var MiscComponent = (function () {
     MiscComponent = __decorate([
         core_1.Component({
             selector: 'misc-page',
-            styles: [__webpack_require__(865)],
-            template: __webpack_require__(866),
+            styles: [__webpack_require__(870)],
+            template: __webpack_require__(871),
             host: {
                 'class': 'page'
             }
@@ -2352,14 +1987,14 @@ exports.MiscComponent = MiscComponent;
 
 /***/ }),
 
-/***/ 865:
+/***/ 870:
 /***/ (function(module, exports) {
 
 module.exports = "#world-map {\n  width: 100%;\n  height: 100%; }\n\n#dot {\n  position: absolute; }\n"
 
 /***/ }),
 
-/***/ 866:
+/***/ 871:
 /***/ (function(module, exports) {
 
 module.exports = "<breadcrumb pageTitle=\"Miscellaneous\" pageSubtitle=\"Park\"></breadcrumb>\n\n<tabset>\n  <tab heading=\"Modal Dialog\">\n    <button class=\"btn btn-primary\" type=\"button\" (click)=\"openSimpleModal()\">Open simple modal</button>\n    <button class=\"btn btn-warning\" type=\"button\" (click)=\"openSimpleModalWithCallback()\">Open modal with close\n      callback\n    </button>\n    <button class=\"btn btn-danger\" type=\"button\" (click)=\"openPromptModal()\">Open modal with prompt</button>\n    <button class=\"btn btn-success\" type=\"button\" (click)=\"openCustomModal()\">Open custom modal component</button>\n  </tab>\n  <tab heading=\"Map\">\n    <div world-map id=\"world-map\" (change)=\"repositionTheDot($event)\">\n      <div class=\"badge badge-pill badge-primary\" id=\"dot\">Vienna</div>\n    </div>\n  </tab>\n  <tab>\n    <ng-template tabHeading><span class=\"icon-container theme-icon-plus\">Tab</span></ng-template>\n    This tab control\n  </tab>\n  <tab heading=\"Tree\">\n    <div class=\"row\">\n      <div class=\"col-md-6 col-sm-12\">\n        <div class=\"card card-block\">\n          <h4>Flat tree</h4>\n          <tree-node *ngFor=\"let node of treeData\" [content]=\"node\" [collapsed]=\"false\"></tree-node>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-6 col-sm-12\">\n        <div class=\"card card-block\">\n          <h4>Normal tree</h4>\n          <tree-node *ngFor=\"let node of treeDataMultiLevel\" [content]=\"node\" [collapsed]=\"false\"></tree-node>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-sm-12\">\n        <div class=\"card card-block\">\n          <h4>Tree with icons</h4>\n          <tree-node *ngFor=\"let node of treeDataMultiLevelWithIcons\" [content]=\"node\" [collapsed]=\"false\"></tree-node>\n        </div>\n      </div>\n    </div>\n\n  </tab>\n  <tab heading=\"Date picker\">\n    <div class=\"row\">\n      <div class=\"col-sm-4\">\n        <div class=\"form-group has-feedback\">\n          <input type=\"text\"\n                 class=\"form-control\"\n                 [minDate]=\"minDate\"\n                 [maxDate]=\"maxDate\"\n                 #dp=\"bsDatepicker\"\n                 [bsConfig]=\"{ showWeekNumbers: false, containerClass: 'theme-blue' }\"\n                 bsDatepicker [(bsValue)]=\"dt\">\n          <i class=\"form-control-feedback theme-icon-calendar\" (click)=\"dp.show()\"></i>\n        </div>\n      </div>\n      <div class=\"col-sm-4\">\n        <div class=\"form-group has-feedback\">\n          <input type=\"text\"\n                 class=\"form-control\"\n                 [minDate]=\"minDate\"\n                 [maxDate]=\"maxDate\"\n                 #dp2=\"bsDatepicker\"\n                 bsDatepicker [(bsValue)]=\"dt\">\n          <i class=\"form-control-feedback theme-icon-calendar\" (click)=\"dp2.show()\"></i>\n        </div>\n      </div>\n      <div class=\"col-sm-4\">\n        <!--<bs-datepicker [(ngModel)]=\"dt\"></bs-datepicker>-->\n      </div>\n    </div>\n  </tab>\n  <tab heading=\"Wizard\">\n    <h4>With disabled skip forward</h4>\n    <wizard>\n      <simple-wizard-slide wizardTitle=\"First slide\">Some content on first slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Second slide\">Some content on second slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Third slide\">Some content on third slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Fourth slide\">Some content on fourth slide</simple-wizard-slide>\n    </wizard>\n    <h4>With disabled back</h4>\n    <wizard disableBack=\"true\">\n      <simple-wizard-slide wizardTitle=\"First slide\">Some content on first slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Second slide\">Some content on second slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Third slide\">Some content on third slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Fourth slide\">Some content on fourth slide</simple-wizard-slide>\n    </wizard>\n    <h4>With enabled skip forward</h4>\n    <wizard skipStep=\"true\">\n      <simple-wizard-slide wizardTitle=\"First slide\">Some content on first slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Second slide\">Some content on second slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Third slide\">Some content on third slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Fourth slide\">Some content on fourth slide</simple-wizard-slide>\n    </wizard>\n    <h4>Vertical wizard</h4>\n    <wizard skipStep=\"true\" vertical=\"true\">\n      <simple-wizard-slide wizardTitle=\"First slide\">\n        <p>Lorem ipsum dolor sit amet, at usu oblique persequeris, vero eirmod officiis pri ne. Definiebas\n          concludaturque an vix, populo insolens corrumpit ut eos, ei esse errem pertinax qui. Has at meis fuisset, mel\n          eius impedit facilis te. Mazim dicam ut per, vix meis dolore ut, et suas praesent vel. Duo an stet\n          necessitatibus, usu dicta laudem soluta ad. Mea epicurei probatus tacimates ut, nam ut stet libris possit, mel\n          ex illum mazim.</p>\n        <p>Utinam noster ex mea. Munere tritani sed eu, mel et ludus viderer quaestio. Ne errem accusamus nam, sit\n          homero partem placerat eu, stet illud eam in. Oratio tollit essent et vix, graece oporteat ne quo. Has et\n          ipsum ullum scaevola. Qui ea autem summo latine, ex vel virtute commune, ne putant audire incorrupte vim.\n          Aeterno aperiri usu ne.</p>\n        <p>Ei fugit liber disputationi usu, tamquam postulant torquatos ei sed. Elit vitae ad vis, id propriae indoctum\n          referrentur vix. Vis nostrud probatus adolescens cu, eam te corpora commune, ea facete reprimique ius. Mea\n          possit aliquip assentior ea, ceteros referrentur an per. Has an lobortis maiestatis, duo officiis voluptaria\n          constituto ei, ex eum appareat volutpat. Has mollis nostrum posidonium ea, eu postea vidisse nam.</p>\n        <p>Ea sit facilis lobortis qualisque, sed purto cibo quodsi in. Est intellegat consetetur in. Nostrud dolorem\n          salutandi sea in, sensibus assueverit ad ius. Vis cu ornatus efficiendi, odio causae incorrupte mel ex.</p>\n        <p>Pro an posse dicam evertitur, vix id semper legendos. Sea ex consequat dissentiet, ea liber verterem mandamus\n          sea. Id mea nemore impedit conclusionemque, sonet noster aliquid an sed. Usu te agam probatus, cum regione\n          labitur ne, et usu adipisci eloquentiam theophrastus. Per ne rebum nonumy persequeris, cu vis dicant tibique\n          contentiones. At nec invenire adipiscing, ut per iudico voluptaria, vel te sanctus qualisque.</p>\n      </simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Second slide\">Some content on second slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Third slide\">Some content on third slide</simple-wizard-slide>\n      <simple-wizard-slide wizardTitle=\"Fourth slide\">Some content on fourth slide</simple-wizard-slide>\n    </wizard>\n  </tab>\n  <tab heading=\"Loading indicator\">\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"showLoadingIndicator()\">Turn on loading indicator for 2 sec\n    </button>\n  </tab>\n  <tab heading=\"Toasters and Feedback\">\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"fireToast()\">Fire toast</button>\n    <button type=\"button\" class=\"btn btn-success\" (click)=\"fireToast(1)\">Fire toast with action</button>\n    <button type=\"button\" class=\"btn btn-danger\" (click)=\"fireToast(2)\">Fire toast with body</button>\n    <button type=\"button\" class=\"btn btn-info\" (click)=\"fireToast(3)\">Fire toast with body and action</button>\n  </tab>\n</tabset>\n"
@@ -2367,4 +2002,4 @@ module.exports = "<breadcrumb pageTitle=\"Miscellaneous\" pageSubtitle=\"Park\">
 /***/ })
 
 });
-//# sourceMappingURL=0.43fe60dd4a6ef42d661b.chunk.js.map
+//# sourceMappingURL=0.0e766debff5410056ec8.chunk.js.map

@@ -3593,7 +3593,7 @@ tbody.collapse.show {
 
 .badge {
   display: inline-block;
-  padding: 0.25em 0.4em;
+  padding: 0.20833rem 0.3125rem;
   font-size: 75%;
   font-weight: normal;
   line-height: 1;
@@ -7069,7 +7069,9 @@ aside.main-aside {
 
 .link {
   text-decoration: underline;
-  font-family: 'OpenSans-Bold', sans-serif; }
+  font-family: 'OpenSans-Bold', sans-serif;
+  color: #2196f3;
+  padding: 0; }
 
 @-webkit-keyframes spin {
   0% {
@@ -7379,18 +7381,16 @@ aside.main-aside {
     -webkit-transform: scale(1.25, 1.25);
             transform: scale(1.25, 1.25); } }
 
-.form-control {
-  font-size: 0.875rem; }
-  .form-control.expandable-control {
-    width: 15rem;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    margin-bottom: 0;
-    -webkit-transition: all 350ms ease-in-out;
-    transition: all 350ms ease-in-out; }
-    .form-control.expandable-control:focus {
-      width: 100%; }
+.form-control.expandable-control {
+  width: 15rem;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin-bottom: 0;
+  -webkit-transition: all 350ms ease-in-out;
+  transition: all 350ms ease-in-out; }
+  .form-control.expandable-control:focus {
+    width: 100%; }
 
 .has-feedback {
   position: relative; }
@@ -7407,11 +7407,19 @@ aside.main-aside {
   width: 1rem;
   height: 1rem; }
 
+.custom-control-description {
+  line-height: 1.4; }
+
 select.form-control {
   background-image: linear-gradient(45deg, transparent 50%, #2e3c44 50%), linear-gradient(135deg, #2e3c44 50%, transparent 50%);
-  background-position: calc(100% - 0.9rem) calc(1.15em), calc(100% - 0.6rem) calc(1.15em);
-  background-size: 0.3rem 0.3rem, 0.3rem 0.3rem;
+  background-position: calc(100% - 0.3125rem - 0.625rem) 50%, calc(100% - 0.625rem) 50%;
+  background-size: 0.3125rem 0.3125rem, 0.3125rem 0.3125rem;
   background-repeat: no-repeat; }
+
+select.form-control-sm, .input-group-sm > select.form-control,
+.input-group-sm > select.input-group-addon,
+.input-group-sm > .input-group-btn > select.btn {
+  background-position-x: calc(100% - 0.3125rem - 0.5rem), calc(100% - 0.5rem); }
 
 .form-control, form .bs-rating-star {
   margin-bottom: 0.625rem; }
@@ -8010,20 +8018,29 @@ rating > span {
 .table .datatable-footer-inner {
   height: unset !important; }
 
-.table.ngx-datatable .datatable-header,
-.table.ngx-datatable .datatable-footer {
+.table .ngx-datatable .datatable-header,
+.table .ngx-datatable .datatable-footer {
   overflow: visible; }
 
-.table.ngx-datatable .datatable-header-cell {
+.table .ngx-datatable .datatable-header-cell {
   overflow: visible; }
+  .table .ngx-datatable .datatable-header-cell > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
 
-.table .datatable-body-cell, .table .datatable-footer {
-  padding: 0.625rem 0.625rem;
+.table .datatable-header-cell, .table .datatable-body-cell, .table .datatable-footer {
+  padding: 0.625rem 0.625rem; }
+
+.table .datatable-body-cell {
   border-top: 1px solid rgba(0, 0, 0, 0.17);
   vertical-align: top; }
 
+.table .datatable-row-wrapper:last-child .datatable-body-cell {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.17); }
+
 .table .datatable-header-cell .sort-btn {
-  padding: 0.625rem 0.625rem;
+  padding: 0.625rem 0.3125rem;
   color: #2196f3; }
 
 .table thead th, .table .datatable-header-cell {
@@ -8033,6 +8050,10 @@ rating > span {
   padding-bottom: 0.625rem;
   border-top: none;
   border-bottom: none; }
+  .table thead th .form-control, .table .datatable-header-cell .form-control {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    margin-bottom: 0; }
 
 .table th, .table td {
   vertical-align: middle; }
@@ -8105,7 +8126,10 @@ rating > span {
 /**************************************
   Table small
 ***************************************/
-.table-sm .datatable-header-cell, .table-sm .datatable-body-cell, .table-sm .datatable-footer, .table-sm .datatable-header-cell .sort-btn {
+.table-sm .datatable-header-cell, .table-sm .datatable-body-cell, .table-sm .datatable-footer {
+  padding: 0.3125rem; }
+
+.table-sm .datatable-header-cell .sort-btn {
   padding: 0.3125rem; }
 
 /**************************************
@@ -8182,6 +8206,9 @@ rating > span {
 
 /*** Maybe needed */
 .table .row {
+  margin: 0; }
+
+.card > .table {
   margin: 0; }
 
 @-webkit-keyframes spin {
@@ -8442,12 +8469,30 @@ rating > span {
 
 .page-subtitle {
   font-size: 0.76562rem;
-  padding: 0.125em 0.2em;
+  padding: 0.10417rem 0.15625rem;
   line-height: 1;
   -ms-flex-item-align: center;
       align-self: center; }
+/********************************
+    Custom theme values
+*********************************/
+/********************************************
+*********************************************
+          Override bootstrap values
+*********************************************
+*********************************************/
 .dropdown-menu.show {
   display: block; }
+
+type-ahead:disabled, type-ahead[disabled=true] {
+  background-color: #e3e3e3; }
+
+type-ahead input {
+  padding: 0.20833rem 0; }
+
+type-ahead.form-control {
+  padding-top: 0.41667rem;
+  padding-bottom: 0.41667rem; }
 /* .bs-datepicker */
 .bs-datepicker {
   display: -webkit-box;
@@ -8899,4 +8944,4 @@ bs-daterangepicker-container {
 
 .theme-orange .bs-datepicker-body table td.week span {
   color: #f0ad4e; }
-/*# sourceMappingURL=app/10.43fe60dd4a6ef42d661b.chunk.js.map*/
+/*# sourceMappingURL=app/10.0e766debff5410056ec8.chunk.js.map*/
