@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "outDir": "./dist/out-tsc",
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
@@ -11,32 +11,12 @@
     "noEmitHelpers": true,
     "lib": [
       "dom",
-      "es2015",
-      "es2015.promise",
-      "es6",
-      "es7"
+      "es2017"
     ],
     "typeRoots": [
       "node_modules/@types"
-    ],
-    "types": [
-      "hammerjs",
-      "jasmine",
-      "jasmine-data_driven_tests",
-      "node",
-      "selenium-webdriver",
-      "source-map",
-      "uglify-js",
-      "webpack"
     ]
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
   "compileOnSave": true,
   "buildOnSave": true,
   "awesomeTypescriptLoaderOptions": {

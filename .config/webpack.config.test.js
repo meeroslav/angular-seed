@@ -1,10 +1,10 @@
-const path = require('path');
 const webpack = require('webpack');
 const root = require('./helpers/index').root;
+const rxPaths = require('rxjs/_esm5/path-mapping');
+const { AngularCompilerPlugin } = require('@ngtools/webpack');
 
 const ENV = process.env.npm_lifecycle_event;
 const isTestWatch = ENV === 'test:watch';
-const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = (function makeWebpackConfig() {
   let config = {};
@@ -12,27 +12,26 @@ module.exports = (function makeWebpackConfig() {
   config.devtool = 'inline-source-map';
 
   config.resolve = {
-    extensions: ['.ts', '.js', '.html']
+    // only discover files that have those extensions
+    extensions: ['.ts', '.js'],
+    modules: ['./node_modules'],
+    symlinks: true,
+    alias: rxPaths()
   };
-
-  let atlOptions = 'inlineSourceMap=true&sourceMap=false';
-  if (isTestWatch) {
-    atlOptions = '';
-  }
 
   config.module = {
     rules: [
+      // support for .html as raw text
+      {test: /\.html$/, loader: 'raw-loader', include: root('src', 'app')},
+      // Support for .ts files.
       {
         test: /\.ts$/,
-        loaders: ['awesome-typescript-loader?' + atlOptions, 'angular2-template-loader', 'angular-router-loader'],
-        exclude: [/\.(e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/, /_e2e/]
+        loader: '@ngtools/webpack'
       },
-      { test: /\.json$/, loader: 'json-loader' },
       { test: /\.css$/, exclude: root('src', 'app'), loader: 'null-loader' },
       { test: /\.css$/, include: root('src', 'app'), loader: 'raw-loader!postcss-loader' },
       { test: /\.(scss|sass)$/, exclude: root('src', 'app'), loader: 'null-loader' },
-      { test: /\.(scss|sass)$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!sass-loader' },
-      { test: /\.html$/, loader: 'raw-loader', exclude: [root('src/index.html')] }
+      { test: /\.(scss|sass)$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!sass-loader' }
     ]
   };
 
@@ -41,9 +40,9 @@ module.exports = (function makeWebpackConfig() {
     config.module.rules.push({
       test: /\.ts$/,
       enforce: 'post',
-      include: path.resolve('src'),
+      include: root('src'),
       loader: 'istanbul-instrumenter-loader',
-      exclude: [/\.spec\.ts$/, /\.e2e\.ts$/, /node_modules/, /_e2e/]
+      exclude: [/\.spec\.ts$/, /\.e2e\.ts$/, /\.po\.ts$/, /node_modules/, /_e2e/]
     });
   }
 
@@ -53,20 +52,29 @@ module.exports = (function makeWebpackConfig() {
         ENV: JSON.stringify(ENV)
       }
     }),
-    new webpack.ContextReplacementPlugin(
-      /@angular(\\|\/)core(\\|\/)esm5/,
-      root('./src') // location of your src
-    ),
     new webpack.LoaderOptionsPlugin({
       debug: true,
-      options: {
-      }
+      options: { }
+    }),
+    new AngularCompilerPlugin({
+      mainPath: 'main.ts',
+      platform: 0,
+      hostReplacementPaths: {
+        'environments/environment.ts': 'environments/environment.ts'
+      },
+      sourceMap: true,
+      tsConfigPath: 'src/tsconfig.spec.json',
+      skipCodeGeneration: true,
+      compilerOptions: {}
     })
   ];
 
-  if (isTestWatch) {
-    config.plugins.push(new DashboardPlugin());
-  }
+  config.devServer = {
+    contentBase: './src',
+    historyApiFallback: true,
+    quiet: true,
+    stats: 'minimal' // none (or false), errors-only, minimal, normal (or true) and verbose
+  };
 
   return config;
 }());

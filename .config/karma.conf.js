@@ -23,6 +23,9 @@ module.exports = function (config) {
       require('karma-webpack')
     ],
 
+    // list of files to exclude
+    exclude: [],
+
     // list of files / patterns to load in the browser
     files: [
       { pattern: './node_modules/jasmine-data_driven_tests/src/all.js', watched: false },

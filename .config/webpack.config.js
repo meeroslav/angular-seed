@@ -1,3 +1,4 @@
+const fs = require('fs');
 const webpack = require('webpack');
 const helpers = require('./helpers/index');
 const root = helpers.root;
@@ -5,11 +6,20 @@ const chalk = require('chalk');
 
 // Webpack Plugins
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
-const autoPrefix = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('./loaders/index'); // temporary use custom version of copy-webpack-plugin
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const ProgressPlugin = require('webpack/lib/ProgressPlugin');
+const CircularDependencyPlugin = require('circular-dependency-plugin');
+
+const rxPaths = require('rxjs/_esm5/path-mapping');
+const { AngularCompilerPlugin } = require('@ngtools/webpack');
+
+const entryPoints = ['inline', 'polyfills', 'vendor', 'main'];
+const nodeModules = root('node_modules');
+const realNodeModules = fs.realpathSync(nodeModules);
+const genDirNodeModules = root('src', '$$_gendir', 'node_modules');
 
 /**
  * Env
@@ -45,46 +55,24 @@ module.exports = (function makeWebpackConfig() {
 
   let config = {};
 
-  /**
-   * Devtool
-   * Reference: http://webpack.github.io/docs/configuration.html#devtool
-   * Type of sourcemap to use per build type
-   */
-  if (isProduction || isLocalE2E) {
-    config.devtool = '#source-map';
-  } else {
-    config.devtool = '#cheap-module-source-map';
-  }
-
-  /**
-   * Entry
-   * Reference: http://webpack.github.io/docs/configuration.html#entry
-   */
-  config.entry = {
-    polyfills: './src/polyfills.ts',
-    vendor: './src/vendor.ts',
-    app: './src/main.ts'
-  };
-
-  /**
-   * Output
-   * Reference: http://webpack.github.io/docs/configuration.html#output
-   */
-  config.output = {
-    path: root('dist'),
-    publicPath: isBuild ? 'https://meeroslav.github.io/angular-seed/' : 'http://localhost:51961/',
-    filename: isBuild ? '[name].[hash].js' : '[name].js',
-    chunkFilename: isBuild ? 'app/[id].[hash].chunk.js' : 'app/[id].chunk.js',
-    sourceMapFilename: isBuild ? 'app/[id].[hash].chunk.js.map' : 'app/[id].chunk.js.map'
-  };
-
-  /**
-   * Resolve
-   * Reference: http://webpack.github.io/docs/configuration.html#resolve
-   */
   config.resolve = {
     // only discover files that have those extensions
-    extensions: ['.ts', '.js', '.json', '.css', '.scss', '.html']
+    extensions: ['.ts', '.js'],
+    modules: ['./node_modules'],
+    symlinks: true,
+    alias: rxPaths()
+  };
+
+  config.entry = {
+    polyfills: './src/polyfills.ts',
+    main: './src/main.ts'
+  };
+
+  config.output = {
+    path: root('dist'),
+    publicPath: isBuild ? '' : 'http://localhost:51961/',
+    filename: isBuild ? '[name].[hash].js' : '[name].js',
+    chunkFilename: isBuild ? '[id].[hash].chunk.js' : '[id].chunk.js'
   };
 
   /**
@@ -95,28 +83,29 @@ module.exports = (function makeWebpackConfig() {
    */
   config.module = {
     rules: [
-      // Support for .ts files.
+      // support for .html as raw text
+      {test: /\.html$/, loader: 'raw-loader', include: root('src', 'app')},
+      // support for assets
       {
-        test: /\.ts$/,
-        loaders: ['awesome-typescript-loader', 'angular2-template-loader', 'angular-router-loader'],
-        exclude: [/\.(spec|e2e|po)\.ts$/, /node_modules\/(?!(ng2-.+))/, /_e2e/]
+        test: /\.(png|jpe?g|gif|svg|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader?name=assets/images/[name].[hash].[ext]&limit=10000'
       },
+      {
+        test: /\.(woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader?name=assets/styles/fonts/[name].[hash].[ext]&limit=10000'
+      },
+      // TS file pre-linting
       {
         test: /\.ts$/,
         enforce: 'pre',
         loader: 'tslint-loader'
       },
-      // copy assets to output
+      // Support for .ts files.
       {
-        test: /\.(png|jpe?g|gif|svg|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader?name=assets/images/[name].[hash].[ext]'
+        test: /\.ts$/,
+        loader: '@ngtools/webpack'
       },
-      {
-        test: /\.(woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader?name=assets/styles/fonts/[name].[hash].[ext]'
-      },
-      // Support for *.json files.
-      {test: /\.json$/, loader: 'json-loader', include: root('src', 'app'), exclude: root('src', 'assets')},
+
       // Support for CSS as raw text
       // all css in src/style will be bundled in an external css file
       {
@@ -144,11 +133,7 @@ module.exports = (function makeWebpackConfig() {
         loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader', 'less-loader']})
       },
       // all css required in src/app files will be merged in js files
-      { test: /\.less$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!less-loader'},
-
-      // support for .html as raw text
-      // change the loader to something that adds a hash to images
-      {test: /\.html$/, loader: 'raw-loader',  include: root('src', 'app')}
+      { test: /\.less$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!less-loader'}
     ]
   };
 
@@ -158,8 +143,13 @@ module.exports = (function makeWebpackConfig() {
    * List: http://webpack.github.io/docs/list-of-plugins.html
    */
   config.plugins = [
+    new CircularDependencyPlugin({
+      exclude: /(\\|\/)node_modules(\\|\/)/,
+      failOnError: false,
+      onDetected: false,
+      cwd: process.cwd(),
+    }),
     // Define env variables to help with builds
-    // Reference: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
     new webpack.DefinePlugin({
       // Environment helpers
       'process.env': {
@@ -170,36 +160,63 @@ module.exports = (function makeWebpackConfig() {
         COMMITHASH: JSON.stringify(GIT_COMMIT)
       }
     }),
-
-    new webpack.ContextReplacementPlugin(
-      /@angular(\\|\/)core(\\|\/)esm5/,
-      root('./src') // location of your src
-    ),
-
-    // Generate common chunks if necessary
-    // Reference: https://webpack.github.io/docs/code-splitting.html
-    // Reference: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
-    new CommonsChunkPlugin({
-      name: ['vendor', 'polyfills']
-    }),
-
     // Inject script and link tags into html files
-    // Reference: https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      template: './src/public/index.html',
-      chunksSortMode: 'dependency'
+      template: './src/index.html',
+      filename: './index.html',
+      hash: false,
+      inject: true,
+      compile: true,
+      favicon: false,
+      minify: false,
+      cache: true,
+      showErrors: true,
+      chunks: 'all',
+      excludeChunks: [],
+      xhtml: true,
+      chunksSortMode: function sort(left, right) {
+        let leftIndex = entryPoints.indexOf(left.names[0]);
+        let rightindex = entryPoints.indexOf(right.names[0]);
+        if (leftIndex > rightindex) {
+          return 1;
+        } else if (leftIndex < rightindex) {
+          return -1;
+        } else {
+          return 0;
+        }
+      }
     }),
-
+    // Generate minimum chunks
+    new CommonsChunkPlugin({
+      name: ['inline'],
+      minChunks: null
+    }),
+    new CommonsChunkPlugin({
+      name: ['vendor'],
+      minChunks: (module) => {
+        return module.resource
+          && (module.resource.startsWith(nodeModules)
+            || module.resource.startsWith(genDirNodeModules)
+            || module.resource.startsWith(realNodeModules));
+      },
+      chunks: ['main']
+    }),
+    new webpack.SourceMapDevToolPlugin({
+      filename: '[file].map[query]',
+      moduleFilenameTemplate: '[resource-path]',
+      fallbackModuleFilenameTemplate: '[resource-path]?[hash]',
+      sourceRoot: 'webpack:///'
+    }),
+    new CommonsChunkPlugin({
+      name: ['main'],
+      minChunks: 2,
+      async: 'common'
+    }),
+    new webpack.NamedModulesPlugin(),
     // Extract css files
-    // Reference: https://github.com/webpack/extract-text-webpack-plugin
-    // Disabled when in test mode or not in build mode
     new ExtractTextPlugin({filename: '[name].[hash].css', disable: !isBuild}),
-
     // copy static resources
     new CopyWebpackPlugin([
-      {
-        from: root('src/public')
-      },
       {
         from: root('src/assets/images/'),
         to: 'assets/images/[path][name].[ext]'
@@ -241,38 +258,28 @@ module.exports = (function makeWebpackConfig() {
         transform: helpers.injectIntoHealth(CONFIG_HASH)
       }
     ], { copyUnmodified: true }),
-
-    // Ts lint configuration for webpack 2
+    // TODO: check if needed >>> Ts lint configuration for webpack 2
     new webpack.LoaderOptionsPlugin({
-      debug: true,
+      debug: !(isProduction || isLocalE2E),
       options: {
-        /**
-         * Apply the tslint loader as pre/postLoader
-         * Reference: https://github.com/wbuchwalter/tslint-loader
-         */
         tslint: {
           emitErrors: true,
           failOnHint: true
-        },
-        /**
-         * Sass
-         * Reference: https://github.com/jtangelder/sass-loader
-         * Transforms .scss files to .css
-         */
-        sassLoader: {
-          //includePaths: [path.resolve(__dirname, "node_modules/foundation-sites/scss")]
-        },
-        /**
-         * PostCSS
-         * Reference: https://github.com/postcss/autoprefixer-core
-         * Add vendor prefixes to your css
-         */
-        postcss: [
-          autoPrefix({
-            browsers: ['last 2 version']
-          })
-        ]
+        }
       }
+    }),
+    new AngularCompilerPlugin({
+      mainPath: 'main.ts',
+      platform: 0,
+      hostReplacementPaths: {
+        'environments/environment.ts': isProduction || isLocalE2E ?
+          'environments/environment.prod.ts' :
+          'environments/environment.ts'
+      },
+      sourceMap: true,
+      tsConfigPath: 'src/tsconfig.app.json',
+      skipCodeGeneration: true,
+      compilerOptions: {}
     })
   ];
 
@@ -281,12 +288,11 @@ module.exports = (function makeWebpackConfig() {
     if (isProduction || isLocalE2E) {
       config.plugins.push(
         new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: {keep_fnames: false}})
+        new ProgressPlugin()
       );
     }
   } else {
     config.plugins.push(new DashboardPlugin());
-    config.plugins.push(new webpack.HotModuleReplacementPlugin());
   }
 
   /**
@@ -295,10 +301,22 @@ module.exports = (function makeWebpackConfig() {
    * Reference: http://webpack.github.io/docs/webpack-dev-server.html
    */
   config.devServer = {
-    contentBase: './src/public',
+    contentBase: './src',
     historyApiFallback: true,
     quiet: true,
     stats: 'minimal' // none (or false), errors-only, minimal, normal (or true) and verbose
+  };
+
+  config.node = {
+    fs: 'empty',
+    global: true,
+    crypto: 'empty',
+    tls: 'empty',
+    net: 'empty',
+    // process: true,
+    module: false,
+    clearImmediate: false,
+    setImmediate: false
   };
 
   return config;

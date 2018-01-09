@@ -1,7 +1,6 @@
 /**
  * Constants
  */
-require('ts-node/register');
 const fs = require('fs');
 const ext64 = fs.readFileSync('./.config/chrome-auth.crx', 'base64');
 const root = require('./helpers/index').root;
@@ -45,16 +44,15 @@ exports.config = {
   ],
   exclude: [],
 
-  framework: 'jasmine2',
+  framework: 'jasmine',
 
-  allScriptsTimeout: 110000,
-
+  allScriptsTimeout: 11000,
   jasmineNodeOpts: {
     showTiming: true,
     showColors: true,
-    isVerbose: true,
     includeStackTrace: true,
-    defaultTimeoutInterval: 400000
+    defaultTimeoutInterval: 30000,
+    print: function() {}
   },
   directConnect: true,
 
@@ -75,6 +73,9 @@ exports.config = {
 
   onPrepare: function () {
     browser.ignoreSynchronization = true;
+    require('ts-node').register({
+      project: '../src/tsconfig.e2e.json'
+    });
     jasmine.getEnv().addReporter(reporter);
     if (process.env.TEAMCITY_VERSION) {
       const jasmineReporters = require('jasmine-reporters');
