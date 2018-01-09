@@ -4,7 +4,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { appRouting } from './app.routes';
 import { NgModule } from '@angular/core';
-import { DispatcherModule } from './_common/dispatcher/dispatcher.module';
+import { DispatcherModule } from './_common/dispatcher';
 import { CommonModule } from '@angular/common';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { TabsModule, PaginationModule, BsDropdownModule, RatingModule } from 'ngx-bootstrap';
