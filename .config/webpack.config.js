@@ -12,6 +12,7 @@ const CopyWebpackPlugin = require('./loaders/index'); // temporary use custom ve
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin'); // Or `import 'base-href-webpack-plugin';` if using typescript
 
 const rxPaths = require('rxjs/_esm5/path-mapping');
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
@@ -34,6 +35,8 @@ const isTeamCity = process.env.TEAMCITY_VERSION;
 
 const TRANSLATION_HASH = helpers.hashDate('');
 const CONFIG_HASH = helpers.hashDate('');
+
+const baseHref = process.env.BASE_HREF || '/';
 
 const childProcess = require('child_process');
 const GIT_COMMIT = isTeamCity ?
@@ -84,7 +87,9 @@ module.exports = (function makeWebpackConfig() {
   config.module = {
     rules: [
       // support for .html as raw text
-      {test: /\.html$/, loader: 'raw-loader', include: root('src', 'app')},
+      {
+        test: /\.html$/, loader: 'raw-loader', include: root('src', 'app')
+      },
       // support for assets
       {
         test: /\.(png|jpe?g|gif|svg|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -111,19 +116,19 @@ module.exports = (function makeWebpackConfig() {
       {
         test: /\.css$/,
         exclude: root('src', 'app'),
-        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader']})
+        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader'] })
       },
       // all css required in src/app files will be merged in js files
-      {test: /\.css$/, include: root('src', 'app'), loader: 'raw-loader!postcss-loader'},
+      { test: /\.css$/, include: root('src', 'app'), loader: 'raw-loader!postcss-loader' },
       // support for .scss/.sass files
       // all css in src/style will be bundled in an external css file
       {
         test: /\.(scss|sass)$/,
         exclude: root('src', 'app'),
-        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader', 'sass-loader']})
+        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader', 'sass-loader'] })
       },
       // all css required in src/app files will be merged in js files
-      {test: /\.(scss|sass)$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!sass-loader'},
+      { test: /\.(scss|sass)$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!sass-loader' },
 
       // support for .less files
       // all css in src/style will be bundled in an external css file
@@ -133,7 +138,7 @@ module.exports = (function makeWebpackConfig() {
         loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader', 'less-loader']})
       },
       // all css required in src/app files will be merged in js files
-      { test: /\.less$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!less-loader'}
+      { test: /\.less$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!less-loader' }
     ]
   };
 
@@ -160,6 +165,7 @@ module.exports = (function makeWebpackConfig() {
         COMMITHASH: JSON.stringify(GIT_COMMIT)
       }
     }),
+    new BaseHrefWebpackPlugin({ baseHref: baseHref }),
     // Inject script and link tags into html files
     new HtmlWebpackPlugin({
       template: './src/index.html',
@@ -313,7 +319,7 @@ module.exports = (function makeWebpackConfig() {
     crypto: 'empty',
     tls: 'empty',
     net: 'empty',
-    // process: true,
+    process: true,
     module: false,
     clearImmediate: false,
     setImmediate: false
