@@ -25,11 +25,11 @@
       <ngx-datatable class="bootstrap"
                      [rows]="rows"
                      [columns]="columns"
-                     [columnMode]="'flex'"
+                     columnMode="flex"
                      [cssClasses]="tableCssClasses"
-                     [rowHeight]="'auto'"
-                     [headerHeight]="'auto'"
-                     [footerHeight]="'auto'"
+                     rowHeight="auto"
+                     headerHeight="auto"
+                     footerHeight="auto"
                      [messages]="tableMessages"
                      [reorderable]="false">
       </ngx-datatable>
@@ -53,11 +53,11 @@
     <div class="theme-table table table-sm table-striped">
       <ngx-datatable class="bootstrap"
                      [rows]="rows"
-                     [columnMode]="'flex'"
+                     columnMode="flex"
                      [cssClasses]="tableCssClasses"
-                     [rowHeight]="'auto'"
-                     [headerHeight]="'auto'"
-                     [footerHeight]="'auto'"
+                     rowHeight="auto"
+                     headerHeight="auto"
+                     footerHeight="auto"
                      [messages]="tableMessages"
                      reorderable="true">
         <ngx-datatable-column prop="name" [flexGrow]="2"></ngx-datatable-column>
@@ -91,7 +91,7 @@
     <div class="theme-table table table-sm table-striped">
       <ngx-datatable class="bootstrap" *ngIf="users"
                      sortType="single"
-                     headerHeight]="auto"
+                     headerHeight="auto"
                      footerHeight="auto"
                      rowHeight="auto"
 
