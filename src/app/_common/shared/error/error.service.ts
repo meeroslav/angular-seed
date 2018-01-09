@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FeedbackService } from '../';
+import { FeedbackService } from '../feedback';
 
 @Injectable()
 export class ErrorService {
