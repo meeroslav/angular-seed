@@ -25,51 +25,28 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: './node_modules/jasmine-data_driven_tests/src/all.js', watched:false },
+      { pattern: './node_modules/jasmine-data_driven_tests/src/all.js', watched: false },
       { pattern: './.config/karma-shim.js', watched: false }
     ],
 
-    // list of files to exclude
-    exclude: [],
-
     // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       './.config/karma-shim.js': ['webpack', 'sourcemap']
     },
 
     webpack: webpackConfig,
-
     webpackMiddleware: {
-      // webpack-dev-middleware configuration
-      // i. e.
       stats: 'errors-only'
     },
-
     webpackServer: {
       noInfo: true // please don't spam the console when running in karma!
     },
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress', 'mocha'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: [],
-
-    // web server port
     port: 9876,
-
-    // enable / disable colors in the output (reporters and logs)
     colors: true,
-
-    // level of logging
-    // possible values: .config.LOG_DISABLE || .config.LOG_ERROR || .config.LOG_WARN || .config.LOG_INFO || .config.LOG_DEBUG
     logLevel: isTeamCity ? config.LOG_ERROR : config.LOG_INFO,
-
-    // enable / disable watching file and executing tests whenever any file changes
     autoWatch: false,
-
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: [], // Chrome is defined later
 
     // Continuous Integration mode
