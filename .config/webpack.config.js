@@ -37,6 +37,7 @@ const TRANSLATION_HASH = helpers.hashDate('');
 const CONFIG_HASH = helpers.hashDate('');
 
 const baseHref = process.env.BASE_HREF || '/';
+const subFolder = process.env.BASE_HREF || '';
 
 const childProcess = require('child_process');
 const GIT_COMMIT = isTeamCity ?
@@ -73,7 +74,7 @@ module.exports = (function makeWebpackConfig() {
 
   config.output = {
     path: root('dist'),
-    publicPath: isBuild ? '' : 'http://localhost:51961/',
+    publicPath: isBuild ? subFolder : 'http://localhost:51961/',
     filename: isBuild ? '[name].[hash].js' : '[name].js',
     chunkFilename: isBuild ? '[id].[hash].chunk.js' : '[id].chunk.js'
   };
