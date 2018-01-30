@@ -49,8 +49,6 @@
         <div class="form-group has-feedback">
           <input type="text"
                  class="form-control"
-                 [minDate]="minDate"
-                 [maxDate]="maxDate"
                  #dp="bsDatepicker"
                  [bsConfig]="{ showWeekNumbers: false, containerClass: 'theme-blue' }"
                  bsDatepicker [(bsValue)]="dt">
@@ -61,8 +59,6 @@
         <div class="form-group has-feedback">
           <input type="text"
                  class="form-control"
-                 [minDate]="minDate"
-                 [maxDate]="maxDate"
                  #dp2="bsDatepicker"
                  bsDatepicker [(bsValue)]="dt">
           <i class="form-control-feedback theme-icon-calendar" (click)="dp2.show()"></i>

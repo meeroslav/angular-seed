@@ -2,11 +2,12 @@ import { Component, ElementRef, OnInit, ViewContainerRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { ModalDialogService, SimpleModalComponent } from 'ngx-modal-dialog';
-import { ICoordinate, IMapChange, WorldMapComponent } from '../_common/custom-components/world-map/world-map.component';
-import { ITreeNode } from '../_common/custom-components/tree/tree-node.component';
-import { LoadingIndicatorService } from '../_common/shared/loading-indicator/loading-indicator.service';
-import { FeedbackService } from '../_common/shared/feedback/feedback.service';
+import { ICoordinate, IMapChange, WorldMapComponent } from '../_common/custom-components/world-map';
+import { ITreeNode } from '../_common/custom-components/tree';
+import { LoadingIndicatorService } from '../_common/shared/loading-indicator';
+import { FeedbackService } from '../_common/shared/feedback';
 import { CustomModalComponent } from './custom-modal.component';
+import { BsLocaleService } from 'ngx-bootstrap';
 
 const tree = [
   { text: 'Category 1', children: [{ id: '1', text: 'Sub-Category1' }, { id: '2', text: 'Sub-Category2' }] },
@@ -51,9 +52,11 @@ export class MiscComponent implements OnInit {
               private loadingIndicator: LoadingIndicatorService,
               private viewContainer: ViewContainerRef,
               private element: ElementRef,
-              private feedbackService: FeedbackService) {
+              private feedbackService: FeedbackService,
+              localeService: BsLocaleService) {
     (this.tomorrow = new Date()).setDate(this.tomorrow.getDate() + 1);
     this.dateDisabled = [{ date: this.tomorrow, mode: 'day' }];
+    localeService.use('de');
   }
 
 //   export interface ITreeNode {
