@@ -32,3 +32,32 @@
 .btn-group label.btn {
   margin-bottom: 0;
 }
+
+@mixin group-button-variant($background, $color) {
+  &:not(.active) {
+    color: $color;
+    background-color: $background;
+    cursor: pointer;
+  }
+}
+
+.btn-group {
+  label.btn-primary {
+    @include group-button-variant($btn-primary-color, $btn-primary-bg);
+  }
+  label.btn-secondary {
+    @include group-button-variant($btn-secondary-bg, $btn-secondary-color);
+  }
+  label.btn-info {
+    @include group-button-variant($btn-info-color, $btn-info-bg);
+  }
+  label.btn-success {
+    @include group-button-variant($btn-success-color, $btn-success-bg);
+  }
+  label.btn-warning {
+    @include group-button-variant($btn-warning-color, $btn-warning-bg);
+  }
+  label.btn-danger {
+    @include group-button-variant($btn-danger-color, $btn-danger-bg);
+  }
+}
