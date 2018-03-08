@@ -5,7 +5,7 @@ cache:
     - node_modules
 script:
   - npm run deploy
-  - ngh --no-silent --repo=https://GH_TOKEN@github.com/meeroslav/angular-seed.git --name="meeroslav" --email=meeroslav@yahoo.com
+  - ngh --no-silent --repo=https://GH_TOKEN@github.com/meeroslav/angular-seed.git --name="meeroslav" --email=missing.manual@gmail.com
 
 notifications:
   email: false
