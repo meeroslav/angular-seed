@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { defineLocale } from 'ngx-bootstrap/bs-moment';
-import { de } from 'ngx-bootstrap/locale';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { deLocale } from 'ngx-bootstrap/locale';
 
 @Component({
   selector: 'app',
@@ -19,7 +19,7 @@ export class AppComponent {
   constructor(private translate: TranslateService,
               private title: Title) {
     this._initializeLanguages();
-    defineLocale('de', de);
+    defineLocale('de', deLocale);
   }
 
   //////////////////////////////////////////////////////
