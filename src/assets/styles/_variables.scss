@@ -1,6 +1,5 @@
 @import 'typography';
 
-
 /********************************
     Custom theme values
 *********************************/
@@ -145,8 +144,6 @@ $theme-tooltip-info-color: $brand-primary;
 $enable-flex:               true;
 $enable-rounded:            false;
 $enable-shadows:            true;
-$enable-gradients:          true;
-$enable-transitions:        true;
 
 // Body
 $border-radius: 0.8rem;
@@ -294,4 +291,5 @@ $badge-padding-y: $spacer-y / 3;
 // Cards link buttons
 $card-footer-font-weight: 600;
 
+@import '../../../node_modules/bootstrap/scss/functions';
 @import '../../../node_modules/bootstrap/scss/variables.scss';

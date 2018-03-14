@@ -4,7 +4,7 @@
   display: block;
 }
 type-ahead:disabled, type-ahead[disabled=true] {
-  background-color: $input-bg-disabled;
+  background-color: $input-disabled-bg;
 }
 
 type-ahead input {

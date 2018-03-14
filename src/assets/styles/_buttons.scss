@@ -42,22 +42,9 @@
 }
 
 .btn-group {
-  label.btn-primary {
-    @include group-button-variant($btn-primary-color, $btn-primary-bg);
-  }
-  label.btn-secondary {
-    @include group-button-variant($btn-secondary-bg, $btn-secondary-color);
-  }
-  label.btn-info {
-    @include group-button-variant($btn-info-color, $btn-info-bg);
-  }
-  label.btn-success {
-    @include group-button-variant($btn-success-color, $btn-success-bg);
-  }
-  label.btn-warning {
-    @include group-button-variant($btn-warning-color, $btn-warning-bg);
-  }
-  label.btn-danger {
-    @include group-button-variant($btn-danger-color, $btn-danger-bg);
+  @each $color, $value in $theme-colors {
+    label.btn-#{$color} {
+      @include group-button-variant($value, color-yiq($value));
+    }
   }
 }

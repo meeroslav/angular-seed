@@ -9,7 +9,7 @@ import { Component, ComponentRef } from '@angular/core';
 })
 export class CustomModalComponent implements IModalDialog {
 
-  dialogInit(reference: ComponentRef<IModalDialog>, options?: IModalDialogOptions) {
+  dialogInit(reference: ComponentRef<IModalDialog>, options: IModalDialogOptions<void>) {
     // no code needed
   }
 }

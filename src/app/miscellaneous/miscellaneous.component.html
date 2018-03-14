@@ -21,7 +21,7 @@
   <tab heading="Tree">
     <div class="row">
       <div class="col-md-6 col-sm-12">
-        <div class="card card-block">
+        <div class="card card-body">
           <h4>Flat tree</h4>
           <tree-node *ngFor="let node of treeData" [content]="node" [collapsed]="false"></tree-node>
         </div>
@@ -29,13 +29,13 @@
     </div>
     <div class="row">
       <div class="col-md-6 col-sm-12">
-        <div class="card card-block">
+        <div class="card card-body">
           <h4>Normal tree</h4>
           <tree-node *ngFor="let node of treeDataMultiLevel" [content]="node" [collapsed]="false"></tree-node>
         </div>
       </div>
       <div class="col-md-6 col-sm-12">
-        <div class="card card-block">
+        <div class="card card-body">
           <h4>Tree with icons</h4>
           <tree-node *ngFor="let node of treeDataMultiLevelWithIcons" [content]="node" [collapsed]="false"></tree-node>
         </div>

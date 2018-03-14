@@ -21,7 +21,7 @@ $table-border-mixin: $table-border-width solid $table-border-color;
   }
 
   .datatable-body-row:hover {
-    background: $table-bg-hover;
+    background: $table-hover-bg;
   }
 
   .datatable-row-center {
@@ -113,12 +113,12 @@ $table-border-mixin: $table-border-width solid $table-border-color;
         color: $table-head-color;
 
         &:hover a {
-          background-color: darken($btn-secondary-bg, 10%);
-          color: $btn-secondary-color;
+          background-color: darken(theme-color("secondary"), 10%);
+          color: color-yiq(theme-color("secondary"));
         }
         &.active a {
-          background-color: $btn-primary-bg;
-          color: $btn-primary-color;
+          background-color: theme-color();
+          color: color-yiq(theme-color());
           @include fontBold();
         }
       }
@@ -207,14 +207,14 @@ $table-border-mixin: $table-border-width solid $table-border-color;
 
 .table-inverse {
   .badge-primary {
-    background: $badge-color;
-    color: $badge-primary-bg;
+    background: color-yiq(theme-color());
+    color: theme-color();
   }
 }
 
 .thead-inverse {
   .datatable-header-cell, .datatable-footer-cell {
-    color: $table-inverse-color;
+    color: color-yiq($table-inverse-bg);
     background-color: $table-inverse-bg;
   }
 }
@@ -241,11 +241,11 @@ $table-border-mixin: $table-border-width solid $table-border-color;
 
 //ngx-datatable datatable-header
 .datatable-header-cell.sortable .sort-btn:not(.sort-asc):not(.sort-desc) {
-  color: $inverse-color;
+  color: color-yiq(theme-color());
 
   &:before {
     content: "\f079";
-    font-family: 'themeicons';
+    font-family: 'themeicons', monospace;
   }
 }
 
@@ -269,7 +269,7 @@ $table-border-mixin: $table-border-width solid $table-border-color;
 
   &:before {
     content: "\e5d4";
-    font-family: 'themeicons';
+    font-family: 'themeicons', monospace;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -288,12 +288,12 @@ $table-border-mixin: $table-border-width solid $table-border-color;
   position: relative;
 
   &:after {
-    color: $badge-color;
-    background: $badge-primary-bg;
+    color: color-yiq(theme-color());
+    background: theme-color();
     border-radius: 50%;
     padding: $badge-pill-padding-x / 2 $badge-pill-padding-x;
     content: '\f129';
-    font-family: 'themeicons';
+    font-family: 'themeicons', monospace;
     font-size: $font-size-xs / 2;
   }
 }

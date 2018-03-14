@@ -1,10 +1,13 @@
+##########################
 # Node Files and typings #
+##########################
 node_modules/
-typings/
 npm-debug.log
 package-lock.json
 
+#######################
 # IDE generated files #
+#######################
 .vscode/
 .idea/
 *.swp
@@ -12,13 +15,17 @@ package-lock.json
 *.launch
 .settings/
 
+######################
 # OS generated files #
+######################
 .DS_Store
 .AppleDouble
 .LSOverride
 Thumbs.db
 
+#####################
 # Project generated
+#####################
 coverage/
 report/
 dist/

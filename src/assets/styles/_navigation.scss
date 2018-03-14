@@ -47,7 +47,7 @@
     padding-right: $spacer-x * 2 + .5rem;
 
     &:after {
-      font-family: 'themeicons';
+      font-family: 'themeicons', monospace;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       position: absolute;
