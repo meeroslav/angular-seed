@@ -5,22 +5,17 @@ const root = helpers.root;
 const chalk = require('chalk');
 
 // Webpack Plugins
-const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const InlineManifestWebpackPlugin = require('webpack-inline-manifest-plugin');
 const CopyWebpackPlugin = require('./loaders/index'); // temporary use custom version of copy-webpack-plugin
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
-const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin'); // Or `import 'base-href-webpack-plugin';` if using typescript
 
 const rxPaths = require('rxjs/_esm5/path-mapping');
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
-
-const entryPoints = ['inline', 'polyfills', 'vendor', 'main'];
-const nodeModules = root('node_modules');
-const realNodeModules = fs.realpathSync(nodeModules);
-const genDirNodeModules = root('src', '$$_gendir', 'node_modules');
 
 /**
  * Env
@@ -57,7 +52,9 @@ module.exports = (function makeWebpackConfig() {
   console.info(chalk.magenta('                                 ........ '));
   console.info('');
 
-  let config = {};
+  let config = {
+    mode: isProduction ? 'production' : 'development'
+  };
 
   config.resolve = {
     // only discover files that have those extensions
@@ -117,7 +114,10 @@ module.exports = (function makeWebpackConfig() {
       {
         test: /\.css$/,
         exclude: root('src', 'app'),
-        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader'] })
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader', 'postcss-loader'
+        ]
       },
       // all css required in src/app files will be merged in js files
       { test: /\.css$/, include: root('src', 'app'), loader: 'raw-loader!postcss-loader' },
@@ -126,7 +126,10 @@ module.exports = (function makeWebpackConfig() {
       {
         test: /\.(scss|sass)$/,
         exclude: root('src', 'app'),
-        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader', 'sass-loader'] })
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader', 'postcss-loader', 'sass-loader'
+        ]
       },
       // all css required in src/app files will be merged in js files
       { test: /\.(scss|sass)$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!sass-loader' },
@@ -136,13 +139,33 @@ module.exports = (function makeWebpackConfig() {
       {
         test: /\.less$/,
         exclude: root('src', 'app'),
-        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader', 'less-loader']})
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader', 'postcss-loader', 'less-loader'
+        ]
       },
       // all css required in src/app files will be merged in js files
       { test: /\.less$/, exclude: root('src', 'assets', 'styles'), loader: 'raw-loader!postcss-loader!less-loader' }
     ]
   };
 
+  // config.optimization = {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       inline: {
+  //         name: 'inline'
+  //       },
+  //       vendor: {
+  //         name: 'vendor',
+  //         chunks: 'all'
+  //       },
+  //       main: {
+  //         name: 'main',
+  //         minChunks: 2
+  //       }
+  //     }
+  //   }
+  // };
   /**
    * Plugins
    * Reference: http://webpack.github.io/docs/configuration.html#plugins
@@ -155,6 +178,10 @@ module.exports = (function makeWebpackConfig() {
       onDetected: false,
       cwd: process.cwd(),
     }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css'
+    }),
+    new OptimizeCSSAssetsPlugin(),
     // Define env variables to help with builds
     new webpack.DefinePlugin({
       // Environment helpers
@@ -166,47 +193,22 @@ module.exports = (function makeWebpackConfig() {
         COMMITHASH: JSON.stringify(GIT_COMMIT)
       }
     }),
-    new BaseHrefWebpackPlugin({ baseHref: baseHref }),
     // Inject script and link tags into html files
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: './index.html',
-      hash: false,
-      inject: true,
-      compile: true,
-      favicon: false,
-      minify: false,
-      cache: true,
-      showErrors: true,
-      chunks: 'all',
-      excludeChunks: [],
+      inject: 'body',
       xhtml: true,
-      chunksSortMode: function sort(left, right) {
-        let leftIndex = entryPoints.indexOf(left.names[0]);
-        let rightindex = entryPoints.indexOf(right.names[0]);
-        if (leftIndex > rightindex) {
-          return 1;
-        } else if (leftIndex < rightindex) {
-          return -1;
-        } else {
-          return 0;
-        }
-      }
-    }),
-    // Generate minimum chunks
-    new CommonsChunkPlugin({
-      name: ['inline'],
-      minChunks: null
-    }),
-    new CommonsChunkPlugin({
-      name: ['vendor'],
-      minChunks: (module) => {
-        return module.resource
-          && (module.resource.startsWith(nodeModules)
-            || module.resource.startsWith(genDirNodeModules)
-            || module.resource.startsWith(realNodeModules));
+      hash: true,
+      chunksSortMode: function (a, b) {
+        const entryPoints = ["inline","polyfills","vendor","main"];
+        return entryPoints.indexOf(a.names[0]) - entryPoints.indexOf(b.names[0]);
       },
-      chunks: ['main']
+      minify: isProduction ? {
+        caseSensitive: true,
+        collapseWhitespace: true,
+        keepClosingSlash: true
+      } : false
     }),
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map[query]',
@@ -214,14 +216,6 @@ module.exports = (function makeWebpackConfig() {
       fallbackModuleFilenameTemplate: '[resource-path]?[hash]',
       sourceRoot: 'webpack:///'
     }),
-    new CommonsChunkPlugin({
-      name: ['main'],
-      minChunks: 2,
-      async: 'common'
-    }),
-    new webpack.NamedModulesPlugin(),
-    // Extract css files
-    new ExtractTextPlugin({filename: '[name].[hash].css', disable: !isBuild}),
     // copy static resources
     new CopyWebpackPlugin([
       {
@@ -287,7 +281,8 @@ module.exports = (function makeWebpackConfig() {
       tsConfigPath: 'src/tsconfig.app.json',
       skipCodeGeneration: true,
       compilerOptions: {}
-    })
+    }),
+    new InlineManifestWebpackPlugin()
   ];
 
   // Add build specific plugins

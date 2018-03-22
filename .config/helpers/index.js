@@ -1,6 +1,5 @@
 const path = require('path');
 const ROOT = path.resolve(__dirname, '../../');
-const _ = require('lodash');
 
 function root(args) {
   args = Array.prototype.slice.call(arguments, 0);
@@ -8,11 +7,12 @@ function root(args) {
 }
 
 // Add folder as parent node in json
-function transformJsonFile(content, absolutePath, relativePath) {
+function transformJsonFile(content, absolutePath) {
   'use strict';
 
   let data = JSON.parse(content.toString());
-  let paths = path.dirname(relativePath).replace(/\\/g, '/').split('/');
+  const relativePath = path.relative(ROOT, absolutePath);
+  const paths = path.dirname(relativePath).replace(/\\/g, '/').split('/');
   while(paths.length) {
     const path = paths.pop();
     if (path !== '.') {
@@ -31,7 +31,7 @@ function combineJsonFiles(source, destination) {
 
   const sourceData = JSON.parse(source.toString());
   const destinationData = JSON.parse(destination.toString());
-  const result = _.merge(sourceData, destinationData);
+  const result = { ...sourceData, ...destinationData };
 
   return new Buffer(JSON.stringify(result));
 }
@@ -43,7 +43,7 @@ function transformJsonFileFlat(rules) {
   function transformData(data, rules) {
     let result = {};
     for (let i = rules.length - 1; i >= 0; i--) {
-      result = _.merge(result, data[rules[i]] || {});
+      result = { ...result, ...(data[rules[i]] || {})};
     }
     return result;
   }
@@ -71,15 +71,15 @@ function combineJsonConfigFiles(source, destination, absoluteFrom) {
   if (localIndex !== -1 && sourceData[trimmedName]) {
     let temp = {};
     temp[trimmedName] = destinationData[name];
-    result = _.merge(sourceData, temp);
+    result = {...sourceData, ...temp};
   } if (sourceData[name + '.local']) {
     let temp = {};
     temp[name] = sourceData[name + '.local'];
     delete sourceData[name + '.local'];
-    result = _.merge(sourceData, destinationData);
-    result = _.merge(result, temp);
+    result = {...sourceData, ...destinationData};
+    result = {...result, ...temp};
   } else {
-    result = _.merge(sourceData, destinationData);
+    result = {...sourceData, ...destinationData};
   }
 
   return new Buffer(JSON.stringify(result));
