@@ -7,9 +7,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
 import { MockedTranslatePipe } from './_mocks/translate.mock.spec';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { of } from 'rxjs/observable/of';
 
 class MockedTranslateService {
-  getResponse = Observable.of('test');
+  getResponse = of('test');
 
   setDefaultLang(): void {}
   use() {}

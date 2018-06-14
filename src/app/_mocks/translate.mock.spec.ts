@@ -1,5 +1,6 @@
 import { Pipe } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 @Pipe({
     name: 'translate',
@@ -19,7 +20,7 @@ export class MockedTranslatePipe implements Pipe {
 export class MockedTranslateService {
     currentLang: string;
     translationDict = {};
-    getResponse: Observable<any> = Observable.of(null);
+    getResponse: Observable<any> = of(null);
 
     setDefaultLang() { /**/ }
     use() { /**/ }

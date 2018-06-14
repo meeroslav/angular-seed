@@ -1,6 +1,7 @@
 import { Component, Directive, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { of } from 'rxjs/observable/of';
 
 export class MockedFeedbackService {
   notify() { /**/
@@ -57,25 +58,25 @@ export class MockedViewContainerRef {
 
 export class MockedApi {
   get(): Observable<any> {
-    return Observable.of(null);
+    return of(null);
   }
 
   post(): Observable<any> {
-    return Observable.of(null);
+    return of(null);
   }
 
   put(): Observable<any> {
-    return Observable.of(null);
+    return of(null);
   }
 
   delete(): Observable<any> {
-    return Observable.of(null);
+    return of(null);
   }
 }
 
 export class MockedActivatedRoute {
-  params: Observable<any> = Observable.of({});
-  url: Observable<any[]> = Observable.of([]);
+  params: Observable<any> = of({});
+  url: Observable<any[]> = of([]);
   snapshot = {
     params: null,
     url: null

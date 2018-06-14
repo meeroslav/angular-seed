@@ -58,7 +58,7 @@
     "ngx-type-ahead": "^1.2.2",
     "ramda": "~0.25.0",
     "rxjs": "^5.5.7",
-    "zone.js": "0.8.14"
+    "zone.js": "0.8.26"
   },
   "devDependencies": {
     "@angular/compiler": "5.2.11",
