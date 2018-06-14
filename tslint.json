@@ -7,6 +7,9 @@
     "tslint-eslint-rules",
     "codelyzer"
   ],
+  "exclude": [
+
+  ],
   "rules": {
     "class-name": true,
     "curly": true,

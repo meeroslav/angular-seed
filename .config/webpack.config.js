@@ -13,6 +13,7 @@ const CopyWebpackPlugin = require('./loaders/index'); // temporary use custom ve
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin');
 
 const rxPaths = require('rxjs/_esm5/path-mapping');
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
@@ -149,23 +150,6 @@ module.exports = (function makeWebpackConfig() {
     ]
   };
 
-  // config.optimization = {
-  //   splitChunks: {
-  //     cacheGroups: {
-  //       inline: {
-  //         name: 'inline'
-  //       },
-  //       vendor: {
-  //         name: 'vendor',
-  //         chunks: 'all'
-  //       },
-  //       main: {
-  //         name: 'main',
-  //         minChunks: 2
-  //       }
-  //     }
-  //   }
-  // };
   /**
    * Plugins
    * Reference: http://webpack.github.io/docs/configuration.html#plugins
@@ -210,6 +194,7 @@ module.exports = (function makeWebpackConfig() {
         keepClosingSlash: true
       } : false
     }),
+    new BaseHrefWebpackPlugin({ baseHref: baseHref }),
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map[query]',
       moduleFilenameTemplate: '[resource-path]',
