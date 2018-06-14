@@ -4,6 +4,7 @@ cache:
   directories:
     - node_modules
 script:
+  - yarn
   - npm run deploy
   - ngh --no-silent --repo=https://GH_TOKEN@github.com/meeroslav/angular-seed.git --name="meeroslav" --email=missing.manual@gmail.com
 
