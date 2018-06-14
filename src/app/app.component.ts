@@ -13,10 +13,10 @@ export class AppComponent {
   languages: Array<string> = [];
 
   /**
-   * @param translate
+   * @param translateService
    * @param title
    */
-  constructor(private translate: TranslateService,
+  constructor(private translateService: TranslateService,
               private title: Title) {
     this._initializeLanguages();
     defineLocale('de', deLocale);
@@ -31,7 +31,6 @@ export class AppComponent {
     // this._initializeTranslateService(this.appConfig.data.languages.default);
     this.languages = ['en', 'de'];
     this._initializeTranslateService('en');
-    this._translateApplicationShell();
   }
 
   private _initializeTranslateService(defaultLanguage: string) {
@@ -40,15 +39,11 @@ export class AppComponent {
       userLang :
       defaultLanguage;
 
-    this.translate.setDefaultLang(defaultLanguage);
+    this.translateService.setDefaultLang(defaultLanguage);
     this.selectedLanguage = userLang;
-    this.translate.use(userLang);
-  }
-
-  private _translateApplicationShell() {
-    // translate page title
-    this.translate.get('APP_NAME').subscribe((data: any) => {
-      this.title.setTitle(data);
+    this.translateService.use(userLang).subscribe(() => {
+      // translateService page title
+      this.title.setTitle(this.translateService.instant('APP_NAME'));
     });
   }
 }

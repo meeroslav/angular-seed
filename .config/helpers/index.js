@@ -11,7 +11,8 @@ function transformJsonFile(content, absolutePath) {
   'use strict';
 
   let data = JSON.parse(content.toString());
-  const relativePath = path.relative(ROOT, absolutePath);
+  const relativePath = path.relative(path.resolve(ROOT, 'src/assets/locales'), absolutePath);
+
   const paths = path.dirname(relativePath).replace(/\\/g, '/').split('/');
   while(paths.length) {
     const path = paths.pop();

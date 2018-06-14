@@ -76,7 +76,7 @@
     "chalk": "^2.3.0",
     "circular-dependency-plugin": "~5.0.0",
     "codelyzer": "4.2.1",
-    "copy-webpack-plugin-advanced": "~1.0.3",
+    "copy-webpack-plugin-advanced": "2.0.0",
     "cross-env": "~5.1.4",
     "css-loader": "~0.28.11",
     "faker": "~4.1.0",
