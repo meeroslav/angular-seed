@@ -162,7 +162,8 @@ export class MiscComponent implements OnInit {
       childComponent: CustomModalComponent,
       settings: {
         closeButtonClass: 'close theme-icon-close'
-      }
+      },
+      data: `Hey, I'm parent!`
     });
   }
 
