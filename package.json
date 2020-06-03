@@ -123,7 +123,7 @@
     "webpack-cli": "^2.0.12",
     "webpack-dashboard": "^0.3.0",
     "webpack-dev-middleware": "^3.0.1",
-    "webpack-dev-server": "~3.1.1",
+    "webpack-dev-server": "~3.1.11",
     "webpack-inline-manifest-plugin": "^4.0.0"
   }
 }
